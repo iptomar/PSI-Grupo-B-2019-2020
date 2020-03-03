@@ -1,0 +1,302 @@
+html, body {
+    padding: 0;
+    margin: 0; 
+    height: 100%;
+}
+
+#mapid{
+    z-index: 1;
+    position: absolute;
+    top: 80px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    display: block;
+    box-shadow:0px 0px 5px rgba(0,0,0,0.4);
+}
+
+.hidden{
+    display: none !important;
+}
+
+.overflow{
+    overflow: hidden;
+}
+
+
+
+#backToMap{
+    border: 1px black solid;
+}
+
+#idHr{
+    background-color: #17283B;
+}
+
+.refreshButton{
+    z-index: 2;
+    position: absolute;
+    top: 10em; 
+    left: 1.2em;
+    box-shadow: 1px 1px 10px 1px #888888;
+}
+/* 
+.leaflet-control-container{
+    display: none !important;
+} */
+
+/* .leaflet-routing-container{
+    display: none !important;
+} */
+
+.leaflet-right{
+    display: none !important;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background-color: #f2f2f2 !important;
+  }
+
+/******************************************* Topo *************************************************/
+
+#topo{
+    /* background-color: #F2E3CF; */
+    background-color: #F2B84B;
+    height: 4.5rem;
+    width: 100%;
+    position: relative;
+
+}
+
+/* #idSpanLinhaTopo{
+    background-color:  #F2B84B;
+    padding-right: 10px;
+    padding-left: 10px;
+} */
+
+#idTitulo{
+    font-family: 'Georgia', serif;
+    color: #17283B;
+    font-size: 1em;
+    font-weight: bold;
+    position: absolute;
+    max-width: 270px;
+    margin-left: 10px; 
+
+    top: 25%;
+    bottom: 25%;
+
+   /*  left: 50%;
+    margin-right: -50%;
+    */
+    text-align: left;
+    /* transform: translate(-50%, -50%); */
+} 
+
+
+#idSobreBt{
+    position: absolute;
+    top: 25%;
+    left: 90%;
+}
+
+#idAcerca{
+    position: absolute;
+    /* margin: 20px; */
+}
+
+
+/***************************************************************************************************/
+
+/******************************** span lina + tipo edificio *****************************************/
+
+#idSpanLinha{
+    background-color: #F2F2F2;
+    padding-right: 10px;
+    padding-left: 10px
+}
+
+#idTipoEdificio{
+    position: relative;
+    text-align: center;
+}
+
+#idTipoEdificio:after {
+    content:"";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.5em;
+    border-top: 1px solid #17283B;
+    z-index: -1;
+}
+/***************************************************************************************************/
+/************************************   PopUps    ************************************************/
+
+.item1 { grid-area: tipo; }
+.item2 { grid-area: nome; }
+.item3 { grid-area: primeiro; }
+.item4 { grid-area: segundo; }
+
+#iDdivPopup {
+        justify-content: center;
+        display: grid;
+        grid-template-areas:           
+          'tipo'
+          'nome'
+          'primeiro'
+          'segundo';
+        /* grid-gap: 10px;
+        padding: 10px; */
+        margin-left: -6.5px;
+        margin-top: -1em;
+}
+      
+
+#idPopUpNome{
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.4em;
+    border-top: 1px #17283B solid;
+    padding-top: 10px;
+    margin-top: 5px;
+}
+#idPopUpTipo{
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+#idBtWaypoint{
+    font-size: 1em;
+    text-align: center;
+    margin-left: .5em;
+    
+    /*margin-left: -1.07rem;*/
+}
+
+
+/***************************************************************************************************/
+/******************************   Info edificios    ************************************************/
+#container{
+    height: 100%;
+    width: 100%;
+}
+
+#infoAdicional{
+    
+    margin: 20px;
+    height: 100%;
+}
+
+#idNomeEdificio{
+    text-align: center;
+    vertical-align:middle;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/*============= Data do projeto =====================*/
+
+#idData{
+    text-align: center;
+    color: #17283B;
+    font-weight: bold;
+    font-style: italic
+}
+
+/*===========================================*/
+/*============= Localização =====================*/
+#idLocalizacao{
+    text-align: center;
+}
+
+/*===========================================*/
+/*============= Autores =====================*/
+
+#idAutoresTab{
+    text-align: center;
+    color: #17283B;
+}
+
+#idSingleAutors{
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    font-style: italic;
+    font-size: 3.5vw;
+}
+
+/*===========================================*/
+
+/*============= Descricao =====================*/
+
+#idDescricao{
+    text-align: justify;
+    text-indent: 2em;
+    color: #17283B;
+}
+
+/*===========================================*/
+
+#idDivColMd{
+    border: 1px #F2F2F2;
+    border-style: solid;
+    text-align: center;
+    justify-content: center;
+
+}
+
+
+#idDivCaption{
+    position: relative;
+    background-color: rgba(63,63,63,0.55);
+    margin-left: 5%;
+    margin-right: 5%;
+    size: 2em;    
+    bottom: 14vw;
+    height: 14vw;
+
+}
+#idDivCaption p {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    color: #F2F2F2;
+    font-style: italic;
+    font-size: 3vw;
+/* 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    text-align: center; */
+    
+}
+
+#idImagens{
+    object-fit: cover;
+    width: 90%;
+    height: 100%;
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+} 
+
+
+
+/*============= imagem fullscreen =====================*/
+
+/* #fullImg{
+
+} */
+
+#idImgFull{
+    width: 100%;
+    height: 100%;
+    margin-top: 50%;
+    
+}
+/*=====================================================*/

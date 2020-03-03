@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <link rel="stylesheet" type="text/javascript" href="bootstrap.min.js">
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <link rel="stylesheet" type="text/css" href="leaflet.css">
+    <script type="text/javascript" src="leaflet.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="all.min.js"></script>
+    <script type="text/javascript" src="img-touch-canvas.js"></script>
+
+    <!-- ROUTING -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+</head>
+
+<body>
+    <div id="topo">
+        <h2 id="idTitulo">Guia Virtual do Roteiro Arquitetura Moderna de Tomar</h2>
+        <div id="idSobreBt">
+            <i class="fas fa-info-circle fa-2x"></i>
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="fullImg" class="hidden" style="height: 105%; margin-top: 20px;">
+            <canvas id="mycanvas" style="width: 100%; height: 100%;"></canvas>
+        </div>
+        <div class="hidden" id="infoAdicional"></div>
+        <div id="mapid"></div>
+        <button id="btPosicao" class="refreshButton btn btn-light"><i id="idIcon"
+                class="far fa-dot-circle"></i></button>
+        <div id="fullImg"></div>
+
+        <div id="idAcerca" class="hidden">
+            <div style="text-align: justify; margin: 15px; margin-bottom: 20px">
+                <h4 style="color:peru">Sobre a aplicação:</h4>
+                O guia virtual do Roteiro de Arquitetura Moderna da cidade de Tomar integra um conjunto selecionado de
+                edifícios públicos e residenciais que foram projetados entre 1930 e 1965.<br>
+                <br>O Roteiro de Arquitetura Moderna surgiu na sequência de um projeto de investigação iniciado no final
+                de 2015, e para o qual foi estabelecido um protocolo entre o Instituto Politécnico de Tomar e a Câmara
+                Municipal de Tomar. A parceria possibilitou o desenvolvimento de um estudo sobre a Arquitetura Moderna
+                na cidade de Tomar, através do levantamento, pesquisa e análise de um conjunto de edifícios, projetados
+                entre 1930 e 1965. O trabalho desenvolvido resultou numa exposição e na publicação impressa de um
+                roteiro na forma de livro, em 2018.<br>
+                <br>Dado que um dos objetivos do projeto incidiu na divulgação deste património ao público em geral,
+                julgou-se pertinente a sua transposição para outros formatos e plataformas. Com efeito, a constituição
+                de um guia virtual pode revelar-se uma base importante para a valorização de edifícios construídos sob a
+                égide do modernismo e dos espaços urbanos que ocupam e transformam. O registo virtual do objeto imóvel
+                pode assim ser uma forma de enquadrar e ampliar as estratégias de divulgação do património arquitetónico
+                aos utilizadores cada vez mais frequentes de plataformas digitais, criando novos referenciais em
+                alternativa aos guias e roteiros culturais e turísticos convencionais.<br>
+                <br>O guia virtual do Roteiro de Arquitetura Moderna foi desenvolvido pelos estudantes da unidade
+                curricular Projeto (ano letivo 2018-2019) da Licenciatura em Engenharia Informática, do Instituto
+                Politécnico de Tomar.
+            </div>
+            <div style="margin: 15px">
+                <div style="margin-bottom: 20px">
+                    <h4 style="color: peru">Alunos</h4>
+                    Rodolfo Santos<br>
+                    Tiago Costa
+                </div>
+
+                <div style="margin-bottom: 20px">
+                    <h4 style="color: peru"> Orientador</h4>
+                    Paulo Santos
+                </div>
+
+                <div style="margin-bottom: 20px">
+                    <h4 style="color: peru">Responsáveis pelo projeto</h4>
+                    Anabela Moreira<br>
+                    Inês Serrano
+                </div>
+                <div style="margin-bottom: 20px">
+                    <h4 style="color: peru">Fotografias e digitalização de imagens</h4>
+                    Laboratório de Fotografia do Instituto Politécnico de Tomar
+                </div>
+
+                <p
+                    style="font-size: 16px; color: rgb(175, 88, 38); font-style: italic; text-align: justify; margin-bottom: 20px">
+                    Toda a informação contida na aplicação foi fornecida pelas professoras, e responsáveis pelo projeto,
+                    Anabela Moreira e Inês Serrano.
+
+                <!-- ~\ProjetoFinal\Guia\www\img\ipt.png -->
+                <div style="margin-bottom:8px">
+                    <img src="ipt.png" style="width: 100%" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
