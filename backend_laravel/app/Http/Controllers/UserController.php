@@ -58,6 +58,13 @@ class UserController extends Controller
 
         //If everything goes as planned returns token information for said user
         return $this->tokenResponse($token);
+    }
 
+    /**
+     * Method/endpoint to retreive current user information (requires auth)
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me(){
+        return response()->json(['user' => Auth::user()], 200);
     }
 }
