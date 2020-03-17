@@ -24,4 +24,5 @@ $router->group(['prefix'=>'api'], function()use($router){
     });
 
     //No-auth routes
+    $router->post('/login','UserController@login');
 });
