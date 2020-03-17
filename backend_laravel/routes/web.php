@@ -20,7 +20,7 @@ $router->group(['prefix'=>'api'], function()use($router){
 
     //All routes that need authentication go under this group
     $router->group([ 'middleware'=>'auth' ], function() use ($router) {
-
+        $router->get('/me','UserController@me');
     });
 
     //No-auth routes
