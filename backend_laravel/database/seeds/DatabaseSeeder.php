@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
+        //Create first user (superadmin)
+        $user=new \App\User(['email'=>'admin@admin.com','name'=>'Admin']);
+        $user->password=app('hash')->make('password');
+        $user->save();
+
     }
 }
