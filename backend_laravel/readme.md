@@ -1,21 +1,66 @@
-# Lumen PHP Framework
+# Backend RAM Tomar
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+## About
+Backend developed using Laravel's micro-framework **Lumen**. 
+Official documentation regarding **Lumen** can be found [here](https://lumen.laravel.com/docs/5.8/ "aqui").
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Run it by yourself
+On the first time running the project you need to:
 
-## Official Documentation
+1. Clone this repo
+2. Run `composer updated`
+3. Copy `.env.example` as `.env` and replace database information + APP_KEY (for encryption)
+4. Run `php artisan jwt:secret` to generate jwt secret
+5. Run `php artisan migrate`
+6. Run `php artisan db:seed` to create first user (admin@admin.com - password)
+7. Run `php -S localhost:8000 -t public` to locally deploy the application
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## Basic documentation
+##### Endpoints
+\* => required
+###### **POST** /api/login
 
-## Security Vulnerabilities
+Used to login user in the app
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+Request should contain the following fields on body:
+- email (string) *
+- password (string) *
 
-## License
+Doesnt need auth
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Returns: token
+```json
+    {
+        "token": "eyJ(...supressed)",
+        "token_type": "bearer",
+        "expires_in": 3600
+    }
+```
+
+###### **GET** /api/me
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if auth fails or 200 with body:
+```json
+{
+    "user": {
+        "id": 1,
+        "name": "Admin",
+        "email": "admin@admin.com",
+        "created_at": "2020-03-17 01:04:53",
+        "updated_at": "2020-03-17 01:04:53"
+    }
+}
+```
+
+## Changelog
+
+##### [2020-03-17]
+- Installed framework** - Marcelo Silva**
+- Installed jwt-auth package (Author: [tymon](https://github.com/tymondesigns/jwt-auth "tymon")) to handle user auth** - Marcelo Silva**
+- Created base structure for routes file** - Marcelo Silva**
+- Created route for login with step-by-step comment (for example and understanding of how the framework works)** - Marcelo Silva**
+- Created simple route that needs auth to retrieve current user information (/api/me)** - Marcelo Silva**
+
