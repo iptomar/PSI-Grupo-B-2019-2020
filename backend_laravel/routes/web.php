@@ -14,3 +14,14 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+//All api routes go under this group
+$router->group(['prefix'=>'api'], function()use($router){
+
+    //All routes that need authentication go under this group
+    $router->group([ 'middleware'=>'auth' ], function() use ($router) {
+
+    });
+
+    //No-auth routes
+});
