@@ -76,4 +76,23 @@ class UserController extends Controller
         $users = User::paginate(15);
         return response()->json($users, 200);
     }
+
+    /**
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request, $user){
+        $user = User::findOrFail($user);
+
+        $this->validate($request, [
+            'email'=>'nullable|string|email',
+            'name'=>'nullable|string',
+            'password'=>'nullable|confirmed|string'
+        ]);
+
+        $user->update($request->only(['email', 'name']));
+        $user->password = app('hash')->make('password');
+        $user->save();
+        return response()->json(['user' => $user], 200);
+    }
 }
