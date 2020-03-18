@@ -24,10 +24,9 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->get('/users','UserController@index');
         $router->patch('/users/{user}','UserController@update');
         $router->post('/users','UserController@store');
+        $router->delete('/users/{user}','UserController@delete');
     });
 
     //No-auth routes
-    $router->post('/login','UserController@login');
-
-    
+    $router->post('/login','UserController@login'); 
 });

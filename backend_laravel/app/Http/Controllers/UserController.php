@@ -113,4 +113,14 @@ class UserController extends Controller
 
         return response()->json(['user' => $user], 201);
     }
+
+    /**
+     * Method/endpoint to delete user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete($user){
+        $user = User::findOrFail($user);
+        $response = $user->delete();
+        return response()->json($response, 200);
+    }
 }
