@@ -78,7 +78,7 @@ class UserController extends Controller
     }
 
     /**
-     * 
+     * Method/endpoint to update user
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $user){
@@ -94,5 +94,23 @@ class UserController extends Controller
         $user->password = app('hash')->make('password');
         $user->save();
         return response()->json(['user' => $user], 200);
+    }
+
+    /**
+     * Method/endpoint to create new user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request){
+        $this->validate($request, [
+            'email'=>'required|string|email',
+            'name'=>'required|string',
+            'password'=>'required|confirmed|string'
+        ]);
+
+        $user = new User(['email' => $request->email ,'name' => $request->name]);
+        $user->password = app('hash')->make($request->password);
+        $user->save();
+
+        return response()->json(['user' => $user], 201);
     }
 }

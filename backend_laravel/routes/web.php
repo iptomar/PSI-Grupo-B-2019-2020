@@ -23,6 +23,7 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->get('/me','UserController@me');
         $router->get('/users','UserController@index');
         $router->patch('/users/{user}','UserController@update');
+        $router->post('/users','UserController@store');
     });
 
     //No-auth routes
