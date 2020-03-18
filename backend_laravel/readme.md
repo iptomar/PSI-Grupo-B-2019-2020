@@ -154,14 +154,14 @@ true
 ## Changelog
 
 ##### [2020-03-17]
-- Installed framework ** - Marcelo Silva**
-- Installed jwt-auth package (Author: [tymon](https://github.com/tymondesigns/jwt-auth "tymon")) to handle user auth ** - Marcelo Silva**
-- Created base structure for routes file ** - Marcelo Silva**
-- Created route for login with step-by-step comment (for example and understanding of how the framework works) ** - Marcelo Silva**
-- Created simple route that needs auth to retrieve current user information (/api/me) ** - Marcelo Silva**
+- Installed framework **- Marcelo Silva**
+- Installed jwt-auth package (Author: [tymon](https://github.com/tymondesigns/jwt-auth "tymon")) to handle user auth **- Marcelo Silva**
+- Created base structure for routes file **- Marcelo Silva**
+- Created route for login with step-by-step comment (for example and understanding of how the framework works) **- Marcelo Silva**
+- Created simple route that needs auth to retrieve current user information (/api/me) **- Marcelo Silva**
 
 ##### [2020-03-18]
-- Created endpoint to retrieve users  ** - Francisco Vital**
-- Created endpoint to edit user  ** - Francisco Vital**
-- Created endpoint to create new user  ** - Francisco Vital**
-- Created endpoint to delete user  ** - Francisco Vital**
+- Created endpoint to retrieve users  **- Francisco Vital**
+- Created endpoint to edit user  **- Francisco Vital**
+- Created endpoint to create new user  **- Francisco Vital**
+- Created endpoint to delete user  **- Francisco Vital**
