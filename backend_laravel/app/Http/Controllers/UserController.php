@@ -67,4 +67,13 @@ class UserController extends Controller
     public function me(){
         return response()->json(['user' => Auth::user()], 200);
     }
+
+    /**
+     * Method/endpoint that returns users with pagination (requires auth)
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(){
+        $users = User::paginate(15);
+        return response()->json($users, 200);
+    }
 }
