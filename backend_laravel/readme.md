@@ -8,7 +8,7 @@ Official documentation regarding **Lumen** can be found [here](https://lumen.lar
 On the first time running the project you need to:
 
 1. Clone this repo
-2. Run `composer updated`
+2. Run `composer update`
 3. Copy `.env.example` as `.env` and replace database information + APP_KEY (for encryption)
 4. Run `php artisan jwt:secret` to generate jwt secret
 5. Run `php artisan migrate`
