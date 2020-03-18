@@ -55,12 +55,113 @@ Returns 401 if auth fails or 200 with body:
 }
 ```
 
+###### **GET** /api/users
+
+Get all users by page
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if auth fails or 200 with body:
+```json
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "name": "admin",
+            "email": "admin@admin.com",
+            "created_at": "2020-03-17 16:35:31",
+            "updated_at": "2020-03-18 15:25:21"
+        }
+    ],
+    "first_page_url": "http://localhost:8000/api/users?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost:8000/api/users?page=1",
+    "next_page_url": null,
+    "path": "http://localhost:8000/api/users",
+    "per_page": 15,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}
+```
+
+###### **PATCH** /api/users/{id}
+
+Update user.
+
+Body request:
+- email (string) 
+- name (string)
+- password (string)
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if auth fails or 404 if user with "id" does not exist or 200 with body:
+```json
+{
+    "user": {
+        "id": 1,
+        "name": "admin",
+        "email": "admin@admin.com",
+        "created_at": "2020-03-17 16:35:31",
+        "updated_at": "2020-03-18 15:56:50"
+    }
+}
+```
+
+###### **POST** /api/users
+
+Create new user.
+
+Body request:
+- email (string) *
+- name (string) *
+- password (string) *
+- password_confirmation (string) *
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if auth fails or 200 with body:
+```json
+{
+    "user": {
+        "email": "manel@manel.com",
+        "name": "manel",
+        "updated_at": "2020-03-18 16:00:24",
+        "created_at": "2020-03-18 16:00:24",
+        "id": 3
+    }
+}
+```
+
+###### **DELETE** /api/users
+
+Delete user.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if auth fails or 404 if user with "id" does not exist or 200 with body:
+```json
+true
+```
+
 ## Changelog
 
 ##### [2020-03-17]
-- Installed framework** - Marcelo Silva**
-- Installed jwt-auth package (Author: [tymon](https://github.com/tymondesigns/jwt-auth "tymon")) to handle user auth** - Marcelo Silva**
-- Created base structure for routes file** - Marcelo Silva**
-- Created route for login with step-by-step comment (for example and understanding of how the framework works)** - Marcelo Silva**
-- Created simple route that needs auth to retrieve current user information (/api/me)** - Marcelo Silva**
+- Installed framework ** - Marcelo Silva**
+- Installed jwt-auth package (Author: [tymon](https://github.com/tymondesigns/jwt-auth "tymon")) to handle user auth ** - Marcelo Silva**
+- Created base structure for routes file ** - Marcelo Silva**
+- Created route for login with step-by-step comment (for example and understanding of how the framework works) ** - Marcelo Silva**
+- Created simple route that needs auth to retrieve current user information (/api/me) ** - Marcelo Silva**
 
+##### [2020-03-18]
+- Created endpoint to retrieve users  ** - Francisco Vital**
+- Created endpoint to edit user  ** - Francisco Vital**
+- Created endpoint to create new user  ** - Francisco Vital**
+- Created endpoint to delete user  ** - Francisco Vital**
