@@ -16,6 +16,10 @@ class Building extends Model
     protected $fillable=[
         'buildingName','location','dates','buildingType','description','coordinate1','coordinate2'
     ];
-
+    
+    //Relacoes
+    public function authors(){
+        return $this->hasMany('\App\Author');
+    }
 
 }
