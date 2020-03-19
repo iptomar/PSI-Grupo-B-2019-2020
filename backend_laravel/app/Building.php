@@ -27,7 +27,7 @@ class Building extends Model
     }
 
     public function vertices(){
-        return $this->hasMany('\App\Vertices');
+        return $this->hasMany('\App\Vertice');
     }
 
     public function images(){
