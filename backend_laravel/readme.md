@@ -151,6 +151,133 @@ Returns 401 if auth fails or 404 if user with "id" does not exist or 200 with bo
 true
 ```
 
+###### **GET** /api/routes
+
+Get all routes in different pages.
+
+Returns 200 with body:
+```json
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 2,
+            "name": "Tabernas de Tomar",
+            "created_at": "2020-03-19 23:09:49",
+            "updated_at": "2020-03-19 23:11:06"
+        }
+    ],
+    "first_page_url": "http://localhost:8000/api/routes?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost:8000/api/routes?page=1",
+    "next_page_url": null,
+    "path": "http://localhost:8000/api/routes",
+    "per_page": 15,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}
+```
+
+###### **GET** /api/routes/{id}
+
+Get everything about one route.
+
+Returns 404 if route does not exist or 200 with body:
+```json
+{
+    "route": {
+        "id": 2,
+        "name": "Tabernas de Tomar",
+        "created_at": "2020-03-19 23:09:49",
+        "updated_at": "2020-03-19 23:11:06",
+        "buildings": [
+            {
+                "id": 1,
+                "buildingName": "Palácio da Justiça",
+                "location": "Várzea Grande",
+                "dates": "1951",
+                "buildingType": "Edifício Público",
+                "description": "O edifício foi inaugurado em 1959. O piso térreo do edifício é elevado através de uma escadaria, e apresenta arcada com galeria; no piso nobre, abriram-se janelas de sacada no intercolúnio. Na construção sobressai o calcário dourado da região, profusamente aplicado em paredes, pavimentos e escadas. Os pavimentos beneficiaram da aplicação de revestimentos de madeira e mármore. No topo central, entre duas colunas, colocou-se um tríptico a fresco, da autoria de Guilherme Camarinha. A utilização de revestimentos cerâmicos policromados nas zonas públicas do edifício expressa uma prática comum na arquitetura judicial deste período. O edifício inclui, nas paredes laterais do pátio interior, painéis cerâmicos decorativos, com motivos alusivos à função simbólica do edifício, desenhados por Jorge Barradas.",
+                "coordinate1": "39.60092678",
+                "coordinate2": "-8.41364175",
+                "created_at": null,
+                "updated_at": null,
+                "pivot": {
+                    "route_id": 2,
+                    "building_id": 1
+                },
+                "authors": [
+                    {
+                        "id": 1,
+                        "name": "Januário Godinho de Almeida - Arquiteto",
+                        "building_id": 1,
+                        "created_at": null,
+                        "updated_at": null
+                    }
+                ],
+                "images": [],
+                "vertices": []
+            }
+        ]
+    }
+}
+```
+
+###### **POST** /api/routes
+
+Create new route.
+
+Body request:
+- name (string) *
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 200 with body:
+```json
+{
+    "route": {
+        "name": "Lojas de Tomar",
+        "updated_at": "2020-03-19 23:45:47",
+        "created_at": "2020-03-19 23:45:47",
+        "id": 3
+    }
+}
+```
+
+###### **PATCH** /api/routes/{id}
+
+Update route.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if route does not exist or 200 with body:
+```json
+{
+    "route": {
+        "id": 3,
+        "name": "Lojas de Tomare",
+        "created_at": "2020-03-19 23:45:47",
+        "updated_at": "2020-03-19 23:46:38"
+    }
+}
+```
+
+###### **DELETE** /api/routes/{id}
+
+Update route.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if route does not exist or 200 with body:
+```json
+true
+```
+
 ## Changelog
 
 ##### [2020-03-17]
@@ -165,3 +292,11 @@ true
 - Created endpoint to edit user  **- Francisco Vital**
 - Created endpoint to create new user  **- Francisco Vital**
 - Created endpoint to delete user  **- Francisco Vital**
+
+##### [2020-03-19]
+- Created Route model with relationships  **- Francisco Vital**
+- Created routes for Route controller  **- Francisco Vital**
+- Created endpoint to create route  **- Francisco Vital**
+- Created endpoint to delete route  **- Francisco Vital**
+- Created endpoint to update route  **- Francisco Vital**
+- Created endpoint to show everything about specific route, including its buildings and all information about them  **- Francisco Vital**

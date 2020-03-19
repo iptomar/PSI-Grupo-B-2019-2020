@@ -12,6 +12,6 @@ class Route extends Model
     ];
 
     public function buildings(){
-        return $this->belongsToMany('\App\Building');
+        return $this->belongsToMany('\App\Building', 'buildings_routes');
     }
 }
