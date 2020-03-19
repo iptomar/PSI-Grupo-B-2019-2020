@@ -31,6 +31,12 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->post('/buildings', 'BuildingController@store');
         $router->patch('/buildings/{id}', 'BuildingController@update');
         $router->delete('/buildings/{id}', 'BuildingController@delete');
+
+        $router->get('/routes', 'RouteController@index');
+        $router->get('/routes/{id}', 'RouteController@show');
+        $router->post('/routes', 'RouteController@store');
+        $router->patch('/routes/{id}', 'RouteController@update');
+        $router->delete('/routes/{id}', 'RouteController@delete');
     });
 
     //No-auth routes
