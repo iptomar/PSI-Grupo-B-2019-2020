@@ -22,4 +22,8 @@ class Building extends Model
         return $this->hasMany('\App\Author');
     }
 
+    public function routes(){
+        return $this->belongsToMany('\App\Route');
+    }
+
 }
