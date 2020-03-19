@@ -26,4 +26,12 @@ class Building extends Model
         return $this->belongsToMany('\App\Route');
     }
 
+    public function vertices(){
+        return $this->hasMany('\App\Vertices');
+    }
+
+    public function images(){
+        return $this->hasMany('\App\Image');
+    }
+
 }
