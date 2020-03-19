@@ -18,6 +18,9 @@ On the first time running the project you need to:
 ## Basic documentation
 ##### Endpoints
 \* => required
+
+## User Endpoints
+
 ###### **POST** /api/login
 
 Used to login user in the app
@@ -150,6 +153,8 @@ Returns 401 if auth fails or 404 if user with "id" does not exist or 200 with bo
 ```json
 true
 ```
+
+## Routes Endpoints
 
 ###### **GET** /api/routes
 
