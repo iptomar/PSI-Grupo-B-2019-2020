@@ -283,6 +283,319 @@ Returns 401 if not authenticated or 404 if route does not exist or 200 with body
 true
 ```
 
+###### **GET** /api/buildings/
+
+Get list of buildings.
+This endpoint accepts a query string/body parameter named "search" for filtering requets by buildingName or buildingType.
+
+Returns 200 with body:
+
+```json
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 8,
+            "buildingName": "Convento de Cristo4",
+            "location": "Castelo de Tomar",
+            "dates": "1931",
+            "buildingType": "Monumento",
+            "description": "xpto",
+            "coordinate1": "0.314",
+            "coordinate2": "93.345",
+            "authors": [],
+            "images": [],
+            "routes": [
+                {
+                    "id": 2,
+                    "name": "Tabernas de Tomar",
+                    "pivot": {
+                        "building_id": 8,
+                        "route_id": 2
+                    }
+                }
+            ],
+            "vertices": [
+                {
+                    "id": 7,
+                    "coordinate1": 93.5,
+                    "coordinate2": 93.6,
+                    "order": 1,
+                    "building_id": 8
+                },
+                {
+                    "id": 8,
+                    "coordinate1": 94.5,
+                    "coordinate2": 94.6,
+                    "order": 2,
+                    "building_id": 8
+                },
+                {
+                    "id": 9,
+                    "coordinate1": 95.5,
+                    "coordinate2": 95.6,
+                    "order": 3,
+                    "building_id": 8
+                }
+            ]
+        },(...)
+    ],
+    "first_page_url": "http://localhost:8000/api/buildings?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost:8000/api/buildings?page=1",
+    "next_page_url": null,
+    "path": "http://localhost:8000/api/buildings",
+    "per_page": 10,
+    "prev_page_url": null,
+    "to": 7,
+    "total": 7
+}
+```
+
+###### **POST** /api/buildings/
+
+Endpoint to insert a new building with related data.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Body:
+
+- buildingName (string) *
+- location (string) *
+- dates (int 4digits) * [year]
+- buildingType (string) *
+- description (string) *
+- coordinate1 (double) * [latitude]
+- coordinate2 (double) * [longitude]
+
+- vertices (array of objects - at least 3 objects) *<br>
+Each object must have:<br>
+    - order (int >=0) *
+    - coordinate1 (double) * [latitude]
+    - coordinate2 (double) * [longitude]
+    
+- images (array of objects)<br>
+If not empty, each object must have:
+    - image (file of type image with less than 1000kb)*
+    - sourceAuthor (string) *
+    - description (string) *
+    
+- authors (array of objects)<br>
+If not empty, each object must have:
+    - name (string) *
+    
+- routes (array of integers, needs to have at least one valid route) *
+
+Returns 401 with auth error, 422 with validation errors:
+```json
+{
+    "description": [
+        "The description field is required."
+    ],
+    "vertices": [
+        "The vertices field is required."
+    ],
+    "routes": [
+        "The routes field is required."
+    ]
+}
+```
+Or 200 with created building:
+```json
+{
+    "building": {
+        "buildingName": "Teste",
+        "location": "Castelo de Tomar",
+        "dates": "1931",
+        "buildingType": "Monumento",
+        "description": "xpto",
+        "coordinate1": "0.314",
+        "coordinate2": "93.345",
+        "id": 11,
+        "authors": [],
+        "images": [
+            {
+                "id": 1,
+                "description": "ajsjsjsj",
+                "sourceAuthor": "TGM",
+                "base64": "iVBORw0KGgoAAA(...supressed)",
+                "building_id": 11
+            }
+        ],
+        "routes": [
+            {
+                "id": 2,
+                "name": "Tabernas de Tomar",
+                "pivot": {
+                    "building_id": 11,
+                    "route_id": 2
+                }
+            }
+        ],
+        "vertices": []
+    }
+}
+```
+
+
+###### **PATCH** /api/buildings/{id}
+
+Endpoint to edit building with related data.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Body:
+
+- buildingName (string)
+- location (string)
+- dates (int 4digits) [year]
+- buildingType (string)
+- description (string)
+- coordinate1 (double) [latitude]
+- coordinate2 (double) [longitude]
+
+- vertices (array of objects - at least 3 objects if present) [if empty nothing changes, else replaces previous data with new]<br>
+Each object must have:<br>
+    - order (int >=0) *
+    - coordinate1 (double) * [latitude]
+    - coordinate2 (double) * [longitude]
+    
+- images (array of objects) [if empty, removes all images previously associated]<br>
+If not empty, each object must have:
+    - image (file of type image with less than 1000kb)*
+    - sourceAuthor (string) *
+    - description (string) *
+    
+- authors (array of objects) [if empty, removes all authors previously associated]<br>
+If not empty, each object must have:
+    - name (string) *
+    
+- routes (array of integers, needs to have at least one valid route) [if empty nothing changes, else replaces previous data with new]
+
+Returns 401 with auth error, 422 with validation errors:
+```json
+{
+    "description": [
+        "The description field is required."
+    ],
+    "vertices": [
+        "The vertices field is required."
+    ],
+    "routes": [
+        "The routes field is required."
+    ]
+}
+```
+Or 200 with updated building:
+```json
+{
+    "building": {
+        "buildingName": "Teste",
+        "location": "Castelo de Tomar",
+        "dates": "1931",
+        "buildingType": "Monumento",
+        "description": "xpto",
+        "coordinate1": "0.314",
+        "coordinate2": "93.345",
+        "id": 11,
+        "authors": [],
+        "images": [
+            {
+                "id": 1,
+                "description": "ajsjsjsj",
+                "sourceAuthor": "TGM",
+                "base64": "iVBORw0KGgoAAA(...supressed)",
+                "building_id": 11
+            }
+        ],
+        "routes": [
+            {
+                "id": 2,
+                "name": "Tabernas de Tomar",
+                "pivot": {
+                    "building_id": 11,
+                    "route_id": 2
+                }
+            }
+        ],
+        "vertices": []
+    }
+}
+```
+
+###### **GET** /api/buildings/{id}
+
+Returns details of the building with the `id` passed
+
+Returns 404 if not found or 200 with body:
+
+```json
+{
+    "building": {
+        "id": 8,
+        "buildingName": "Convento de Cristo4",
+        "location": "Castelo de Tomar",
+        "dates": "1931",
+        "buildingType": "Monumento",
+        "description": "xpto",
+        "coordinate1": "0.314",
+        "coordinate2": "93.345",
+        "authors": [],
+        "images": [],
+        "routes": [
+            {
+                "id": 2,
+                "name": "Tabernas de Tomar",
+                "pivot": {
+                    "building_id": 8,
+                    "route_id": 2
+                }
+            }
+        ],
+        "vertices": [
+            {
+                "id": 7,
+                "coordinate1": 93.5,
+                "coordinate2": 93.6,
+                "order": 1,
+                "building_id": 8
+            },
+            {
+                "id": 8,
+                "coordinate1": 94.5,
+                "coordinate2": 94.6,
+                "order": 2,
+                "building_id": 8
+            },
+            {
+                "id": 9,
+                "coordinate1": 95.5,
+                "coordinate2": 95.6,
+                "order": 3,
+                "building_id": 8
+            }
+        ]
+    }
+}
+```
+###### **DELETE** /api/buildings/{id}
+
+Delete building.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if building does not exist or 200 with body:
+```json
+true
+```
+or
+```json
+false
+```
 ## Changelog
 
 ##### [2020-03-17]
@@ -309,4 +622,4 @@ true
 - Created relationship betweet Building and Author, Image and Vertice **- Marcelo Silva**
 - Created CRUD endpoint and controller for Building **- Marcelo Silva**
 - Building index (list) contains search and is ordered by Building Name **- Marcelo Silva**
-- **TODO** Update doc with latest API endpoints **- Marcelo Silva**
+- Update doc with latest API endpoints (Building) **- Marcelo Silva**
