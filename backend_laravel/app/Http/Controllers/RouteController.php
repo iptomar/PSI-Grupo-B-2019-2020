@@ -23,7 +23,7 @@ class RouteController extends Controller
      */
     public function show($id){
         $route = \App\Route::findOrFail($id);
-        $route->buildings = $route->buildings()->with(['authors', 'images', 'vertices'])->get();
+        $route->buildings = $route->buildings()->with(['authors', 'images', 'vertices'=>function($q){ $q->orderBy('order','asc'); }])->get();
 
         return response()->json(['route' => $route], 200);
     }
