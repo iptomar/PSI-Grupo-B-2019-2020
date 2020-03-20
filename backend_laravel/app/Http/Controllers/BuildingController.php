@@ -125,7 +125,7 @@ class BuildingController extends Controller
 
         ];
 
-        $this->validate($request,rules);
+        $this->validate($request,$rules);
 
         $building=Building::create($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
 
