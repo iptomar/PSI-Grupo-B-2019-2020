@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Author;
 use App\Building;
 use App\Image;
 use App\Vertice;
@@ -17,58 +18,35 @@ use Illuminate\Http\Request;
 class BuildingController extends Controller
 {
 
-    public function index(Request $request){
 
-    }
 
-    public function show($id){
+    protected function saveRelated(Building $building, Request $request){
 
-    }
+        if($request->has('authors')){
+            $authors=[];
 
-    public function store(Request $request){
+            foreach($request->authors as $a){
+                $authors[]=new Author(['name'=>$a['name']]);
+            }
 
-        $rules = [
+            $building->authors()->delete();
+            $building->authors()->saveMany($authors);
 
-            //Building
-            'buildingName'=>'required|string|min:1',
-            'location'=>'required|string|min:1',
-            'dates'=>'required|numeric|digits_between:4,4',
-            'buildingType'=>'required|string|min:1',
-            'description'=>'required|string|min:1',
-            'coordinate1'=>'required|numeric',//Latitude
-            'coordinate2'=>'required|numeric',//Longitude
-
-            'vertices'=>'required|array|min:3',
-            'vertices.*.coordinate1'=>'required|numeric',
-            'vertices.*.coordinate2'=>'required|numeric',
-            'vertices.*.order'=>'required|numeric|min:0',
-
-            'images'=>'nullable|array|min:1',
-            'images.*.image'=>'required|image|max:1000',
-            'images.*.sourceAuthor'=>'required|string|min:1',
-            'images.*.description'=>'required|string|min:1',
-
-            'authors'=>'nullable|array|min:1',
-            'authors.*.name'=>'required|string|min:1'
-
-        ];
-
-        $this->validate($request,$rules);
-
-        $building=Building::create($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
-
-        $vertices=[];
-
-        foreach($request->vertices as $v){
-            array_push($vertices, new Vertice($v));
         }
 
-        $building->vertices()->delete();
-        $building->vertices()->saveMany($vertices);
+        if($request->has('vertices') && $request->vertice != null){
+            $vertices=[];
+
+            foreach($request->vertices as $v){
+                array_push($vertices, new Vertice($v));
+            }
+
+            $building->vertices()->delete();
+            $building->vertices()->saveMany($vertices);
+        }
 
 
-
-        if($request->images != null){
+        if($request->has('images')){
             $images=[];
 
             foreach($request->images as $img){
@@ -86,16 +64,133 @@ class BuildingController extends Controller
             $building->images()->saveMany($images);
         }
 
+        if($request->has('routes') && $request->routes != null){
+            $building->routes()->sync($request->routes);
+        }
 
-        return response()->json(['building'=>$building],200);
+        return true;
+    }
+
+    public function index(Request $request){
+
+        $buildings=Building::with(['authors','images','routes','vertices'])->orderBy('buildingName','asc')->paginate(10);
+
+        if($request->has('search')){
+            $buildings=Building::where('buildingName','like', '%'.$request->search.'%')->orWhere('buildingType','like', '%'.$request->search.'%')->orderBy('buildingName','asc')->with(['authors','images','routes','vertices'])->paginate(10);
+        }
+
+        return response()->json($buildings,200);
+
+    }
+
+    public function show($id){
+
+        $building=Building::findOrFail($id);
+        return response()->json(['building'=>$building->load(['authors','images','routes','vertices'=>function($q){ $q->orderBy('order','asc'); }])],200);
+    }
+
+    public function store(Request $request){
+
+        $rules = [
+
+            //Building
+            'buildingName'=>'required|string|min:1',
+            'location'=>'required|string|min:1',
+            'dates'=>'required|numeric|digits_between:4,4',
+            'buildingType'=>'required|string|min:1',
+            'description'=>'required|string|min:1',
+            'coordinate1'=>'required|numeric',//Latitude
+            'coordinate2'=>'required|numeric',//Longitude
+
+            //Vertices
+            'vertices'=>'required|array|min:3',
+            'vertices.*.coordinate1'=>'required|numeric',//Latitude
+            'vertices.*.coordinate2'=>'required|numeric',//Longitude
+            'vertices.*.order'=>'required|numeric|min:0',
+
+            //Images
+            'images'=>'nullable|array|min:1',
+            'images.*.image'=>'required|image|max:1000',
+            'images.*.sourceAuthor'=>'required|string|min:1',
+            'images.*.description'=>'required|string|min:1',
+
+            //Authors
+            'authors'=>'nullable|array|min:1',
+            'authors.*.name'=>'required|string|min:1',
+
+            //Routes
+
+            'routes'=>'required|array|min:1',
+            'routes.*'=>'required|numeric|exists:routes,id'
+
+        ];
+
+        $this->validate($request,rules);
+
+        $building=Building::create($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
+
+        $this->saveRelated($building,$request);
+
+        return response()->json(['building'=>$building->load(['authors','images','routes','vertices'])],200);
 
     }
 
     public function update($id,Request $request){
 
+        $building=Building::findOrFail($id);
+
+        $rules = [
+
+            //Building
+            'buildingName'=>'nullable|string|min:1',
+            'location'=>'nullable|string|min:1',
+            'dates'=>'nullable|numeric|digits_between:4,4',
+            'buildingType'=>'nullable|string|min:1',
+            'description'=>'nullable|string|min:1',
+            'coordinate1'=>'nullable|numeric',//Latitude
+            'coordinate2'=>'nullable|numeric',//Longitude
+
+            //Vertices
+            'vertices'=>'nullable|array|min:3',
+            'vertices.*.coordinate1'=>'required|numeric',//Latitude
+            'vertices.*.coordinate2'=>'required|numeric',//Longitude
+            'vertices.*.order'=>'required|numeric|min:0',
+
+            //Images
+            'images'=>'nullable|array',
+            'images.*.image'=>'required|image|max:1000',
+            'images.*.sourceAuthor'=>'required|string|min:1',
+            'images.*.description'=>'required|string|min:1',
+
+            //Authors
+            'authors'=>'nullable|array',
+            'authors.*.name'=>'required|string|min:1',
+
+            //Routes
+
+            'routes'=>'nullable|array|min:1',
+            'routes.*'=>'required|numeric|exists:routes,id'
+
+        ];
+
+        $this->validate($request,$rules);
+
+        $building->update($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
+
+        $this->saveRelated($building,$request);
+
+        return response()->json(['building'=>$building->load(['authors','images','routes','vertices'])],200);
+
     }
 
     public function delete($id){
+        $building=Building::findOrFail($id);
+
+        $building->authors()->delete();
+        $building->routes()->detach();
+        $building->vertices()->delete();
+        $building->images()->delete();
+        return $building->delete();
 
     }
 }
