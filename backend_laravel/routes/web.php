@@ -25,7 +25,7 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->patch('/users/{user}','UserController@update');
         $router->post('/users','UserController@store');
         $router->delete('/users/{user}','UserController@delete');
-        
+
         $router->post('/buildings', 'BuildingController@store');
         $router->patch('/buildings/{id}', 'BuildingController@update');
         $router->delete('/buildings/{id}', 'BuildingController@delete');
