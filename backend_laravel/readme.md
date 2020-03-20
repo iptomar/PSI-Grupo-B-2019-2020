@@ -305,3 +305,8 @@ true
 - Created endpoint to delete route  **- Francisco Vital**
 - Created endpoint to update route  **- Francisco Vital**
 - Created endpoint to show everything about specific route, including its buildings and all information about them  **- Francisco Vital**
+- Created model for Author, Building, Image and Vertice **- Marcelo Silva**
+- Created relationship betweet Building and Author, Image and Vertice **- Marcelo Silva**
+- Created CRUD endpoint and controller for Building **- Marcelo Silva**
+- Building index (list) contains search and is ordered by Building Name **- Marcelo Silva**
+- **TODO** Update doc with latest API endpoints **- Marcelo Silva**
