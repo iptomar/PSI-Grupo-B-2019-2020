@@ -30,8 +30,6 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->patch('/buildings/{id}', 'BuildingController@update');
         $router->delete('/buildings/{id}', 'BuildingController@delete');
 
-        $router->get('/routes', 'RouteController@index');
-        $router->get('/routes/{id}', 'RouteController@show');
         $router->post('/routes', 'RouteController@store');
         $router->patch('/routes/{id}', 'RouteController@update');
         $router->delete('/routes/{id}', 'RouteController@delete');
@@ -41,5 +39,8 @@ $router->group(['prefix'=>'api'], function()use($router){
     $router->get('/buildings/{id}', 'BuildingController@show');
 
     //No-auth routes
-    $router->post('/login','UserController@login'); 
+    $router->post('/login','UserController@login');
+
+    $router->get('/routes', 'RouteController@index');
+    $router->get('/routes/{id}', 'RouteController@show');
 });

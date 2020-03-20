@@ -23,7 +23,7 @@ class Building extends Model
     }
 
     public function routes(){
-        return $this->belongsToMany('\App\Route');
+        return $this->belongsToMany('\App\Route', 'buildings_routes');
     }
 
     public function vertices(){
