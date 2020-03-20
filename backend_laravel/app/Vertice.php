@@ -18,6 +18,8 @@ class Vertice extends Model
         'coordinate1','coordinate2','order','building_id'
     ];
 
+    protected $hidden=['created_at','updated_at'];
+
     public function building(){
         return $this->belongsTo('\App\Building');
     }

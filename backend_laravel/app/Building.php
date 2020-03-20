@@ -17,6 +17,8 @@ class Building extends Model
         'buildingName','location','dates','buildingType','description','coordinate1','coordinate2'
     ];
 
+    protected $hidden=['created_at','updated_at'];
+
     //Relacoes
     public function authors(){
         return $this->hasMany('\App\Author');

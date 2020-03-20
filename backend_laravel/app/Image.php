@@ -18,6 +18,8 @@ class Image extends Model
         'description','sourceAuthor','base64','building_id'
     ];
 
+    protected $hidden=['created_at','updated_at'];
+
     public function building(){
         return $this->belongsTo('\App\Building');
     }
