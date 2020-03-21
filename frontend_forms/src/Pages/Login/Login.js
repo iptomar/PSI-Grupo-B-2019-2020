@@ -19,6 +19,7 @@ class Login extends React.Component{
     this.setState({value: event.target.value});
   }
 
+  /*evento para o form */
   handleSubmit(event){
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
