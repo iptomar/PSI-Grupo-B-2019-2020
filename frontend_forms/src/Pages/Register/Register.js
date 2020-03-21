@@ -11,25 +11,25 @@ class Register extends Component {
       <h4 className ="text-center">Welcome</h4>
       <FormGroup>
         <Label for="fistname"><b>First Name</b></Label>
-        <Input class="form-control" type="text" name="firstname" required />
+        <Input className="form-control" type="text" name="firstname" required />
       </FormGroup>
       <FormGroup>
         <Label for="lastname"><b>Last Name</b></Label>
-        <Input class="form-control" type="text" name="lastname" required />
+        <Input className="form-control" type="text" name="lastname" required />
       </FormGroup>
       <FormGroup>
         <Label for="email"><b>Email</b></Label>
-        <Input class="form-control" type="email" name="email" required />
+        <Input className="form-control" type="email" name="email" required />
       </FormGroup>
       <FormGroup>
         <Label for="password"><b>Password</b></Label>
-        <Input class="form-control" type="password" name="password" required />
+        <Input className="form-control" type="password" name="password" required />
       </FormGroup>
       <FormGroup>
         <Label for="password"><b>Confirm Password</b></Label>
-        <Input class="form-control" type="password" name="password" required />
+        <Input className="form-control" type="password" name="password" required />
       </FormGroup>
-      <hr class="mb-3"></hr>
+      <hr className="mb-3"></hr>
       <Button className="btn-lg btn-dark btn-block" type="submit" name="create">
         Sign In
       </Button>
