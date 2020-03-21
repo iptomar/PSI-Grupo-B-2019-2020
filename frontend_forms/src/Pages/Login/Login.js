@@ -3,6 +3,7 @@ import './login.css';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class Login extends React.Component{
+  /* constroi os objetos */
   constructor(props){
     super(props);
     this.state = {
