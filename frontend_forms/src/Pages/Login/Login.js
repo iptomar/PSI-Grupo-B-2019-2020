@@ -24,7 +24,7 @@ class Login extends React.Component{
   }
 
   async postData(){
-    console.log('olá');
+    console.log('ola');
     try{
        let result = await fetch('http://psi2020.tugamars.com/api/login', {
             method: 'post',
