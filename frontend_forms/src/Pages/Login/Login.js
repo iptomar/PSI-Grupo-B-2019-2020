@@ -14,6 +14,7 @@ class Login extends React.Component{
 
   }
 
+  /*evento do botão para log in */
   handleChange(event){
     this.setState({value: event.target.value});
   }
