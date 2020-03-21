@@ -11,7 +11,8 @@ class Login extends React.Component{
 
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.postData = this.postData.bind(this);
+    //this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
@@ -21,13 +22,17 @@ class Login extends React.Component{
   }
 
   /*evento para o form */
-  handleSubmit(event){
+  /*handleSubmit(event){
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
-  }
+  }*/
+
+
+  
 
   /* faz o post /api/login */
-  async postData(){
+  async postData(event){
+    event.preventDefault();
     console.log('ola');
     try{
        let result = await fetch('http://psi2020.tugamars.com/api/login', {
@@ -54,7 +59,7 @@ class Login extends React.Component{
   render(){
     return(
       <div>
-      <Form className="login-form" onSubmit={this.handleSubmit}> 
+      <Form className="login-form" onSubmit={this.postData}> 
       <h1 className ="text-center"><span className="font-weight-bold">LOGIN</span></h1>
       <h4 className ="text-center">Welcome</h4>
       <FormGroup>
@@ -66,7 +71,7 @@ class Login extends React.Component{
         <Input className="form-control" type="password" placeholder="Password" name="password" required  />
       </FormGroup>
       <hr className="mb-3"></hr>
-      <Button className="btn-lg btn-dark btn-block" type="submit" value="Submit" onClick = {() => this.postData()} >
+      <Button className="btn-lg btn-dark btn-block" type="submit" value="Submit" >
         Log in
       </Button>
     </Form>
