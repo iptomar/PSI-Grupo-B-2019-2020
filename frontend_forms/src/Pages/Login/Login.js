@@ -25,6 +25,7 @@ class Login extends React.Component{
     event.preventDefault();
   }
 
+  /* faz o post /api/login */
   async postData(){
     console.log('ola');
     try{
