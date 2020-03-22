@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './login.css';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-class Login extends React.Component{
+class Login extends Component{
   /* constroi os objetos */
   constructor(props){
     super(props);
@@ -28,7 +28,11 @@ class Login extends React.Component{
   }*/
 
 
-  
+/*
+  handleLogout () {
+    localStorage.removeItem('@psi2020ram/api');
+    window.location.reload();
+  }*/
 
   /* faz o post /api/login */
   async postData(event){
@@ -46,17 +50,21 @@ class Login extends React.Component{
               email: 'admin@admin.com',
               password: 'password'
             })
+       }).then(response=>response.json()
+            ).then(function(response) {
+            localStorage.setItem('token', response.token);
        });
-       console.log(result)
 
   }catch (e) {
     console.log(e)
 
      }
+     
   }
 
   /* forms da pagina */
   render(){
+
     return(
       <div>
       <Form className="login-form" onSubmit={this.postData}> 
