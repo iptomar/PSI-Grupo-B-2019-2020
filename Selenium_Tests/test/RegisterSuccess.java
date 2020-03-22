@@ -19,25 +19,14 @@ import org.openqa.selenium.By;
 public class RegisterSuccess {
     WebDriver driver;
     
-    public RegisterSuccess() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-        this.driver = new Capabilities().getDriver();
-        
-    }
-    
-    @AfterEach
-    public void tearDown() {
-        driver.close();
+    public RegisterSuccess(WebDriver driver) {
+        this.driver = driver;
     }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
-     public void LoginTeste01() {
+     public void registerSuccessfully() {
          try {
              //Anónimo
              Thread.sleep(5000);
