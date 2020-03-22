@@ -12,6 +12,8 @@ class Login extends Component{
     };
     this.handleChange = this.handleChange.bind(this);
     this.postData = this.postData.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     //this.handleSubmit = this.handleSubmit.bind(this);
 
   }
@@ -27,7 +29,14 @@ class Login extends Component{
     event.preventDefault();
   }*/
 
+handleEmailChange(event){
+  this.setState({email: event.target.value});
+}
 
+handlePasswordChange(event){
+  this.setState({password: event.target.value});
+}
+  
 /*
   handleLogout () {
     localStorage.removeItem('@psi2020ram/api');
@@ -53,10 +62,11 @@ class Login extends Component{
        }).then(response=>response.json()
             ).then(function(response) {
             localStorage.setItem('token', response.token);
+            console.log(response);
        });
 
   }catch (e) {
-    console.log(e)
+    console.log('dados incorretos' + e);
 
      }
      
@@ -67,19 +77,19 @@ class Login extends Component{
 
     return(
       <div>
-      <Form className="login-form" onSubmit={this.postData}> 
+      <Form className="login-form" onSubmit={this.handleChange}> 
       <h1 className ="text-center"><span className="font-weight-bold">LOGIN</span></h1>
       <h4 className ="text-center">Welcome</h4>
       <FormGroup>
         <Label for ="email"><b>Email</b></Label>
-        <Input className="form-control" type="email" placeholder="Email" name="email" required value={this.state.value} onChange={this.handleChange} />
+        <Input className="form-control" type="email" placeholder="Email" name="email" required value={this.state.email} onChange={this.handleEmailChange} />
       </FormGroup>
       <FormGroup>
         <Label for="password"><b>Password</b></Label>
-        <Input className="form-control" type="password" placeholder="Password" name="password" required  />
+        <Input className="form-control" type="password" placeholder="Password" name="password" required  value={this.state.password} onChange={this.handlePasswordChange}  />
       </FormGroup>
       <hr className="mb-3"></hr>
-      <Button className="btn-lg btn-dark btn-block" type="submit" value="Submit" >
+      <Button className="btn-lg btn-dark btn-block" type="submit" value="Submit" onClick={this.postData}>
         Log in
       </Button>
     </Form>
