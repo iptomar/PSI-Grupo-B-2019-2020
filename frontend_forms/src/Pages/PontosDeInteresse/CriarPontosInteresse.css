@@ -1,0 +1,10 @@
+.needs-validation{
+    width: 35%;
+    margin:auto;
+    height: 100%;
+    margin-top:75px;
+  }
+  
+    .needs-validation .custom-file {
+      width: 103%;
+    }
