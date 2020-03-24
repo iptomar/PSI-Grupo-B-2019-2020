@@ -60,7 +60,7 @@ class Login2 extends Component {
   handleSubmit(e){
       e.preventDefault();
       usersApi.login(this.state.email,this.state.password).then( (response) => {
-        console.log(response);
+        localStorage.setItem("auth.token", response.token);
       }).catch( (error) => {
         this.setState({errors:error});
       });
