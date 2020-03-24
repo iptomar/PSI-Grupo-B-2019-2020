@@ -16,7 +16,7 @@ let usersApi = {
             body: JSON.stringify(bodyc)
         }).then( (response) => {
             return response.json().then( (json) => {
-                if(response.on){
+                if(response.ok){
                     return Promise.resolve(json);
                 } else {
                     return Promise.reject(json);
