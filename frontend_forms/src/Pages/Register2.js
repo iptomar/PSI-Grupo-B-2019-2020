@@ -47,6 +47,38 @@ class Register2 extends Component {
            
         );
     }
+
+    /**
+   * Faz o registo no servidor e retorna o resultado.
+   * @param {*} auth Objeto do tipo 
+   * {
+   * email: ......,
+   * name: .......,
+   * password: ......,
+   * password_confirmation: .......
+   * }
+   * @param {String} token token do utilizador retornado pelo /api/login
+   */
+  async register(body, token) {
+    let resposta;
+
+    resposta = await fetch(
+        "http://psi2020.tugamars.com/api/users",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(body)
+        }
+    );
+
+    if (resposta.status === 201)
+        return await resposta.json();
+    else
+        throw resposta;
+  }
 }
 
 export default Register2;

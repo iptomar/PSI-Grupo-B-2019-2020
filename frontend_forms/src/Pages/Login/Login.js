@@ -74,7 +74,6 @@ handlePasswordChange(event){
 
   /* forms da pagina */
   render(){
-
     return(
       <div>
       <Form className="login-form" onSubmit={this.handleChange}> 
