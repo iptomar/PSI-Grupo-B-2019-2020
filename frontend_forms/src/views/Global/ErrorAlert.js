@@ -13,7 +13,9 @@ class ErrorAlert extends Component {
 
         console.log(this.state.errors);
         const errors=Object.keys(this.state.errors).map( (item,key) =>
-            this.state.errors[item].map( (i,k) => <li key={item+k}>{ i }</li> )
+
+            Array.isArray(this.state.errors[item]) === true ? this.state.errors[item].map( (i,k) => <li key={item+k}>{ i }</li> ) : <li key={item}>{this.state.errors[item]}</li>
+
         );
 
         if(this.state.errors === null || typeof this.state.errors === undefined || Object.keys(this.state.errors).length === 0 ){
