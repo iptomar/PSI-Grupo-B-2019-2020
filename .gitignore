@@ -150,5 +150,8 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+<<<<<<< HEAD
 Selenium_Tests/.idea/workspace.xml
 /Selenium_Tests/dist/
+=======
+>>>>>>> parent of 67367d7... Update .gitignore
