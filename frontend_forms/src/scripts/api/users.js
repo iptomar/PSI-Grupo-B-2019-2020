@@ -1,4 +1,4 @@
-
+// envia dados para o servidor (login)
 let apiUrl=process.env.REACT_APP_API_URL_BASE;
 
 let usersApi = {
