@@ -66,12 +66,12 @@ class Login2 extends Component {
       });
   }
 
-  //
+  //get forms email
   handleEmailChange(e){
     this.setState({email:e.target.value});
   }
 
-  //
+  //get forms password
   handlePasswordChange(e){
       this.setState({password:e.target.value});
   }
