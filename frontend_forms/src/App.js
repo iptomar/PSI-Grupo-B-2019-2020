@@ -7,6 +7,7 @@ import CriarPontosInteresse from "./Pages/PontosDeInteresse/CriarPontosInteresse
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Register2 from "./Pages/Register2";
 import Login2 from "./Pages/Login2";
+import Mapa from './Pages/Mapa';
 
 class App extends Component {
 
@@ -38,12 +39,16 @@ class App extends Component {
               <li className="nav-item">
                 <Link to="/CreatePointsOfInterest" className="nav-link">Criar Pontos de Interesse</Link>
               </li>
+              <li className="nav-item">
+                  <Link to="/Mapa" className="nav-link">Mapa</Link>
+                </li>
             </ul>
           </div>
         </nav>
         <Route exact path="/login2" component={Login2}></Route>
         <Route exact path="/register2" component={Register2}></Route>
         <Route exact path="/CreatePointsOfInterest" component={CriarPontosInteresse}></Route>
+        <Route exact path="/Mapa" component={Mapa}></Route>
       </Router>
    
        
