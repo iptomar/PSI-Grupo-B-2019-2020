@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{backgroundColor: "#4C5D72"}}>
           <a className="navbar-brand" href="#">IPT RAM</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -22,25 +22,25 @@ class App extends Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item active">
-                <a className="nav-link" href="#">Home <span className="sr-only"></span></a>
+                <a className="nav-link" style={{color:"#5ED0C0"}} href="#">Home <span className="sr-only"></span></a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Roteiros</a>
+                <a className="nav-link" style={{color:"#5ED0C0"}} href="#">Roteiros</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Edifícios</a>
+                <a className="nav-link" style={{color:"#5ED0C0"}} href="#">Edifícios</a>
               </li>
               <li className="nav-item">
-                <Link to="/login2" className="nav-link">Login</Link>
+                <Link to="/login2" style={{color:"#5ED0C0"}} className="nav-link">Login</Link>
               </li>
               <li className="nav-item">
-                <Link to="/register2" className="nav-link">Registar</Link>
+                <Link to="/register2" style={{color:"#5ED0C0"}} className="nav-link">Registar</Link>
               </li>
               <li className="nav-item">
-                <Link to="/CreatePointsOfInterest" className="nav-link">Criar Pontos de Interesse</Link>
+                <Link to="/CreatePointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Criar Pontos de Interesse</Link>
               </li>
               <li className="nav-item">
-                  <Link to="/Mapa" className="nav-link">Mapa</Link>
+                  <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
                 </li>
             </ul>
           </div>
@@ -49,10 +49,7 @@ class App extends Component {
         <Route exact path="/register2" component={Register2}></Route>
         <Route exact path="/CreatePointsOfInterest" component={CriarPontosInteresse}></Route>
         <Route exact path="/Mapa" component={Mapa}></Route>
-      </Router>
-   
-       
-      
+      </Router> 
     );
   }
 }
