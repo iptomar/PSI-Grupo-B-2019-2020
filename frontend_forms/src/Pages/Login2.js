@@ -16,7 +16,11 @@ class Login2 extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App__Aside"></div>
+        <div className="App__Aside">
+          <div className="fundoTitulo">
+            <h1 className="title_">IPT | RAM</h1>
+          </div>
+        </div>
         <div className="App__Form">
           <div className="PageSwitcher">
             <NavLink to="/login2" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
