@@ -29,12 +29,12 @@ class CriarPontosInteresse extends Component{
 
         <div className="form-group row">
             <div className="form group col-md-6">
-                <Label for="latitude"><b>Latitude</b></Label>
-                <Input className="form-control" type="number" placeholder="Insert latitude..." name="latitude" required/>
+                <Label for="latitude"><b>Coordenada 1</b></Label>
+                <Input className="form-control" type="number" placeholder="Insert coordinate 1..." name="latitude" required/>
             </div>
             <div class="form-group col-md-6">
-                <label for="longitude"><b>Longitude</b></label>
-                <Input className="form-control" type="number" placeholder="Insert longitude..." name="longitude" required/>
+                <label for="longitude"><b>Coordenada 2</b></label>
+                <Input className="form-control" type="number" placeholder="Insert coordinate 2..." name="longitude" required/>
             </div>
         </div>
         <div className="form-group col"></div>
