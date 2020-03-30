@@ -70,16 +70,19 @@ var circle;
             L.marker([data.coordinate1, data.coordinate2]).bindPopup(`
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title" id="exampleModalLabel">`+data.buildingName+`</h1><hr>
-                            <h4>Localizacão: `+data.location+`</h4>
-                            <h5>Ano: `+data.dates+`</h5>
-                        </div><hr>
-                        <div class="modal-body">
-                           <p>`+data.description+`</p>
-                        </div>
-                        
+                        <div class="modal-content" style="height:300px; width:300px;overflow:scroll;">
+                            <div class="modal-header">
+                                <h1 class="modal-title" id="exampleModalLabel">`+data.buildingName+`</h1><hr>
+                                <h2 class="modal-title" id="exampleModalLabel">`+data.buildingType+`</h2>
+                                <h4>Localizacão: `+data.location+`</h4>
+                                <h5>Ano: `+data.dates+`</h5>
+                            </div><hr>
+                            <div class="modal-body">
+                                <p>`+data.description+`</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-primary" href="#">Ver detalhes</a>
+                            </div><br>
                         </div>
                     </div>
                     </div>`).addTo(mymap);
@@ -88,7 +91,6 @@ var circle;
     marker.bindPopup("<b>You are here now!</b>").openPopup();
     
 });
-
 
 
 
