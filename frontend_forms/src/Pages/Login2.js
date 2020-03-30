@@ -8,11 +8,11 @@ class Login2 extends Component {
 
   constructor(props){
     super(props);
-    this.state={email:'', password:'',errors:[]};
+    this.state={email:'', password:'',errors:[], name:''};
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    
+    this.handleUpdateUser = this.handleUpdateUser.bind(this);
   }
 
   render() {
@@ -41,7 +41,7 @@ class Login2 extends Component {
 
               <div className="FormField">
             
-               <button className="FormField__Button mr-20" onClick={this.handleTestUsers}>Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
+               <button className="FormField__Button mr-20" onClick={this.handleUpdateUser}>Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
                <hr></hr>
                
                
@@ -72,10 +72,21 @@ class Login2 extends Component {
       });
   }
 
+  handleUpdateUser(e){
+      e.preventDefault();
+      console.log("entrei?");
+      usersApi.updateUsersId(this.state.name, this.state.email, this.state.password, this.state.password)
+      //.then((response) => {
+        //localStorage.removeItem("auth.token");
+      //}).catch((error) => {
+          //this.setState({errors:error});
+      //});
+  }
+
   handleTestUsers (e){
-    e.preventDefault();
-    usersApi.apiUsers();
-}
+      e.preventDefault();
+      usersApi.apiUsers();
+  }
 
   handletestClick(e){
       e.preventDefault();
@@ -101,4 +112,3 @@ class Login2 extends Component {
 }
 
 export default Login2;
-
