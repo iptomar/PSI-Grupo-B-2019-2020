@@ -41,7 +41,7 @@ class Login2 extends Component {
 
               <div className="FormField">
             
-               <button className="FormField__Button mr-20" onClick={this.handletestClick}>Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
+               <button className="FormField__Button mr-20" onClick={this.handleTestUsers}>Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
                <hr></hr>
                
                
@@ -72,7 +72,10 @@ class Login2 extends Component {
       });
   }
 
-
+  handleTestUsers (e){
+    e.preventDefault();
+    usersApi.apiUsers();
+}
 
   handletestClick(e){
       e.preventDefault();
