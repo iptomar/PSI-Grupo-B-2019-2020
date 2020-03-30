@@ -99,6 +99,7 @@ Body request:
 - email (string) 
 - name (string)
 - password (string)
+- password_confirmation (string) *required if password is passed
 
 Requires auth:
 `Authorization: Bearer *token*`
