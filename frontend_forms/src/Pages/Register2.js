@@ -7,14 +7,17 @@ class Register2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: undefined,
-            email: undefined,
-            password: undefined,
+            token: '',
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: '',
         }
         // This binding is necessary to make `this` work in the callback
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handlePasswordConfirmationChange = this.handlePasswordConfirmationChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -29,10 +32,15 @@ class Register2 extends Component {
     handlePasswordChange(e) {
         this.setState({ password: e.target.value });
     }
+    
+    handlePasswordConfirmationChange(e){
+        this.setState({password_confirmation: e.target.value});
+    }
 
     handleSubmit(e){
         e.preventDefault();
-        console.log("handlesubmit");
+        this.setState({token: localStorage.getItem("token")});
+        console.log(this.state.token.valueOf());
         /* usersApi.login(this.state.email,this.state.password).then( (response) => {
           localStorage.setItem("auth.token", response.token);
         }).catch( (error) => {
@@ -70,6 +78,10 @@ class Register2 extends Component {
                                 <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handlePasswordChange} />
                             </div>
                             <div className="FormField">
+                                <label className="FormField__Label" htmlFor="password_confirmation">Password</label>
+                                <input type="password" id="password_confirmation" className="FormField__Input" placeholder="Re-enter your password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handlePasswordConfirmationChange} />
+                            </div>
+                            <div className="FormField">
                                 <label className="FormField__CheckboxLabel">
                                     <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" /> I agree all statements in <a href="www.google.pt" className="FormField__TermsLink">terms of service</a>
                                 </label>
@@ -99,7 +111,6 @@ class Register2 extends Component {
    */
     async register(body, token) {
         let resposta;
-
         resposta = await fetch(
             "http://psi2020.tugamars.com/api/users",
             {
