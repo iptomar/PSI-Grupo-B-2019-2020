@@ -18,22 +18,46 @@ let usersApi = {
             .then(result => console.log(result))
                 .catch(error => console.log('error', error));
     },
+
     apiUsers(){
-        var myHeaders = new Headers();
-            myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wc2kyMDIwLnR1Z2FtYXJzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTU4NTYwMTI4MywiZXhwIjoxNTg1NjA0ODgzLCJuYmYiOjE1ODU2MDEyODMsImp0aSI6IlBOS1k1YUJFWUlkZHU0bDEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.lSN4GEPCKRbNZaZQFPpsmgKqFHzjQgvRPnuPY5MLXT8");
-    
-            var requestOptions = {
-                 method: 'GET',
-                headers: myHeaders,
-            };
-    
-        fetch("http://psi2020.tugamars.com/api/users", requestOptions)
-            .then(response => response.text())
-                .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
-    
-        },
-    
+    var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wc2kyMDIwLnR1Z2FtYXJzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTU4NTYwMTI4MywiZXhwIjoxNTg1NjA0ODgzLCJuYmYiOjE1ODU2MDEyODMsImp0aSI6IlBOS1k1YUJFWUlkZHU0bDEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.lSN4GEPCKRbNZaZQFPpsmgKqFHzjQgvRPnuPY5MLXT8");
+
+        var requestOptions = {
+             method: 'GET',
+            headers: myHeaders,
+        };
+
+    fetch("http://psi2020.tugamars.com/api/users", requestOptions)
+        .then(response => response.text())
+            .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+
+    },
+
+    updateUsersId(name, email, password){
+        let link = "http://psi2020.tugamars.com/api/users/1";
+        let data = {
+            "name": name,
+            "email": email,
+            "password": password,
+            "password_confirmation": password
+        }
+
+        return fetch(link, {
+            method:'PATCH',
+            headers: {
+                'Content-type':'application/json',
+                'Accept':'application/json',
+                'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wc2kyMDIwLnR1Z2FtYXJzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTU4NTYwMTI4MywiZXhwIjoxNTg1NjA0ODgzLCJuYmYiOjE1ODU2MDEyODMsImp0aSI6IlBOS1k1YUJFWUlkZHU0bDEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.lSN4GEPCKRbNZaZQFPpsmgKqFHzjQgvRPnuPY5MLXT8'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            return response;
+        }).catch(error => error);
+      
+
+    },
 
     login(email,password){
         let furl=apiUrl+"/api/login";
