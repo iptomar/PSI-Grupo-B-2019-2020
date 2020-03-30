@@ -3,6 +3,7 @@ import ErrorAlert from '../views/Global/ErrorAlert';
 import { Link, NavLink } from 'react-router-dom';
 import usersApi from '../scripts/api/users';
 
+
 class Login2 extends Component {
 
   constructor(props){
@@ -11,16 +12,13 @@ class Login2 extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
 
   render() {
     return (
       <div className="App">
-        <div className="App__Aside">
-          <div className="fundoTitulo">
-            <h1 className="title_">IPT | RAM</h1>
-          </div>
-        </div>
+        <div className="App__Aside"></div>
         <div className="App__Form">
           <div className="PageSwitcher">
             <NavLink to="/login2" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
@@ -42,7 +40,11 @@ class Login2 extends Component {
               </div>
 
               <div className="FormField">
-                <button className="FormField__Button mr-20">Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
+            
+               <button className="FormField__Button mr-20" onClick={this.handletestClick}>Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
+               <hr></hr>
+               
+               
               </div>
             </form>
 
@@ -70,6 +72,17 @@ class Login2 extends Component {
       });
   }
 
+
+
+  handletestClick(e){
+      e.preventDefault();
+      usersApi.apiMe(); /*.then((response) => {
+        localStorage.getItem("auth.token");
+      }).catch((error) => {
+        this.setState({errors:error});
+      })*/
+  }
+
   //get forms email
   handleEmailChange(e){
     this.setState({email:e.target.value});
@@ -79,6 +92,10 @@ class Login2 extends Component {
   handlePasswordChange(e){
       this.setState({password:e.target.value});
   }
+
+
+
 }
 
 export default Login2;
+
