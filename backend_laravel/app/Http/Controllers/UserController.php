@@ -91,8 +91,12 @@ class UserController extends Controller
         ]);
 
         $user->update($request->only(['email', 'name']));
-        $user->password = app('hash')->make('password');
-        $user->save();
+
+        if($request->password!='' && $request->password!=null){
+            $user->password = app('hash')->make('password');
+            $user->save();
+        }
+
         return response()->json(['user' => $user], 200);
     }
 
