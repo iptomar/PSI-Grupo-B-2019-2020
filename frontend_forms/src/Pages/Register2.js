@@ -37,16 +37,50 @@ class Register2 extends Component {
         this.setState({password_confirmation: e.target.value});
     }
 
-    handleSubmit(e){
+    async handleSubmit(e){
         e.preventDefault();
-        this.setState({token: localStorage.getItem("token")});
-        console.log(this.state.token.valueOf());
+        let token = localStorage.getItem("token");
+        let body = {
+            "user": {
+                "email": this.state.email,
+                "name": this.state.name,
+                "password": this.state.password,
+                "password_confirmation": this.state.password_confirmation,
+                "token": token,
+            }
+        };
+        console.log(body);
+        let resposta;
+        resposta = await fetch(
+            "http://psi2020.tugamars.com/api/users",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer {this.state.token.valueOf}`
+                },
+                body: JSON.stringify(body)
+            }
+        )
+        console.log(resposta);
+        if (resposta.status === 201){
+            console.log("okkkkkkkkkkkkkkk");
+            return await resposta.json();
+        }
+            
+        else
+            throw resposta;
+    };
+
+
+
+
         /* usersApi.login(this.state.email,this.state.password).then( (response) => {
           localStorage.setItem("auth.token", response.token);
         }).catch( (error) => {
           this.setState({errors:error});
         }); */
-    }
+    
 
     render() {
         return (
