@@ -3,64 +3,32 @@ let apiUrl=process.env.REACT_APP_API_URL_BASE;
 
 let usersApi = {
 
-    apiMe(){  
-     var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wc2kyMDIwLnR1Z2FtYXJzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTU4NTYwMTI4MywiZXhwIjoxNTg1NjA0ODgzLCJuYmYiOjE1ODU2MDEyODMsImp0aSI6IlBOS1k1YUJFWUlkZHU0bDEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.lSN4GEPCKRbNZaZQFPpsmgKqFHzjQgvRPnuPY5MLXT8");
+    validateAuth(props){
+        console.log("Validating auth...");
 
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-        
-        };
-    
-    fetch("http://psi2020.tugamars.com/api/me?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wc2kyMDIwLnR1Z2FtYXJzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTU4NTYwMTI4MywiZXhwIjoxNTg1NjA0ODgzLCJuYmYiOjE1ODU2MDEyODMsImp0aSI6IlBOS1k1YUJFWUlkZHU0bDEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.lSN4GEPCKRbNZaZQFPpsmgKqFHzjQgvRPnuPY5MLXT8", requestOptions)
-        .then(response => response.text())
-            .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-    },
+        let furl=apiUrl+"/me";
+        let token="Bearer " + localStorage.getItem('auth.token');
 
-    apiUsers(){
-    var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wc2kyMDIwLnR1Z2FtYXJzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTU4NTYwMTI4MywiZXhwIjoxNTg1NjA0ODgzLCJuYmYiOjE1ODU2MDEyODMsImp0aSI6IlBOS1k1YUJFWUlkZHU0bDEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.lSN4GEPCKRbNZaZQFPpsmgKqFHzjQgvRPnuPY5MLXT8");
-
-        var requestOptions = {
-             method: 'GET',
-            headers: myHeaders,
-        };
-
-    fetch("http://psi2020.tugamars.com/api/users", requestOptions)
-        .then(response => response.text())
-            .then(result => console.log(result))
-                .catch(error => console.log('error', error));
-
-    },
-
-    updateUsersId(name, email, password){
-        let link = "http://psi2020.tugamars.com/api/users/1";
-        let data = {
-            "name": name,
-            "email": email,
-            "password": password,
-            "password_confirmation": password
-        }
-
-        return fetch(link, {
-            method:'PATCH',
-            headers: {
-                'Content-type':'application/json',
+        fetch(furl, {method:'GET', headers:{
+                'Content-Type':'application/json',
                 'Accept':'application/json',
-                'Authorization':'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9wc2kyMDIwLnR1Z2FtYXJzLmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTU4NTYwMTI4MywiZXhwIjoxNTg1NjA0ODgzLCJuYmYiOjE1ODU2MDEyODMsImp0aSI6IlBOS1k1YUJFWUlkZHU0bDEiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.lSN4GEPCKRbNZaZQFPpsmgKqFHzjQgvRPnuPY5MLXT8'
-            },
-            body: JSON.stringify(data)
-        }).then(response => {
-            return response;
-        }).catch(error => error);
-      
+                'Authorization':token
+        }}).then( (response) => {
+
+            if(response.ok){
+                console.log("Autentificação sucesso");
+            } else {
+                console.log("Auth fail");
+                props.history.push('/login2');
+            }
+        });
+
+
 
     },
 
     login(email,password){
-        let furl=apiUrl+"/api/login";
+        let furl=apiUrl+"/login";
 
         let bodyc={
           "email":email,
@@ -79,7 +47,101 @@ let usersApi = {
                 }
             });
         });
-    }
+    },
+
+    register(email,name,password,password_confirmation){
+
+        let furl=apiUrl+"/users";
+        let token="Bearer " + localStorage.getItem("auth.token");
+
+        let body = {
+            "email": email,
+            "name": name,
+            "password": password,
+            "password_confirmation": password_confirmation,
+        };
+
+        return fetch(furl, {method:'POST',
+                headers: { 'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, body: JSON.stringify(body)
+            }).then( (response) => {
+                return response.json().then( (json) => {
+                    if(response.ok){
+                        return Promise.resolve(json);
+                    } else {
+                        return Promise.reject(json);
+                    }
+                });
+            });
+    },
+
+    list(page=1){
+
+        let furl=apiUrl+"/users?page="+page;
+        let token="Bearer " + localStorage.getItem("auth.token");
+
+        return fetch(furl, {method:'GET', headers:{
+                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token
+            }}).then( (response) => {
+                if(response.ok){
+                    return Promise.resolve(response.json());
+                } else {
+                    return Promise.reject(response.json());
+                }
+            });
+
+    },
+
+    delete(uid){
+        let furl=apiUrl+"/users/"+uid;
+        let token="Bearer " + localStorage.getItem("auth.token");
+
+        return fetch(furl, {method:'DELETE', headers:{
+                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token
+            }}).then( (response) => {
+            if(response.ok){
+                return Promise.resolve(response.json());
+            } else {
+                return Promise.reject(response.json());
+            }
+        });
+
+    },
+
+    get(uid){
+
+        let furl=apiUrl+"/users/"+uid;
+        let token="Bearer " + localStorage.getItem("auth.token");
+
+        return fetch(furl, {method:'GET', headers:{
+                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token
+            }}).then( (response) => {
+            if(response.ok){
+                return Promise.resolve(response.json());
+            } else {
+                return Promise.reject(response.json());
+            }
+        });
+
+    },
+
+    update(uid,body){
+
+        let furl=apiUrl+"/users/"+uid;
+        let token="Bearer " + localStorage.getItem("auth.token");
+
+        return fetch(furl, {method:'PATCH', headers:{
+                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, body: JSON.stringify(body)
+        }).then( (response) => {
+            return response.json().then( (json) => {
+                if(response.ok){
+                    return Promise.resolve(json);
+                } else {
+                    return Promise.reject(json);
+                }
+            });
+        });
+
+    },
 
 };
 
