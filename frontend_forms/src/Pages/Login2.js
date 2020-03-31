@@ -41,7 +41,7 @@ class Login2 extends Component {
 
               <div className="FormField">
             
-               <button className="FormField__Button mr-20" onClick={this.handleUpdateUser}>Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
+               <button className="FormField__Button mr-20" onClick={this.handleSubmit}>Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
                <hr></hr>
                
                
@@ -72,30 +72,6 @@ class Login2 extends Component {
       });
   }
 
-  handleUpdateUser(e){
-      e.preventDefault();
-      console.log("entrei?");
-      usersApi.updateUsersId(this.state.name, this.state.email, this.state.password, this.state.password)
-      //.then((response) => {
-        //localStorage.removeItem("auth.token");
-      //}).catch((error) => {
-          //this.setState({errors:error});
-      //});
-  }
-
-  handleTestUsers (e){
-      e.preventDefault();
-      usersApi.apiUsers();
-  }
-
-  handletestClick(e){
-      e.preventDefault();
-      usersApi.apiMe(); /*.then((response) => {
-        localStorage.getItem("auth.token");
-      }).catch((error) => {
-        this.setState({errors:error});
-      })*/
-  }
 
   //get forms email
   handleEmailChange(e){

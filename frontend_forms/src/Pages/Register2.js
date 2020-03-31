@@ -39,7 +39,7 @@ class Register2 extends Component {
 
     async handleSubmit(e){
         e.preventDefault();
-        let token = localStorage.getItem("token");
+        let token = localStorage.getItem("auth.token");
         let body = {
             "user": {
                 "email": this.state.email,
@@ -57,7 +57,7 @@ class Register2 extends Component {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer {this.state.token.valueOf}`
+                    "Authorization": `Bearer `+token
                 },
                 body: JSON.stringify(body)
             }
@@ -71,15 +71,6 @@ class Register2 extends Component {
         else
             throw resposta;
     };
-
-
-
-
-        /* usersApi.login(this.state.email,this.state.password).then( (response) => {
-          localStorage.setItem("auth.token", response.token);
-        }).catch( (error) => {
-          this.setState({errors:error});
-        }); */
     
 
     render() {
@@ -118,7 +109,7 @@ class Register2 extends Component {
                                 <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handlePasswordChange} />
                             </div>
                             <div className="FormField">
-                                <label className="FormField__Label" htmlFor="password_confirmation">Password</label>
+                                <label className="FormField__Label" htmlFor="password_confirmation">Password Confirmation</label>
                                 <input type="password" id="password_confirmation" className="FormField__Input" placeholder="Re-enter your password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handlePasswordConfirmationChange} />
                             </div>
                             <div className="FormField">
