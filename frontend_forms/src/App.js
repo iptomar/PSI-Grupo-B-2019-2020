@@ -5,8 +5,14 @@ import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import CriarPontosInteresse from "./Pages/PontosDeInteresse/CriarPontosInteresse";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Register2 from "./Pages/Register2";
 import Login2 from "./Pages/Login2";
+import Home from "./Pages/Home";
+
+//Users
+import UserCreate from "./Pages/Users/Create";
+import UserList from "./Pages/Users/List";
+import UserEdit from "./Pages/Users/Edit";
+
 // import Mapa from './Pages/Mapa';
 
 class App extends Component {
@@ -34,7 +40,7 @@ class App extends Component {
                 <Link to="/login2" style={{color:"#5ED0C0"}} className="nav-link">Login</Link>
               </li>
               <li className="nav-item">
-                <Link to="/register2" style={{color:"#5ED0C0"}} className="nav-link">Registar</Link>
+                <Link to="/users/create" style={{color:"#5ED0C0"}} className="nav-link">Create</Link>
               </li>
               <li className="nav-item">
                 <Link to="/CreatePointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Criar Pontos de Interesse</Link>
@@ -45,8 +51,11 @@ class App extends Component {
             </ul>
           </div>
         </nav>
+        <Route exact path="/home" component={Home}></Route>
         <Route exact path="/login2" component={Login2}></Route>
-        <Route exact path="/register2" component={Register2}></Route>
+        <Route exact path="/users/create" component={UserCreate}></Route>
+        <Route exact path="/users" component={UserList}></Route>
+        <Route exact path="/users/:userId/edit" component={UserEdit}></Route>
         <Route exact path="/CreatePointsOfInterest" component={CriarPontosInteresse}></Route>
       {/*  <Route exact path="/Mapa" component={Mapa}></Route> */}
       </Router> 
