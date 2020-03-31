@@ -1,24 +1,28 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+import usersApi from '../../scripts/api/users';
+import ErrorAlert from "../../views/Global/ErrorAlert";
 
-
-class Register2 extends Component {
+class Create extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            token: '',
             name: '',
             email: '',
             password: '',
             password_confirmation: '',
-        }
+            errors:[]
+        };
         // This binding is necessary to make `this` work in the callback
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handlePasswordConfirmationChange = this.handlePasswordConfirmationChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        //Validação de que o utilizador está logado
+        usersApi.validateAuth(this.props);
+
     }
 
     handleNameChange(e) {
@@ -39,37 +43,13 @@ class Register2 extends Component {
 
     async handleSubmit(e){
         e.preventDefault();
-        let token = localStorage.getItem("auth.token");
-        let body = {
-            "user": {
-                "email": this.state.email,
-                "name": this.state.name,
-                "password": this.state.password,
-                "password_confirmation": this.state.password_confirmation,
-                "token": token,
-            }
-        };
-        console.log(body);
-        let resposta;
-        resposta = await fetch(
-            "http://psi2020.tugamars.com/api/users",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer `+token
-                },
-                body: JSON.stringify(body)
-            }
-        )
-        console.log(resposta);
-        if (resposta.status === 201){
-            console.log("okkkkkkkkkkkkkkk");
-            return await resposta.json();
-        }
-            
-        else
-            throw resposta;
+
+        usersApi.register(this.state.email,this.state.name,this.state.password,this.state.password_confirmation).then( (response) => {
+            this.props.history.push('/users');
+        }).catch( (error) => {
+            this.setState({errors:error});
+        });
+
     };
     
 
@@ -122,6 +102,8 @@ class Register2 extends Component {
                                 <button className="FormField__Button mr-20">Sign Up</button> <Link to="/login2" className="FormField__Link">I'm already a member</Link>
                             </div>
                         </form>
+
+                        <ErrorAlert errors={this.state.errors}/>
                     </div>
                 </div>
             </div>
@@ -161,4 +143,4 @@ class Register2 extends Component {
     }
 }
 
-export default Register2;
+export default Create;
