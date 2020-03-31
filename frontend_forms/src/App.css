@@ -147,3 +147,16 @@
   .nav-item {
     margin: 0 15px;
   }
+
+  .fundoTitulo {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .title_ {
+    color: #66DAC7;
+    text-shadow: 1px 1px 1px #111111;
+    text-align: center;
+    margin-top: 90px;
+    font-size: 65px;
+    padding-bottom: 15px;
+  }
