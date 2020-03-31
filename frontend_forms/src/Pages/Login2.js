@@ -12,7 +12,6 @@ class Login2 extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleUpdateUser = this.handleUpdateUser.bind(this);
   }
 
   render() {
@@ -67,6 +66,7 @@ class Login2 extends Component {
       e.preventDefault();
       usersApi.login(this.state.email,this.state.password).then( (response) => {
         localStorage.setItem("auth.token", response.token);
+        this.props.history.push('/home');
       }).catch( (error) => {
         this.setState({errors:error});
       });
