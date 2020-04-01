@@ -65,15 +65,9 @@ class Create extends Component {
                 </div>
             </div>
             <div className="App__Form">
-              <div className="PageSwitcher">
-              <NavLink to="/login2" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>        
-                <NavLink exact to="/register2" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>        
-              </div>
-  
-              <div className="FormTitle">
-                  <NavLink to="/login2" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or 
-                  <NavLink exact to="/register2" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
-                    </div>
+                    <h1>Register</h1>
+                    <hr></hr>
+                    <br></br>
                     <div className="FormCenter">
                         <form onSubmit={this.handleSubmit} className="FormFields">
                             <div className="FormField">
