@@ -27,15 +27,17 @@ export default class List extends Component {
 
         for(let user in users){
 
-                let i=<tr key={user}>
+                let i=<tr style={{
+                    textAlign:"center"
+                  }}key={user}>
                     <td>{users[user].id}</td>
                     <td>{users[user].name}</td>
                     <td>{users[user].email}</td>
                     <td>{users[user].created_at}</td>
                     <td>{users[user].updated_at}</td>
                     <td>
-                        <button onClick={() => this.deleteUser(users[user].id,user)}>Apagar</button>
-                        <button onClick={() => this.editUser(users[user].id)}>Editar</button>
+                        <button type="button" class="btn btn-danger" onClick={() => this.deleteUser(users[user].id,user)}>Apagar</button>
+                        <button type="button" class="btn btn-info" onClick={() => this.editUser(users[user].id)}>Editar</button>
                     </td>
                 </tr>;
 
@@ -68,7 +70,9 @@ export default class List extends Component {
             <div>
                 <table>
                     <thead>
-                        <tr>
+                        <tr style={{
+                        textAlign:"center"
+                      }}>
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
