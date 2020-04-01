@@ -93,12 +93,6 @@ class Create extends Component {
                                 <input type="password" id="password_confirmation" className="FormField__Input" placeholder="Re-enter your password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handlePasswordConfirmationChange} />
                             </div>
                             <div className="FormField">
-                                <label className="FormField__CheckboxLabel">
-                                    <input className="FormField__Checkbox" type="checkbox" name="hasAgreed" /> I agree all statements in <a href="www.google.pt" className="FormField__TermsLink">terms of service</a>
-                                </label>
-                            </div>
-
-                            <div className="FormField">
                                 <button className="FormField__Button mr-20">Sign Up</button> <Link to="/login2" className="FormField__Link">I'm already a member</Link>
                             </div>
                         </form>
