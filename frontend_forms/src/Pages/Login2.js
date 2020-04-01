@@ -19,12 +19,13 @@ class Login2 extends Component {
       <div className="App">
         <div className="App__Aside"></div>
         <div className="App__Form">
-          <div className="PageSwitcher">
-            <NavLink to="/login2" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
-          </div>
+          
+          
 
           <div className="FormTitle">
-            <NavLink to="/login2" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Login</NavLink>
+            <h1 style={{color: 'white'}}>Login</h1>
+            <hr></hr>
+            <br></br>
           </div>
           <div className="FormCenter">
             <form className="FormFields" onSubmit={this.handleSubmit}>
@@ -49,7 +50,8 @@ class Login2 extends Component {
 
             <ErrorAlert errors={this.state.errors}/>
 
-          </div>          </div>
+          </div>        
+        </div>
       </div>
     );
   }
