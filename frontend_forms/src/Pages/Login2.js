@@ -17,11 +17,12 @@ class Login2 extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App__Aside"></div>
+        <div className="App__Aside">
+          <div className="fundoTitulo">
+            <h1 className="title_">IPT | RAM</h1>
+          </div>
+        </div>
         <div className="App__Form">
-          
-          
-
           <div className="FormTitle">
             <h1 style={{color: 'white'}}>Login</h1>
             <hr></hr>
@@ -40,16 +41,11 @@ class Login2 extends Component {
               </div>
 
               <div className="FormField">
-            
-               <button className="FormField__Button mr-20" onClick={this.handleSubmit}>Login</button> <Link to="/register2" className="FormField__Link">Create an account</Link>
+               <button className="FormField__Button mr-20" onClick={this.handleSubmit}>Login</button> <Link to="/users/create" className="FormField__Link">Create an account</Link>
                <hr></hr>
-               
-               
               </div>
             </form>
-
             <ErrorAlert errors={this.state.errors}/>
-
           </div>        
         </div>
       </div>
