@@ -127,4 +127,10 @@ class UserController extends Controller
         $response = $user->delete();
         return response()->json($response, 200);
     }
+
+    public function show($user){
+        $user=User::findOrFail($user);
+
+        return response()->json($user,200);
+    }
 }
