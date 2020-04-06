@@ -1,5 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import usersApi from "../../scripts/api/users";
+import './List.css';
 
 export default class List extends Component {
 
@@ -30,12 +31,12 @@ export default class List extends Component {
                 let i=<tr style={{
                     textAlign:"center"
                   }}key={user}>
-                    <td>{users[user].id}</td>
-                    <td>{users[user].name}</td>
-                    <td>{users[user].email}</td>
-                    <td>{users[user].created_at}</td>
-                    <td>{users[user].updated_at}</td>
-                    <td>
+                    <td >{users[user].id}</td>
+                    <td >{users[user].name}</td>
+                    <td >{users[user].email}</td>
+                    <td >{users[user].created_at}</td>
+                    <td >{users[user].updated_at}</td>
+                    <td >
                         <button type="button" class="btn btn-danger" onClick={() => this.deleteUser(users[user].id,user)}>Apagar</button>
                         <button type="button" class="btn btn-info" onClick={() => this.editUser(users[user].id)}>Editar</button>
                     </td>
@@ -67,18 +68,20 @@ export default class List extends Component {
         }
 
         return (
-            <div>
-                <table>
+
+            <div className="stuff">
+                <table className="table table-hover table-dark table-striped rounded" id="users">
+                <caption>Lista de utilizadores</caption>
                     <thead>
                         <tr style={{
                         textAlign:"center"
                       }}>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Data criação</th>
-                            <th>Data atualização</th>
-                            <th> </th>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Data criação</th>
+                            <th scope="col">Data atualização</th>
+                            <th scope="col">Apagar/Editar</th>
                         </tr>
 
                     </thead>
@@ -94,6 +97,7 @@ export default class List extends Component {
                 </div>
 
             </div>
+
         );
     }
 

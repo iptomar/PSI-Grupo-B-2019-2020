@@ -1,0 +1,21 @@
+#users {
+    width: 95%;
+    padding: 15px;
+    margin: auto;
+    height: 100%;
+    margin-top: 60px;
+  }
+
+.stuff {
+    background-image: linear-gradient(to bottom, rgb(46,65,88), 
+    rgb(102, 218, 199));
+    padding-top:75px;
+    padding-bottom:700px; 
+}
+
+caption {
+    color: white;
+    font-size: 20px;
+    padding-left:15px;
+}
+
