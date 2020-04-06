@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import usersApi from '../../scripts/api/users.js';
 import ErrorAlert from '../../views/Global/ErrorAlert';
+import './List.css';
 
 export default class Edit extends Component {
 
@@ -29,32 +30,35 @@ export default class Edit extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    render() {
+    render() { 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
+            <div className="fundo">
+            <form onSubmit={this.handleSubmit} className="needs-validation" noValidate>
+                <h1 className ="text-center"><span className="font-weight-bold">Editar perfil do utilizador</span></h1>
+                <div className="form-group row">
                     <label htmlFor="name">Username</label>
-                    <input type="text" id="name" placeholder="Enter your username" name="name" value={this.state.name} onChange={this.handleNameChange} />
+                    <input className="form-control" type="text" id="name" name="name" placeholder="Enter your username" name="name" value={this.state.name} onChange={this.handleNameChange} />
                 </div>
-                <div>
+                <div className="form-group row">
                     <label htmlFor="email">E-Mail Address</label>
-                    <input type="email" id="email"  placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleEmailChange} />
+                    <input className="form-control" type="email" id="email" name="email" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleEmailChange} />
                 </div>
-                <div >
+                <div className="form-group row">
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password"  placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                    <input className="form-control" type="password" id="password" name="password" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handlePasswordChange} />
                 </div>
-                <div className="FormField">
+                <div className="form-group row">
                     <label htmlFor="password_confirmation">Password Confirmation</label>
-                    <input type="password" id="password_confirmation"  placeholder="Re-enter your password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handlePasswordConfirmationChange} />
+                    <input className="form-control" type="password" id="password_confirmation" name="password_confirmation" placeholder="Re-enter your password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handlePasswordConfirmationChange} />
                 </div>
 
                 <div>
-                    <button className="FormField__Button mr-20">Update</button>
+                    <button className="button mr-20">Update</button>
                 </div>
 
                 <ErrorAlert errors={this.state.errors}/>
             </form>
+            </div>
         );
     }
 
