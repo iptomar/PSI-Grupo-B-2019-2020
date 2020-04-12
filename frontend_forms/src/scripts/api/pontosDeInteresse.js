@@ -6,6 +6,18 @@ let pontosDeInteresseApi = {
 
   list() {
 
+    let furl=apiUrl+"/buildings/";
+        let token="Bearer " + localStorage.getItem("auth.token");
+
+        return fetch(furl, {method:'GET', headers:{
+                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token
+            }}).then( (response) => {
+                if(response.ok){
+                    return Promise.resolve(response.json());
+                } else {
+                    return Promise.reject(response.json());
+                }
+            });
   },
   //dates é em array?
   /**
@@ -174,6 +186,11 @@ export default pontosDeInteresseApi;
     }); 
     
     ********************** delete() ***********************************
-
+      pontosDeInteresseApi.delete(11).then( (response) =>{
+				console.log(""+JSON.stringify(response))
+		}).catch( (error) => {
+				console.log("deu problemas")
+		}); 
+        
     **********************  edit()  ***********************************
 */
