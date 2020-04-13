@@ -161,3 +161,9 @@
     padding-bottom: 15px;
   }
 
+  .home {
+    background-image: url('./imagens/tomar.jpg');
+    opacity: 0.9;
+    padding-bottom: 670px;
+    background-size: 100%;
+  }
