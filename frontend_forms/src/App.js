@@ -38,7 +38,7 @@ class App extends Component {
                 <a className="nav-link" style={{color:"#5ED0C0"}} href="#">Roteiros</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" style={{color:"#5ED0C0"}} href="#">Edifícios</a>
+                <Link to="/PointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Pontos De Interesse</Link>
               </li>
               <li className="nav-item">
                 <Link to="/login2" style={{color:"#5ED0C0"}} className="nav-link">Login</Link>
