@@ -6,7 +6,7 @@ let pontosDeInteresseApi = {
 
   list() {
 
-    let furl=apiUrl+"/buildings/";
+    let furl=apiUrl+"/buildings";
         let token="Bearer " + localStorage.getItem("auth.token");
 
         return fetch(furl, {method:'GET', headers:{
