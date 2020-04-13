@@ -13,6 +13,9 @@ import Home from "./Pages/Home";
 import UserCreate from "./Pages/Users/Create";
 import UserList from "./Pages/Users/List";
 import UserEdit from "./Pages/Users/Edit";
+import pontosDeInteresseApi from './scripts/api/pontosDeInteresse';
+//pontos de interesse
+import pontosDeInteresseList from "./Pages/PontosDeInteresse/PontosDeInteresseList";
 
 // import Mapa from './Pages/Mapa';
 
@@ -61,6 +64,7 @@ class App extends Component {
         <Route exact path="/users" component={UserList}></Route>
         <Route exact path="/users/:userId/edit" component={UserEdit}></Route>
         <Route exact path="/CreatePointsOfInterest" component={CriarPontosInteresse}></Route>
+        <Route exact path="/PointsOfInterest" component={pontosDeInteresseList}></Route>
         <Route exact path="/Mapa" component={Mapa}></Route> 
       </Router> 
     );
