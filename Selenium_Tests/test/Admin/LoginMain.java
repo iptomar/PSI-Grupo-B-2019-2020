@@ -1,3 +1,5 @@
+package Admin;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,10 +35,11 @@ public class LoginMain {
     public void hello() {
     new LoginSuccess(driver).loginSucessfully();
     //new RegisterSuccess(driver).registerSuccessfully();
-    //new RegisterUnsuccessfull(driver).registerUnsuccessfully();
+    new RegisterUnsuccessfull(driver).registerUnsuccessfully();
     }
     @AfterEach
     public void quit(){
+    driver.close();
     driver.quit();
     }
 }
