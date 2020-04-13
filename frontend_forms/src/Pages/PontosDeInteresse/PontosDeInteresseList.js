@@ -8,9 +8,7 @@ export default class pontosDeInteresseList extends Component {
     super(props);
 
     this.state = {
-        "pontosDeInteresse":{},
-        "current_page":1,
-        "last_page":null
+        "pontosDeInteresse":{}
     };
 
     usersApi.validateAuth(this.props);
@@ -19,15 +17,48 @@ export default class pontosDeInteresseList extends Component {
   }
 
   render(){
-    return "<div>hello from pontosDeInteresseList</div>"
+
+    let items=[];
+    const pontosDeInteresse=this.state.pontosDeInteresse;
+
+    for (let ponto in pontosDeInteresse) {
+
+      let i = <tr style={{
+          textAlign: "center"
+      }} key={ponto}>
+          <td >{pontosDeInteresse[ponto].id}</td>
+          <td >{pontosDeInteresse[ponto].buildingName}</td>
+          <td >{pontosDeInteresse[ponto].location}</td>
+          <td >{pontosDeInteresse[ponto].dates}</td>
+          <td >
+            <button type="button" class="btn btn-danger" onClick={() => this.deleteUser(pontosDeInteresse[ponto].id, ponto)}>Apagar</button>
+            <button type="button" class="btn btn-info" onClick={() => this.editUser(pontosDeInteresse[ponto].id)}>Editar</button>
+          </td>
+      </tr>;
+
+      items.push(i);
+    }
+    console.log(items);
+
+    return (
+      <div>
+        hello from pontos de interesse list
+      </div>
+    )
   }
 
   getPontosDeInteresseList(){
     pontosDeInteresseApi.list().then( (response) =>{
       this.setState({pontosDeInteresse:response.data});
-      console.log(this.state);
     } );
   }
 
+  deletePontoDeInteresse(id, index){
+    
+  }
+
+  editPontoDeInteresse(id){
+    
+  }
 
 }
