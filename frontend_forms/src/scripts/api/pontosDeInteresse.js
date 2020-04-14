@@ -41,6 +41,8 @@ let pontosDeInteresseApi = {
     let token = "Bearer " + localStorage.getItem("auth.token");
 
     let form = new FormData();
+    console.log("array imagens dentro da api");
+    console.log(imagens);
 
     form.append('buildingName', buildName);
     form.append('location', location);
@@ -49,11 +51,18 @@ let pontosDeInteresseApi = {
     form.append('description', description);
     form.append('coordinate1', cc1);
     form.append('coordinate2', cc2);
-    form.append('vertices', vertices);
-    form.append('images', imagens);
-    form.append('authors', authors);
-    form.append('routes', routes);
+    form.append('vertices', JSON.stringify(vertices));
+    //form.append('images', JSON.stringify(imagens));
+    form.append('authors', JSON.stringify(authors));
+    form.append('routes', JSON.stringify(routes));
 
+    for(let i in imagens){
+      form.append('images['+i+'][description]', imagens[i]["description"]);
+      form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
+      form.append('images['+i+'][image]', imagens[i]["image"]);
+    }
+
+    console.log(form);
     return fetch(furl, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Authorization': token },
