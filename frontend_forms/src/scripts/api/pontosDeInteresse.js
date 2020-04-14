@@ -6,18 +6,20 @@ let pontosDeInteresseApi = {
 
   list() {
 
-    let furl=apiUrl+"/buildings";
-        let token="Bearer " + localStorage.getItem("auth.token");
+    let furl = apiUrl + "/buildings";
+    let token = "Bearer " + localStorage.getItem("auth.token");
 
-        return fetch(furl, {method:'GET', headers:{
-                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token
-            }}).then( (response) => {
-                if(response.ok){
-                    return Promise.resolve(response.json());
-                } else {
-                    return Promise.reject(response.json());
-                }
-            });
+    return fetch(furl, {
+      method: 'GET', headers: {
+        'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return Promise.resolve(response.json());
+      } else {
+        return Promise.reject(response.json());
+      }
+    });
   },
   //dates é em array?
   /**
@@ -36,31 +38,33 @@ let pontosDeInteresseApi = {
    */
   create(buildName, location, dates, type, description, cc1, cc2, vertices, imagens, authors, routes) {
     let furl = apiUrl + "/buildings";
-    let token="Bearer " + localStorage.getItem("auth.token");
-    let body = {
-      "buildingName": buildName,
-      "location": location,
-      "dates": dates,
-      "buildingType": type,
-      "description": description,
-      "coordinate1": cc1,
-      "coordinate2": cc2,
-      "vertices": vertices,
-      "images": imagens,
-      "authors": authors,
-      "routes": routes,
-    };
-    
-    return fetch( furl, {method:'POST',
-                         headers:{'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token},
-                         body: JSON.stringify(body)
-      }).then((response) => {
-        if (response.ok) {
-          return Promise.resolve(response.json());
-        } else {
-          return Promise.reject(response.json());
-        }
-      });
+    let token = "Bearer " + localStorage.getItem("auth.token");
+
+    let form = new FormData();
+
+    form.append('buildingName', buildName);
+    form.append('location', location);
+    form.append('dates', dates);
+    form.append('buildingType', type);
+    form.append('description', description);
+    form.append('coordinate1', cc1);
+    form.append('coordinate2', cc2);
+    form.append('vertices', vertices);
+    form.append('images', imagens);
+    form.append('authors', authors);
+    form.append('routes', routes);
+
+    return fetch(furl, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Authorization': token },
+      body: form
+    }).then((response) => {
+      if (response.ok) {
+        return Promise.resolve(response.json());
+      } else {
+        return Promise.reject(response.json());
+      }
+    });
   },
 
   /**
@@ -89,10 +93,11 @@ let pontosDeInteresseApi = {
     let furl = apiUrl + "/buildings/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
 
-    return fetch(furl, {method:'DELETE', headers:{
-      'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token
-    }
-    }).then( (response) =>{
+    return fetch(furl, {
+      method: 'DELETE', headers: {
+        'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token
+      }
+    }).then((response) => {
       if (response.ok) {
         return Promise.resolve(response.json());
       } else {
@@ -102,8 +107,8 @@ let pontosDeInteresseApi = {
   },
 
   edit(id, buildName, location, dates, type, description, cc1, cc2, vertices, imagens, authors, routes) {
-    let furl = apiUrl + "/buildings/" + id ;
-    let token="Bearer " + localStorage.getItem("auth.token");
+    let furl = apiUrl + "/buildings/" + id;
+    let token = "Bearer " + localStorage.getItem("auth.token");
     let body = {
       "buildingName": buildName,
       "location": location,
@@ -117,17 +122,18 @@ let pontosDeInteresseApi = {
       "authors": authors,
       "routes": routes,
     };
-    
-    return fetch( furl, {method:'POST',
-                         headers:{'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token},
-                         body: JSON.stringify(body)
-      }).then((response) => {
-        if (response.ok) {
-          return Promise.resolve(response.json());
-        } else {
-          return Promise.reject(response.json());
-        }
-      });
+
+    return fetch(furl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token },
+      body: JSON.stringify(body)
+    }).then((response) => {
+      if (response.ok) {
+        return Promise.resolve(response.json());
+      } else {
+        return Promise.reject(response.json());
+      }
+    });
   }
 
 
@@ -137,15 +143,15 @@ export default pontosDeInteresseApi;
 
 /**********************************************************************************************/
 // Snippets que usei para testar as funções que podem voltar a ser uteis -Bernardo
-/*       
+/*
   *********************** get(id) ***********************************
   pontosDeInteresseApi.get(3).then( (response) =>{
             console.log(""+JSON.stringify(response))
         }).catch( (error) => {
             console.log("deu problemas")
-        }); 
+        });
 
-  ********************** create() ***********************************     
+  ********************** create() ***********************************
    let buildingName = "Convento do Bernardo";
 			let location = "Castelo de Tomar";
 			let data = 1000;
@@ -169,7 +175,7 @@ export default pontosDeInteresseApi;
 				"order": 1,
 			}];
 			let images = [{
-			"image": 'C:\\Users\\Bernardo\\Desktop',	
+			"image": 'C:\\Users\\Bernardo\\Desktop',
 			"description": "teste para criar um edificio",
 			"sourceAuthor": "TGM",
 			}];
@@ -183,14 +189,14 @@ export default pontosDeInteresseApi;
 				console.log(""+JSON.stringify(response))
 		}).catch( (error) => {
 				console.log("deu problemas: "+JSON.stringify(error))
-    }); 
-    
+    });
+
     ********************** delete() ***********************************
       pontosDeInteresseApi.delete(11).then( (response) =>{
 				console.log(""+JSON.stringify(response))
 		}).catch( (error) => {
 				console.log("deu problemas")
-		}); 
-        
+		});
+
     **********************  edit()  ***********************************
 */
