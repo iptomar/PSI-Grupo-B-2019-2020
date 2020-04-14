@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react';
 import './CriarPontosInteresse.css';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
@@ -10,27 +9,9 @@ class CriarPontosInteresse extends Component {
 		super(props);
 		this.state = {
 			buildingName: '', location: '', dates: '', buildingType: '', description: '', coordinate1: '', coordinate2: '',
-			auxImg:'', auxAuthor:'', auxDesc:'',
-			vertices: [
-				{
-					coordinate1: "80",
-					coordinate2: "80",
-					order: "0"
-				},
-				{
-					coordinate1: "81",
-					coordinate2: "81",
-					order: "1"
-				},
-				{
-					coordinate1: "82",
-					coordinate2: "82",
-					order: "2"
-				},
-
-
-			], images: [
-			], authors: [
+			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '',
+			vertices: [], images: [], 
+			authors: [
 				{
 					name: "Bernardo"
 				},
@@ -49,16 +30,20 @@ class CriarPontosInteresse extends Component {
 		this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
 		this.handleCoordinate1Change = this.handleCoordinate1Change.bind(this);
 		this.handleCoordinate2Change = this.handleCoordinate2Change.bind(this);
-		// this.handleVerticesChange = this.handleVerticesChange.bind(this);
+		//this.handleVerticesChange = this.handleVerticesChange.bind(this);
 		this.handleImagesChange = this.handleImagesChange.bind(this);
 		//this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
 		// this.handleRoutesChange = this.handleRoutesChange.bind(this);
+		this.handleVerticeCoordenada1Change = this.handleVerticeCoordenada1Change.bind(this);
+		this.handleVerticeCoordenada2Change = this.handleVerticeCoordenada2Change.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.fileInput = React.createRef();
 
+		this.handleOrderChange = this.handleOrderChange.bind(this);
 		this.addImage = this.addImage.bind(this);
 		this.handleImgDescChange = this.handleImgDescChange.bind(this);
 		this.handleImgAuthorChange = this.handleImgAuthorChange.bind(this);
+		this.addVertice = this.addVertice.bind(this);
 	}
 
 
@@ -139,15 +124,18 @@ class CriarPontosInteresse extends Component {
 					<div className="form-group row">
 						<div className="form group col-md-6">
 							<label for="coordenada1"><b>Coordinate 1</b></label>
-							<input className="form-control" type="number" placeholder="Insert coordinate 1..." name="coordenada1" id="coordenada1" value={this.state.coordenada1} data-index="0" onChange={this.handleVerticesChange} required />
+							<input className="form-control" type="number" placeholder="Insert coordinate 1..." name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0" onChange={this.handleVerticeCoordenada1Change} required />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="coordenada2"><b>Coordinate 2</b></label>
-							<input className="form-control" type="number" placeholder="Insert coordinate 2..." name="coordenada2" id="coordenada2" value={this.state.coordenada2} data-index="0" onChange={this.handleVerticesChange} required />
+							<input className="form-control" type="number" placeholder="Insert coordinate 2..." name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" onChange={this.handleVerticeCoordenada2Change} required />
 						</div>
 						<div className="form group col-md-6">
 							<label for="order"><b>Order</b></label>
-							<input className="form-control" type="number" placeholder="Insert order..." min="1" name="order" id="order" value={this.state.order} data-index="0" onChange={this.handleVerticesChange} required />
+							<input className="form-control" type="number" placeholder="Insert order..." min="1" name="order" id="order" value={this.state.auxOrder} data-index="0" onChange={this.handleOrderChange} required />
+						</div>
+						<div>
+							<button type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
 						</div>
 					</div>
 					<div className="form-group row">
@@ -215,16 +203,32 @@ class CriarPontosInteresse extends Component {
 		this.setState({ coordinate2: e.target.value });
 	}
 
-	/*handleVerticesChange = (e, index) => {
-			console.log("vertices");
-			const vertices = this.state.vertices;
-			vertices[index].coordenada1 = e.target.value;
-			vertices[index].coordenada2 = e.target.value;
-			vertices[index].order = e.target.value;
-			this.setState ({
-					vertices
-			 }); 
-	};*/
+	handleVerticeCoordenada1Change(e) {
+		this.setState({ auxCoordenada1: e.target.value });
+	}
+
+	handleVerticeCoordenada2Change(e) {
+		this.setState({ auxCoordenada2: e.target.value });
+	}
+
+	handleOrderChange (e){
+		e.preventDefault();
+		this.setState({auxOrder: e.target.value});
+	}
+
+	addVertice (e){
+		e.preventDefault();
+		console.log("vertices");
+		let object = {coordinate1: '', coordinate2:'', order:''};
+		object.coordinate1 = this.state.auxCoordenada1;
+		object.coordinate2 = this.state.auxCoordenada2;
+		object.order = this.state.auxOrder;
+		console.log(object);
+		this.setState({vertices: [...this.state.vertices, object]});
+		this.setState({auxCoordenada1:''});
+		this.setState({auxCoordenada2:''});
+		this.setState({auxOrder:''});
+	}
 
 	handleImagesChange(e) {
 		e.preventDefault();
