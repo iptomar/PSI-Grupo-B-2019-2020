@@ -1,0 +1,57 @@
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    float: right;
+  }
+
+ #title{
+   color: white;
+   font-family: 'Times New Roman';
+   float: left;
+ }
+
+ #info{
+  color: white;
+  font-family: 'Times New Roman';
+  float: right;
+  margin-right: 5%;
+ }
+  
+
+  #map{
+    height: 530px;
+  }
+
+#detalhe{
+  position: absolute;
+  top: -500px;
+  left: 0;
+  background: #66aabb;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+
+#detalhe:focus{
+  top: 0px;
+}
+
+#about{
+  position: absolute;
+  top: -5000px;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+
+#about:focus{
+  top: 0px;
+  left: 20px;
+  width: 70%;
+  height: 70%;
+  background-color: #66aabb;
+}
+
