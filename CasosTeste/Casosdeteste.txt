@@ -1,0 +1,102 @@
+Casos de teste
+//////////////////////
+
+caso teste|esperado|estado
+--------------------------
+
+Utilizadores
+
+	Registar utilizador| Utilizador ser inserido na BD|
+	---------------------------------------------------
+
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os parametros de registo | As credenciais podem ser inseridas | Feito
+		3º Clicar em enviar | O utilizador é inserido | Feito
+
+	Login utilizadores| Ser possivel ser feita a autenticação do utilizador|
+	------------------------------------------------------------------------
+
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Colocar os parametros de login | As credencias podem ser inseridas | Feito
+		3º Clicar em enviar | O utilizador é autenticado | Feito
+
+	Listar utilizadores| Ser possivel listar os utilizadores para o Administrador|
+	------------------------------------------------------------------------------
+
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os dados de autenticação de administrador | Os dados de utilizador devem ser inseridos | Atualmente qualquer um pode ver
+		3º Visualizar os utilizadores | Todos os users devem ser mostrados | Feito
+
+Pontos de interesse
+
+	Criar pontos de interesse| Pontos de interesse devem ser criados|
+	-----------------------------------------------------------------
+		
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os dados de autenticação de utilizador | Os dados de utilizador devem ser inseridos | Por testar
+		3º Preencher os parametros de criação de pontos | Os parametros devem ser inseridos | Faltam alguns dados para funcionar
+		4º Clicar em enviar | O ponto de interesse deve ser inserido | Por testar
+
+	Listar pontos de interesse| Devem ser listados os pontos de interesse|
+	----------------------------------------------------------------------
+		
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os dados de autenticação de utilizador | Os dados de utilizador devem ser inseridos | Por testar
+		3aº Visualizar os pontos de interesse | Todos os users devem ser mostrados | Por testar
+		3bº Inserir id do ponto de interesse | As informação do  ponto devem de ser mostradas | Por testar
+		3baº Visualizar os dados do ponto | Todos os dados do ponto devem de ser mostrados | Por testar
+
+Roteiros
+
+	Criar roteiros| O roteiro deve ser enviado para a Base de dados, para mais tarde ser aprovado por um administrador|
+	-------------------------------------------------------------------------------------------------------------------
+		
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os dados de autenticação de utilizador | Os dados de utilizador devem ser inseridos | Por testar
+		3º Preencher os parametros de criação de roteiros | Os parametros devem ser inseridos | Por testar
+		4º Clicar em enviar | Os roteiros deve ser inseridos | Por testar
+
+	Listar roteiros| Os roteiros devem ser listados, sendo possivel estes ainda nao serem aprovados, rejeitados ou aprovados|
+	------------------------------------------------------------------------------------------------------------------------
+
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os dados de autenticação de utilizador | Os dados de utilizador devem ser inseridos | Por testar
+		3º Visualizar os roteiros | Todos os roteiros devem ser mostrados | Por testar
+
+	//Não é para esta sprint ainda
+	Aprovar/Negar roteiros| O roteiro que nao foi ainda ainda aprovado por um administrador deve poder ser aprovado or rejeitado por um administrador|
+	--------------------------------------------------------------------------------------------------------------------------------------------------
+
+		1º Aceder ao website | Site deve abrir |
+		2º Preencher os dados de autenticação de administrador | Os dados de administrador devem ser inseridos |
+		3º Visualizar os roteiros por aprovar | Todos os roteiros devem ser mostrados |	
+		4º Escolher um roteiro | Um roteiro deve ser selecionado |
+		5aº Aprovar o roteiro | O roteiro deve ser aprovado |
+		5bº Rejeitar o roteiro | O roteiro deve ser rejeitado |
+
+Autores/proprietarios
+
+	Criar um autor/proprietario| O proprietario é adicionado a BD|
+	--------------------------------------------------------------
+
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os dados de autenticação de utilizador | Os dados de utilizador devem ser inseridos | Por testar
+		3º Preencher os parametros de criação de autores | Os parametros devem ser inseridos | Por testar
+		4º Clicar em enviar | Os autores devem ser inseridos | Por testar
+
+	Listar os Autores/proprietarios| Devem poder ser listados os Autores/proprietarios|
+	-----------------------------------------------------------------------------------
+		
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os dados de autenticação de utilizador | Os dados de utilizador devem ser inseridos | Por testar
+		3º Visualizar os autores | Todos os autores devem ser mostrados | Por testar
+
+	Associar um autor/proprietario a um edificio| O proprietário é associado a um edificio|
+	---------------------------------------------------------------------------------------
+
+		1º Aceder ao website | Site deve abrir | Feito
+		2º Preencher os dados de autenticação de utilizador | Os dados de utilizador devem ser inseridos | Por testar
+		3º Visualizar os autores | Todos os autores devem ser mostrados | Por testar
+		4º Escolher um autor | Um autor é selecionado | Por testar
+		5º Escolher um edificio | Um edificio é selecionado | Por testar
+		6º Clicar em enviar | É criado um registo com o autor e um edificio | Por testar
