@@ -107,7 +107,7 @@ class CriarPontosInteresse extends Component {
 					</div>
 					<div>
 						<label for="image"><b>Upload file</b></label>
-						<input type="file" name="fileImagem"ref={this.fileInput} value={this.state.image} onChange={this.handleImagesChange} />
+						<input type="file" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
 					</div>
 
 					<div className="form-group row">
@@ -174,9 +174,9 @@ class CriarPontosInteresse extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		const input = document.getElementById('fileImagem');
+		const file = this.fileUpload.files[0];
 		console.log("valor do fileImagem:");
-		console.log(input);
+		console.log(file);
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2,
 																this.state.vertices,this.state.images,this.state.authors,this.state.routes
@@ -239,9 +239,10 @@ class CriarPontosInteresse extends Component {
 	}
 	addImage(e){
 		e.preventDefault();
+		const file = this.fileUpload.files[0];
 		let obj = {image:'',sourceAuthor:'',description:''};
 		//ir buscar a imagem.
-		obj.image = this.state.auxImg;
+		obj.image = file;
 		//ir buscar o autor da imagem
 		obj.sourceAuthor = this.state.auxAuthor;
 		//ir buscar a descrição da imagem
