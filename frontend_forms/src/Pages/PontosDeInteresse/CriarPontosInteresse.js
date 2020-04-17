@@ -11,15 +11,7 @@ class CriarPontosInteresse extends Component {
 			buildingName: '', location: '', dates: '', buildingType: '', description: '', coordinate1: '', coordinate2: '',
 			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '',
 			vertices: [], images: [], 
-			authors: [
-				{
-					name: "Bernardo"
-				},
-				{
-					name: "Bernas"
-				}
-
-			], routes: [2],
+			authors: [], routes: [],
 			errors: []
 		};
 
@@ -44,6 +36,7 @@ class CriarPontosInteresse extends Component {
 		this.handleImgDescChange = this.handleImgDescChange.bind(this);
 		this.handleImgAuthorChange = this.handleImgAuthorChange.bind(this);
 		this.addVertice = this.addVertice.bind(this);
+		
 	}
 
 
@@ -165,8 +158,9 @@ class CriarPontosInteresse extends Component {
 		const file = this.fileUpload.files[0];
 		console.log("valor do fileImagem:");
 		console.log(file);
+		console.log(this.state.vertices);
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
-																this.state.description,this.state.coordinate1,this.state.coordinate2,
+																this.state.description,this.state.coordinate1,this.state.coordinate2, 
 																this.state.vertices,this.state.images,this.state.authors,this.state.routes
 			).then((response)=>{
 				console.log(response);
@@ -238,9 +232,11 @@ class CriarPontosInteresse extends Component {
 	handleImgDescChange(e){
 		this.setState({ auxDesc: e.target.value });
 	}
+
 	handleImgAuthorChange(e){
 		this.setState({ auxAuthor: e.target.value });
 	}
+
 	addImage(e){
 		e.preventDefault();
 		const file = this.fileUpload.files[0];
