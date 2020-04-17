@@ -156,9 +156,7 @@ class CriarPontosInteresse extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const file = this.fileUpload.files[0];
-		console.log("valor do fileImagem:");
-		console.log(file);
-		console.log(this.state.vertices);
+		
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
 																this.state.vertices,this.state.images,this.state.authors,this.state.routes
@@ -212,12 +210,10 @@ class CriarPontosInteresse extends Component {
 
 	addVertice (e){
 		e.preventDefault();
-		console.log("vertices");
 		let object = {coordinate1: '', coordinate2:'', order:''};
 		object.coordinate1 = this.state.auxCoordenada1;
 		object.coordinate2 = this.state.auxCoordenada2;
 		object.order = this.state.auxOrder;
-		console.log(object);
 		this.setState({vertices: [...this.state.vertices, object]});
 		this.setState({auxCoordenada1:''});
 		this.setState({auxCoordenada2:''});
@@ -247,7 +243,6 @@ class CriarPontosInteresse extends Component {
 		obj.sourceAuthor = this.state.auxAuthor;
 		//ir buscar a descrição da imagem
 		obj.description= this.state.auxAuthor;
-		console.log(obj);
 		//verificar se não há nada com string vazia
 		//fazer push de obj para o images[] do state
 		this.setState( {images: [...this.state.images,obj]} );
