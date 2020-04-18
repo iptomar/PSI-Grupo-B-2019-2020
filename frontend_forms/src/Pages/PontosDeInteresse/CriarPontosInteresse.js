@@ -43,8 +43,8 @@ class CriarPontosInteresse extends Component {
 		
 	}
 
-
 	render() {
+
 		let listaVertices = [];
 		const vertices = this.state.vertices;
 
@@ -60,6 +60,24 @@ class CriarPontosInteresse extends Component {
 			listaVertices.push(i);
 			console.log(vertices);
 		}
+
+		//Preparar a lista de imagens que já foram inseridas
+		let listaImagens=[];
+		const imagens=this.state.images;
+		let i;
+		for(let imagem in imagens){
+			i=<tr style={{textAlign:"center"}} key={"imagem"+imagem}>
+					<td >{imagens[imagem].image.name}</td>
+					<td >{imagens[imagem].sourceAuthor}</td>
+					<td >{imagens[imagem].description}</td>
+					<td >
+							
+							<button type="button" class="btn btn-danger" onClick={() => this.deleteImage(imagem)}>Apagar</button>
+					</td>
+			</tr>;
+			listaImagens.push(i);
+		};
+
 
 		return (
 			<div className="fundo" >
@@ -103,6 +121,24 @@ class CriarPontosInteresse extends Component {
 					<div className="form-group row">
 						<label for="images_label"><b>Images</b></label>
 					</div>
+					{/* tabela com as imagens a enviar */}
+					<div className="tabelaImagens">
+						<table className="table table-sm table-dark table-striped rounded" id="users">
+							<thead>
+								<tr style={{
+									textAlign: "center"
+								}}>
+									<th scope="col">Ficheiro</th>
+									<th scope="col">Autor</th>
+									<th scope="col">Descrição</th>
+								</tr>
+							</thead>
+							<tbody>
+								{listaImagens} 
+							</tbody>
+						</table>
+					</div>
+
 					<div>
 						<label for="image"><b>Upload file</b></label>
 						<input type="file" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
@@ -320,6 +356,37 @@ class CriarPontosInteresse extends Component {
 	handleImgAuthorChange(e){
 		this.setState({ auxAuthor: e.target.value });
 	}
+
+
+
+	addImage(e){
+		e.preventDefault();
+		const file = this.fileUpload.files[0];
+		let obj = {image:'',sourceAuthor:'',description:''};
+		//ir buscar a imagem.
+		obj.image = file;
+		//ir buscar o autor da imagem
+		obj.sourceAuthor = this.state.auxAuthor;
+		//ir buscar a descrição da imagem
+		obj.description= this.state.auxAuthor;
+		//verificar se não há nada com string vazia
+		//fazer push de obj para o images[] do state
+		this.setState( {images: [...this.state.images,obj]} );
+		//esvaziar o valor dos inputs
+		this.setState({auxImg:''}); //falta mudar no input qualquer coisa também
+		this.setState({auxAuthor:''});
+		this.setState({auxDesc:''});
+	}
+	
+	deleteImage(index){
+		//é possível fazer tudo na mesma linha mas assim parece-me ser mais facil de entenderem
+		//se alguém estiver a estudar esta funcionalidade
+		let aux = this.state.images;
+		aux.splice(index,1);
+		this.setState({images:aux});
+	}
+
+
 
 	/*handleAuthorsChange (e, index){
 			console.log("authors");
