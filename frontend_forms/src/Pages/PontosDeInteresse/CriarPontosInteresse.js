@@ -9,7 +9,7 @@ class CriarPontosInteresse extends Component {
 		super(props);
 		this.state = {
 			buildingName: '', location: '', dates: '', buildingType: '', description: '', coordinate1: '', coordinate2: '',
-			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '',
+			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '',
 			vertices: [], images: [], 
 			authors: [], routes: [],
 			errors: [], listaVertices: []
@@ -30,7 +30,6 @@ class CriarPontosInteresse extends Component {
 		this.handleVerticeCoordenada2Change = this.handleVerticeCoordenada2Change.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.fileInput = React.createRef();
-
 		this.handleOrderChange = this.handleOrderChange.bind(this);
 		this.addImage = this.addImage.bind(this);
 		this.handleImgDescChange = this.handleImgDescChange.bind(this);
@@ -38,7 +37,8 @@ class CriarPontosInteresse extends Component {
 		this.addVertice = this.addVertice.bind(this);
 		//this.listVertices = this.listVertices.bind(this);
 		//this.getListVertice = this.getListVertice.bind(this);
-		
+		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
+		this.addAuthor = this.addAuthor.bind(this);
 		
 		
 	}
@@ -163,7 +163,11 @@ class CriarPontosInteresse extends Component {
 
 					<div className="form-group row">
 						<label for="name_author"><b>Name</b></label>
-						<input className="form-control" id="name_author" name="name_author" rows="3" placeholder="Add a name about the point of interest." value={this.state.name_author} onChange={this.handleAuthorsChange} required></input>
+						<input className="form-control" id="name_author" name="name_author" rows="3" placeholder="Add a name about the point of interest." value={this.state.auxNameAuthor} data-index="0" onChange={this.handleAuthorsChange} required></input>
+					</div>
+
+					<div>
+						<button type="submit" value="submit" onClick={this.addAuthor}>Add author</button>
 					</div>
 
 					<div className="form-group row">
@@ -234,9 +238,11 @@ class CriarPontosInteresse extends Component {
 		const file = this.fileUpload.files[0];
 		console.log(file);
 		console.log(this.state.vertices);
+		console.log(this.state.authors);
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
-																this.state.vertices,this.state.listaVertices, this.state.images,this.state.authors,this.state.routes
+																this.state.vertices,this.state.listaVertices, this.state.auxNameAuthor, 
+																this.state.images,this.state.authors,this.state.routes
 			).then((response)=>{
 				console.log(response);
 			});
@@ -252,6 +258,7 @@ class CriarPontosInteresse extends Component {
 			
 			return { vertices };
 		});
+
 		/*let aux1 = this.state.vertices;
 		aux1.splice(index, 1);
 		this.setState({images:aux1});*/
@@ -297,6 +304,24 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxCoordenada2:''});
 		this.setState({auxOrder:''});
 		
+	}
+
+	addAuthor (e){
+		e.preventDefault();
+		let object = {name: ''};
+		object.name = this.state.auxNameAuthor;
+		//console.log(object);
+		console.log(this.state.authors);
+		this.setState({authors: this.state.authors.concat(object)});
+		this.setState({auxNameAuthor:''});
+	}
+
+
+
+
+	handleAuthorsChange (e){
+		this.setState({auxNameAuthor: e.target.value});
+
 	}
 
 	handleBuildingNameChange(e) {
@@ -352,8 +377,6 @@ class CriarPontosInteresse extends Component {
 	handleImgAuthorChange(e){
 		this.setState({ auxAuthor: e.target.value });
 	}
-
-
 
 	addImage(e){
 		e.preventDefault();
