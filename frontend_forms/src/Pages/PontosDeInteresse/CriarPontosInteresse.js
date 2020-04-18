@@ -55,7 +55,9 @@ class CriarPontosInteresse extends Component {
 				<td >{vertices[vertice].coordinate1}</td>
 				<td >{vertices[vertice].coordinate2}</td>
 				<td >{vertices[vertice].order}</td>
-				
+				<td>
+				<button type="button" class="btn btn-danger" onClick={() => this.deleteVertices(vertice)}>Delete</button>
+				</td>
 			</tr>;
 			listaVertices.push(i);
 			console.log(vertices);
@@ -239,6 +241,20 @@ class CriarPontosInteresse extends Component {
 				console.log(response);
 			});
 		
+
+	}
+
+	deleteVertices (index){
+
+		
+		this.setState(prevState => {
+			const vertices = prevState.vertices.filter(vertice => vertice.coordinate1 !== index);
+			
+			return { vertices };
+		});
+		/*let aux1 = this.state.vertices;
+		aux1.splice(index, 1);
+		this.setState({images:aux1});*/
 
 	}
 
