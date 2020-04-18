@@ -39,8 +39,24 @@ class CriarPontosInteresse extends Component {
 		
 	}
 
-
 	render() {
+		//Preparar a lista de imagens que já foram inseridas
+		let listaImagens=[];
+		const imagens=this.state.images;
+		let i;
+		for(let imagem in imagens){
+			i=<tr style={{textAlign:"center"}} key={"imagem"+imagem}>
+					<td >{imagens[imagem].image.name}</td>
+					<td >{imagens[imagem].sourceAuthor}</td>
+					<td >{imagens[imagem].description}</td>
+					<td >
+							
+							<button type="button" class="btn btn-danger" onClick={() => this.deleteImage(imagem)}>Apagar</button>
+					</td>
+			</tr>;
+			listaImagens.push(i);
+		};
+
 		return (
 			<div className="fundo" >
 				<form className="needs-validation" onSubmit={this.handleSubmit}>
@@ -83,6 +99,24 @@ class CriarPontosInteresse extends Component {
 					<div className="form-group row">
 						<label for="images_label"><b>Images</b></label>
 					</div>
+					{/* tabela com as imagens a enviar */}
+					<div className="tabelaImagens">
+						<table className="table table-sm table-dark table-striped rounded" id="users">
+							<thead>
+								<tr style={{
+									textAlign: "center"
+								}}>
+									<th scope="col">Ficheiro</th>
+									<th scope="col">Autor</th>
+									<th scope="col">Descrição</th>
+								</tr>
+							</thead>
+							<tbody>
+								{listaImagens} 
+							</tbody>
+						</table>
+					</div>
+
 					<div>
 						<label for="image"><b>Upload file</b></label>
 						<input type="file" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
@@ -250,6 +284,14 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxImg:''}); //falta mudar no input qualquer coisa também
 		this.setState({auxAuthor:''});
 		this.setState({auxDesc:''});
+	}
+	
+	deleteImage(index){
+		//é possível fazer tudo na mesma linha mas assim parece-me ser mais facil de entenderem
+		//se alguém estiver a estudar esta funcionalidade
+		let aux = this.state.images;
+		aux.splice(index,1);
+		this.setState({images:aux});
 	}
 
 
