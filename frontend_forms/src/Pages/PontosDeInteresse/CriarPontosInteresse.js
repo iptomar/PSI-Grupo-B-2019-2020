@@ -12,7 +12,7 @@ class CriarPontosInteresse extends Component {
 			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '',
 			vertices: [], images: [], 
 			authors: [], routes: [],
-			errors: []
+			errors: [], listaVertices: []
 		};
 
 		this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
@@ -36,11 +36,31 @@ class CriarPontosInteresse extends Component {
 		this.handleImgDescChange = this.handleImgDescChange.bind(this);
 		this.handleImgAuthorChange = this.handleImgAuthorChange.bind(this);
 		this.addVertice = this.addVertice.bind(this);
+		//this.listVertices = this.listVertices.bind(this);
+		//this.getListVertice = this.getListVertice.bind(this);
+		
+		
 		
 	}
 
 
 	render() {
+		let listaVertices = [];
+		const vertices = this.state.vertices;
+
+		for (let vertice in vertices){
+			let i=<tr style={{
+				textAlign:"center"
+			  }}key={"vertice" + vertice}>
+				<td >{vertices[vertice].coordinate1}</td>
+				<td >{vertices[vertice].coordinate2}</td>
+				<td >{vertices[vertice].order}</td>
+				
+			</tr>;
+			listaVertices.push(i);
+			console.log(vertices);
+		}
+
 		return (
 			<div className="fundo" >
 				<form className="needs-validation" onSubmit={this.handleSubmit}>
@@ -111,7 +131,6 @@ class CriarPontosInteresse extends Component {
 					<div className="form-group row">
 						<label for="vertices"><b>Vertices</b></label>
 					</div>
-
 					<div className="form-group row">
 					</div>
 					<div className="form-group row">
@@ -129,6 +148,25 @@ class CriarPontosInteresse extends Component {
 						</div>
 						<div>
 							<button type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
+						</div>
+						<div className="tabelaVertices">
+							<table className="table table-hover table-dark table-striped rounded" id="vertices">
+                				<caption>Lista de vertices</caption>
+								<thead>
+                       				 <tr style={{
+                        			textAlign:"center"
+                     				 }}>
+                           				 <th scope="col" >Coordinate 1</th>
+                           				 <th scope="col" >Coordinate 2</th>
+                           				 <th scope="col" >Order</th>
+
+                       				 </tr>
+                    			</thead>
+                    	<tbody>
+                        	{listaVertices}
+                    	</tbody>
+                </table>
+	
 						</div>
 					</div>
 					<div className="form-group row">
@@ -156,16 +194,78 @@ class CriarPontosInteresse extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const file = this.fileUpload.files[0];
-		
+		console.log(file);
+		console.log(this.state.vertices);
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
-																this.state.vertices,this.state.images,this.state.authors,this.state.routes
+																this.state.vertices,this.state.listaVertices, this.state.images,this.state.authors,this.state.routes
 			).then((response)=>{
 				console.log(response);
 			});
 		
 
 	}
+
+	/*getListVertice () {
+		pontosDeInteresseApi.listVertices().then( (response) => {
+            this.setState({vertices:response.data});
+            console.log(this.state);
+        });
+	}*/
+
+	/*listVertices (){
+		
+		let listaVertices = [];
+		const vertices = this.state.vertices;
+
+		for (let vertice in vertices){
+			let i=<tr style={{
+				textAlign:"center"
+			  }}key={"vertice" + vertice}>
+				<td >{vertices[vertice].auxCoordenada1}</td>
+				<td >{vertices[vertice].auxCoordenada2}</td>
+				<td >{vertices[vertice].auxOrder}</td>
+				
+			</tr>;
+			this.state.listaVertices.push(i);
+			
+		}
+	}*/
+
+	addVertice (e){
+		e.preventDefault();
+		let object = {coordinate1: '', coordinate2:'', order:''};
+		object.coordinate1 = this.state.auxCoordenada1;
+		object.coordinate2 = this.state.auxCoordenada2;
+		object.order = this.state.auxOrder;
+		console.log(object);
+		//console.log(this.state.vertices);
+		this.setState({vertices: this.state.vertices.concat(object)});
+		this.setState({auxCoordenada1:''});
+		this.setState({auxCoordenada2:''});
+		this.setState({auxOrder:''});
+		
+	}
+
+	addImage(e){
+		e.preventDefault();
+		const file = this.fileUpload.files[0];
+		let obj = {image:'',sourceAuthor:'',description:''};
+		//ir buscar a imagem.
+		obj.image = file;
+		//ir buscar o autor da imagem
+		obj.sourceAuthor = this.state.auxAuthor;
+		//ir buscar a descrição da imagem
+		obj.description= this.state.auxAuthor;
+		//verificar se não há nada com string vazia
+		//fazer push de obj para o images[] do state
+		this.setState( {images: [...this.state.images,obj]} );
+		//esvaziar o valor dos inputs
+		this.setState({auxImg:''}); //falta mudar no input qualquer coisa também
+		this.setState({auxAuthor:''});
+		this.setState({auxDesc:''});
+	}
+
 
 	handleBuildingNameChange(e) {
 		this.setState({ buildingName: e.target.value });
@@ -208,18 +308,6 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxOrder: e.target.value});
 	}
 
-	addVertice (e){
-		e.preventDefault();
-		let object = {coordinate1: '', coordinate2:'', order:''};
-		object.coordinate1 = this.state.auxCoordenada1;
-		object.coordinate2 = this.state.auxCoordenada2;
-		object.order = this.state.auxOrder;
-		this.setState({vertices: [...this.state.vertices, object]});
-		this.setState({auxCoordenada1:''});
-		this.setState({auxCoordenada2:''});
-		this.setState({auxOrder:''});
-	}
-
 	handleImagesChange(e) {
 		e.preventDefault();
 		this.setState( {auxImg: e.target.value} );
@@ -232,26 +320,6 @@ class CriarPontosInteresse extends Component {
 	handleImgAuthorChange(e){
 		this.setState({ auxAuthor: e.target.value });
 	}
-
-	addImage(e){
-		e.preventDefault();
-		const file = this.fileUpload.files[0];
-		let obj = {image:'',sourceAuthor:'',description:''};
-		//ir buscar a imagem.
-		obj.image = file;
-		//ir buscar o autor da imagem
-		obj.sourceAuthor = this.state.auxAuthor;
-		//ir buscar a descrição da imagem
-		obj.description= this.state.auxAuthor;
-		//verificar se não há nada com string vazia
-		//fazer push de obj para o images[] do state
-		this.setState( {images: [...this.state.images,obj]} );
-		//esvaziar o valor dos inputs
-		this.setState({auxImg:''}); //falta mudar no input qualquer coisa também
-		this.setState({auxAuthor:''});
-		this.setState({auxDesc:''});
-	}
-
 
 	/*handleAuthorsChange (e, index){
 			console.log("authors");
