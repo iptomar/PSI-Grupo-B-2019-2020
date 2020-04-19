@@ -39,6 +39,7 @@ class CriarPontosInteresse extends Component {
 		//this.getListVertice = this.getListVertice.bind(this);
 		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
 		this.addAuthor = this.addAuthor.bind(this);
+		//this.deleteAuthor = this.deleteAuthor.bind(this);
 		
 		
 	}
@@ -70,10 +71,13 @@ class CriarPontosInteresse extends Component {
 				textAlign:"center"
 			  }}key={"autor" + autor}>
 				<td >{autores[autor].name}</td>
+				<td>
+					<button type="button" class="btn btn-danger" onClick={() => this.deleteAuthor(autor)}>Delete</button>
+				</td>
 			</tr>;
 			listaAutores.push(i);
 			console.log(autores);
-		}
+		};
 
 		//Preparar a lista de imagens que já foram inseridas
 		let listaImagens=[];
@@ -271,11 +275,25 @@ class CriarPontosInteresse extends Component {
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
 																this.state.vertices,this.state.listaVertices, this.state.auxNameAuthor, 
-																this.state.images,this.state.authors,this.state.routes
+																this.state.images,this.state.authors,this.state.routes,this.state.listaAutores
 			).then((response)=>{
 				console.log(response);
 			});
 		
+
+	}
+
+	deleteAuthor (index){
+		/*this.setState(prevState => {
+			const authors = prevState.authors.filter(autor => autor.name !== index);
+			
+			return { authors };
+		});*/
+		let aux1 = this.state.authors;
+		aux1.splice(index,1);
+		this.setState({authors:aux1});
+
+
 
 	}
 
