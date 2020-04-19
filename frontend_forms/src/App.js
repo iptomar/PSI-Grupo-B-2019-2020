@@ -16,6 +16,7 @@ import UserEdit from "./Pages/Users/Edit";
 import pontosDeInteresseApi from './scripts/api/pontosDeInteresse';
 //pontos de interesse
 import pontosDeInteresseList from "./Pages/PontosDeInteresse/PontosDeInteresseList";
+import EditPontosInteresse from "./Pages/PontosDeInteresse/EditPontosInteresse";
 
 // import Mapa from './Pages/Mapa';
 
@@ -69,6 +70,7 @@ class App extends Component {
         <Route exact path="/CreatePointsOfInterest" component={CriarPontosInteresse}></Route>
         <Route exact path="/PointsOfInterest" component={pontosDeInteresseList}></Route>
         <Route exact path="/Mapa" component={Mapa}></Route> 
+        <Route exact path="/PointsOfInterest/:pontoInteresseID/edit" component={EditPontosInteresse}></Route>
       </Router> 
     );
   }
