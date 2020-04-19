@@ -34,7 +34,7 @@ class BuildingController extends Controller
 
         }
 
-        if($request->has('vertices') && $request->vertice != null){
+        if($request->has('vertices') && $request->vertices != null){
             $vertices=[];
 
             foreach($request->vertices as $v){
