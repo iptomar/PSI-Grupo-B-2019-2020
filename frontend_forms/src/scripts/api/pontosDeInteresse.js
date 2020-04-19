@@ -39,11 +39,11 @@ let pontosDeInteresseApi = {
   create(buildName, location, dates, type, description, cc1, cc2, vertices, imagens, authors, routes) {
     let furl = apiUrl + "/buildings";
     let token = "Bearer " + localStorage.getItem("auth.token");
-
+    let cenas1=[{coordinate1:2,coordinate2:2,order:1},
+               {coordinate1:2,coordinate2:2,order:2},
+               {coordinate1:2,coordinate2:2,order:3}];
+    let cenas2=[];
     let form = new FormData();
-    console.log("array imagens dentro da api");
-    console.log(imagens);
-
     form.append('buildingName', buildName);
     form.append('location', location);
     form.append('dates', dates);
@@ -51,18 +51,24 @@ let pontosDeInteresseApi = {
     form.append('description', description);
     form.append('coordinate1', cc1);
     form.append('coordinate2', cc2);
-    form.append('vertices', JSON.stringify(vertices));
+    //form.append('vertices', cenas1);
     //form.append('images', JSON.stringify(imagens));
-    form.append('authors', JSON.stringify(authors));
-    form.append('routes', JSON.stringify(routes));
+    form.append('authors', authors);
+    //form.append('routes', cenas2);
 
     for(let i in imagens){
       form.append('images['+i+'][description]', imagens[i]["description"]);
       form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
       form.append('images['+i+'][image]', imagens[i]["image"]);
     }
+    for(let i in cenas1){
+      form.append('vertices['+i+'][coordinate1]', cenas1[i]["coordinate1"]);
+      form.append('vertices['+i+'][coordinate2]', cenas1[i]["coordinate2"]);
+      form.append('vertices['+i+'][order]', cenas1[i]["order"]);
+    }    
+    form.append("routes[0]", 2);
+    console.log([...form]);
 
-    console.log(form);
     return fetch(furl, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Authorization': token },
