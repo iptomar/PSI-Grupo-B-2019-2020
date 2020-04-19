@@ -82,11 +82,14 @@ class CriarPontosInteresse extends Component {
 
 		let listaRotas = [];
 		const rotas = this.state.routes;
-		for (let cena in rotas){
+		for (let rota in rotas){
 			let i=<tr style={{
 				textAlign:"center"
-			  }}key={"cena" + cena}>
-				<td >{rotas[cena].nome}</td>
+			  }}key={"cena" + rota}>
+				<td >{rotas[rota].nome}</td>
+				<td>
+					<button type="button" class="btn btn-danger" onClick={() => this.deleteRoute(rota)}>Delete</button>
+				</td>
 			</tr>;
 			listaRotas.push(i);
 			console.log(rotas);
@@ -341,6 +344,12 @@ class CriarPontosInteresse extends Component {
 
 
 
+	}
+
+	deleteRoute(index) {
+		let aux1 = this.state.routes;
+		aux1.splice(index,1);
+		this.setState({routes:aux1});
 	}
 
 	deleteVertices (index){
