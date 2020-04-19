@@ -53,8 +53,10 @@ let pontosDeInteresseApi = {
     form.append('coordinate2', cc2);
     //form.append('vertices', cenas1);
     //form.append('images', JSON.stringify(imagens));
-    form.append('authors', authors);
+    //form.append('authors', authors);
     //form.append('routes', cenas2);
+      console.log("Imagens");
+    console.log(imagens);
 
     for(let i in imagens){
       form.append('images['+i+'][description]', imagens[i]["description"]);
@@ -65,7 +67,10 @@ let pontosDeInteresseApi = {
       form.append('vertices['+i+'][coordinate1]', cenas1[i]["coordinate1"]);
       form.append('vertices['+i+'][coordinate2]', cenas1[i]["coordinate2"]);
       form.append('vertices['+i+'][order]', cenas1[i]["order"]);
-    }    
+    }
+    for(let i in authors){
+      form.append('authors['+i+'][name]', authors[i]["name"]);
+    }
     form.append("routes[0]", 2);
     console.log([...form]);
 

@@ -12,7 +12,7 @@ class CriarPontosInteresse extends Component {
 			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '', nameRoute:'',
 			vertices: [], images: [], 
 			authors: [], routes: [],
-			errors: [], listaVertices: [], listaAutores: [], listaRotas: []
+			errors: []
 		};
 
 		this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
@@ -323,8 +323,8 @@ class CriarPontosInteresse extends Component {
 		console.log(this.state.authors);
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
-																this.state.vertices,this.state.listaVertices, this.state.auxNameAuthor, 
-																this.state.images,this.state.authors,this.state.routes,this.state.listaAutores
+																this.state.vertices,
+																this.state.images,this.state.authors,this.state.routes
 			).then((response)=>{
 				console.log(response);
 			});
