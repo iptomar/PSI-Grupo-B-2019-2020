@@ -190,6 +190,7 @@ class BuildingController extends Controller
         $building->routes()->detach();
         $building->vertices()->delete();
         $building->images()->delete();
+        $building->delete();
 
         return response()->json(['success'=>true],200);
 
