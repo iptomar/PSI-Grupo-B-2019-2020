@@ -23,6 +23,7 @@ export default class pontosDeInteresseList extends Component {
 
     let items = [];
     const pontosDeInteresse = this.state.pontosDeInteresse;
+    console.log('render',this.state.pontosDeInteresse);
     for (let ponto in pontosDeInteresse) {
 
       let i = <tr style={{
@@ -33,7 +34,7 @@ export default class pontosDeInteresseList extends Component {
         <td >{pontosDeInteresse[ponto].location}</td>
         <td >{pontosDeInteresse[ponto].dates}</td>
         <td >
-          <button type="button" class="btn btn-danger" onClick={() => this.deletePontoDeInteresse(pontosDeInteresse[ponto].id)}>Apagar</button>
+          <button type="button" class="btn btn-danger" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deletePontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}}>Apagar</button>
           <button type="button" class="btn btn-info" onClick={() => this.editPontoDeInteresse(pontosDeInteresse[ponto].id)}>Editar</button>
         </td>
       </tr>;
@@ -95,23 +96,31 @@ export default class pontosDeInteresseList extends Component {
   }
 
   getPontosDeInteresseList(page) {
-    if(page < 1){ page=1; } //a pagina minima é 1
-    //se soubermos qual a ultima pagina, e se a pagina atual é maior que a ultima -> a pagina tem de ser a ultima
-    if(this.last_page !== null && page > this.last_page){ page=this.last_page; } 
 
+    if(page < 1){ page=1; }; //a pagina minima é 1
+    //se soubermos qual a ultima pagina, e se a pagina atual é maior que a ultima -> a pagina tem de ser a ultima
+    if(this.last_page !== null && page > this.last_page){ page=this.last_page; };
     pontosDeInteresseApi.list(page).then((response) => {
       this.setState({ pontosDeInteresse: response.data,
                       current_page:response.current_page,
                       last_page:response.last_page });
+     console.log('getlist',this.state.pontosDeInteresse);
     });
+    
   }
 
-  deletePontoDeInteresse(id) {
-    pontosDeInteresseApi.delete(id).then( (response) =>{
-      console.log(""+JSON.stringify(response))
-    }).catch( (error) => {
-      console.log("deu problemas")
-    });
+  deletePontoDeInteresse(id, index) {
+    pontosDeInteresseApi.delete(id).then( (response) => {
+      let aux = this.state.pontosDeInteresse;
+      console.log('aux', aux);
+      aux.splice(index,1);
+      console.log('aux',aux);
+      this.setState({pontosDeInteresse:aux});
+      console.log(this.state.pontosDeInteresse);
+  }).catch( (error) => {
+
+  });
+    console.log(id, index)
   }
 
   editPontoDeInteresse(id) {
