@@ -12,7 +12,7 @@ class CriarPontosInteresse extends Component {
 			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '', nameRoute:'',
 			vertices: [], images: [], 
 			authors: [], routes: [],
-			errors: [], listaVertices: [], listaAutores: []
+			errors: [], listaVertices: [], listaAutores: [], listaRotas: []
 		};
 
 		this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
@@ -79,6 +79,31 @@ class CriarPontosInteresse extends Component {
 			listaAutores.push(i);
 			console.log(autores);
 		};
+
+		let listaRotas = [];
+		const rotas = this.state.routes;
+		for (let cena in rotas){
+			let i=<tr style={{
+				textAlign:"center"
+			  }}key={"cena" + cena}>
+				<td >{rotas[cena].nome}</td>
+			</tr>;
+			listaRotas.push(i);
+			console.log(rotas);
+		}
+
+	/*	let listaRotas = [];
+		const rotas = this.state.routes;
+		for (let rota in rotas){
+			let i=<tr style={{
+				textAlign:"center"
+			  }}key={"rota" + rota}>
+				<td >{rotas[rota].nome}</td>
+
+			</tr>;
+			listaRotas.push(i);
+			console.log(rotas);
+		};*/
 
 		//Preparar a lista de imagens que já foram inseridas
 		let listaImagens=[];
@@ -256,6 +281,24 @@ class CriarPontosInteresse extends Component {
 						<button type="submit" value="submit" onClick={this.addNameRoute}>Add name route</button>
 					</div>
 
+					<div className="tabelaRotas">
+							<table className="table table-hover table-dark table-striped rounded" id="rotas">
+                				<caption>Lista de Rotas</caption>
+								<thead>
+                       				 <tr style={{
+                        			textAlign:"center"
+                     				 }}>
+                           				 <th scope="col" >Nomes das Rotas</th>
+                       				 </tr>
+                    			</thead>
+                    	<tbody>
+                        	{listaRotas}
+                    	</tbody>
+                </table>
+	
+						</div>
+	
+
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
 					<button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
@@ -368,10 +411,10 @@ class CriarPontosInteresse extends Component {
 
 	addNameRoute(e) {
 		e.preventDefault();
-		let obj = {route: ''};
-		obj.route = this.state.nameRoute;
+		let obj = {nome: ''};
+		obj.nome = this.state.nameRoute;
 		console.log(obj);
-		this.setState({route: [this.state.routes, obj]});
+		this.setState({routes: this.state.routes.concat(obj)});
 		this.setState({nameRoute: ''})
 	}
 
