@@ -9,7 +9,7 @@ class CriarPontosInteresse extends Component {
 		super(props);
 		this.state = {
 			buildingName: '', location: '', dates: '', buildingType: '', description: '', coordinate1: '', coordinate2: '',
-			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '',
+			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '', nameRoute:'',
 			vertices: [], images: [], 
 			authors: [], routes: [],
 			errors: [], listaVertices: [], listaAutores: []
@@ -25,7 +25,7 @@ class CriarPontosInteresse extends Component {
 		//this.handleVerticesChange = this.handleVerticesChange.bind(this);
 		this.handleImagesChange = this.handleImagesChange.bind(this);
 		//this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
-		// this.handleRoutesChange = this.handleRoutesChange.bind(this);
+		this.handleRoutesChange = this.handleRoutesChange.bind(this);
 		this.handleVerticeCoordenada1Change = this.handleVerticeCoordenada1Change.bind(this);
 		this.handleVerticeCoordenada2Change = this.handleVerticeCoordenada2Change.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,6 +40,7 @@ class CriarPontosInteresse extends Component {
 		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
 		this.addAuthor = this.addAuthor.bind(this);
 		//this.deleteAuthor = this.deleteAuthor.bind(this);
+		this.addNameRoute = this.addNameRoute.bind(this);
 		
 		
 	}
@@ -249,9 +250,11 @@ class CriarPontosInteresse extends Component {
 					</div>
 					<div className="form-group row">
 						<label for="name_routes"><b>Name Route</b></label>
-						<input className="form-control" id="name_routes" name="name_routes" rows="3" placeholder="Add a name about the point of interest." value={this.state.name_routes} onChange={this.handleRoutesChange} required></input>
+						<input className="form-control" id="name_routes" name="name_routes" rows="3" placeholder="Add a name about the point of interest." value={this.state.nameRoute} onChange={this.handleRoutesChange} required></input>
 					</div>
-
+					<div>
+						<button type="submit" value="submit" onClick={this.addNameRoute}>Add name route</button>
+					</div>
 
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
@@ -363,8 +366,26 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxNameAuthor:''});
 	}
 
+	addNameRoute(e) {
+		e.preventDefault();
+		let obj = {route: ''};
+		obj.route = this.state.nameRoute;
+		console.log(obj);
+		this.setState({route: [this.state.routes, obj]});
+		this.setState({nameRoute: ''})
+	}
 
+		/*
+				this.setState( {images: [...this.state.images,obj]} );
 
+		handleRoutesChange (e, index) {
+			console.log("routes");
+			const routes = this.state.routes;
+			routes[index].name_routes = e.target.value;
+			this.state({
+					routes
+			});
+	};*/
 
 	handleAuthorsChange (e){
 		this.setState({auxNameAuthor: e.target.value});
@@ -425,6 +446,10 @@ class CriarPontosInteresse extends Component {
 		this.setState({ auxAuthor: e.target.value });
 	}
 
+	handleRoutesChange(e) {
+		this.setState( { nameRoute: e.target.value });
+	}
+
 	addImage(e){
 		e.preventDefault();
 		const file = this.fileUpload.files[0];
@@ -463,14 +488,7 @@ class CriarPontosInteresse extends Component {
 			});
 	};*/
 
-	/*handleRoutesChange (e, index) {
-			console.log("routes");
-			const routes = this.state.routes;
-			routes[index].name_routes = e.target.value;
-			this.state({
-					routes
-			});
-	};*/
+
 }
 
 /* ReactDOM.render (<fileInput />, document.getElementById('root')); */
