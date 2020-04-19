@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './CriarPontosInteresse.css';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
 
 class CriarPontosInteresse extends Component {
 
@@ -95,19 +97,6 @@ class CriarPontosInteresse extends Component {
 			console.log(rotas);
 		}
 
-	/*	let listaRotas = [];
-		const rotas = this.state.routes;
-		for (let rota in rotas){
-			let i=<tr style={{
-				textAlign:"center"
-			  }}key={"rota" + rota}>
-				<td >{rotas[rota].nome}</td>
-
-			</tr>;
-			listaRotas.push(i);
-			console.log(rotas);
-		};*/
-
 		//Preparar a lista de imagens que já foram inseridas
 		let listaImagens=[];
 		const imagens=this.state.images;
@@ -125,6 +114,12 @@ class CriarPontosInteresse extends Component {
 			listaImagens.push(i);
 		};
 
+		const options = [
+			{ value: 'opcao1', label: 'Opcao1' },
+			{ value: 'opcao2', label: 'Opcao2' },
+			{ value: 'opcao3', label: 'Opcao3' },
+			{ value: 'opcao4', label: 'Opcao4' }
+		  ];
 
 		return (
 			<div className="fundo" >
@@ -278,30 +273,21 @@ class CriarPontosInteresse extends Component {
 					</div>
 					<div className="form-group row">
 						<label for="name_routes"><b>Name Route</b></label>
-						<input className="form-control" id="name_routes" name="name_routes" rows="3" placeholder="Add a name about the point of interest." value={this.state.nameRoute} onChange={this.handleRoutesChange} required></input>
+						<input className="form-control" id="name_routes" type="number" name="name_routes" rows="3" placeholder="Add a name about the point of interest." value={this.state.nameRoute} onChange={this.handleRoutesChange} required></input>
 					</div>
 					<div>
 						<button type="submit" value="submit" onClick={this.addNameRoute}>Add name route</button>
 					</div>
-
-					<div className="tabelaRotas">
-							<table className="table table-hover table-dark table-striped rounded" id="rotas">
-                				<caption>Lista de Rotas</caption>
-								<thead>
-                       				 <tr style={{
-                        			textAlign:"center"
-                     				 }}>
-                           				 <th scope="col" >Nomes das Rotas</th>
-                       				 </tr>
-                    			</thead>
-                    	<tbody>
-                        	{listaRotas}
-                    	</tbody>
-                </table>
-	
-						</div>
-	
-
+					<div class="container">
+  					  <div id="root" style={{color:"#000"}}>
+							<Select 
+								class="custom-select" 
+								options = {options}
+								components={makeAnimated()}
+        						isMulti
+								/>
+							</div>
+					</div>
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
 					<button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
@@ -312,7 +298,23 @@ class CriarPontosInteresse extends Component {
 			</div>
 		);
 	}
-
+				/*		<div className="tabelaRotas">
+							<table className="table table-hover table-dark table-striped rounded" id="rotas">
+                				<caption>Lista de Rotas</caption>
+								<thead>
+                       				 <tr style={{
+                        			textAlign:"center"
+                     				 }}>
+                           				 <th scope="col" >ID Routes</th>
+                       				 </tr>
+                    			</thead>
+                    			<tbody>
+                        			{listaRotas}
+                    			</tbody>
+               				 </table>
+	
+						</div>
+						*/
 	//get forms
 
 	handleSubmit(e) {
