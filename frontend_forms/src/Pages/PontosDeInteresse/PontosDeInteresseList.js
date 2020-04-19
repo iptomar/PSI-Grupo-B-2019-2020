@@ -8,12 +8,13 @@ export default class pontosDeInteresseList extends Component {
     super(props);
 
     this.state = {
-      "pontosDeInteresse": {}
+      pontosDeInteresse: {}
     };
 
     usersApi.validateAuth(this.props);
 
-    this.getPontosDeInteresseList();
+    this.getPontosDeInteresseList(1);
+   
   }
 
   render() {
@@ -31,7 +32,7 @@ export default class pontosDeInteresseList extends Component {
         <td >{pontosDeInteresse[ponto].location}</td>
         <td >{pontosDeInteresse[ponto].dates}</td>
         <td >
-          <button type="button" class="btn btn-danger" onClick={() => this.deletePontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}>Apagar</button>
+          <button type="button" class="btn btn-danger" onClick={() => this.deletePontoDeInteresse(pontosDeInteresse[ponto].id)}>Apagar</button>
           <button type="button" class="btn btn-info" onClick={() => this.editPontoDeInteresse(pontosDeInteresse[ponto].id)}>Editar</button>
         </td>
       </tr>;
@@ -65,14 +66,18 @@ export default class pontosDeInteresseList extends Component {
     );
   }
 
-  getPontosDeInteresseList() {
-    pontosDeInteresseApi.list().then((response) => {
+  getPontosDeInteresseList(page) {
+    pontosDeInteresseApi.list(page).then((response) => {
       this.setState({ pontosDeInteresse: response.data });
     });
   }
 
-  deletePontoDeInteresse(id, index) {
-    console.log(id, index);
+  deletePontoDeInteresse(id) {
+    pontosDeInteresseApi.delete(id).then( (response) =>{
+      console.log(""+JSON.stringify(response))
+    }).catch( (error) => {
+      console.log("deu problemas")
+    });
   }
 
   editPontoDeInteresse(id) {

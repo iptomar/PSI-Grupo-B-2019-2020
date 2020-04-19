@@ -4,9 +4,9 @@ let apiUrl = process.env.REACT_APP_API_URL_BASE;
 let pontosDeInteresseApi = {
 
 
-  list() {
+  list(page) {
 
-    let furl = apiUrl + "/buildings";
+    let furl = apiUrl + "/buildings?page="+page;
     let token = "Bearer " + localStorage.getItem("auth.token");
 
     return fetch(furl, {
@@ -42,7 +42,6 @@ let pontosDeInteresseApi = {
     let cenas1=[{coordinate1:2,coordinate2:2,order:1},
                {coordinate1:2,coordinate2:2,order:2},
                {coordinate1:2,coordinate2:2,order:3}];
-    let cenas2=[];
     let form = new FormData();
     form.append('buildingName', buildName);
     form.append('location', location);
