@@ -12,7 +12,7 @@ class CriarPontosInteresse extends Component {
 			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '',
 			vertices: [], images: [], 
 			authors: [], routes: [],
-			errors: [], listaVertices: []
+			errors: [], listaVertices: [], listaAutores: []
 		};
 
 		this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
@@ -61,6 +61,18 @@ class CriarPontosInteresse extends Component {
 			</tr>;
 			listaVertices.push(i);
 			console.log(vertices);
+		}
+
+		let listaAutores = [];
+		const autores = this.state.authors;
+		for (let autor in autores){
+			let i=<tr style={{
+				textAlign:"center"
+			  }}key={"autor" + autor}>
+				<td >{autores[autor].name}</td>
+			</tr>;
+			listaAutores.push(i);
+			console.log(autores);
 		}
 
 		//Preparar a lista de imagens que já foram inseridas
@@ -170,6 +182,23 @@ class CriarPontosInteresse extends Component {
 						<button type="submit" value="submit" onClick={this.addAuthor}>Add author</button>
 					</div>
 
+					<div className="tabelaAutores">
+							<table className="table table-hover table-dark table-striped rounded" id="autores">
+                				<caption>Lista de Autores</caption>
+								<thead>
+                       				 <tr style={{
+                        			textAlign:"center"
+                     				 }}>
+                           				 <th scope="col" >Authors name</th>
+                       				 </tr>
+                    			</thead>
+                    	<tbody>
+                        	{listaAutores}
+                    	</tbody>
+                </table>
+	
+						</div>
+				
 					<div className="form-group row">
 						<label for="vertices"><b>Vertices</b></label>
 					</div>
