@@ -21,7 +21,7 @@ class Building extends Model
 
     //Relacoes
     public function authors(){
-        return $this->hasMany('\App\Author');
+        return $this->belongsToMany('\App\Author', 'authors_buildings');
     }
 
     public function routes(){
