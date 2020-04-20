@@ -102,7 +102,7 @@ class CriarPontosInteresse extends Component {
 		const pontosDeInteresse = this.state.pontosDeInteresse;
 		console.log('render',this.state.pontosDeInteresse);
 		
-		for (let ponto in this.state.pontosDeInteresse) {
+		for (let ponto in pontosDeInteresse) {
 		
 		  let i ={ value: pontosDeInteresse[ponto].routes[0].name, label: pontosDeInteresse[ponto].routes[0].name};
 		  
@@ -536,14 +536,6 @@ class CriarPontosInteresse extends Component {
 		  console.log('getlist',this.state.pontosDeInteresse);
 		});
 	}
-
-	deletePontoDeInteresse(id, index) {
-		console.log(id, index);
-	  }
-
-	  editPontoDeInteresse(id) {
-		console.log(id);
-	  }
 
 	/*handleAuthorsChange (e, index){
 			console.log("authors");
