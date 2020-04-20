@@ -20,4 +20,8 @@ class Author extends Model
 
     protected $hidden=['created_at','updated_at'];
 
+    public function buildings(){
+        return $this->belongsToMany('\App\Building', 'authors_buildings');
+    }
+
 }
