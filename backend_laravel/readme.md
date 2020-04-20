@@ -278,7 +278,7 @@ Returns 401 if not authenticated or 404 if route does not exist or 200 with body
 
 ###### **DELETE** /api/routes/{id}
 
-Update route.
+Delete route.
 
 Requires auth:
 `Authorization: Bearer *token*`
@@ -287,6 +287,8 @@ Returns 401 if not authenticated or 404 if route does not exist or 200 with body
 ```json
 true
 ```
+
+## Buildings Endpoints
 
 ###### **GET** /api/buildings/
 
@@ -601,6 +603,99 @@ or
 ```json
 false
 ```
+
+## Authors Endpoints
+
+###### **GET** /api/authors
+
+Get all authors in different pages.
+
+Returns 200 with body:
+```json
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 5,
+            "name": "Manuel"
+        }
+    ],
+    "first_page_url": "http://localhost:8000/api/authors?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost:8000/api/authors?page=1",
+    "next_page_url": null,
+    "path": "http://localhost:8000/api/authors",
+    "per_page": 15,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}
+```
+
+###### **GET** /api/authors/{id}
+
+Get data about one author.
+
+Returns 404 if author does not exist or 200 with body:
+```json
+{
+    "author": {
+        "id": 5,
+        "name": "Manuel"
+    }
+}
+```
+
+###### **POST** /api/authors
+
+Create new author.
+
+Body request:
+- name (string) *
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 200 with body:
+```json
+{
+    "author": {
+        "name": "Manuel",
+        "id": 5
+    }
+}
+```
+
+###### **PATCH** /api/authors/{id}
+
+Update author.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if author does not exist or 200 with body:
+```json
+{
+    "author": {
+        "id": 5,
+        "name": "Manuela"
+    }
+}
+```
+
+###### **DELETE** /api/authors/{id}
+
+Delete author.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if author does not exist or 200 with body:
+```json
+true
+```
+
 ## Changelog
 
 ##### [2020-03-17]
@@ -631,3 +726,7 @@ false
 
 ##### [2020-04-20]
 - Added roles **- Marcelo Silva**
+- Changed author model data and relationships **- Francisco Vital**
+- Chnaged building model relationships **- Francisco Vital**
+- Added more routes **- Francisco Vital**
+- Created CRUD for authors **- Francisco Vital**
