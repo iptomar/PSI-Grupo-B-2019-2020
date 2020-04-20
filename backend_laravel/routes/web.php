@@ -33,12 +33,23 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->post('/routes', 'RouteController@store');
         $router->patch('/routes/{id}', 'RouteController@update');
         $router->delete('/routes/{id}', 'RouteController@delete');
+
+        $router->post('/routes', 'RouteController@store');
+        $router->patch('/routes/{id}', 'RouteController@update');
+        $router->delete('/routes/{id}', 'RouteController@delete');
+
+        $router->post('/authors', 'AuthorController@store');
+        $router->patch('/authors/{id}', 'AuthorController@update');
+        $router->delete('/authors/{id}', 'AuthorController@delete');
     });
 
+    //No-auth routes
     $router->get('/buildings', 'BuildingController@index');
     $router->get('/buildings/{id}', 'BuildingController@show');
 
-    //No-auth routes
+    $router->get('/authors', 'AuthorController@index');
+    $router->get('/authors/{id}', 'AuthorController@show');
+    
     $router->post('/login','UserController@login');
 
     $router->get('/routes', 'RouteController@index');
