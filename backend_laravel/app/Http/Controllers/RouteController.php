@@ -71,4 +71,22 @@ class RouteController extends Controller
         $response = $route->delete();
         return response()->json($response, 200);
     }
+
+
+    /**
+     * Method/endpoint to approve a route
+     * @param $id
+     * @param Request $request
+     */
+    public function approve($id, Request $request){
+
+        $route = \App\Route::findOrFail($id);
+
+        if ($request->user()->cannot('superadmin')) {
+            abort(403);
+        }
+
+        //TODO: Add functions to approve the route
+
+    }
 }
