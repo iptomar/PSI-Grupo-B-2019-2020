@@ -99,11 +99,13 @@ Body request:
 - email (string) 
 - name (string)
 - password (string)
+- role (string)
 
 Requires auth:
 `Authorization: Bearer *token*`
+Requires superadmin privileges
 
-Returns 401 if auth fails or 404 if user with "id" does not exist or 200 with body:
+Returns 401 if auth fails or 404 if user with "id" does not exist or 403 if not superadmin or 200 with body:
 ```json
 {
     "user": {
@@ -125,11 +127,13 @@ Body request:
 - name (string) *
 - password (string) *
 - password_confirmation (string) *
+- role (string)
 
 Requires auth:
 `Authorization: Bearer *token*`
+Requires superadmin privileges
 
-Returns 401 if auth fails or 200 with body:
+Returns 401 if auth fails or 403 if not superadmin or 200 with body:
 ```json
 {
     "user": {
@@ -148,8 +152,9 @@ Delete user.
 
 Requires auth:
 `Authorization: Bearer *token*`
+Requires superadmin privileges
 
-Returns 401 if auth fails or 404 if user with "id" does not exist or 200 with body:
+Returns 401 if auth fails or 404 if user with "id" does not exist or 403 if not superadmin or 200 with body:
 ```json
 true
 ```
@@ -623,3 +628,6 @@ false
 - Created CRUD endpoint and controller for Building **- Marcelo Silva**
 - Building index (list) contains search and is ordered by Building Name **- Marcelo Silva**
 - Update doc with latest API endpoints (Building) **- Marcelo Silva**
+
+##### [2020-04-20]
+- Added roles **- Marcelo Silva**
