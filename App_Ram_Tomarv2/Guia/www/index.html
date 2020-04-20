@@ -8,37 +8,65 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-    
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css">
+
 </head>
 <body>
-<div class="container">
-    <div class="navbar">
-        <div>
-            <h3 id="title">RAM TOMAR - 2</h3>
-        </div> 
-        <div>
-            <a id="info" href="#about" >Info</a> 
-        </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <div>
+      <h3 id="title">Guia Arquitetura Moderna Tomar - RAM TOMAR</h3>
+
+    </div> 
+    <div>
+        <a  type="button" class="btn btn-success"id="info" href="#about" ><span class="glyphicon glyphicon-info-sign"></span> Informação</a> 
+        
     </div>
+  </nav>
+  <div id="map"></div>
 
-    <br><br><br>
-    <div id="map"></div>
+<!-- Div para os detalhes dos pontos interreses -->
+<!-- <div id="detalhe" tabindex="-1">
+  
+</div> -->
 
-</div>
-
-<div id="detalhe" tabindex="-1">
-    
-</div>
-
-<!-- Div sobre a aplicacão -->
+<!-- Div sobre a aplicação -->
 <div id="about" tabindex="-1">
-    <p>Esta aplicacão foi feito no ambito de desenvolvimento arquitetura moderna de Tomar</p>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4>Sobre a aplicação RAM TOMAR</h4>
+</div><br>
+<div class="modal-body" id="col2">
+  <p>
+    O guia virtual do Roteiro de Arquitetura Moderna da cidade de Tomar integra um conjunto selecionado de
+                edifícios públicos e residenciais que foram projetados entre 1930 e 1965.<br>
+                <br>O Roteiro de Arquitetura Moderna surgiu na sequência de um projeto de investigação iniciado no final
+                de 2015, e para o qual foi estabelecido um protocolo entre o Instituto Politécnico de Tomar e a Câmara
+                Municipal de Tomar. A parceria possibilitou o desenvolvimento de um estudo sobre a Arquitetura Moderna
+                na cidade de Tomar, através do levantamento, pesquisa e análise de um conjunto de edifícios, projetados
+                entre 1930 e 1965. O trabalho desenvolvido resultou numa exposição e na publicação impressa de um
+                roteiro na forma de livro, em 2018.<br>
+                <br>Dado que um dos objetivos do projeto incidiu na divulgação deste património ao público em geral,
+                julgou-se pertinente a sua transposição para outros formatos e plataformas. Com efeito, a constituição
+                de um guia virtual pode revelar-se uma base importante para a valorização de edifícios construídos sob a
+                égide do modernismo e dos espaços urbanos que ocupam e transformam. O registo virtual do objeto imóvel
+                pode assim ser uma forma de enquadrar e ampliar as estratégias de divulgação do património arquitetónico
+                aos utilizadores cada vez mais frequentes de plataformas digitais, criando novos referenciais em
+                alternativa aos guias e roteiros culturais e turísticos convencionais.<br>
+                <br>O guia virtual do Roteiro de Arquitetura Moderna foi desenvolvido pelos estudantes da unidade
+                curricular Projeto (ano letivo 2018-2019) da Licenciatura em Engenharia Informática, do Instituto
+                Politécnico de Tomar.  </p>
+  
+</div>
 </div>
     
-    <script src="js/buildings.js"></script>
+    <script src="js/buildings2.js"></script>
     <script type="text/javascript" src="jquery/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <script src="js/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 </body>
 </html>
