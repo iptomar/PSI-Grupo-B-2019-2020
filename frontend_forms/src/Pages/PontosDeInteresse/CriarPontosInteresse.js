@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CriarPontosInteresse.css';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
+import roteirosApi from '../../scripts/api/roteiros';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 
@@ -13,7 +14,7 @@ class CriarPontosInteresse extends Component {
 			buildingName: '', location: '', dates: '', buildingType: '', description: '', coordinate1: '', coordinate2: '',
 			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '', nameRoute:'',
 			vertices: [], images: [], 
-			authors: [], routes: [],
+			authors: [], routes: [], routesPage: 1, routesPageMax: 99, routesList:{}, selectedRoute:null,
 			errors: []
 		};
 
@@ -27,7 +28,7 @@ class CriarPontosInteresse extends Component {
 		//this.handleVerticesChange = this.handleVerticesChange.bind(this);
 		this.handleImagesChange = this.handleImagesChange.bind(this);
 		//this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
-		this.handleRoutesChange = this.handleRoutesChange.bind(this);
+		//this.handleRoutesChange = this.handleRoutesChange.bind(this);
 		this.handleVerticeCoordenada1Change = this.handleVerticeCoordenada1Change.bind(this);
 		this.handleVerticeCoordenada2Change = this.handleVerticeCoordenada2Change.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,12 +43,14 @@ class CriarPontosInteresse extends Component {
 		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
 		this.addAuthor = this.addAuthor.bind(this);
 		//this.deleteAuthor = this.deleteAuthor.bind(this);
-		this.addNameRoute = this.addNameRoute.bind(this);
-		
-		
+		this.addRoute = this.addRoute.bind(this);
+		this.handleRouteChange = this.handleRouteChange.bind(this);
+
+		this.getRoutes(1);
 	}
 
 	render() {
+
 
 		let listaVertices = [];
 		const vertices = this.state.vertices;
@@ -82,20 +85,19 @@ class CriarPontosInteresse extends Component {
 			console.log(autores);
 		};
 
-		let listaRotas = [];
+	  let listaRotas = [];
 		const rotas = this.state.routes;
 		for (let rota in rotas){
 			let i=<tr style={{
 				textAlign:"center"
-			  }}key={"cena" + rota}>
-				<td >{rotas[rota].nome}</td>
+			  }}key={"rota" + rota}>
+				<td >{this.state.routesList[rotas[rota]].name}</td>
 				<td>
 					<button type="button" class="btn btn-danger" onClick={() => this.deleteRoute(rota)}>Delete</button>
 				</td>
 			</tr>;
 			listaRotas.push(i);
-			console.log(rotas);
-		}
+		}; 
 
 		//Preparar a lista de imagens que já foram inseridas
 		let listaImagens=[];
@@ -114,12 +116,14 @@ class CriarPontosInteresse extends Component {
 			listaImagens.push(i);
 		};
 
-		const options = [
-			{ value: 'opcao1', label: 'Opcao1' },
-			{ value: 'opcao2', label: 'Opcao2' },
-			{ value: 'opcao3', label: 'Opcao3' },
-			{ value: 'opcao4', label: 'Opcao4' }
-		  ];
+		//preparar as opções do select 
+		const options = [];
+		const rotasExistentes = this.state.routesList;	
+		let r;
+		for(let rota in rotasExistentes){
+			r=<option value={rotasExistentes[rota].id}>{rotasExistentes[rota].name}</option>
+			options.push(r);
+		};
 
 		return (
 			<div className="fundo" >
@@ -271,23 +275,29 @@ class CriarPontosInteresse extends Component {
 					<div className="form-group row">
 						<label for="routes"><b>Routes</b></label>
 					</div>
-					<div className="form-group row">
-						<label for="name_routes"><b>Name Route</b></label>
-						<input className="form-control" id="name_routes" type="number" name="name_routes" rows="3" placeholder="Add a name about the point of interest." value={this.state.nameRoute} onChange={this.handleRoutesChange} required></input>
+					<div className="tabelaRotas">
+						<table className="table table-hover table-dark table-striped rounded" id="rotas">
+							<caption>Lista de Rotas</caption>
+							<thead>
+								<tr style={{
+									textAlign: "center"
+								}}>
+									<th scope="col" >Route</th>
+								</tr>
+							</thead>
+							<tbody>
+								{listaRotas}
+							</tbody>
+						</table>
 					</div>
 					<div>
-						<button type="submit" value="submit" onClick={this.addNameRoute}>Add name route</button>
+						<button type="submit" value="submit" onClick={this.addRoute}>Add route</button>
+						<select onChange={this.handleRouteChange}>
+							{options}
+						</select>
+
 					</div>
-					<div class="container">
-  					  <div id="root" style={{color:"#000"}}>
-							<Select 
-								class="custom-select" 
-								options = {options}
-								components={makeAnimated()}
-        						isMulti
-								/>
-							</div>
-					</div>
+
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
 					<button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
@@ -298,23 +308,8 @@ class CriarPontosInteresse extends Component {
 			</div>
 		);
 	}
-				/*		<div className="tabelaRotas">
-							<table className="table table-hover table-dark table-striped rounded" id="rotas">
-                				<caption>Lista de Rotas</caption>
-								<thead>
-                       				 <tr style={{
-                        			textAlign:"center"
-                     				 }}>
-                           				 <th scope="col" >ID Routes</th>
-                       				 </tr>
-                    			</thead>
-                    			<tbody>
-                        			{listaRotas}
-                    			</tbody>
-               				 </table>
-	
-						</div>
-						*/
+						
+						
 	//get forms
 
 	handleSubmit(e) {
@@ -420,13 +415,11 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxNameAuthor:''});
 	}
 
-	addNameRoute(e) {
+	addRoute(e) {
 		e.preventDefault();
-		let obj = {nome: ''};
-		obj.nome = this.state.nameRoute;
-		console.log(obj);
-		this.setState({routes: this.state.routes.concat(obj)});
-		this.setState({nameRoute: ''})
+		if(this.state.selectedRoute!==null){
+			this.setState({routes: [...this.state.routes,this.state.selectedRoute]});
+		}
 	}
 
 		/*
@@ -440,6 +433,10 @@ class CriarPontosInteresse extends Component {
 					routes
 			});
 	};*/
+
+	handleRouteChange(e){
+		this.setState({selectedRoute: e.target.value});
+	}
 
 	handleAuthorsChange (e){
 		this.setState({auxNameAuthor: e.target.value});
@@ -500,9 +497,9 @@ class CriarPontosInteresse extends Component {
 		this.setState({ auxAuthor: e.target.value });
 	}
 
-	handleRoutesChange(e) {
+	/*  	handleRoutesChange(e) {
 		this.setState( { nameRoute: e.target.value });
-	}
+	} */
 
 	addImage(e){
 		e.preventDefault();
@@ -541,6 +538,24 @@ class CriarPontosInteresse extends Component {
 			});
 	};*/
 
+
+	getRoutes(page){
+		roteirosApi.list(page).then((response) => {
+
+			let arrayFinal={};
+
+			for(let k in response.data){
+				console.log("teste");
+				if(response.data.hasOwnProperty(k)){
+					arrayFinal[response.data[k].id]=response.data[k];
+				}
+			}
+			
+      this.setState({ routesList: arrayFinal,
+											routesPage:response.current_page,
+                      routesPageMax:response.last_page });
+    });
+	}
 
 }
 
