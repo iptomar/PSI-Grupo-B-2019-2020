@@ -97,21 +97,6 @@ class CriarPontosInteresse extends Component {
 			console.log(rotas);
 		}
 
-<<<<<<< HEAD
-		let items = [];
-		const pontosDeInteresse = this.state.pontosDeInteresse;
-		console.log('render',this.state.pontosDeInteresse);
-		
-		for (let ponto in pontosDeInteresse) {
-		
-		  let i ={ value: pontosDeInteresse[ponto].routes[0].name, label: pontosDeInteresse[ponto].routes[0].name};
-		  
-		  items.push(i);
-		};
-		console.log(items);
-
-=======
->>>>>>> parent of 691f48c... Select com os nomes das Rotas.
 		//Preparar a lista de imagens que já foram inseridas
 		let listaImagens=[];
 		const imagens=this.state.images;
@@ -547,10 +532,6 @@ class CriarPontosInteresse extends Component {
 	}
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 691f48c... Select com os nomes das Rotas.
 	/*handleAuthorsChange (e, index){
 			console.log("authors");
 			const authors = this.state.authors;
