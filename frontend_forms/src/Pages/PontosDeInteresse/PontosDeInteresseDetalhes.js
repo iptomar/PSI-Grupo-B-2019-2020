@@ -29,6 +29,7 @@ class PontosDeInteresseDetalhes extends Component {
         let pi=[];
         let vertices=[];
         let images=[];
+        let routes= [];
 
         if(this.state.buildingInfo!=null){
 
@@ -77,6 +78,18 @@ class PontosDeInteresseDetalhes extends Component {
             }
 
 
+            for(let k in b.routes){
+                if(b.routes.hasOwnProperty(k)){
+                    routes.push(
+                        <tr>
+                            <td>{b.routes[k].name}</td>
+                        </tr>
+                    );
+                }
+            }
+
+
+
         }
 
         return(<div>
@@ -106,6 +119,16 @@ class PontosDeInteresseDetalhes extends Component {
                     </thead>
                     <tbody>
                     {images}
+                    </tbody>
+                </table>
+
+                <h3>Routes</h3>
+                <table>
+                    <thead>
+                    <th>Name</th>
+                    </thead>
+                    <tbody>
+                    {routes}
                     </tbody>
                 </table>
             </div>
