@@ -8,11 +8,15 @@ import {Redirect} from "react-router-dom";
 class PontosDeInteresseDetalhes extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            pontosDeInteresse: JSON.parse(sessionStorage.getItem("test")),
-            vertices: []
 
-        }
+        let pontoInteresseID = props.match.params.pontoInteresseID;
+
+        this.state = {
+            buildingInfo: null
+
+        };
+
+        this.getPontoByID(pontoInteresseID);
     }
     
     componentDidMount(){
@@ -21,63 +25,100 @@ class PontosDeInteresseDetalhes extends Component {
 
 
     render(){
-      let listaPontosDeInteresseDetalhe = [];
-      let teste = this.state.pontosDeInteresse;
-      let vertices2 = this.state.vertices;
-      let vertices1 = {coordinate1: '', coordinate2:'', order:''};
-      //let verts = this.state.vertices.concat(vertices1); 
-      //const images = {image:'',sourceAuthor:'',description:''};
-      //let imagens = this.state.images.concat(images);
-     // const file = this.fileUpload.files[0];
-      //images.image = file;
-  
-      if(teste != 0){
 
-          listaPontosDeInteresseDetalhe.push(
-            <tr>
-              <td>{teste.buildingName}</td>
-              <br/>
-              <td>{teste.location}</td>
-              <br/>
-              <td>{teste.dates}</td>
-              <br/>
-              <td>{teste.buildingType}</td>
-              <br/>
-              <td>{teste.location}</td>
-              <br/>
-              <td>{teste.description}</td>
-              <br/>
-              <td>{teste.coordinate1}</td>
-              <br/>
-              <td>{teste.coordinate2}</td>
-              <br />
-              <td>
-              <p>
-                {this.state.vertices.map(i => {
-                    return <div >
-                       <span>{i.auxCoordenada1}</span>
-                       <span>{i.auxCoordenada2}</span>
-                       <span>{i.auxOrder}</span>
-                    </div>
-                })}
-                </p>
+        let pi=[];
+        let vertices=[];
+        let images=[];
 
-              </td>
-             
+        if(this.state.buildingInfo!=null){
 
-            </tr>); 
+            let b=this.state.buildingInfo;
+
+            pi.push(
+                <dl>
+                    <dd>Building name</dd>
+                    <dt>{b.buildingName}</dt>
+                    <dd>Building type</dd>
+                    <dt>{b.buildingType}</dt>
+                    <dd>Location</dd>
+                    <dt>{b.location} (x:{b.coordinate1} ; y:{b.coordinate2})</dt>
+                    <dd>Date</dd>
+                    <dt>{b.date}</dt>
+                    <dd>Description</dd>
+                    <dt>{b.description}</dt>
+                </dl>
+            );
+
+            for(let k in b.vertices){
+                if(b.vertices.hasOwnProperty(k)){
+                    vertices.push(
+                        <tr>
+                            <td>{b.vertices[k].coordinate1}</td>
+                            <td>{b.vertices[k].coordinate2}</td>
+                            <td>{b.vertices[k].order}</td>
+                        </tr>
+                    );
+                }
+            }
+
+            for(let k in b.images){
+                if(b.images.hasOwnProperty(k)){
+
+                    let src = 'data:image/png;base64,'+b.images[k].base64;
+
+                    images.push(
+                        <tr>
+                            <td><img src={src} height="150"/></td>
+                            <td>{b.images[k].sourceAuthor}</td>
+                            <td>{b.images[k].description}</td>
+                        </tr>
+                    );
+                }
+            }
+
+
         }
-
-    
 
         return(<div>
             <h1>Detalhes de Pontos de Interesse</h1>
-              <tbody>
-                {listaPontosDeInteresseDetalhe}
-						  </tbody>
+                {pi}
+
+                <h3>Vertices</h3>
+                <table>
+                    <thead>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>Order</th>
+                    </thead>
+                    <tbody>
+                    {vertices}
+                    </tbody>
+                </table>
+
+
+
+                <h3>Images</h3>
+                <table>
+                    <thead>
+                    <th>Image</th>
+                    <th>Author</th>
+                    <th>Description</th>
+                    </thead>
+                    <tbody>
+                    {images}
+                    </tbody>
+                </table>
             </div>
         );
   }
+
+    getPontoByID(id) {
+        pontosDeInteresseApi.get(id).then( (response) => {
+            this.setState({buildingInfo: response.building});
+        }).catch( (error) => {
+
+        });
+    }
 }
 
 export default PontosDeInteresseDetalhes;
