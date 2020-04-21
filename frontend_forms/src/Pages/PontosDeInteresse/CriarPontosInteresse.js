@@ -14,7 +14,7 @@ class CriarPontosInteresse extends Component {
 			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '', nameRoute:'',
 			vertices: [], images: [], 
 			authors: [], routes: [],
-			errors: [], pontosDeInteresse: []
+			errors: []
 		};
 
 		this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
@@ -44,7 +44,6 @@ class CriarPontosInteresse extends Component {
 		//this.deleteAuthor = this.deleteAuthor.bind(this);
 		this.addNameRoute = this.addNameRoute.bind(this);
 		
-		this.getPontosDeInteresseList();
 		
 	}
 
@@ -98,6 +97,7 @@ class CriarPontosInteresse extends Component {
 			console.log(rotas);
 		}
 
+<<<<<<< HEAD
 		let items = [];
 		const pontosDeInteresse = this.state.pontosDeInteresse;
 		console.log('render',this.state.pontosDeInteresse);
@@ -110,6 +110,8 @@ class CriarPontosInteresse extends Component {
 		};
 		console.log(items);
 
+=======
+>>>>>>> parent of 691f48c... Select com os nomes das Rotas.
 		//Preparar a lista de imagens que já foram inseridas
 		let listaImagens=[];
 		const imagens=this.state.images;
@@ -119,9 +121,20 @@ class CriarPontosInteresse extends Component {
 					<td >{imagens[imagem].image.name}</td>
 					<td >{imagens[imagem].sourceAuthor}</td>
 					<td >{imagens[imagem].description}</td>
+					<td >
+							
+							<button type="button" class="btn btn-danger" onClick={() => this.deleteImage(imagem)}>Apagar</button>
+					</td>
 			</tr>;
 			listaImagens.push(i);
 		};
+
+		const options = [
+			{ value: 'opcao1', label: 'Opcao1' },
+			{ value: 'opcao2', label: 'Opcao2' },
+			{ value: 'opcao3', label: 'Opcao3' },
+			{ value: 'opcao4', label: 'Opcao4' }
+		  ];
 
 		return (
 			<div className="fundo" >
@@ -275,18 +288,21 @@ class CriarPontosInteresse extends Component {
 					</div>
 					<div className="form-group row">
 						<label for="name_routes"><b>Name Route</b></label>
-					</div>		
-					<div class="container" id="pontosDeInteresse">
+						<input className="form-control" id="name_routes" type="number" name="name_routes" rows="3" placeholder="Add a name about the point of interest." value={this.state.nameRoute} onChange={this.handleRoutesChange} required></input>
+					</div>
+					<div>
+						<button type="submit" value="submit" onClick={this.addNameRoute}>Add name route</button>
+					</div>
+					<div class="container">
   					  <div id="root" style={{color:"#000"}}>
 							<Select 
-								className="basic-multi-select"
-								options = {items}
+								class="custom-select" 
+								options = {options}
 								components={makeAnimated()}
         						isMulti
 								/>
 							</div>
 					</div>
-
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
 					<button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
@@ -530,13 +546,11 @@ class CriarPontosInteresse extends Component {
 		this.setState({images:aux});
 	}
 
-		getPontosDeInteresseList() {
-		pontosDeInteresseApi.list().then((response) => {
-		  this.setState({ pontosDeInteresse: response.data });
-		  console.log('getlist',this.state.pontosDeInteresse);
-		});
-	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 691f48c... Select com os nomes das Rotas.
 	/*handleAuthorsChange (e, index){
 			console.log("authors");
 			const authors = this.state.authors;
@@ -546,7 +560,7 @@ class CriarPontosInteresse extends Component {
 			});
 	};*/
 
-	
+
 }
 
 /* ReactDOM.render (<fileInput />, document.getElementById('root')); */
