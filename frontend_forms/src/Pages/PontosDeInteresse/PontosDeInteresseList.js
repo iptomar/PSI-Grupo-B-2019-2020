@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
 import usersApi from '../../scripts/api/users';
 import './CriarPontosInteresse.css';
+import { Redirect } from 'react-router-dom';
 
 export default class pontosDeInteresseList extends Component {
 
@@ -9,17 +10,31 @@ export default class pontosDeInteresseList extends Component {
     super(props);
 
     this.state = {
+      images: [],
+      vertices: [],
+      authors: [],
+      routes: [],
+      auxNameAuthor:'',
+      nameRoute:'',
+      auxCoordenada1:'',
+      auxCoordenada2:'',
+      auxOrder:'',
+      "redirect": false,
       "pontosDeInteresse": {},
       "current_page":1,
-      "last_page":null
+      "last_page":null,
     };
-
+    //this.fileInput = React.createRef();
+    this.detalhesPontoDeInteresse();
     usersApi.validateAuth(this.props);
 
     this.getPontosDeInteresseList(1);   
   }
 
   render() {
+    if(this.state.redirect == true){
+      return (<Redirect to="/PointsOfInterest/PontosDeInteresseDetalhes"/>);
+    }
 
     let items = [];
     const pontosDeInteresse = this.state.pontosDeInteresse;
@@ -36,6 +51,7 @@ export default class pontosDeInteresseList extends Component {
         <td >
           <button type="button" class="btn btn-danger" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deletePontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}}>Apagar</button>
           <button type="button" class="btn btn-info" onClick={() => this.editPontoDeInteresse(pontosDeInteresse[ponto].id)}>Editar</button>
+          <button type="button" class="btn btn-success" onClick={() => this.detalhesPontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}>Detalhes</button>
         </td>
       </tr>;
 
@@ -76,7 +92,7 @@ export default class pontosDeInteresseList extends Component {
               <th scope="col">Nome</th>
               <th scope="col">Localização</th>
               <th scope="col">Data</th>
-              <th scope="col">Apagar/Editar</th>
+              <th scope="col">Apagar/Editar/Detalhes</th>
             </tr>
 
           </thead>
@@ -105,6 +121,38 @@ export default class pontosDeInteresseList extends Component {
                       current_page:response.current_page,
                       last_page:response.last_page });
      console.log('getlist',this.state.pontosDeInteresse);
+    });
+    
+  }
+
+  detalhesPontoDeInteresse (id, index){
+    pontosDeInteresseApi.get(id).then((response) =>{
+        //console.log(response[id]);
+        let imagens = {image:'',sourceAuthor:'',description:''};
+        let autores = {name:''};
+        let vertices = {coordinate1:'', coordinate2: '', order:''};
+        let routes = {nome: ''};
+        //const file = this.fileUpload.files[0];
+        //imagens.image = file;
+        autores.name = this.state.auxNameAuthor;
+        routes.nome = this.state.nameRoute;
+        vertices.coordinate1 = this.state.auxCoordenada1;
+        vertices.coordinate2 = this.state.auxCoordenada2;
+        vertices.order = this.state.auxOrder;
+        sessionStorage.setItem("test", JSON.stringify(this.state.pontosDeInteresse[index]));
+        this.setState({redirect: true,
+                       buildingName: '',
+                       location: '',
+                       dates: '',
+                       buildingType: '',
+                       description: '',
+                       coordinate1: '',
+                       coordinate2: '',
+                       images: this.state.images.concat(imagens),
+                       vertices: this.state.vertices.concat(vertices),
+                       authors: this.state.authors.concat(autores),
+                       routes: this.state.routes.concat(routes)
+                        });
     });
     
   }
