@@ -172,7 +172,7 @@ export default class pontosDeInteresseList extends Component {
   }
 
   editPontoDeInteresse(id) {
-    console.log(id);
+    this.props.history.push('/PointsOfInterest/' + id + '/edit');
   }
 
 }
