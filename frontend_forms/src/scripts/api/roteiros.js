@@ -66,7 +66,34 @@ let roteirosApi = {
         return Promise.reject(response.json());
       }
     });
+  },
+
+  create(name, aproved){
+    let furl = apiUrl + "/routes";
+    let token = "Bearer " + localStorage.getItem("auth.token");
+    let body ={
+        "name": name,
+        "aproved": aproved
+    }
+    let form = new FormData();
+    form.append('name', name);
+
+    return fetch(furl, {method:'POST',
+                headers: { 'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, 
+                body: JSON.stringify(body)
+            }).then( (response) => {
+                return response.json().then( (json) => {
+                    if(response.ok){
+                        return Promise.resolve(json);
+                    } else {
+                        return Promise.reject(json);
+                    }
+                });
+            });
+
   }
+
+
 
 }
 
@@ -83,11 +110,20 @@ let roteirosApi = {
   console.log("deu problemas")
 });*/
 
-roteirosApi.update(5).then( (response) =>{
+/*roteirosApi.update(5).then( (response) =>{
   console.log(""+JSON.stringify(response))
   }).catch( (error) => {
   console.log("deu problemas: "+JSON.stringify(error))
-  });
+  });*/
+
+let name = "Lojas de Tomar";
+let aproved = "0";
+roteirosApi.create(name, aproved).then( (response) =>{
+console.log(""+JSON.stringify(response))
+}).catch( (error) => {
+console.log("deu problemas: "+JSON.stringify(error))
+});
+
 
 
 export default roteirosApi;
