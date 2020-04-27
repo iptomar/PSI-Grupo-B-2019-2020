@@ -59,6 +59,9 @@ class App extends Component {
               <li className="nav-item">
                 <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
               </li>
+              <li className="nav-item">
+                <Link to="/Routes" style={{color:"#5ED0C0"}} className="nav-link">Rotas</Link>
+              </li>
              {/*  <li className="nav-item">
                   <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
                 </li> */} 

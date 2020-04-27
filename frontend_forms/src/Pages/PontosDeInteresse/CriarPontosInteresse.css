@@ -24,7 +24,7 @@
 
 /* css da página PontosDeInteresseList*/
 
-#pontosDeInteresse {
+#pontosDeInteresse, #roteiros {
   width: 95%;
   padding: 15px;
   margin: auto;
