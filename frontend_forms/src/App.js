@@ -19,6 +19,8 @@ import pontosDeInteresseList from "./Pages/PontosDeInteresse/PontosDeInteresseLi
 import EditPontosInteresse from "./Pages/PontosDeInteresse/EditPontosInteresse";
 import DetalhesPontoInteresse from "./Pages/PontosDeInteresse/PontosDeInteresseDetalhes";
 
+//Routs
+import RoutesList from './Pages/Routes/RoutesList';
 // import Mapa from './Pages/Mapa';
 
 class App extends Component {
@@ -57,6 +59,9 @@ class App extends Component {
               <li className="nav-item">
                 <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
               </li>
+              <li className="nav-item">
+                <Link to="/Routes" style={{color:"#5ED0C0"}} className="nav-link">Rotas</Link>
+              </li>
              {/*  <li className="nav-item">
                   <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
                 </li> */} 
@@ -73,6 +78,7 @@ class App extends Component {
         <Route exact path="/Mapa" component={Mapa}></Route> 
         <Route exact path="/PointsOfInterest/:pontoInteresseID/edit" component={EditPontosInteresse}></Route>
         <Route exact path="/PointsOfInterest/:pontoInteresseID/detalhes" component={DetalhesPontoInteresse}></Route>
+        <Route exact path="/Routes" component={RoutesList}></Route>
       </Router>
     );
   }
