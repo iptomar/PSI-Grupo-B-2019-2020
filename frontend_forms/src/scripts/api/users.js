@@ -130,7 +130,8 @@ let usersApi = {
         let token="Bearer " + localStorage.getItem("auth.token");
 
         return fetch(furl, {method:'PATCH', headers:{
-                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, body: JSON.stringify(body)
+                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, 
+                body: JSON.stringify(body)
         }).then( (response) => {
             return response.json().then( (json) => {
                 if(response.ok){

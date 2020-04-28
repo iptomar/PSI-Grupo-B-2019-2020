@@ -21,7 +21,7 @@ let pontosDeInteresseApi = {
       }
     });
   },
-  //dates é em array?
+
   /**
    * 
    * @param {*} buildName 
@@ -50,10 +50,10 @@ let pontosDeInteresseApi = {
     form.append('description', description);
     form.append('coordinate1', cc1);
     form.append('coordinate2', cc2);
-    //form.append('vertices', cenas1);
-    //form.append('images', JSON.stringify(imagens));
-    //form.append('authors', authors);
-    //form.append('routes', cenas2);
+    form.append('vertices', cenas1);
+    form.append('images', JSON.stringify(imagens));
+    form.append('authors', authors);
+   // form.append('routes', cenas2);
       console.log("Imagens");
     console.log(imagens);
 
@@ -125,27 +125,42 @@ let pontosDeInteresseApi = {
     });
   },
 
-  edit(id, buildName, location, dates, type, description, cc1, cc2, vertices, imagens, authors, routes) {
+  edit(id, buildName, location, dates, type, description, cc1, cc2, vertices, 
+    routes, imagens, authors) {
     let furl = apiUrl + "/buildings/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
-    let body = {
-      "buildingName": buildName,
-      "location": location,
-      "dates": dates,
-      "buildingType": type,
-      "description": description,
-      "coordinate1": cc1,
-      "coordinate2": cc2,
-      "vertices": vertices,
-      "images": imagens,
-      "authors": authors,
-      "routes": routes,
-    };
+
+    let form = new FormData();
+if(buildName!==null) form.append('buildingName', buildName);
+if(location!==null)form.append('location', location);
+if(dates!==null)form.append('dates', dates);
+if(type!==null)form.append('buildingType', type);
+if(description!==null)form.append('description', description);
+if(cc1!==null)form.append('coordinate1', cc1);
+if(cc2!==null)form.append('coordinate2', cc2);
+console.log("Imagens");
+console.log(imagens);
+
+for(let i in imagens){
+  console.log("Imagem single");
+  console.log(imagens[i]["image"]);
+form.append('images['+i+'][description]', imagens[i]["description"]);
+form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
+form.append('images['+i+'][image]', imagens[i]["image"]);
+}
+for(let i in vertices){
+form.append('vertices['+i+'][coordinate1]', vertices[i]["coordinate1"]);
+form.append('vertices['+i+'][coordinate2]', vertices[i]["coordinate2"]);
+form.append('vertices['+i+'][order]', vertices[i]["order"]);
+}
+for(let i in authors){
+form.append('authors['+i+'][name]', authors[i]["name"]);
+}
 
     return fetch(furl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token },
-      body: JSON.stringify(body)
+      headers: { 'Accept': 'application/json', 'Authorization': token },
+      body: form
     }).then((response) => {
       if (response.ok) {
         return Promise.resolve(response.json());
