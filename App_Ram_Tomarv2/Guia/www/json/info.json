@@ -9,8 +9,35 @@
                 "description": "xpto",
                 "coordinate1": "0.314",
                 "coordinate2": "93.345",
-                "authors": [],
-                "images": [],
+                "authors": [
+                    {
+                        "id": 1,
+                        "name": "Januário Godinho de Almeida - Arquiteto",
+                        "building_id": 1
+                    },
+                    {
+                        "id": 2,
+                        "name": "Ana Silva",
+                        "building_id": 1
+                    }
+                ],
+                    
+                "images": [
+                    {
+                        "id": 1,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img1.jpeg",
+                        "building_id": 11
+                    },
+                    {
+                        "id": 2,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img2.jpeg",
+                        "building_id": 11
+                    }
+                ],
                 "routes": [],
                 "vertices": []
             },
@@ -23,8 +50,35 @@
                 "description": "xpto",
                 "coordinate1": "1.414",
                 "coordinate2": "100.345",
-                "authors": [],
-                "images": [],
+                "authors": [
+                    {
+                        "id": 1,
+                        "name": "Januário Godinho de Almeida - Arquiteto",
+                        "building_id": 1
+                    },
+                    {
+                        "id": 2,
+                        "name": "Maria de Jesus",
+                        "building_id": 1
+                    }
+                ],
+                    
+                "images": [
+                    {
+                        "id": 1,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img1.jpeg",
+                        "building_id": 11
+                    },
+                    {
+                        "id": 2,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img2.jpeg",
+                        "building_id": 11
+                    }
+                ],
                 "routes": [],
                 "vertices": [
                     {
@@ -59,8 +113,34 @@
                 "description": "xpto",
                 "coordinate1": "0.314",
                 "coordinate2": "93.345",
-                "authors": [],
-                "images": [],
+                "authors": [
+                    {
+                        "id": 1,
+                        "name": "Januário Godinho de Almeida - Arquiteto",
+                        "building_id": 1
+                    },
+                    {
+                        "id": 2,
+                        "name": "Sandra Sousa",
+                        "building_id": 1
+                    }
+                ],
+                "images": [
+                    {
+                        "id": 1,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img1.jpeg",
+                        "building_id": 11
+                    },
+                    {
+                        "id": 2,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img2.jpeg",
+                        "building_id": 11
+                    }
+                ],
                 "routes": [],
                 "vertices": [
                     {
@@ -95,8 +175,35 @@
                 "description": "xpto",
                 "coordinate1": "0.314",
                 "coordinate2": "93.345",
-                "authors": [],
-                "images": [],
+                "authors": [
+                    {
+                        "id": 2,
+                        "name": "Martinho Perreira - Arquiteto",
+                        "building_id": 1
+                    },
+                    {
+                        "id": 2,
+                        "name": "Manuela Pinto",
+                        "building_id": 1
+                    }
+                ],
+                
+                "images": [
+                    {
+                        "id": 1,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img1.jpeg",
+                        "building_id": 11
+                    },
+                    {
+                        "id": 2,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img2.jpeg",
+                        "building_id": 11
+                    }
+                ],
                 "routes": [
                     {
                         "id": 2,
@@ -140,8 +247,34 @@
                 "description": "xpto",
                 "coordinate1": "39.60447300",
                 "coordinate2": "-8.41222823",
-                "authors": [],
-                "images": [],
+                "authors": [
+                    {
+                        "id": 2,
+                        "name": "Martinho Perreira - Arquiteto",
+                        "building_id": 1
+                    },
+                    {
+                        "id": 2,
+                        "name": "Maria de Sá",
+                        "building_id": 1
+                    }
+                ],
+                "images": [
+                    {
+                        "id": 1,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img1.jpeg",
+                        "building_id": 11
+                    },
+                    {
+                        "id": 2,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img2.jpeg",
+                        "building_id": 11
+                    }
+                ],
                 "routes": [
                     {
                         "id": 2,
@@ -163,8 +296,37 @@
                 "description": "xpto",
                 "coordinate1": "39.60092678",
                 "coordinate2": "-8.41364175",
-                "authors": [],
-                "images": [],
+                "authors": [
+                    {
+                        "id": 1,
+                        "name": "Marcisa da Cruz",
+                        "building_id": 1
+                    },
+                    {
+                        "id": 2,
+                        "name": "Januário Godinho de Almeida - Arquiteto",
+                        "building_id": 1
+                    }
+                ],
+                
+
+                    
+                "images": [
+                    {
+                        "id": 1,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img1.jpeg",
+                        "building_id": 11
+                    },
+                    {
+                        "id": 2,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img2.jpeg",
+                        "building_id": 11
+                    }
+                ],
                 "routes": [
                     {
                         "id": 2,
@@ -189,11 +351,32 @@
                 "authors": [
                     {
                         "id": 1,
+                        "name": "Laura de Almeida",
+                        "building_id": 1
+                    },
+                    {
+                        "id": 2,
                         "name": "Januário Godinho de Almeida - Arquiteto",
                         "building_id": 1
                     }
                 ],
-                "images": [],
+                   
+                "images": [
+                    {
+                        "id": 1,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img2.jpeg",
+                        "building_id": 11
+                    },
+                    {
+                        "id": 2,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img3.jpeg",
+                        "building_id": 11
+                    }
+                ],
                 "routes": [
                     {
                         "id": 2,
@@ -215,13 +398,31 @@
                 "description": "xpto",
                 "coordinate1": "39.60339018",
                 "coordinate2": "-8.41469599",
-                "authors": [],
+                "authors": [
+                    {
+                        "id": 1,
+                        "name": "Monica dos Santos",
+                        "building_id": 1
+                    },
+                    {
+                        "id": 2,
+                        "name": "Martinho Perreira - Arquiteto",
+                        "building_id": 1
+                    }
+                ],
                 "images": [
                     {
                         "id": 1,
                         "description": "ajsjsjsj",
                         "sourceAuthor": "TGM",
-                        "base64": "mamamma",
+                        "base64": "images/img1.jpeg",
+                        "building_id": 11
+                    },
+                    {
+                        "id": 2,
+                        "description": "ajsjsjsj",
+                        "sourceAuthor": "TGM",
+                        "base64": "images/img2.jpeg",
                         "building_id": 11
                     }
                 ],
