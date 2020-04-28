@@ -39,7 +39,7 @@ class App extends Component {
                 <a className="nav-link" style={{color:"#5ED0C0"}} href="#">Home <span className="sr-only"></span></a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" style={{color:"#5ED0C0"}} href="#">Roteiros</a>
+                <Link to="/Routes" className="nav-link" style={{color:"#5ED0C0"}} href="#">Roteiros</Link>
               </li>
               <li className="nav-item">
                 <Link to="/PointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Pontos De Interesse</Link>
@@ -58,9 +58,6 @@ class App extends Component {
               </li>
               <li className="nav-item">
                 <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/Routes" style={{color:"#5ED0C0"}} className="nav-link">Rotas</Link>
               </li>
              {/*  <li className="nav-item">
                   <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
