@@ -39,9 +39,6 @@ let pontosDeInteresseApi = {
   create(buildName, location, dates, type, description, cc1, cc2, vertices, imagens, authors, routes) {
     let furl = apiUrl + "/buildings";
     let token = "Bearer " + localStorage.getItem("auth.token");
-    let cenas1=[{coordinate1:2,coordinate2:2,order:1},
-               {coordinate1:2,coordinate2:2,order:2},
-               {coordinate1:2,coordinate2:2,order:3}];
     let form = new FormData();
     form.append('buildingName', buildName);
     form.append('location', location);
@@ -50,28 +47,26 @@ let pontosDeInteresseApi = {
     form.append('description', description);
     form.append('coordinate1', cc1);
     form.append('coordinate2', cc2);
-    form.append('vertices', cenas1);
     form.append('images', JSON.stringify(imagens));
     form.append('authors', authors);
-   // form.append('routes', cenas2);
-      console.log("Imagens");
-    console.log(imagens);
-
     for(let i in imagens){
       form.append('images['+i+'][description]', imagens[i]["description"]);
       form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
       form.append('images['+i+'][image]', imagens[i]["image"]);
     }
-    for(let i in cenas1){
-      form.append('vertices['+i+'][coordinate1]', cenas1[i]["coordinate1"]);
-      form.append('vertices['+i+'][coordinate2]', cenas1[i]["coordinate2"]);
-      form.append('vertices['+i+'][order]', cenas1[i]["order"]);
+    for(let i in vertices){
+      form.append('vertices['+i+'][coordinate1]', vertices[i]["coordinate1"]);
+      form.append('vertices['+i+'][coordinate2]', vertices[i]["coordinate2"]);
+      form.append('vertices['+i+'][order]', vertices[i]["order"]);
     }
     for(let i in authors){
       form.append('authors['+i+'][name]', authors[i]["name"]);
     }
-    form.append("routes[0]", 2);
-    console.log([...form]);
+    for(let i in routes){
+      form.append('routes['+i+']', routes[i]);
+    }
+    console.log("ROTAS", routes);
+    console.log("este é o form",[...form]);
 
     return fetch(furl, {
       method: 'POST',
