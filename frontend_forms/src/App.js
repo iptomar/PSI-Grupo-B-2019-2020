@@ -21,6 +21,7 @@ import DetalhesPontoInteresse from "./Pages/PontosDeInteresse/PontosDeInteresseD
 
 //Routs
 import RoutesList from './Pages/Routes/RoutesList';
+import CreateRoutes from './Pages/Routes/CreateRoutes';
 // import Mapa from './Pages/Mapa';
 
 class App extends Component {
@@ -42,13 +43,16 @@ class App extends Component {
                 <Link to="/Routes" className="nav-link" style={{color:"#5ED0C0"}} href="#">Roteiros</Link>
               </li>
               <li className="nav-item">
+                <Link to="/CreateRoutes" style={{color:"#5ED0C0"}} className="nav-link">Criar Roteiros</Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/PointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Pontos De Interesse</Link>
               </li>
               <li className="nav-item">
                 <Link to="/login2" style={{color:"#5ED0C0"}} className="nav-link">Login</Link>
               </li>
               <li className="nav-item">
-                <Link to="/users/create" style={{color:"#5ED0C0"}} className="nav-link">Create</Link>
+                <Link to="/users/create" style={{color:"#5ED0C0"}} className="nav-link">Registo</Link>
               </li>
               <li className="nav-item">
                 <Link to="/CreatePointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Criar Pontos de Interesse</Link>
@@ -76,6 +80,7 @@ class App extends Component {
         <Route exact path="/PointsOfInterest/:pontoInteresseID/edit" component={EditPontosInteresse}></Route>
         <Route exact path="/PointsOfInterest/:pontoInteresseID/detalhes" component={DetalhesPontoInteresse}></Route>
         <Route exact path="/Routes" component={RoutesList}></Route>
+        <Route exact path="/CreateRoutes" component={CreateRoutes}></Route>
       </Router>
     );
   }
