@@ -35,6 +35,7 @@ let roteirosApi = {
       }
     })
   },
+
   delete(id){
     let furl = apiUrl + "/routes/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
@@ -52,12 +53,20 @@ let roteirosApi = {
     });
   },
 
-  update(id){
+  update(id, name){
     let furl = apiUrl + "/routes/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
+
+    let body = {
+      "name": name
+    }
+    //let form = new FormData();
+  //if(nameRoute!==null) form.append('nameRoute', nameRoute);
+  
     return fetch(furl, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token },
+      body: JSON.stringify(body)
     }).then((response) => {
       if (response.ok) {
         console.log("entrei e ta 200");

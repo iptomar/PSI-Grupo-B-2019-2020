@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import roteirosApi from '../../scripts/api/roteiros';
 import usersApi from '../../scripts/api/users';
 import './Routes.css';
+import { Redirect } from 'react-router-dom';
 
 export default class RoutesList extends Component {
     constructor(props) {
@@ -10,15 +11,21 @@ export default class RoutesList extends Component {
         this.state = {
             "rotas": {},
             "current_page":1,
-            "last_page":null
+            "last_page":null,
+            "redirect": false
         };
 
         usersApi.validateAuth(this.props);
-
+        this.editRoute= this.editRoute.bind(this);
         this.getRoutesList(1);
     }
 
     render() {
+
+        if(this.state.redirect == true){
+            return (<Redirect to="/Routes/edit"/>);
+          }
+      
         
             let items = [];
             const rotas = this.state.rotas;
@@ -114,7 +121,7 @@ export default class RoutesList extends Component {
     }
 
     editRoute(id) {
-        console.log(id);
+        this.props.history.push('/routes/' + id + '/edit');
     }  
 
 }
