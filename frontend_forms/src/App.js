@@ -23,6 +23,7 @@ import DetalhesPontoInteresse from "./Pages/PontosDeInteresse/PontosDeInteresseD
 import RoutesList from './Pages/Routes/RoutesList';
 import CreateRoutes from './Pages/Routes/CreateRoutes';
 import EditRoutes from "./Pages/Routes/EditRoutes";
+import DetalhesRoutes from "./Pages/Routes/DetalhesRoutes";
 // import Mapa from './Pages/Mapa';
 
 class App extends Component {
@@ -83,6 +84,7 @@ class App extends Component {
         <Route exact path="/Routes" component={RoutesList}></Route>
         <Route exact path="/CreateRoutes" component={CreateRoutes}></Route>
         <Route exact path="/Routes/:RoutesId/edit" component={EditRoutes}></Route>
+        <Route exact path="/Routes/:RoutesId/detalhes" component={DetalhesRoutes}></Route>
       </Router>
     );
   }

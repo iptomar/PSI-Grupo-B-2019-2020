@@ -16,6 +16,8 @@ export default class RoutesList extends Component {
         };
 
         usersApi.validateAuth(this.props);
+        this.detalhesRoute();
+        //this.detalhesRoute = this.detalhesRoute.bind(this);
         this.editRoute= this.editRoute.bind(this);
         this.getRoutesList(1);
     }
@@ -38,6 +40,7 @@ export default class RoutesList extends Component {
                     <td>
                         <button type="button" class="btn btn-danger"  onClick = {() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deleteRoute(rotas[rota].id, rota)}}>Apagar</button>
                         <button type="button" class="btn btn-info"  onClick = {() => this.editRoute(rotas[rota].id)}>Editar</button>
+                        <button type="button" class="btn btn-success"  onClick = {() => this.detalhesRoute(rotas[rota].id, rota)}>Detalhes</button>
                     </td>            
                 </tr>;
 
@@ -123,5 +126,16 @@ export default class RoutesList extends Component {
     editRoute(id) {
         this.props.history.push('/routes/' + id + '/edit');
     }  
+
+    detalhesRoute(id, index){
+        roteirosApi.get(id).then((response) => {
+            sessionStorage.setItem("rota", JSON.stringify(this.state.rotas[index]));
+            this.props.history.push('/routes/' + id + '/detalhes');
+            this.setState({redirect: true,
+                           name: ''
+                 });
+        })
+        console.log(sessionStorage.getItem("rota"));
+    }
 
 }

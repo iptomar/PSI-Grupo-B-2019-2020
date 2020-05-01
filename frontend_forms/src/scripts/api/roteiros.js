@@ -22,7 +22,6 @@ let roteirosApi = {
   get(id) {
     let furl = apiUrl + "/routes/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
-
     return fetch(furl, {
       method: 'GET', headers: {
         'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token
