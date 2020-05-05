@@ -133,20 +133,20 @@ if(type!==null)form.append('buildingType', type);
 if(description!==null)form.append('description', description);
 if(cc1!==null)form.append('coordinate1', cc1);
 if(cc2!==null)form.append('coordinate2', cc2);
-console.log("Imagens");
-console.log(imagens);
+
 
 for(let i in imagens){
   console.log("Imagem single");
   console.log(imagens[i]["image"]);
-form.append('images['+i+'][description]', imagens[i]["description"]);
-form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
-form.append('images['+i+'][image]', imagens[i]["image"]);
+  form.append('images['+i+'][description]', imagens[i]["description"]);
+  form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
+  form.append('images['+i+'][image]', imagens[i]["image"]);
 }
+
 for(let i in vertices){
-form.append('vertices['+i+'][coordinate1]', vertices[i]["coordinate1"]);
-form.append('vertices['+i+'][coordinate2]', vertices[i]["coordinate2"]);
-form.append('vertices['+i+'][order]', vertices[i]["order"]);
+  form.append('vertices['+i+'][coordinate1]', vertices[i]["coordinate1"]);
+  form.append('vertices['+i+'][coordinate2]', vertices[i]["coordinate2"]);
+  form.append('vertices['+i+'][order]', vertices[i]["order"]);
 }
 for(let i in authors){
 form.append('authors['+i+'][name]', authors[i]["name"]);
