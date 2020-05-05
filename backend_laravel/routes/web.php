@@ -33,6 +33,7 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->post('/routes', 'RouteController@store');
         $router->patch('/routes/{id}', 'RouteController@update');
         $router->delete('/routes/{id}', 'RouteController@delete');
+        $router->post('/routes/{id}/approve', 'RouteController@approve');
 
         $router->post('/routes', 'RouteController@store');
         $router->patch('/routes/{id}', 'RouteController@update');

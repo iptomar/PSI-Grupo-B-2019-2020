@@ -38,7 +38,7 @@ class RouteController extends Controller
             'name' => 'required|string'
         ]);
 
-        $route = new \App\Route(['name' => $request->name]);
+        $route = new \App\Route(['name' => $request->name,'aproved'=>0]);
         $route->save();
 
         return response()->json(['route' => $route], 201);
@@ -57,6 +57,7 @@ class RouteController extends Controller
         ]);
 
         $route->update($request->only(['name']));
+        $route->aproved=0;
         $route->save();
         return response()->json(['route' => $route], 200);
     }
@@ -86,7 +87,11 @@ class RouteController extends Controller
             abort(403);
         }
 
-        //TODO: Add functions to approve the route
+        $route->aproved=1;
+        $route->save();
+
+
+        return response()->json(true,200);
 
     }
 }
