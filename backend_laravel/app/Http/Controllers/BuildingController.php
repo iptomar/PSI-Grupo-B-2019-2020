@@ -22,16 +22,8 @@ class BuildingController extends Controller
 
     protected function saveRelated(Building $building, Request $request){
 
-        if($request->has('authors')){
-            $authors=[];
-
-            foreach($request->authors as $a){
-                $authors[]=new Author(['name'=>$a['name']]);
-            }
-
-            $building->authors()->delete();
-            $building->authors()->saveMany($authors);
-
+        if($request->has('authors') && $request->authors != null){
+            $building->authors()->sync($request->authors);
         }
 
         if($request->has('vertices') && $request->vertices != null){
@@ -164,7 +156,7 @@ class BuildingController extends Controller
 
             //Authors
             'authors'=>'nullable|array',
-            'authors.*.name'=>'required|string|min:1',
+            'authors.*'=>'required|numeric|exists:authors,id',
 
             //Routes
 
