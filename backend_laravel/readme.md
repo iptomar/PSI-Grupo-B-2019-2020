@@ -738,3 +738,8 @@ true
 - Chnaged building model relationships **- Francisco Vital**
 - Added more routes **- Francisco Vital**
 - Created CRUD for authors **- Francisco Vital**
+
+##### [2020-05-05]
+- Added route for Route approval **- Marcelo Silva**
+- Added function to set route approval status as false on creation/update **- Marcelo Silva**
+- Building controller now expects array of ids for authors assoc **- Marcelo Silva**
