@@ -3,9 +3,12 @@ import './CriarPontosInteresse.css';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
 import roteirosApi from '../../scripts/api/roteiros';
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+
 import usersApi from "../../scripts/api/users";
+
+import authorsApi from '../../scripts/api/authors'
+
+import AsyncSelect from 'react-select/async';
 
 class CriarPontosInteresse extends Component {
 
@@ -44,7 +47,6 @@ class CriarPontosInteresse extends Component {
 		//this.listVertices = this.listVertices.bind(this);
 		//this.getListVertice = this.getListVertice.bind(this);
 		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
-		this.addAuthor = this.addAuthor.bind(this);
 		//this.deleteAuthor = this.deleteAuthor.bind(this);
 		this.addRoute = this.addRoute.bind(this);
 		this.handleRouteChange = this.handleRouteChange.bind(this);
@@ -204,37 +206,21 @@ class CriarPontosInteresse extends Component {
 						<input className="form-control" id="description_images" name="description_images" rows="3" placeholder="Add a description about the point of interest." value={this.state.auxDesc} onChange={this.handleImgDescChange} required></input>
 						<button className="btn btn-primary" onClick={this.addImage}>adicionar imagem</button>
 					</div>
-						
 
-					<div className="form-group row">
-						<label for="author"><b>Authors</b></label>
-					</div>
-
-					<div className="form-group row">
-						<label for="name_author"><b>Name</b></label>
-						<input className="form-control" id="name_author" name="name_author" rows="3" placeholder="Add a name about the point of interest." value={this.state.auxNameAuthor} data-index="0" onChange={this.handleAuthorsChange} required></input>
-					</div>
+                    <div className="form-group row">
+                        <label htmlFor="vertices"><b>Authors</b></label>
+                    </div>
 
 					<div>
-						<button type="submit" value="submit" onClick={this.addAuthor}>Add author</button>
+                        <AsyncSelect
+                            isMulti
+                            cacheOptions
+                            defaultOptions
+                            loadOptions={this.getOptions}
+							onChange={this.handleAuthorsChange}
+                        />
 					</div>
 
-					<div className="tabelaAutores">
-							<table className="table table-hover table-dark table-striped rounded" id="autores">
-                				<caption>Lista de Autores</caption>
-								<thead>
-                       				 <tr style={{
-                        			textAlign:"center"
-                     				 }}>
-                           				 <th scope="col" >Authors name</th>
-                       				 </tr>
-                    			</thead>
-                    	<tbody>
-                        	{listaAutores}
-                    	</tbody>
-                </table>
-	
-						</div>
 				
 					<div className="form-group row">
 						<label for="vertices"><b>Vertices</b></label>
@@ -277,24 +263,7 @@ class CriarPontosInteresse extends Component {
 	
 						</div>
 					</div>
-					<div className="form-group row">
-						<label for="routes"><b>Routes</b></label>
-					</div>
-					<div className="tabelaRotas">
-						<table className="table table-hover table-dark table-striped rounded" id="rotas">
-							<caption>Lista de Rotas</caption>
-							<thead>
-								<tr style={{
-									textAlign: "center"
-								}}>
-									<th scope="col" >Route</th>
-								</tr>
-							</thead>
-							<tbody>
-								{listaRotas}
-							</tbody>
-						</table>
-					</div>
+
 					<div>
 						<button type="submit" value="submit" onClick={this.addRoute}>Add route</button>
 						<select onChange={this.handleRouteChange}>
@@ -338,20 +307,6 @@ class CriarPontosInteresse extends Component {
 
 	}
 
-	deleteAuthor (index){
-		/*this.setState(prevState => {
-			const authors = prevState.authors.filter(autor => autor.name !== index);
-			
-			return { authors };
-		});*/
-		let aux1 = this.state.authors;
-		aux1.splice(index,1);
-		this.setState({authors:aux1});
-
-
-
-	}
-
 	deleteRoute(index) {
 		let aux1 = this.state.routes;
 		aux1.splice(index,1);
@@ -369,31 +324,18 @@ class CriarPontosInteresse extends Component {
 
 	}
 
-	/*getListVertice () {
-		pontosDeInteresseApi.listVertices().then( (response) => {
-            this.setState({vertices:response.data});
-            console.log(this.state);
-        });
-	}*/
+    getOptions(input){
+        return authorsApi.list(1,input).then((response) => {
 
-	/*listVertices (){
-		
-		let listaVertices = [];
-		const vertices = this.state.vertices;
+        	let data=response.data;
+        	let res = data.map(author => ({ value: author.id, label: author.name }));
 
-		for (let vertice in vertices){
-			let i=<tr style={{
-				textAlign:"center"
-			  }}key={"vertice" + vertice}>
-				<td >{vertices[vertice].auxCoordenada1}</td>
-				<td >{vertices[vertice].auxCoordenada2}</td>
-				<td >{vertices[vertice].auxOrder}</td>
-				
-			</tr>;
-			this.state.listaVertices.push(i);
-			
-		}
-	}*/
+        	console.log(res);
+
+        	return res;
+
+		});
+    }
 
 	addVertice (e){
 		e.preventDefault();
@@ -408,16 +350,6 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxCoordenada2:''});
 		this.setState({auxOrder:''});
 		
-	}
-
-	addAuthor (e){
-		e.preventDefault();
-		let object = {name: ''};
-		object.name = this.state.auxNameAuthor;
-		//console.log(object);
-		console.log(this.state.authors);
-		this.setState({authors: this.state.authors.concat(object)});
-		this.setState({auxNameAuthor:''});
 	}
 
 	addRoute(e) {
@@ -443,9 +375,15 @@ class CriarPontosInteresse extends Component {
 		this.setState({selectedRoute: e.target.value});
 	}
 
-	handleAuthorsChange (e){
-		this.setState({auxNameAuthor: e.target.value});
+	handleAuthorsChange (selectedOptions){
 
+		let authors=[];
+
+		for(let k in selectedOptions){
+			authors.push(selectedOptions[k].value);
+		}
+
+		this.setState({authors:authors});
 	}
 
 	handleBuildingNameChange(e) {
