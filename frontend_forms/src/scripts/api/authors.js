@@ -65,16 +65,46 @@ let authorsApi = {
                     return Promise.reject(response.json());
                   }
                 })
+              },
+
+              update(id, name){
+                let furl = apiUrl + "/authors/" + id;
+                let token = "Bearer " + localStorage.getItem("auth.token");
+                let body = {
+                  "name": name
+                }
+                return fetch(furl, {
+                  method: 'PATCH',
+                  headers: { 
+                'Content-Type': 'application/json',
+                 'Accept': 'application/json', 
+                 'Authorization': token },
+                  body: JSON.stringify(body)
+                }).then((response) => {
+                  if (response.ok) {
+                    console.log("entrei e ta 200");
+                    return Promise.resolve(response.json());
+                  } else {
+                    return Promise.reject(response.json());
+                  }
+                });
               }
     
     };
 
+authorsApi.update(5).then( (response) =>{
+  console.log(""+JSON.stringify(response))
+  }).catch( (error) => {
+  console.log("deu problemas: "+JSON.stringify(error))
+  });
 
-    authorsApi.get(5).then( (response) =>{
+
+
+ /*   authorsApi.get(5).then( (response) =>{
   console.log("" + JSON.stringify(response))
 }).catch( (error) => {
   console.log("deu problemas:" +JSON.stringify(error))
-});
+});*/
 
 /*let name = "Salazar";
 authorsApi.create(name).then( (response) =>{
