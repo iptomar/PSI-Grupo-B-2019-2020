@@ -423,18 +423,9 @@ import usersApi from "../../scripts/api/users";
 	}
 
 	deleteVertices (index){
-
-		
-		this.setState(prevState => {
-			const vertices = prevState.vertices.filter(vertice => vertice.coordinate1 !== index);
-			
-			return { vertices };
-		});
-
-		/*let aux1 = this.state.vertices;
-		aux1.splice(index, 1);
-		this.setState({images:aux1});*/
-
+        let aux1 = this.state.vertices;
+        aux1.splice(index,1);
+        this.setState({vertices:aux1});
     }
     
     addVertice (e){
