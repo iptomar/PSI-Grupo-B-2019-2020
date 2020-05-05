@@ -24,6 +24,38 @@ let authorsApi = {
             }
         });
     },
+
+    create(name){
+        let furl = apiUrl + "/authors";
+        let token = "Bearer " + localStorage.getItem("auth.token");
+        let body ={
+            "name": name
+        }
+        let form = new FormData();
+        form.append('name', name);
+    
+        return fetch(furl, {method:'POST',
+                    headers: { 'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, 
+                    body: JSON.stringify(body)
+                }).then( (response) => {
+                    return response.json().then( (json) => {
+                        if(response.ok){
+                            return Promise.resolve(json);
+                        } else {
+                            return Promise.reject(json);
+                        }
+                    });
+                });
+        
+            }
+    
 };
+
+let name = "Salazar";
+authorsApi.create(name).then( (response) =>{
+console.log(""+JSON.stringify(response))
+}).catch( (error) => {
+console.log("deu problemas: "+JSON.stringify(error))
+});
 
 export default authorsApi;
