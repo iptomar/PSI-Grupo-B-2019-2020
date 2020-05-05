@@ -33,7 +33,7 @@ public class RegisterUnsuccessfull {
          try {
              //Anónimo
              Thread.sleep(5000);
-             driver.findElement(By.linkText("Create")).click();
+             driver.findElement(By.linkText("Registo")).click();
              Thread.sleep(2000);
              driver.findElement(By.name("name")).click();
              driver.findElement(By.name("name")).sendKeys("");
@@ -53,11 +53,9 @@ public class RegisterUnsuccessfull {
              Thread.sleep(500);
              driver.findElement(By.xpath("//button[.='Sign Up']")).click();
              Thread.sleep(5000);
+             //Warnings na página
              WebElement classe = driver.findElement(By.className("alert alert-warning"));
-             Assert.assertEquals(true,classe.isDisplayed());
-             //TODO
-             //FrontEnd Errors
-             //Register User Already registered
+             Assert.assertEquals(true,classe.isDisplayed());    
              
          } catch (Exception e) {
              System.out.println(e.getMessage());
