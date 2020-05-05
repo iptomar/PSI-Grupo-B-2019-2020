@@ -401,9 +401,7 @@ If not empty, each object must have:
     - sourceAuthor (string) *
     - description (string) *
     
-- authors (array of objects)<br>
-If not empty, each object must have:
-    - name (string) *
+- authors (array of integers, needs to have valid id for authors) *<br>
     
 - routes (array of integers, needs to have at least one valid route) *
 
@@ -459,7 +457,7 @@ Or 200 with created building:
 ```
 
 
-###### **PATCH** /api/buildings/{id}
+###### **POST** /api/buildings/{id}
 
 Endpoint to edit building with related data.
 
@@ -488,9 +486,7 @@ If not empty, each object must have:
     - sourceAuthor (string) *
     - description (string) *
     
-- authors (array of objects) [if empty, removes all authors previously associated]<br>
-If not empty, each object must have:
-    - name (string) *
+- authors (array of integers, needs to have valid id for authors) [if empty, removes all authors previously associated]<br>
     
 - routes (array of integers, needs to have at least one valid route) [if empty nothing changes, else replaces previous data with new]
 
