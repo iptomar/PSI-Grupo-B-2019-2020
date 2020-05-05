@@ -54,6 +54,8 @@ class BuildingController extends Controller
 
             $building->images()->delete();
             $building->images()->saveMany($images);
+        } else {
+            $building->images()->delete();
         }
 
         if($request->has('routes') && $request->routes != null){
@@ -112,7 +114,7 @@ class BuildingController extends Controller
 
             //Routes
 
-            'routes'=>'required|array|min:1',
+            'routes'=>'nullable|array|min:1',
             'routes.*'=>'required|numeric|exists:routes,id'
 
         ];
