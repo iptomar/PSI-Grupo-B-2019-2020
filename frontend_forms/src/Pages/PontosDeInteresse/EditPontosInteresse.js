@@ -35,6 +35,7 @@ import usersApi from "../../scripts/api/users";
         };
 
         usersApi.validateAuth(this.props);
+		this.getPontosDeInteresse(pontosDeInteresse);
 
         this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
         this.handleBuildingTypeChange = this.handleBuildingTypeChange.bind(this);
@@ -124,7 +125,9 @@ import usersApi from "../../scripts/api/users";
 		let i;
 		for(let imagem in imagens){
 			i=<tr style={{textAlign:"center"}} key={"imagem"+imagem}>
-					<td >{imagens[imagem].image.name}</td>
+					<td>
+						<img src={window.URL.createObjectURL(imagens[imagem].image)} height="100" />
+					</td>
 					<td >{imagens[imagem].sourceAuthor}</td>
 					<td >{imagens[imagem].description}</td>
 					<td >
@@ -329,9 +332,26 @@ import usersApi from "../../scripts/api/users";
     getPontosDeInteresse(uid){
         pontosDeInteresseApi.get(uid).then( (response) => {
 
-            this.setState({buildingName: this.state.buildingName, location: this.state.location,
-            dates: this.state.dates, buildingType: this.state.buildingType, description:this.state.description, 
-            coordinate1: this.state.coordinate1, coordinate2: this.state.coordinate2});
+        	let b=response.building;
+
+            let images=[];
+
+            for(let k in b.images){
+            	console.log("boasssss");
+				images.push({
+					'sourceAuthor':b.images[k].sourceAuthor,
+					'description':b.images[k].description,
+					'image':this.b64toBlob(b.images[k].base64,'image/png',512)
+				});
+			}
+
+			console.log("aaabbb");
+			console.log(images);
+
+            delete b.images;
+
+            this.setState(b);
+			this.setState({images:images});
 
         }).catch( (error) => {
 
@@ -514,17 +534,6 @@ import usersApi from "../../scripts/api/users";
 		this.setState({images:aux});
 	}
 
-
-	/*handleAuthorsChange (e, index){
-			console.log("authors");
-			const authors = this.state.authors;
-			authors[index].name_author = e.target.value;
-			this.setState({
-					authors
-			});
-	};*/
-
-
 	getRoutes(page){
 		roteirosApi.list(page).then((response) => {
 
@@ -542,6 +551,39 @@ import usersApi from "../../scripts/api/users";
                       routesPageMax:response.last_page });
     });
 	}
+
+     /**
+      * Convert a base64 string in a Blob according to the data and contentType. (author: ourcodeworld)
+      *
+      * @param b64Data {String} Pure base64 string without contentType
+      * @param contentType {String} the content type of the file i.e (image/jpeg - image/png - text/plain)
+      * @param sliceSize {Int} SliceSize to process the byteCharacters
+      * @see http://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
+      * @return Blob
+      */
+    b64toBlob(b64Data, contentType, sliceSize) {
+         contentType = contentType || '';
+         sliceSize = sliceSize || 512;
+
+         var byteCharacters = atob(b64Data);
+         var byteArrays = [];
+
+         for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+             var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+             var byteNumbers = new Array(slice.length);
+             for (var i = 0; i < slice.length; i++) {
+                 byteNumbers[i] = slice.charCodeAt(i);
+             }
+
+             var byteArray = new Uint8Array(byteNumbers);
+
+             byteArrays.push(byteArray);
+         }
+
+         var blob = new Blob(byteArrays, {type: contentType});
+         return blob;
+    }
 
 
   
