@@ -108,7 +108,9 @@ class CriarPontosInteresse extends Component {
 		let i;
 		for(let imagem in imagens){
 			i=<tr style={{textAlign:"center"}} key={"imagem"+imagem}>
-					<td >{imagens[imagem].image.name}</td>
+					<td>
+						<img src={window.URL.createObjectURL(imagens[imagem].image)} height="100" />
+					</td>
 					<td >{imagens[imagem].sourceAuthor}</td>
 					<td >{imagens[imagem].description}</td>
 					<td >
@@ -326,7 +328,11 @@ class CriarPontosInteresse extends Component {
 																this.state.vertices,
 																this.state.images,this.state.authors,this.state.routes
 			).then((response)=>{
-				console.log(response);
+
+				if(response.ok){
+					this.props.history.push('/PointsOfInterest');
+				}
+
 			});
 		
 
