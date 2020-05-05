@@ -26,6 +26,10 @@ import EditRoutes from "./Pages/Routes/EditRoutes";
 import DetalhesRoutes from "./Pages/Routes/DetalhesRoutes";
 // import Mapa from './Pages/Mapa';
 
+//Authors
+import AuthorsList from './Pages/Authors/AuthorsList';
+import CreateAuthors from './Pages/Authors/CreateAuthors';
+
 class App extends Component {
 
   render() {
@@ -38,8 +42,11 @@ class App extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item active">
-                <a className="nav-link" style={{color:"#5ED0C0"}} href="#">Home <span className="sr-only"></span></a>
+            <li className="nav-item">
+                <Link to="/Authors" className="nav-link" style={{color:"#5ED0C0"}} href="#">Authors</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/CreateAuthors" style={{color:"#5ED0C0"}} className="nav-link">Create Authors</Link>
               </li>
               <li className="nav-item">
                 <Link to="/Routes" className="nav-link" style={{color:"#5ED0C0"}} href="#">Roteiros</Link>
@@ -71,7 +78,8 @@ class App extends Component {
             </ul>
           </div>
         </nav>
-        <Route exact path="/home" component={Home}></Route>
+        <Route exact path="/Authors" component={AuthorsList}></Route>
+        <Route exact path="/CreateAuthors" component={CreateAuthors}></Route>
         <Route exact path="/login2" component={Login2}></Route>
         <Route exact path="/users/create" component={UserCreate}></Route>
         <Route exact path="/users" component={UserList}></Route>
