@@ -40,7 +40,8 @@ class RouteController extends Controller
             'buildings.*'=>'required|numeric|exists:buildings,id'
         ]);
 
-        $route = new \App\Route(['name' => $request->name,'aproved'=>0]);
+        $route = new \App\Route(['name' => $request->name]);
+        $route->aproved=0;
         $route->save();
 
         if($request->has('buildings')){
