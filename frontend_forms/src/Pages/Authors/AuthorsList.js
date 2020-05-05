@@ -71,6 +71,6 @@ export default class AuthorsList extends Component {
     }
 
     editAuthor(id) {
-        console.log(id);
+        this.props.history.push('/authors/' + id + '/edit');
     } 
 }
