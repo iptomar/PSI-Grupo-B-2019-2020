@@ -107,8 +107,8 @@ class BuildingController extends Controller
             'images.*.description'=>'required|string|min:1',
 
             //Authors
-            'authors'=>'nullable|array|min:1',
-            'authors.*.name'=>'required|string|min:1',
+            'authors'=>'nullable|array',
+            'authors.*'=>'required|numeric|exists:authors,id',
 
             //Routes
 
