@@ -4,10 +4,14 @@ let apiUrl = process.env.REACT_APP_API_URL_BASE;
 let pontosDeInteresseApi = {
 
 
-  list(page) {
+  list(page,search=null) {
 
     let furl = apiUrl + "/buildings?page="+page;
     let token = "Bearer " + localStorage.getItem("auth.token");
+
+    if(search!=null){
+      furl+="&search="+search;
+    }
 
     return fetch(furl, {
       method: 'GET', headers: {
@@ -47,8 +51,6 @@ let pontosDeInteresseApi = {
     form.append('description', description);
     form.append('coordinate1', cc1);
     form.append('coordinate2', cc2);
-    form.append('images', JSON.stringify(imagens));
-    form.append('authors', authors);
     for(let i in imagens){
       form.append('images['+i+'][description]', imagens[i]["description"]);
       form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
@@ -60,7 +62,7 @@ let pontosDeInteresseApi = {
       form.append('vertices['+i+'][order]', vertices[i]["order"]);
     }
     for(let i in authors){
-      form.append('authors['+i+'][name]', authors[i]["name"]);
+      form.append('authors['+i+']', authors[i]);
     }
     for(let i in routes){
       form.append('routes['+i+']', routes[i]);
