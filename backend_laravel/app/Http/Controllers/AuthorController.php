@@ -15,7 +15,13 @@ class AuthorController extends Controller
      */
     public function index(Request $request)
     {
-        $authors = Author::paginate(15);
+        if($request->has('search')){
+            $authors = Author::where('name','like','%'.$request->get('search').'%')->paginate(15);
+        } else {
+            $authors = Author::paginate(15);
+        }
+
+
         return response()->json($authors, 200);
     }
 
