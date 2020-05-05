@@ -28,7 +28,7 @@ export default class AuthorsList extends Component {
                 <td> {authors[author].id} </td>
                 <td> {authors[author].name} </td>   
                 <td>
-                    <button type="button" class="btn btn-danger"  onClick = {() => this.deleteAuthor(authors[author].id, author)}>Delete</button>
+                    <button type="button" class="btn btn-danger"  onClick = {() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deleteAuthor(authors[author].id, author)}}>Delete</button>
                     <button type="button" class="btn btn-info"  onClick = {() => this.editAuthor(authors[author].id)}>Edit</button>
                 </td>            
             </tr>;
@@ -63,10 +63,22 @@ export default class AuthorsList extends Component {
             this.setState({authors:response.data});
             console.log(this.state);
             this.setState({authors:response.data});
+            console.log('ola', this.state.authors)
         })
     }
 
     deleteAuthor(id, index) {
+        authorsApi.delete(id).then( (response) => {
+            let i = this.state.authors;
+            console.log('aux', i);
+            i.splice(index, 1);
+            console.log('aux', i);
+            this.setState({authors:i});
+            console.log(this.state.authors);
+        }).catch( (error) => {
+            console.log("fizeste asneira" + error);
+
+        });
         console.log(id, index);
     }
 
