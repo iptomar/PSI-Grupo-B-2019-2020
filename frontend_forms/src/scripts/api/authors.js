@@ -111,20 +111,20 @@ let authorsApi = {
     
     };
 
-authorsApi.delete(11).then( (response) =>{
+/*authorsApi.delete(11).then( (response) =>{
   console.log("" +JSON.stringify(response))
 }).catch( (error) => {
   console.log("deu problemas")
-});
+});*/
 
 
-/*authorsApi.update(5).then( (response) =>{
+authorsApi.update(6).then( (response) =>{
   console.log(""+JSON.stringify(response))
   }).catch( (error) => {
   console.log("deu problemas: "+JSON.stringify(error))
-  });*/
+  });
 
- /*   authorsApi.get(5).then( (response) =>{
+ /*   authorsApi.get(6).then( (response) =>{
   console.log("" + JSON.stringify(response))
 }).catch( (error) => {
   console.log("deu problemas:" +JSON.stringify(error))
