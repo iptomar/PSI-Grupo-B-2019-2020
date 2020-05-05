@@ -24,8 +24,7 @@ export default class pontosDeInteresseList extends Component {
       "current_page":1,
       "last_page":null,
     };
-    //this.fileInput = React.createRef();
-    this.detalhesPontoDeInteresse();
+
     usersApi.validateAuth(this.props);
 
     this.getPontosDeInteresseList(1);   
@@ -51,7 +50,7 @@ export default class pontosDeInteresseList extends Component {
         <td >
           <button type="button" class="btn btn-danger" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deletePontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}}>Apagar</button>
           <button type="button" class="btn btn-info" onClick={() => this.editPontoDeInteresse(pontosDeInteresse[ponto].id)}>Editar</button>
-          <button type="button" class="btn btn-success" onClick={() => this.detalhesPontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}>Detalhes</button>
+          <button type="button" class="btn btn-success" onClick={() => this.detalhesPontoDeInteresse(pontosDeInteresse[ponto].id)}>Detalhes</button>
         </td>
       </tr>;
 
@@ -125,35 +124,8 @@ export default class pontosDeInteresseList extends Component {
     
   }
 
-  detalhesPontoDeInteresse (id, index){
-    pontosDeInteresseApi.get(id).then((response) =>{
-        //console.log(response[id]);
-        let imagens = {image:'',sourceAuthor:'',description:''};
-        let autores = {name:''};
-        let vertices = {coordinate1:'', coordinate2: '', order:''};
-        let routes = {nome: ''};
-        //const file = this.fileUpload.files[0];
-        //imagens.image = file;
-        autores.name = this.state.auxNameAuthor;
-        routes.nome = this.state.nameRoute;
-        vertices.coordinate1 = this.state.auxCoordenada1;
-        vertices.coordinate2 = this.state.auxCoordenada2;
-        vertices.order = this.state.auxOrder;
-        sessionStorage.setItem("test", JSON.stringify(this.state.pontosDeInteresse[index]));
-        this.setState({redirect: true,
-                       buildingName: '',
-                       location: '',
-                       dates: '',
-                       buildingType: '',
-                       description: '',
-                       coordinate1: '',
-                       coordinate2: '',
-                       images: this.state.images.concat(imagens),
-                       vertices: this.state.vertices.concat(vertices),
-                       authors: this.state.authors.concat(autores),
-                       routes: this.state.routes.concat(routes)
-                        });
-    });
+  detalhesPontoDeInteresse (id){
+      this.props.history.push('/PointsOfInterest/' + id + '/detalhes');
     
   }
 
