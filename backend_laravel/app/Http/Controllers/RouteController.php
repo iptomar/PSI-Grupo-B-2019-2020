@@ -35,11 +35,17 @@ class RouteController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string'
+            'name' => 'required|string',
+            'buildings'=>'nullable|array',
+            'buildings.*'=>'required|numeric|exists:buildings,id'
         ]);
 
         $route = new \App\Route(['name' => $request->name,'aproved'=>0]);
         $route->save();
+
+        if($request->has('buildings')){
+            $route->buildings()->sync($request->get('buildings'));
+        }
 
         return response()->json(['route' => $route], 201);
     }
@@ -53,12 +59,19 @@ class RouteController extends Controller
         $route = \App\Route::findOrFail($id);
 
         $this->validate($request, [
-            'name' => 'nullable|string'
+            'name' => 'nullable|string',
+            'buildings'=>'nullable|array',
+            'buildings.*'=>'required|numeric|exists:buildings,id'
         ]);
 
         $route->update($request->only(['name']));
         $route->aproved=0;
         $route->save();
+
+        if($request->has('buildings')){
+            $route->buildings()->sync($request->get('buildings'));
+        }
+
         return response()->json(['route' => $route], 200);
     }
 
