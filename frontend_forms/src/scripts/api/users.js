@@ -3,7 +3,7 @@ let apiUrl=process.env.REACT_APP_API_URL_BASE;
 
 let usersApi = {
 
-    validateAuth(props){
+    validateAuth(props,role=null){
         console.log("Validating auth...");
 
         let furl=apiUrl+"/me";
@@ -16,7 +16,19 @@ let usersApi = {
         }}).then( (response) => {
 
             if(response.ok){
-                console.log("Autentificação sucesso");
+
+                return response.json().then(data => {
+
+                    console.log(data);
+                    console.log("Role: " + role + " - Needed: " + data.user.role);
+
+                    if(role!==null && role!==data.user.role){
+                        console.log("Auth fail");
+                        props.history.push('/login2');
+                    }
+
+                });
+
             } else {
                 console.log("Auth fail");
                 props.history.push('/login2');
