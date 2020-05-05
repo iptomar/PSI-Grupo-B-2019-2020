@@ -20,7 +20,7 @@ export default class Edit extends Component {
         };
 
 
-        usersApi.validateAuth(this.props);
+        usersApi.validateAuth(this.props,"superadmin");
         this.getUserById(userId);
 
         this.handleNameChange = this.handleNameChange.bind(this);

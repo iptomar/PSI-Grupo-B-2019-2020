@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './RoutesList';
 import './CreateRoutes';
 import roteirosApi from '../../scripts/api/roteiros';
+import usersApi from "../../scripts/api/users";
 
 class DetalhesRoutes extends Component {
     constructor (props){
@@ -11,7 +12,9 @@ class DetalhesRoutes extends Component {
 
         this.state = {
             routesInfo: JSON.parse(sessionStorage.getItem("rota"))
-        }
+        };
+
+        usersApi.validateAuth(this.props);
 
     }
 

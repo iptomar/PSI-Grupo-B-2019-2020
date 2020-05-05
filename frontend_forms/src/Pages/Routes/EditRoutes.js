@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import roteirosApi from '../../scripts/api/roteiros';
+import usersApi from "../../scripts/api/users";
 
 class EditRoutes extends Component {
     constructor(props){
@@ -13,7 +14,10 @@ class EditRoutes extends Component {
             routesid: routesId,
             nameRoute: null,
             errors: []
-        }
+        };
+
+        usersApi.validateAuth(this.props);
+
         this.getRoutesId(routesId);
 
         this.handleNameRoute = this.handleNameRoute.bind(this);

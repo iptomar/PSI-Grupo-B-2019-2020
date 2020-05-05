@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import roteirosApi from '../../scripts/api/roteiros';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
+import usersApi from "../../scripts/api/users";
 
 class CreateRoutes extends Component {
     constructor(props){
@@ -9,7 +10,9 @@ class CreateRoutes extends Component {
         this.state = {
             nameRoute: '', pointsOfInteresPage: 1, pointsOfInteresPageMax: 99, pointsOfInteresList: {}, selectedPointsOfInterest:null, pointsOfInterest: [],
             errors: []
-        } 
+        };
+
+        usersApi.validateAuth(this.props);
 
         this.handleNameRoute = this.handleNameRoute.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

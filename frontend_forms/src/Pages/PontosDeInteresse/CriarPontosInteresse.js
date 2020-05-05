@@ -5,6 +5,7 @@ import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
 import roteirosApi from '../../scripts/api/roteiros';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import usersApi from "../../scripts/api/users";
 
 class CriarPontosInteresse extends Component {
 
@@ -17,6 +18,8 @@ class CriarPontosInteresse extends Component {
 			authors: [], routes: [], routesPage: 1, routesPageMax: 99, routesList:{}, selectedRoute:null,
 			errors: []
 		};
+
+        usersApi.validateAuth(this.props);
 
 		this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
 		this.handleLocationChange = this.handleLocationChange.bind(this);

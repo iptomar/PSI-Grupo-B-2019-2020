@@ -16,6 +16,8 @@ class PontosDeInteresseDetalhes extends Component {
 
         };
 
+        usersApi.validateAuth(this.props);
+
         this.getPontoByID(pontoInteresseID);
     }
     

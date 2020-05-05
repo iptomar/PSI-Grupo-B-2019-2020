@@ -2,6 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
 import roteirosApi from '../../scripts/api/roteiros';
+import usersApi from "../../scripts/api/users";
 
  class EditPontosInteresse extends Component {
 
@@ -31,9 +32,9 @@ import roteirosApi from '../../scripts/api/roteiros';
 			vertices: [], images: [], 
 			authors: [], routes: []
           
-        }
-        
-        //this.getPontosDeInteresse(pontosInteresseID);
+        };
+
+        usersApi.validateAuth(this.props);
 
         this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
         this.handleBuildingTypeChange = this.handleBuildingTypeChange.bind(this);

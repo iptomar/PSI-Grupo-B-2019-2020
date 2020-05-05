@@ -21,7 +21,7 @@ class Create extends Component {
         this.handlePasswordConfirmationChange = this.handlePasswordConfirmationChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         //Validação de que o utilizador está logado
-        usersApi.validateAuth(this.props);
+        usersApi.validateAuth(this.props,"superadmin");
 
     }
 
