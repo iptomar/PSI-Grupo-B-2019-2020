@@ -164,6 +164,7 @@ true
 ###### **GET** /api/routes
 
 Get all routes in different pages.
+If user is authenticated he can get all routes. If not, just the approved ones.
 
 Returns 200 with body:
 ```json
