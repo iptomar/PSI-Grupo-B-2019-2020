@@ -13,8 +13,14 @@ class RouteController extends Controller
      */
     public function index(Request $request)
     {
-        $routes = \App\Route::paginate(15);
-        return response()->json($routes, 200);
+        if($request->user() == null){
+            $routes = \App\Route::where('aproved', '=', 1)->paginate(15);
+            return response()->json($routes, 200);
+        }
+        else{
+            $routes = \App\Route::paginate(15);
+            return response()->json($routes, 200);
+        }     
     }
 
     /**
