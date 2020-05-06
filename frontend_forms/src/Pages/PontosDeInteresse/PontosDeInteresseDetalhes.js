@@ -38,31 +38,59 @@ class PontosDeInteresseDetalhes extends Component {
             let b=this.state.buildingInfo;
 
             pi.push(
-                <dl>
-                    <dd>Building name</dd>
-                    <dt>{b.buildingName}</dt>
-                    <dd>Building type</dd>
-                    <dt>{b.buildingType}</dt>
-                    <dd>Location</dd>
-                    <dt>{b.location} (x:{b.coordinate1} ; y:{b.coordinate2})</dt>
-                    <dd>Date</dd>
-                    <dt>{b.date}</dt>
-                    <dd>Description</dd>
-                    <dt>{b.description}</dt>
-                </dl>
+                <div class="fundo2">
+                    <div id="detalhesPontos1">
+                            <table class="table table-bordered table-light table-hover table-striped">
+                            <thead class="thead-dark">
+                                    <th scope="col" colSpan="4">Building Information</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="col">Building name</th>
+                                        <td>{b.buildingName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Building type</th>
+                                        <td>{b.buildingType}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Location</th>
+                                        <td>{b.location} (x: {b.coordinate1} ; y: {b.coordinate2})</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Date</th>
+                                        <td>{b.dates}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <td>{b.description}</td>                     
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                </div>
+                
+                
             );
 
             for(let k in b.vertices){
                 if(b.vertices.hasOwnProperty(k)){
                     vertices.push(
                         <tr>
+                           
                             <td>{b.vertices[k].coordinate1}</td>
+                        
+                            
                             <td>{b.vertices[k].coordinate2}</td>
+                    
+                       
                             <td>{b.vertices[k].order}</td>
                         </tr>
                     );
                 }
             }
+
 
             for(let k in b.images){
                 if(b.images.hasOwnProperty(k)){
@@ -95,45 +123,55 @@ class PontosDeInteresseDetalhes extends Component {
         }
 
         return(<div>
+
+            <div class="fundo2">
             <h1>Detalhes de Pontos de Interesse</h1>
                 {pi}
+                <div id="detalhesPontos2">
+ 
+                        <table class="table table-bordered table-light table-hover table-striped">
+                            <thead class="thead-dark">
+                                <th scope="col" colSpan="4">Vertices</th>
+                            </thead>
+                            <tbody>
+                                <th>X</th>
+                                <th>Y</th>
+                                <th>Order</th>
+                                {vertices}
+                            </tbody>
 
-                <h3>Vertices</h3>
-                <table>
-                    <thead>
-                        <th>X</th>
-                        <th>Y</th>
-                        <th>Order</th>
-                    </thead>
-                    <tbody>
-                    {vertices}
-                    </tbody>
-                </table>
+                            
+                        </table>
+                    </div>
 
-
-
-                <h3>Images</h3>
-                <table>
-                    <thead>
-                    <th>Image</th>
-                    <th>Author</th>
-                    <th>Description</th>
-                    </thead>
-                    <tbody>
-                    {images}
-                    </tbody>
-                </table>
-
-                <h3>Routes</h3>
-                <table>
-                    <thead>
-                    <th>Name</th>
-                    </thead>
-                    <tbody>
-                    {routes}
-                    </tbody>
-                </table>
+                    <div id="detalhesPontos3">
+                        <table class="table table-bordered table-light table-hover table-striped ">
+                                <thead class="thead-dark">
+                                    <th scope="col" colSpan="4">Images</th>
+                                </thead>
+                                <tbody>
+                                    <th>Image</th>
+                                    <th>Author</th>
+                                    <th>Description</th>
+                                    {images}
+                                </tbody>
+                            </table>
+                    </div>
+    
+                    <div id="detalhesPontos3">
+                        <table class="table table-bordered table-light table-hover table-striped">
+                            <thead class="thead-dark">
+                                <th scope="col" colSpan="4">Routes</th>
+                            </thead>
+                            <tbody>
+                                {routes}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
             </div>
+                
         );
   }
 
