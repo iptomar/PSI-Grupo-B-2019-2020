@@ -745,3 +745,6 @@ true
 - Added function to set route approval status as false on creation/update **- Marcelo Silva**
 - Building controller now expects array of ids for authors assoc **- Marcelo Silva**
 - Added option to associate buildings to routes on the routes endpoint **- Marcelo Silva**
+
+##### [2020-05-06]
+- Changed the way routes are returned **- Francisco Vital**
