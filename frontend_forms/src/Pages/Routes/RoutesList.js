@@ -77,7 +77,7 @@ export default class RoutesList extends Component {
                             <tr style = {{ textAlign: "center" }}>
                                 <th scope = "col">ID</th>
                                 <th scope = "col">Nome</th>
-                                <th scope = "col">Apagar/Editar</th>
+                                <th scope = "col">Apagar/Editar/Detalhes</th>
                             </tr>
                         </thead>
                         <tbody>

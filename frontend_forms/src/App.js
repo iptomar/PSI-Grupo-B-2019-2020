@@ -30,6 +30,7 @@ import DetalhesRoutes from "./Pages/Routes/DetalhesRoutes";
 import AuthorsList from './Pages/Authors/AuthorsList';
 import CreateAuthors from './Pages/Authors/CreateAuthors';
 import AuthorsEdit from './Pages/Authors/AuthorsEdit';
+import DetalhesAuthors from './Pages/Authors/DetalhesAuthors';
 
 class App extends Component {
 
@@ -82,6 +83,7 @@ class App extends Component {
         <Route exact path="/Authors" component={AuthorsList}></Route>
         <Route exact path="/CreateAuthors" component={CreateAuthors}></Route>
         <Route exact path="/Authors/:AuthorsId/edit" component={AuthorsEdit}></Route>
+        <Route exact path="/Authors/:AuthorsId/detalhes" component={DetalhesAuthors}></Route>
         <Route exact path="/login2" component={Login2}></Route>
         <Route exact path="/users/create" component={UserCreate}></Route>
         <Route exact path="/users" component={UserList}></Route>

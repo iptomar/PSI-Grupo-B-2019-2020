@@ -30,6 +30,7 @@ export default class AuthorsList extends Component {
                 <td>
                     <button type="button" class="btn btn-danger"  onClick = {() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deleteAuthor(authors[author].id, author)}}>Delete</button>
                     <button type="button" class="btn btn-info"  onClick = {() => this.editAuthor(authors[author].id)}>Edit</button>
+                    <button type="button" class="btn btn-success"  onClick = {() => this.detalhesAuthor(authors[author].id, author)}>Detalhes</button>
                 </td>            
             </tr>;
 
@@ -80,6 +81,18 @@ export default class AuthorsList extends Component {
 
         });
         console.log(id, index);
+    }
+    
+    detalhesAuthor (id, index){
+        authorsApi.get(id).then((response) => {
+            sessionStorage.setItem("author", JSON.stringify(this.state.authors[index]));
+            this.props.history.push('/authors/' + id + '/detalhes');
+            this.setState({redirect: true,
+                           name: ''
+                 });
+        })
+        console.log(sessionStorage.getItem("author"));
+
     }
 
     editAuthor(id) {
