@@ -5,3 +5,31 @@
     height: 100%;
     margin-top: 60px;
 }
+
+.detalhesRoteiro {
+    width: 50%;
+    padding: 15px;
+    margin: auto;
+    height: 100%;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .fundo4 {
+    background-color: rgb(102, 218, 199);
+    padding-top: 0px;
+    height:600px;
+  }
+
+  h1 {
+    color: #ffffff;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-radius: 0.70em;
+    overflow: hidden;
+    
+  }

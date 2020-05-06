@@ -26,19 +26,27 @@ class DetalhesAuthors extends Component {
             if(this.state.authorsInfo!=null){
     
                 authors.push(
-                    <dl>
-                        <dd>Author Name</dd>
-                        <dt>{this.state.authorsInfo.name}</dt>
-                    </dl>
+
+                    <tr>
+                        <td>{this.state.authorsInfo.name}</td>
+                    </tr>
                 );
             }
 
                 return (
                 
-                <div>
-                    <h1>Detalhes Routes</h1>
-                    {authors}
-                
+                    <div className="fundo3">
+                    <h1 class="tituloAutor">Detalhes do Autor</h1>
+                    <div className="detalhesAutor">
+                        <table className="table tabelaAutor table-bordered table-light table-hover table-striped">
+                            <thead class="thead-dark">
+                                <th scope="col" colSpan="4">Name</th>
+                            </thead>
+                            <tbody>
+                                {authors}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 
             );
