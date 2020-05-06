@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import authorsApi from '../../scripts/api/authors';
-
+import usersApi from '../../scripts/api/users';
 
 class CreateAuthors extends Component {
     constructor(props){
@@ -11,6 +11,7 @@ class CreateAuthors extends Component {
             errors: []
         }
 
+        usersApi.validateAuth(this.props);
         this.handleNameAuthor = this.handleNameAuthor.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
