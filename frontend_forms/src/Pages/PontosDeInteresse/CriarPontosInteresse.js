@@ -302,6 +302,10 @@ class CriarPontosInteresse extends Component {
 					this.props.history.push('/PointsOfInterest');
 				}
 
+			}).catch( (error) => {
+				console.log("error ");
+				console.log(error);
+            	this.setState({errors:error});
 			});
 		
 

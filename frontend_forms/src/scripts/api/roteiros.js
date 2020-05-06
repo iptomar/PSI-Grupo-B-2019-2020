@@ -52,12 +52,13 @@ let roteirosApi = {
     });
   },
 
-  update(id, name){
+  update(id, name,buildings){
     let furl = apiUrl + "/routes/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
 
     let body = {
-      "name": name
+      "name": name,
+      "buildings":buildings
     }
     //let form = new FormData();
   //if(nameRoute!==null) form.append('nameRoute', nameRoute);
@@ -76,13 +77,13 @@ let roteirosApi = {
     });
   },
 
-  create(name, aproved){
+  create(name,buildings){
     let furl = apiUrl + "/routes";
     let token = "Bearer " + localStorage.getItem("auth.token");
     let body ={
         "name": name,
-        "aproved": aproved
-    }
+        "buildings": buildings
+    };
     let form = new FormData();
     form.append('name', name);
 

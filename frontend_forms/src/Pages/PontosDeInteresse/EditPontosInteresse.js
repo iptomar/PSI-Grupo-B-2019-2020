@@ -30,7 +30,7 @@ import usersApi from "../../scripts/api/users";
                auxNameAuthor: null, 
                nameRoute:null,
 			vertices: [], images: [], 
-			authors: [], routes: []
+			authors: [], routes: [],
           
         };
 
@@ -354,7 +354,8 @@ import usersApi from "../../scripts/api/users";
 			this.setState({images:images});
 
         }).catch( (error) => {
-
+        	console.log(error);
+            this.setState({errors:error});
         });
     }
 

@@ -3,6 +3,7 @@ import ErrorAlert from '../../views/Global/ErrorAlert';
 import roteirosApi from '../../scripts/api/roteiros';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
 import usersApi from "../../scripts/api/users";
+import AsyncSelect from 'react-select/async';
 
 class CreateRoutes extends Component {
     constructor(props){
@@ -16,36 +17,14 @@ class CreateRoutes extends Component {
 
         this.handleNameRoute = this.handleNameRoute.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.addPointsOfInterest = this.addPointsOfInterest.bind(this);
         this.handlePointsOfInterestChange = this.handlePointsOfInterestChange.bind(this);
 
-        this.getPointsOfInterest(1);
     }
 
     render(){
 
-        let listaPointOfInterest = [];
-        const pontosDeInteresse = this.state.pointsOfInterest;
-        for( let ponto in pontosDeInteresse) {
-            let i = <tr style = {{ textAlign: "center"}}
-                        key = {"ponto" + ponto}>
-                            <td>{this.state.pointsOfInteresList[pontosDeInteresse[ponto]].buildingName}</td>
-                    <td>
-                        <button type="button" class="btn btn-danger" onClick={() => this.deletePointOfInterest(ponto)}>Delete</button>
-                    </td>
-            </tr>
-        listaPointOfInterest.push(i);
-        console.log(pontosDeInteresse);
-        };
-
 
         const options = [];
-        const pontosDeInteresseExistentes = this.state.pointsOfInteresList;
-        let p;
-        for( let ponto in pontosDeInteresseExistentes) {
-            p = <option value={pontosDeInteresseExistentes[ponto].id}>{pontosDeInteresseExistentes[ponto].buildingName}</option>
-            options.push(p);
-        };
 
         return(
         <div className="fundo" >
@@ -58,25 +37,16 @@ class CreateRoutes extends Component {
 					<div className="form-group row">
 						<label for="pontos"><b>Points Of Interest</b></label>
 					</div>
-                    <div className="tabelaPontos">
-						<table className="table table-hover table-dark table-striped rounded" id="pontosDeInteresseExistentes">
-							<thead>
-								<tr style={{
-									textAlign: "center"
-								}}>
-									<th scope="col" >Ponto de Interesse</th>
-								</tr>
-							</thead>
-							<tbody>
-								{listaPointOfInterest}
-							</tbody>
-						</table>
-                    </div>
                     <div>
-						<button type="submit" value="submit" onClick={this.addPointsOfInterest}>Add point</button>
-						<select onChange={this.handlePointsOfInterestChange}>
-							{options}
-						</select>
+                        <div>
+                            <AsyncSelect
+                                isMulti
+                                cacheOptions
+                                defaultOptions
+                                loadOptions={this.getOptions}
+                                onChange={this.handlePointsOfInterestChange}
+                            />
+                        </div>
 					</div>
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
@@ -92,10 +62,23 @@ class CreateRoutes extends Component {
     handleSubmit(e){
         e.preventDefault();
         console.log(this.state.nameRoute);
-        roteirosApi.create(this.state.nameRoute).then((response) => {
-            console.log(response);
+        roteirosApi.create(this.state.nameRoute,this.state.pointsOfInterest).then((response) => {
+            this.props.history.push('/Routes');
         })
 
+    }
+
+    getOptions(input){
+        return pontosDeInteresseApi.list(1,input).then((response) => {
+
+            let data=response.data;
+            let res = data.map(building => ({ value: building.id, label: building.buildingName }));
+
+            console.log(res);
+
+            return res;
+
+        });
     }
 
     handleNameRoute(e){
@@ -103,42 +86,15 @@ class CreateRoutes extends Component {
         this.setState({nameRoute:e.target.value});
     }
 
-    handlePointsOfInterestChange(e) {
-        this.setState({selectedPointsOfInterest: e.target.value});
-    }
+    handlePointsOfInterestChange(selectedOptions) {
 
-    addPointsOfInterest(e) {
-        e.preventDefault();
-        if(this.state.selectedPointsOfInterest !== null) {
-            this.setState({
-                pointsOfInterest: [...this.state.pointsOfInterest, this.state.selectedPointsOfInterest]
-            });
+        let buildings=[];
+
+        for(let k in selectedOptions){
+            buildings.push(selectedOptions[k].value);
         }
-    }
 
-    getPointsOfInterest(page) {
-        pontosDeInteresseApi.list(page).then((response) => {
-            let arrayFinal = {};
-
-            for(let k in response.data) {
-                console.log("teste");
-                if(response.data.hasOwnProperty(k)) {
-                    arrayFinal[response.data[k].id] = response.data[k];
-                }
-            }
-
-            this.setState({
-                pointsOfInteresList: arrayFinal, 
-                                    pointsOfInteresPage: response.current_page, 
-                                    pointsOfInteresPageMax: response.last_page
-            });
-        });
-    }
-
-    deletePointOfInterest(index) {
-        let aux1 = this.state.pointsOfInterest;
-        aux1.splice(index,1);
-        this.setState({pointsOfInterest:aux1});
+        this.setState({pointsOfInterest: buildings});
     }
 
 }
