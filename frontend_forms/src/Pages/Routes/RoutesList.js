@@ -41,6 +41,7 @@ export default class RoutesList extends Component {
                         <button type="button" class="btn btn-danger"  onClick = {() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deleteRoute(rotas[rota].id, rota)}}>Apagar</button>
                         <button type="button" class="btn btn-info"  onClick = {() => this.editRoute(rotas[rota].id)}>Editar</button>
                         <button type="button" class="btn btn-success"  onClick = {() => this.detalhesRoute(rotas[rota].id, rota)}>Detalhes</button>
+                        <button type="button" class="btn btn-warning"  onClick = {() => {if (window.confirm('Are you sure you want to approve this route?'))this.aprovedRoutes(rotas[rota].id, rota)}}>Approve</button>
                     </td>            
                 </tr>;
 
@@ -92,6 +93,14 @@ export default class RoutesList extends Component {
                 </div>
             );
            
+    }
+    aprovedRoutes (id, aproved){
+        if(aproved !=0)
+            aproved =1;
+        roteirosApi.aprovedRoute(id).then ((response) => {
+            this.setState({aproved: ''
+                            });
+        })
     }
 
     getRoutesList(page) {
