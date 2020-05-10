@@ -36,8 +36,8 @@ export default class List extends Component {
                     <td >{users[user].email}</td>
                     <td >{users[user].created_at}</td>
                     <td >{users[user].updated_at}</td>
-                    <td >
-                        <button type="button" class="btn btn-danger" onClick={() => this.deleteUser(users[user].id,user)}>Apagar</button>
+                    <td >                                                   
+                        <button type="button" class="btn btn-danger" onClick={() => {if (window.confirm('Tem a certeza que deseja apagar este utilizador?'))this.deleteUser(users[user].id,user)}}>Apagar</button>
                         <button type="button" class="btn btn-info" onClick={() => this.editUser(users[user].id)}>Editar</button>
                     </td>
                 </tr>;
@@ -115,7 +115,9 @@ export default class List extends Component {
 
     deleteUser(uid,index){
         usersApi.delete(uid).then( (response) => {
-            this.setState({users:this.state.users.splice(index-1,1)});
+            let aux = this.state.users;
+            aux.splice(index,1);
+            this.setState({users:aux});
         }).catch( (error) => {
 
         });
