@@ -132,11 +132,8 @@ export default class pontosDeInteresseList extends Component {
   deletePontoDeInteresse(id, index) {
     pontosDeInteresseApi.delete(id).then( (response) => {
       let aux = this.state.pontosDeInteresse;
-      console.log('aux', aux);
       aux.splice(index,1);
-      console.log('aux',aux);
       this.setState({pontosDeInteresse:aux});
-      console.log(this.state.pontosDeInteresse);
   }).catch( (error) => {
 
   });

@@ -9,11 +9,11 @@ export default class Edit extends Component {
         super(props);
 
         let userId = props.match.params.userId;
-
         this.state = {
             userid:userId,
             name:null,
             email:null,
+            role: null,
             password:null,
             password_confirmation:null,
             errors:[]
@@ -21,10 +21,11 @@ export default class Edit extends Component {
 
 
         usersApi.validateAuth(this.props,"superadmin");
-        this.getUserById(userId);
+        this.getUserById(this.state.userid);
 
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleRoleChange = this.handleRoleChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handlePasswordConfirmationChange = this.handlePasswordConfirmationChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,6 +43,10 @@ export default class Edit extends Component {
                 <div className="form-group row">
                     <label htmlFor="email">E-Mail Address</label>
                     <input className="form-control" type="email" id="email" name="email" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleEmailChange} />
+                </div>
+                <div className="form-group row">
+                    <label htmlFor="email">Role</label>
+                    <input className="form-control" type="text" id="role" name="email" placeholder="Enter the desired role" name="role" value={this.state.role} onChange={this.handleRoleChange} />
                 </div>
                 <div className="form-group row">
                     <label htmlFor="password">Password</label>
@@ -64,8 +69,8 @@ export default class Edit extends Component {
 
     getUserById(uid){
         usersApi.get(uid).then( (response) => {
-
-            this.setState({email:response.email, name: response.name});
+            console.log("response",response);
+            this.setState({email:response.email, name: response.name, role: response.role});
 
         }).catch( (error) => {
 
@@ -80,6 +85,10 @@ export default class Edit extends Component {
         this.setState({ email: e.target.value });
     }
 
+    handleRoleChange(e) {
+        this.setState({ role: e.target.value });
+    }
+
     handlePasswordChange(e) {
         this.setState({ password: e.target.value });
     }
@@ -92,7 +101,8 @@ export default class Edit extends Component {
         e.preventDefault();
         let body={
             email:this.state.email,
-            name:this.state.name
+            name:this.state.name,
+            role:this.role
         };
 
         if(this.state.password!==null){
