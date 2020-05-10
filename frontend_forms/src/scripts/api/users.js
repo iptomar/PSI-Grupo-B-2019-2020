@@ -61,7 +61,7 @@ let usersApi = {
         });
     },
 
-    register(email,name,password,password_confirmation){
+    register(email,name,password,password_confirmation,role){
 
         let furl=apiUrl+"/users";
         let token="Bearer " + localStorage.getItem("auth.token");
@@ -71,7 +71,9 @@ let usersApi = {
             "name": name,
             "password": password,
             "password_confirmation": password_confirmation,
+            "role": role
         };
+        console.log("este é o novo body",body);
 
         return fetch(furl, {method:'POST',
                 headers: { 'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, body: JSON.stringify(body)

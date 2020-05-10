@@ -10,6 +10,7 @@ class Create extends Component {
         this.state = {
             name: '',
             email: '',
+            role:'',
             password: '',
             password_confirmation: '',
             errors:[]
@@ -19,6 +20,7 @@ class Create extends Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handlePasswordConfirmationChange = this.handlePasswordConfirmationChange.bind(this);
+        this.handleRoleChange = this.handleRoleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         //Validação de que o utilizador está logado
         usersApi.validateAuth(this.props,"superadmin");
@@ -33,6 +35,10 @@ class Create extends Component {
         this.setState({ email: e.target.value });
     }
 
+    handleRoleChange(e) {
+        this.setState({ role: e.target.value });
+    }
+
     handlePasswordChange(e) {
         this.setState({ password: e.target.value });
     }
@@ -44,7 +50,7 @@ class Create extends Component {
     async handleSubmit(e){
         e.preventDefault();
 
-        usersApi.register(this.state.email,this.state.name,this.state.password,this.state.password_confirmation).then( (response) => {
+        usersApi.register(this.state.email,this.state.name,this.state.password,this.state.password_confirmation,this.state.role).then( (response) => {
             this.props.history.push('/users');
         }).catch( (error) => {
             this.setState({errors:error});
@@ -79,6 +85,10 @@ class Create extends Component {
                                 <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleEmailChange} />
                             </div>
                             <div className="FormField">
+                                <label className="FormField__Label" htmlFor="role">Role</label>
+                                <input type="text" id="role" className="FormField__Input" placeholder="Enter the desired role" name="role" value={this.state.role} onChange={this.handleRoleChange} />
+                            </div>
+                            <div className="FormField">
                                 <label className="FormField__Label" htmlFor="password">Password</label>
                                 <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handlePasswordChange} />
                             </div>
@@ -89,6 +99,7 @@ class Create extends Component {
                             <div className="FormField">
                                 <button className="FormField__Button mr-20">Sign Up</button> <Link to="/login2" className="FormField__Link">I'm already a member</Link>
                             </div>
+                            
                         </form>
 
                         <ErrorAlert errors={this.state.errors}/>
