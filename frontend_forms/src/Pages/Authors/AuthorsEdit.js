@@ -50,7 +50,7 @@ class AuthorsEdit extends Component {
 
         authorsApi.get(id).then( (response) => {
 
-            this.setState({nameAuthor:response.nameAuthor});
+            this.setState({nameAuthor:response.author.name});
 
         }).catch( (error) => {
             console.log(error);
