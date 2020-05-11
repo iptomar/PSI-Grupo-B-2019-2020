@@ -124,7 +124,7 @@ export default class RoutesList extends Component {
             console.log('aux', aux);
             aux.splice(index, 1);
             console.log('aux', aux);
-            this.setState({rotas:aux});
+           // this.setState({rotas:aux});
             console.log(this.state.rotas);
         }).catch( (error) => {
 

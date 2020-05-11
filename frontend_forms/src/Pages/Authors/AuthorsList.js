@@ -14,7 +14,7 @@ export default class AuthorsList extends Component {
         };
 
         usersApi.validateAuth(this.props);
-
+        //this.deleteAuthor(61);
         this.getAuthorsList(1);
     }
 
@@ -40,7 +40,7 @@ export default class AuthorsList extends Component {
                                     <a className="page-link" href="#" onClick={() => this.getAuthorsList(this.state.current_page + 1)}>&gt;</a>
                 </li>);
             };
-        };
+        }
 
         let items = [];
         const authors = this.state.authors;
@@ -51,12 +51,11 @@ export default class AuthorsList extends Component {
                 <td> {authors[author].id} </td>
                 <td> {authors[author].name} </td>   
                 <td>
-                    <button type="button" class="btn btn-danger"  onClick = {() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deleteAuthor(authors[author].id, author)}}>Delete</button>
-                    <button type="button" class="btn btn-info"  onClick = {() => this.editAuthor(authors[author].id)}>Edit</button>
-                    <button type="button" class="btn btn-success"  onClick = {() => this.detalhesAuthor(authors[author].id, author)}>Detalhes</button>
+                    <button type="button" class="btn btn-danger" onClick = {() => {if(window.confirm('Are you sure you wish to delete this item?'))this.deleteAuthor(authors[author].id, author)}}>Delete</button>
+                    <button type="button" class="btn btn-info" onClick = {() => this.editAuthor(authors[author].id)}>Edit</button>
+                    <button type="button" class="btn btn-success" onClick = {() => this.detalhesAuthor(authors[author].id, author)}>Detalhes</button>
                 </td>            
             </tr>;
-
             items.push(i);
         }
         console.log(items);
@@ -69,8 +68,8 @@ export default class AuthorsList extends Component {
                         <thead>
                             <tr style = {{ textAlign: "center" }}>
                                 <th scope = "col">ID</th>
-                                <th scope = "col">Nome</th>
-                                <th scope = "col">Apagar/Editar</th>
+                                <th scope = "col">Name</th>
+                                <th scope = "col">Delete/Edit/Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,18 +104,26 @@ export default class AuthorsList extends Component {
     }
 
     deleteAuthor(id, index) {
-        authorsApi.delete(id).then( (response) => {
-            let i = this.state.authors;
-            console.log('aux', i);
-            i.splice(index, 1);
-            console.log('aux', i);
-            this.setState({authors:i});
+      
+       authorsApi.delete(id).then( (response) => {
+       /* var array = [...this.state.author]; // make a separate copy of the array
+        var index = array.indexOf(index);
+        if (index !== -1) {
+          array.splice(index, 1);}
+          this.setState({authors: array});*/
+            let aux = this.state.authors;
+            aux.splice(index, 1);
+            this.setState({authors:aux});
             console.log(this.state.authors);
+            this.refreshPage();
         }).catch( (error) => {
-            console.log("fizeste asneira" + error);
 
         });
         console.log(id, index);
+    }
+
+    refreshPage(){
+        window.location.reload();
     }
     
     detalhesAuthor (id, index){
