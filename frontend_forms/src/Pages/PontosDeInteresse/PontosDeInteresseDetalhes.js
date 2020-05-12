@@ -32,6 +32,7 @@ class PontosDeInteresseDetalhes extends Component {
         let vertices=[];
         let images=[];
         let routes= [];
+        let authors = [];
 
         if(this.state.buildingInfo!=null){
 
@@ -107,6 +108,17 @@ class PontosDeInteresseDetalhes extends Component {
                 }
             }
 
+            for(let k in b.authors){
+                if(b.authors.hasOwnProperty(k)){
+                    authors.push(
+                        <tr>
+                           
+                            <td>{b.authors[k].name}</td>
+                        </tr>
+                    );
+                }
+            }
+
 
             for(let k in b.routes){
                 if(b.routes.hasOwnProperty(k)){
@@ -156,6 +168,20 @@ class PontosDeInteresseDetalhes extends Component {
                                     {images}
                                 </tbody>
                             </table>
+                    </div>
+                    <div id="detalhesPontos2">
+ 
+                        <table class="table table-bordered table-light table-hover table-striped">
+                            <thead class="thead-dark">
+                                <th scope="col" colSpan="4">Autores</th>
+                            </thead>
+                            <tbody>
+                                <th>Name</th>
+                                {authors}
+                            </tbody>
+
+                            
+                        </table>
                     </div>
     
                     <div id="detalhesPontos3">
