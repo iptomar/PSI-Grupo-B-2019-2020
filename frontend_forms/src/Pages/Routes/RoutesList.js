@@ -37,6 +37,7 @@ export default class RoutesList extends Component {
                 }} key = {rota}>
                     <td> {rotas[rota].id} </td>
                     <td> {rotas[rota].name} </td>   
+                    <td> {rotas[rota].aproved} </td>   
                     <td>
                         <button type="button" class="btn btn-danger"  onClick = {() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deleteRoute(rotas[rota].id, rota)}}>Apagar</button>
                         <button type="button" class="btn btn-info"  onClick = {() => this.editRoute(rotas[rota].id)}>Editar</button>
@@ -78,6 +79,7 @@ export default class RoutesList extends Component {
                             <tr style = {{ textAlign: "center" }}>
                                 <th scope = "col">ID</th>
                                 <th scope = "col">Nome</th>
+                                <th scope = "col">Aproved</th>
                                 <th scope = "col">Apagar/Editar/Detalhes</th>
                             </tr>
                         </thead>
@@ -95,12 +97,14 @@ export default class RoutesList extends Component {
            
     }
     aprovedRoutes (id, aproved){
-        if(aproved !=0)
+        if(id !=0)
             aproved =1;
         roteirosApi.aprovedRoute(id).then ((response) => {
             this.setState({aproved: ''
                             });
+            this.refreshPage();         
         })
+       
     }
 
     getRoutesList(page) {
@@ -141,10 +145,18 @@ export default class RoutesList extends Component {
             sessionStorage.setItem("rota", JSON.stringify(this.state.rotas[index]));
             this.props.history.push('/routes/' + id + '/detalhes');
             this.setState({redirect: true,
-                           name: ''
+                           name: '',
+                           aproved: ''
                  });
+                 this.refreshPage();
         })
+        
         console.log(sessionStorage.getItem("rota"));
+        
+    }
+
+    refreshPage(){
+        window.location.reload();
     }
 
 }
