@@ -15,19 +15,20 @@
     text-align: center;
   }
 
-  detalhesAutor {
+  .detalhesAutor {
     width: 50%;
     padding: 15px;
     margin: auto;
     height: 100%;
     margin-top: 20px;
     text-align: center;
+    padding-bottom: 458px;
   }
 
   .fundo3 {
     background-color: rgb(102, 218, 199);
     padding-top: 0px;
-    height:690px;
+    
   }
 
   h1 {

@@ -47,11 +47,11 @@ class PontosDeInteresseDetalhes extends Component {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th scope="col">Building name</th>
+                                        <th scope="col">Building Name</th>
                                         <td>{b.buildingName}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="col">Building type</th>
+                                        <th scope="col">Building Type</th>
                                         <td>{b.buildingType}</td>
                                     </tr>
                                     <tr>
@@ -68,6 +68,7 @@ class PontosDeInteresseDetalhes extends Component {
                                     </tr>
                                 </tbody>
                                 
+                                
                             </table>
                         </div>
                 </div>
@@ -78,14 +79,9 @@ class PontosDeInteresseDetalhes extends Component {
             for(let k in b.vertices){
                 if(b.vertices.hasOwnProperty(k)){
                     vertices.push(
-                        <tr>
-                           
+                        <tr>  
                             <td>{b.vertices[k].coordinate1}</td>
-                        
-                            
                             <td>{b.vertices[k].coordinate2}</td>
-                    
-                       
                             <td>{b.vertices[k].order}</td>
                         </tr>
                     );
@@ -95,9 +91,7 @@ class PontosDeInteresseDetalhes extends Component {
 
             for(let k in b.images){
                 if(b.images.hasOwnProperty(k)){
-
                     let src = 'data:image/png;base64,'+b.images[k].base64;
-
                     images.push(
                         <tr>
                             <td><img src={src} height="150"/></td>
@@ -111,36 +105,52 @@ class PontosDeInteresseDetalhes extends Component {
             for(let k in b.authors){
                 if(b.authors.hasOwnProperty(k)){
                     authors.push(
-                        <tr>
-                           
-                            <td>{b.authors[k].name}</td>
+                        <tr >
+                             <td>{b.authors[k].name}</td>
                         </tr>
                     );
                 }
             }
-
 
             for(let k in b.routes){
                 if(b.routes.hasOwnProperty(k)){
                     routes.push(
-                        <tr>
-                            <td>{b.routes[k].name}</td>
-                        </tr>
+                       <tr>
+                           <td>{b.routes[k].name}</td>
+                       </tr>
                     );
                 }
             }
-
-
-
         }
 
         return(<div>
 
             <div class="fundo2">
             <h1>Detalhes de Pontos de Interesse</h1>
-                {pi}
-                <div id="detalhesPontos2">
- 
+                {pi}   
+                    <div id="detalhesPontos2">
+                        <table class="table table-bordered table-light table-hover table-striped">
+                            <thead class="thead-dark">
+                                <th scope="col" colSpan="4">Author's Name(s)</th>
+                            </thead>
+                            <tbody>
+                                {authors}
+                            </tbody>  
+                        </table>
+                    </div>
+
+                    <div id="detalhesPontos2">
+                        <table class="table table-bordered table-light table-hover table-striped">
+                            <thead class="thead-dark">
+                                <th scope="col" colSpan="4">Routes</th>
+                            </thead>
+                            <tbody>
+                                {routes}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="detalhesPontos3">
                         <table class="table table-bordered table-light table-hover table-striped">
                             <thead class="thead-dark">
                                 <th scope="col" colSpan="4">Vertices</th>
@@ -151,50 +161,22 @@ class PontosDeInteresseDetalhes extends Component {
                                 <th>Order</th>
                                 {vertices}
                             </tbody>
-
-                            
                         </table>
                     </div>
 
                     <div id="detalhesPontos3">
                         <table class="table table-bordered table-light table-hover table-striped ">
-                                <thead class="thead-dark">
-                                    <th scope="col" colSpan="4">Images</th>
-                                </thead>
-                                <tbody>
-                                    <th>Image</th>
-                                    <th>Author</th>
-                                    <th>Description</th>
-                                    {images}
-                                </tbody>
-                            </table>
-                    </div>
-                    <div id="detalhesPontos2">
- 
-                        <table class="table table-bordered table-light table-hover table-striped">
                             <thead class="thead-dark">
-                                <th scope="col" colSpan="4">Autores</th>
+                                <th scope="col" colSpan="4">Images</th>
                             </thead>
                             <tbody>
-                                <th>Name</th>
-                                {authors}
-                            </tbody>
-
-                            
-                        </table>
-                    </div>
-    
-                    <div id="detalhesPontos3">
-                        <table class="table table-bordered table-light table-hover table-striped">
-                            <thead class="thead-dark">
-                                <th scope="col" colSpan="4">Routes</th>
-                            </thead>
-                            <tbody>
-                                {routes}
+                                <th>Image</th>
+                                <th>Author</th>
+                                <th>Description</th>
+                                {images}
                             </tbody>
                         </table>
                     </div>
-                    
                 </div>
             </div>
                 

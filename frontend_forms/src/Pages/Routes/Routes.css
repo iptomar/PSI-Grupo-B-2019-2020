@@ -11,25 +11,27 @@
     padding: 15px;
     margin: auto;
     height: 100%;
-    margin-top: 20px;
+    
     text-align: center;
   }
 
   .fundo4 {
     background-color: rgb(102, 218, 199);
-    padding-top: 0px;
-    height:600px;
+    padding-top: 10px;
+    height:100%;
+    padding-bottom:200px;
   }
 
   h1 {
     color: #ffffff;
     text-align: center;
-    padding-top: 20px;
+    padding: 20px 0px;
+    padding-bottom: 20
   }
 
   table {
     border-collapse: collapse;
     border-radius: 0.70em;
     overflow: hidden;
-    
+    padding-top: 50px;
   }

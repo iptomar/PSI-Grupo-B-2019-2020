@@ -56,8 +56,8 @@ class DetalhesRoutes extends Component {
                 return (
                 
                 <div className="fundo4"> 
-                    <h1>Detalhes Routes</h1>
                     <div className="detalhesRoteiro">
+                    <h1>Detalhes Routes</h1>
                         <table class="table table-bordered table-light table-hover table-striped">
                             <thead class="thead-dark">
                                 <th scope="col" colSpan="4">Name</th>
@@ -67,12 +67,9 @@ class DetalhesRoutes extends Component {
                             </tbody>
                         </table>
 
-                        <h3>Pontos de interesse</h3>
-
-                        <div>
-                            <table className="table table-hover table-dark table-striped rounded" id="pontosDeInteresse">
-                                <caption>Lista dos Pontos de Interesse</caption>
-                                <thead>
+                    <h1>Pontos de interesse</h1>
+                            <table className="table table-bordered table-light table-hover table-striped">
+                                <thead class="thead-dark">
                                 <tr style={{
                                     textAlign: "center"
                                 }}>
@@ -87,7 +84,7 @@ class DetalhesRoutes extends Component {
                                 {items}
                                 </tbody>
                             </table>
-                        </div>
+                        
                     </div>
 
                 </div>
