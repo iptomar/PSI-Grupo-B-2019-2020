@@ -31,11 +31,10 @@ import usersApi from "../../scripts/api/users";
                nameRoute:null,
 			vertices: [], images: [], 
 			authors: [], routes: [],
-          
         };
 
         usersApi.validateAuth(this.props);
-		this.getPontosDeInteresse(pontosDeInteresse);
+				this.getPontosDeInteresse(pontosDeInteresse);
 
         this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
         this.handleBuildingTypeChange = this.handleBuildingTypeChange.bind(this);
@@ -111,7 +110,7 @@ import usersApi from "../../scripts/api/users";
 			let i=<tr style={{
 				textAlign:"center"
 			  }}key={"rota" + rota}>
-				<td >{this.state.routesList[rotas[rota]].name}</td>
+				<td >{rotas[rota].name}</td>
 				<td>
 					<button type="button" class="btn btn-danger" onClick={() => this.deleteRoute(rota)}>Delete</button>
 				</td>
@@ -329,35 +328,34 @@ import usersApi from "../../scripts/api/users";
         );
     }
 
-    getPontosDeInteresse(uid){
-        pontosDeInteresseApi.get(uid).then( (response) => {
+	 getPontosDeInteresse(uid) {
+		 pontosDeInteresseApi.get(uid).then((response) => {
 
-        	let b=response.building;
+			 let b = response.building;
+			 let images = [];
 
-            let images=[];
+			 for (let k in b.images) {
+				 console.log("boasssss");
+				 images.push({
+					 'sourceAuthor': b.images[k].sourceAuthor,
+					 'description': b.images[k].description,
+					 'image': this.b64toBlob(b.images[k].base64, 'image/png', 512)
+				 });
+			 }
 
-            for(let k in b.images){
-            	console.log("boasssss");
-				images.push({
-					'sourceAuthor':b.images[k].sourceAuthor,
-					'description':b.images[k].description,
-					'image':this.b64toBlob(b.images[k].base64,'image/png',512)
-				});
-			}
+			 console.log("aaabbb");
+			 console.log(images);
 
-			console.log("aaabbb");
-			console.log(images);
+			 delete b.images;
 
-            delete b.images;
+			 this.setState(b);
+			 this.setState({ images: images });
 
-            this.setState(b);
-			this.setState({images:images});
-
-        }).catch( (error) => {
-        	console.log(error);
-            this.setState({errors:error});
-        });
-    }
+		 }).catch((error) => {
+			 console.log(error);
+			 this.setState({ errors: error });
+		 });
+	 }
 
     handleBuildingNameChange(e){
         this.setState({buildingName: e.target.value});
@@ -398,7 +396,7 @@ import usersApi from "../../scripts/api/users";
             //this.props.history.push('/PointsOfInterest');
             console.log("oi");
         }).catch( (error) => {
-            console.log(error);
+						console.log(error);
             this.setState({errors:error});
         });
     }
@@ -528,7 +526,7 @@ import usersApi from "../../scripts/api/users";
 
 	getRoutes(page){
 		roteirosApi.list(page).then((response) => {
-
+			
 			let arrayFinal={};
 
 			for(let k in response.data){
