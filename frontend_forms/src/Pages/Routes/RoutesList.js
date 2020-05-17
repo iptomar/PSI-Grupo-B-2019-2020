@@ -53,20 +53,20 @@ export default class RoutesList extends Component {
             const pagination = [];
             if (this.state.last_page !== 1) {
                 if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1) {
-                    pagination.push(<li className="page-item"><a className="page-link" href="#" onClick={() => this.getRoutesList(this.state.current_page-1)}>&lt;</a></li>)
+                    pagination.push(<li className="page-item"><a className="page-link2" href="#" onClick={() => this.getRoutesList(this.state.current_page-1)}>&lt;</a></li>)
                 };
 
                 //numeros para as paginas
                 console.log("lastpage", this.state.last_page);
                 for( let i = 1; i <= this.state.last_page; i++) {
                     pagination.push(<li className="page-item">
-                                        <a className="page-link" href="#" onClick={() => this.getRoutesList(i)}> {i} </a>
+                                        <a className="page-link2" href="#" onClick={() => this.getRoutesList(i)}> {i} </a>
                                     </li>);
                 };
 
                 if (this.state.current_page !== this.state.last_page) {
                     pagination.push(<li className="page-item">
-                                        <a className="page-link" href="#" onClick={() => this.getRoutesList(this.state.current_page + 1)}>&gt;</a>
+                                        <a className="page-link2" href="#" onClick={() => this.getRoutesList(this.state.current_page + 1)}>&gt;</a>
                     </li>);
                 };
             };
@@ -87,7 +87,7 @@ export default class RoutesList extends Component {
                             {items}
                         </tbody>
                     </table>
-                    <nav aria-label="Page navigation example">
+                    <nav aria-label="Page navigation example" className="pageNavigation2">
                         <ul class="pagination">
                             {pagination}
                         </ul>

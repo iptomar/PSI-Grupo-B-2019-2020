@@ -57,3 +57,25 @@
     overflow: hidden;
     
   }
+  
+  .pageNavigation {
+    width: 250px;
+    margin: auto;
+  }
+  
+  .page-link2 {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #ffffff;
+    background-color: #454d55;
+    border: 1px solid grey;
+    border-radius: 2px;
+  }
+  
+  .page-link2:hover {
+    color: grey;
+    text-decoration: none;
+  }

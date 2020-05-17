@@ -146,7 +146,7 @@ class CriarPontosInteresse extends Component {
 					</div>
 					<div className="form-group row">
 						<label for="dates"><b>Date</b></label>
-						<input className="form-control" type="number" id="dates" name="dates"  placeholder="The year." value={this.state.dates} onChange={this.handleDatesChange} required></input>
+						<input className="form-control" type="number" id="dates" name="dates"  placeholder="Add the year." value={this.state.dates} onChange={this.handleDatesChange} required></input>
 					</div>
 					<div className="form-group row">
 						<label for="buildingType"><b>Type</b></label>
@@ -191,12 +191,12 @@ class CriarPontosInteresse extends Component {
 							</tbody>
 						</table>
 					</div>
-
-					<div>
-						<label for="image"><b>Upload file</b></label>
-						<input type="file" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
+					<br/>
+					<div className="custom-file">
+						<label for="image" className="custom-file-label">Upload file...</label>
+						<input type="file" className="custom-file-input" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
 					</div>
-
+					<br/><br/>
 					<div className="form-group row">
 						<label for="source_author"><b>Source Author</b></label>
 						<input className="form-control" id="source_author" name="source_author" rows="3" placeholder="Add a source author about the point of interest." value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} required></input>
@@ -204,7 +204,7 @@ class CriarPontosInteresse extends Component {
 					<div className="form-group row">
 						<label for="description_images"><b>Description</b></label>
 						<input className="form-control" id="description_images" name="description_images" rows="3" placeholder="Add a description about the point of interest." value={this.state.auxDesc} onChange={this.handleImgDescChange} required></input>
-						<button className="btn btn-primary" onClick={this.addImage}>adicionar imagem</button>
+						<button className="btn btn-primary" onClick={this.addImage}>Add image</button>
 					</div>
 
                     <div className="form-group row">
@@ -221,11 +221,9 @@ class CriarPontosInteresse extends Component {
                         />
 					</div>
 
-				
+					<br/>
 					<div className="form-group row">
 						<label for="vertices"><b>Vertices</b></label>
-					</div>
-					<div className="form-group row">
 					</div>
 					<div className="form-group row">
 						<div className="form group col-md-6">
@@ -236,16 +234,16 @@ class CriarPontosInteresse extends Component {
 							<label for="coordenada2"><b>Coordinate 2</b></label>
 							<input className="form-control" type="number" placeholder="Insert coordinate 2..." name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" onChange={this.handleVerticeCoordenada2Change} required />
 						</div>
-						<div className="form group col-md-6">
+						</div>
+						<div className="form-group row ">
 							<label for="order"><b>Order</b></label>
 							<input className="form-control" type="number" placeholder="Insert order..." min="1" name="order" id="order" value={this.state.auxOrder} data-index="0" onChange={this.handleOrderChange} required />
+							<button className="btn btn-primary" type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
 						</div>
-						<div>
-							<button type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
-						</div>
+						
+						<br/>
 						<div className="tabelaVertices">
 							<table className="table table-hover table-dark table-striped rounded" id="vertices">
-                				<caption>Lista de vertices</caption>
 								<thead>
                        				 <tr style={{
                         			textAlign:"center"
@@ -256,25 +254,25 @@ class CriarPontosInteresse extends Component {
 
                        				 </tr>
                     			</thead>
-                    	<tbody>
-                        	{listaVertices}
-                    	</tbody>
-                </table>
-	
+                    			<tbody>
+                        			{listaVertices}
+                    			</tbody>
+                			</table>
 						</div>
-					</div>
 
-					<div>
-						<button type="submit" value="submit" onClick={this.addRoute}>Add route</button>
-						<select onChange={this.handleRouteChange}>
+					<div className="form-group row">
+						<label for="Routes"><b>Routes</b></label>
+					</div>
+					<div className="form-group row">
+						<select class="custom-select" onChange={this.handleRouteChange}>
 							{options}
 						</select>
-
+						<button className="btn btn-primary" type="submit" value="submit" onClick={this.addRoute}>Add route</button>
 					</div>
 
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
-					<button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
+					<button className="btn btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
 						Submit
                 </button>
 					<ErrorAlert errors={this.state.errors} />

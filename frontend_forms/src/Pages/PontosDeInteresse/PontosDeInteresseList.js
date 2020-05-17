@@ -62,19 +62,19 @@ export default class pontosDeInteresseList extends Component {
     if(this.state.last_page!==1){
       //primeiro simbolo (<) existe?
       if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1){
-          pagination.push(<li class="page-item"> <a class="page-link" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page-1)}> &lt;</a> </li>);
+          pagination.push(<li class="page-item"> <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page-1)}> &lt;</a> </li>);
       };
       //numeros para as paginas. TODO: limitar o numero de quadrados possiveis
       console.log("lastpage",this.state.last_page);
       for(let i=1;i<=this.state.last_page;i++){
           pagination.push(<li class="page-item">
-                           <a class="page-link" href="#" onClick={()=>this.getPontosDeInteresseList(i)} >{i}</a>
+                           <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(i)} >{i}</a>
                             </li>);
       };  
       //segundo simbolo (>) existe?
       if(this.state.current_page !== this.state.last_page){
         pagination.push(<li class="page-item">
-                         <a class="page-link" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page+1)}>&gt;</a>
+                         <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page+1)}>&gt;</a>
                        </li>);
       };
     };
@@ -100,7 +100,7 @@ export default class pontosDeInteresseList extends Component {
           </tbody>
         </table>
 
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" className="pageNavigation">
            <ul class="pagination">
             {pagination}
           </ul>
