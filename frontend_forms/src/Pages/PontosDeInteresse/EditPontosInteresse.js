@@ -3,6 +3,8 @@ import ErrorAlert from '../../views/Global/ErrorAlert';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
 import roteirosApi from '../../scripts/api/roteiros';
 import usersApi from "../../scripts/api/users";
+import authorsApi from "../../scripts/api/authors";
+import AsyncSelect from 'react-select/async';
 
  class EditPontosInteresse extends Component {
 
@@ -14,6 +16,7 @@ import usersApi from "../../scripts/api/users";
         this.state = {
             errors:[],
             pontosInteresseID: pontosDeInteresse,
+			authorsList:null,
             buildingName: null,
             buildingType: null,
             location: null,
@@ -60,8 +63,7 @@ import usersApi from "../../scripts/api/users";
 		//this.listVertices = this.listVertices.bind(this);
 		//this.getListVertice = this.getListVertice.bind(this);
 		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
-		this.addAuthor = this.addAuthor.bind(this);
-		//this.deleteAuthor = this.deleteAuthor.bind(this);
+		this.deleteAuthor = this.deleteAuthor.bind(this);
 		this.addRoute = this.addRoute.bind(this);
 		this.handleRouteChange = this.handleRouteChange.bind(this);
 
@@ -90,14 +92,14 @@ import usersApi from "../../scripts/api/users";
 		}
 
 		let listaAutores = [];
-		const autores = this.state.authors;
+		const autores = this.state.authorsList;
 		for (let autor in autores){
 			let i=<tr style={{
 				textAlign:"center"
 			  }}key={"autor" + autor}>
 				<td >{autores[autor].name}</td>
 				<td>
-					<button type="button" class="btn btn-danger" onClick={() => this.deleteAuthor(autor)}>Delete</button>
+					<button type="button" class="btn btn-danger" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deleteAuthor(autores[autor].id, autor)}}>Delete</button>
 				</td>
 			</tr>;
 			listaAutores.push(i);
@@ -185,23 +187,40 @@ import usersApi from "../../scripts/api/users";
 						</div>
 					</div>
 					<hr class="mb-3"></hr>
-                    <div className="form-group row">
-						<label for="images_label"><b>Images</b></label>
+
+					<div class="row">
+							<div class="col-md-4">
+								<div className="custom-file" style={{marginTop:'35px'}}>
+									<label htmlFor="image" className="custom-file-label">Upload file...</label>
+
+									<input type="file" className="custom-file-input" label='Upload'
+										   ref={(ref) => this.fileUpload = ref} value={this.state.image}
+										   onChange={this.handleImagesChange}/>
+								</div>
+							</div>
+
+
+                            <div className="col-md-4">
+                                <label htmlFor="source_author"><b>Source Author</b></label>
+                                <input className="form-control" id="source_author" name="source_author" rows="3"
+                                       placeholder="Add a source author about the point of interest."
+                                       value={this.state.auxAuthor} onChange={this.handleImgAuthorChange}
+                                       required></input>
+                            </div>
+
+                            <div className="col-md-4">
+                                <label htmlFor="description_images"><b>Description</b></label>
+                                <input className="form-control" id="description_images" name="description_images"
+                                       rows="3" placeholder="Add a description about the point of interest."
+                                       value={this.state.auxDesc} onChange={this.handleImgDescChange} required></input>
+                            </div>
 					</div>
-					<div className="custom-file">
-						<label for="image" className="custom-file-label">Upload file...</label>
-						<input type="file" className="custom-file-input" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
-					</div>
+
+                    <button className="btn btn-primary" onClick={this.addImage}>Add image</button>
+
 					<br/><br/>
-					<div className="form-group row">
-						<label for="source_author"><b>Source Author</b></label>
-						<input className="form-control" id="source_author" name="source_author" rows="3" placeholder="Add a source author about the point of interest." value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} required></input>
-					</div>
-					<div className="form-group row">
-						<label for="description_images"><b>Description</b></label>
-						<input className="form-control" id="description_images" name="description_images" rows="3" placeholder="Add a description about the point of interest." value={this.state.auxDesc} onChange={this.handleImgDescChange} required></input>
-						<button className="btn btn-primary" onClick={this.addImage}>Add image</button>
-					</div>
+
+
 					{/* tabela com as imagens a enviar */}
 					<div className="tabelaImagens">
 						<table className="table table-sm table-dark table-striped rounded" id="users">
@@ -224,13 +243,14 @@ import usersApi from "../../scripts/api/users";
 						<label for="author"><b>Authors</b></label>
 					</div>
 
-					<div className="form-group row">
-						<label for="name_author"><b>Name</b></label>
-						<input className="form-control" id="name_author" name="name_author" rows="3" placeholder="Add a name about the point of interest." value={this.state.auxNameAuthor} data-index="0" onChange={this.handleAuthorsChange} required></input>
-					</div>
-
 					<div>
-						<button type="submit" value="submit" onClick={this.addAuthor}>Add author</button>
+                        <AsyncSelect
+                            isMulti
+                            cacheOptions
+                            defaultOptions
+                            loadOptions={this.getOptions}
+                            onChange={this.handleAuthorsChange}
+                        />
 					</div>
 
 					<div className="tabelaAutores">
@@ -249,23 +269,31 @@ import usersApi from "../../scripts/api/users";
 					</div>
 					<hr class="mb-3"></hr>
 					<div className="form-group row">
-						<label for="vertices"><b>Vertices</b></label>
+
+                        <div className="form-group col-md-4">
+                            <label htmlFor="coordenada1"><b>Coordinate 1</b></label>
+                            <input className="form-control" type="number" placeholder="Insert coordinate 1..."
+                                   name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0"
+                                   onChange={this.handleVerticeCoordenada1Change} required/>
+                        </div>
+                        <div className="form-group col-md-4">
+                            <label htmlFor="coordenada2"><b>Coordinate 2</b></label>
+                            <input className="form-control" type="number" placeholder="Insert coordinate 2..."
+                                   name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0"
+                                   onChange={this.handleVerticeCoordenada2Change} required/>
+                        </div>
+
+                        <div className="form-group col-md-4">
+                            <label htmlFor="order"><b>Order</b></label>
+                            <input className="form-control" type="number" placeholder="Insert order..." min="1"
+                                   name="order" id="order" value={this.state.auxOrder} data-index="0"
+                                   onChange={this.handleOrderChange} required/>
+                            <button className="btn btn-primary" type="submit" value="submit"
+                                    onClick={this.addVertice}>Add vertice
+                            </button>
+                        </div>
+
 					</div>
-					<div className="form-group row">
-						<div className="form-group col-md-6">
-							<label for="coordenada1"><b>Coordinate 1</b></label>
-							<input className="form-control" type="number" placeholder="Insert coordinate 1..." name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0" onChange={this.handleVerticeCoordenada1Change} required />
-						</div>
-						<div class="form-group col-md-6">
-							<label for="coordenada2"><b>Coordinate 2</b></label>
-							<input className="form-control" type="number" placeholder="Insert coordinate 2..." name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" onChange={this.handleVerticeCoordenada2Change} required />
-						</div>
-					</div>
-						<div className="form-group row">
-							<label for="order"><b>Order</b></label>
-							<input className="form-control" type="number" placeholder="Insert order..." min="1" name="order" id="order" value={this.state.auxOrder} data-index="0" onChange={this.handleOrderChange} required />
-							<button className="btn btn-primary" type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
-						</div>
 						<div className="tabelaVertices">
 							<table className="table table-hover table-dark table-striped rounded" id="vertices">
 								<thead>
@@ -283,30 +311,7 @@ import usersApi from "../../scripts/api/users";
                     			</tbody>
                 			</table>
 						</div>
-						<hr class="mb-3"></hr>
-					<div className="form-group row">
-						<label for="routes"><b>Routes</b></label>
-					</div>
-					<div className="form-group row">
-						<select class="custom-select" onChange={this.handleRouteChange}>
-							{options}
-						</select>
-						<button className="btn btn-primary" type="submit" value="submit" onClick={this.addRoute}>Add route</button>
-					</div>
-					<div className="tabelaRotas">
-						<table className="table table-hover table-dark table-striped rounded" id="rotas">
-							<thead>
-								<tr style={{
-									textAlign: "center"
-								}}>
-									<th scope="col" >Route</th>
-								</tr>
-							</thead>
-							<tbody>
-								{listaRotas}
-							</tbody>
-						</table>
-					</div>
+
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
 					<button className="btn btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
@@ -333,13 +338,20 @@ import usersApi from "../../scripts/api/users";
 				 });
 			 }
 
-			 console.log("aaabbb");
-			 console.log(images);
-
 			 delete b.images;
 
 			 this.setState(b);
 			 this.setState({ images: images });
+
+             let authors=[];
+
+             for(let k in b.authors){
+                 authors.push(b.authors[k].id);
+             }
+
+             this.setState({authorsList:b.authors});
+
+			 this.setState({authors:authors});
 
 		 }).catch((error) => {
 			 console.log(error);
@@ -391,19 +403,20 @@ import usersApi from "../../scripts/api/users";
         });
     }
 
-    deleteAuthor (index){
-		/*this.setState(prevState => {
-			const authors = prevState.authors.filter(autor => autor.name !== index);
-			
-			return { authors };
-		});*/
-		let aux1 = this.state.authors;
-		aux1.splice(index,1);
-		this.setState({authors:aux1});
+     deleteAuthor(id,index){
 
+         let aux = this.state.authors;
+         let i = aux.indexOf(id);
+         console.log("indexof",i);
+         aux.splice(i,1);
+         console.log("auxiliar",aux);
+         this.setState({authors:aux});
 
+         let auxpi=this.state.authorsList;
+         auxpi.splice(index,1);
+         this.setState({authorsList:auxpi});
 
-	}
+     }
 
 	deleteRoute(index) {
 		let aux1 = this.state.routes;
@@ -432,16 +445,6 @@ import usersApi from "../../scripts/api/users";
 		
 	}
 
-	addAuthor (e){
-		e.preventDefault();
-		let object = {name: ''};
-		object.name = this.state.auxNameAuthor;
-		//console.log(object);
-		console.log(this.state.authors);
-		this.setState({authors: this.state.authors.concat(object)});
-		this.setState({auxNameAuthor:''});
-	}
-
 	addRoute(e) {
 		e.preventDefault();
 		if(this.state.selectedRoute!==null){
@@ -453,10 +456,30 @@ import usersApi from "../../scripts/api/users";
 		this.setState({selectedRoute: e.target.value});
 	}
 
-	handleAuthorsChange (e){
-		this.setState({auxNameAuthor: e.target.value});
+     getOptions(input){
+         return authorsApi.list(1,input).then((response) => {
 
+             let data=response.data;
+             let res = data.map(author => ({ value: author.id, label: author.name }));
+
+             console.log(res);
+
+             return res;
+
+         });
+     }
+
+   	handleAuthorsChange(selectedOptions) {
+
+         let authors=[];
+
+         for(let k in selectedOptions){
+             authors.push(selectedOptions[k].value);
+         }
+
+         this.setState({authors: authors});
     }
+
     handleVerticeCoordenada1Change(e) {
 		this.setState({ auxCoordenada1: e.target.value });
 	}
@@ -512,24 +535,6 @@ import usersApi from "../../scripts/api/users";
 		let aux = this.state.images;
 		aux.splice(index,1);
 		this.setState({images:aux});
-	}
-
-	getRoutes(page){
-		roteirosApi.list(page).then((response) => {
-			
-			let arrayFinal={};
-
-			for(let k in response.data){
-				console.log("teste");
-				if(response.data.hasOwnProperty(k)){
-					arrayFinal[response.data[k].id]=response.data[k];
-				}
-			}
-			
-      this.setState({ routesList: arrayFinal,
-											routesPage:response.current_page,
-                      routesPageMax:response.last_page });
-    });
 	}
 
      /**

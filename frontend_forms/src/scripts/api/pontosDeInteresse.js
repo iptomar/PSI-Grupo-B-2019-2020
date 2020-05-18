@@ -151,7 +151,7 @@ for(let i in vertices){
   form.append('vertices['+i+'][order]', vertices[i]["order"]);
 }
 for(let i in authors){
-form.append('authors['+i+'][name]', authors[i]["name"]);
+form.append('authors['+i+']', authors[i]);
 }
 
     return fetch(furl, {
