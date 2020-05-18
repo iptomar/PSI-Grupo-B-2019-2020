@@ -619,6 +619,8 @@ false
 
 Get all authors in different pages.
 
+Accepts ``name`` as query string parameter for search
+
 Returns 200 with body:
 ```json
 {
