@@ -1,26 +1,28 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 
-.needs-validation{
-    width: 40%;
-    margin:auto;
-    height: 100%;
-    margin-top:75px;
-    color: white;
-    
+  .needs-validation{
+      width: 40%;
+      margin:auto;
+      height: 100%;
+      margin-top:75px;
   }
   
-    .needs-validation .custom-file {
-      width: 100%;
-    }
+  .form-group {
+    color: #fff;
+  }
 
-    .fundo {
-      background-image: linear-gradient(to bottom, rgb(46,65,88), 
-      rgb(102, 218, 199)); 
-      padding-top: 10px;
-      padding-bottom: 33px;
-      font-family: "Roboto", sans-serif;
-    }
+  .needs-validation .custom-file {
+    width: 100%;
+  }
+
+  .fundo {
+    background-image: linear-gradient(to bottom, rgb(46,65,88), 
+     rgb(102, 218, 199)); 
+    padding-top: 10px;
+    padding-bottom: 33px;
+    font-family: "Roboto", sans-serif;
+  }
 
 /* css da página PontosDeInteresseList*/
 
@@ -147,3 +149,8 @@ table {
   color: #333 !important;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.59);
 }
+
+.tabelaImagens {
+  margin-top: -45px;
+}
+

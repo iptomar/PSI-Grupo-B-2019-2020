@@ -184,8 +184,23 @@ import usersApi from "../../scripts/api/users";
 							<input className="form-control" type="number" step="any" placeholder="Insert coordinate 2..." id="coordinate2" name="coordinate2" value={this.state.coordinate2} onChange={this.handleCoordinate2Change} required />
 						</div>
 					</div>
+					<hr class="mb-3"></hr>
                     <div className="form-group row">
 						<label for="images_label"><b>Images</b></label>
+					</div>
+					<div className="custom-file">
+						<label for="image" className="custom-file-label">Upload file...</label>
+						<input type="file" className="custom-file-input" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
+					</div>
+					<br/><br/>
+					<div className="form-group row">
+						<label for="source_author"><b>Source Author</b></label>
+						<input className="form-control" id="source_author" name="source_author" rows="3" placeholder="Add a source author about the point of interest." value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} required></input>
+					</div>
+					<div className="form-group row">
+						<label for="description_images"><b>Description</b></label>
+						<input className="form-control" id="description_images" name="description_images" rows="3" placeholder="Add a description about the point of interest." value={this.state.auxDesc} onChange={this.handleImgDescChange} required></input>
+						<button className="btn btn-primary" onClick={this.addImage}>Add image</button>
 					</div>
 					{/* tabela com as imagens a enviar */}
 					<div className="tabelaImagens">
@@ -204,23 +219,7 @@ import usersApi from "../../scripts/api/users";
 							</tbody>
 						</table>
 					</div>
-
-					<div>
-						<label for="image"><b>Upload file</b></label>
-						<input type="file" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
-					</div>
-
-					<div className="form-group row">
-						<label for="source_author"><b>Source Author</b></label>
-						<input className="form-control" id="source_author" name="source_author" rows="3" placeholder="Add a source author about the point of interest." value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} required></input>
-					</div>
-					<div className="form-group row">
-						<label for="description_images"><b>Description</b></label>
-						<input className="form-control" id="description_images" name="description_images" rows="3" placeholder="Add a description about the point of interest." value={this.state.auxDesc} onChange={this.handleImgDescChange} required></input>
-						<button className="btn btn-primary" onClick={this.addImage}>adicionar imagem</button>
-					</div>
-						
-
+					<hr class="mb-3"></hr>
 					<div className="form-group row">
 						<label for="author"><b>Authors</b></label>
 					</div>
@@ -236,7 +235,6 @@ import usersApi from "../../scripts/api/users";
 
 					<div className="tabelaAutores">
 							<table className="table table-hover table-dark table-striped rounded" id="autores">
-                				<caption>Lista de Autores</caption>
 								<thead>
                        				 <tr style={{
                         			textAlign:"center"
@@ -244,17 +242,14 @@ import usersApi from "../../scripts/api/users";
                            				 <th scope="col" >Authors name</th>
                        				 </tr>
                     			</thead>
-                    	<tbody>
-                        	{listaAutores}
-                    	</tbody>
-                </table>
-	
-						</div>
-				
+                    			<tbody>
+                        			{listaAutores}
+                    			</tbody>
+          					</table>
+					</div>
+					<hr class="mb-3"></hr>
 					<div className="form-group row">
 						<label for="vertices"><b>Vertices</b></label>
-					</div>
-					<div className="form-group row">
 					</div>
 					<div className="form-group row">
 						<div className="form group col-md-6">
@@ -265,16 +260,14 @@ import usersApi from "../../scripts/api/users";
 							<label for="coordenada2"><b>Coordinate 2</b></label>
 							<input className="form-control" type="number" placeholder="Insert coordinate 2..." name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" onChange={this.handleVerticeCoordenada2Change} required />
 						</div>
-						<div className="form group col-md-6">
+					</div>
+						<div className="form group row">
 							<label for="order"><b>Order</b></label>
 							<input className="form-control" type="number" placeholder="Insert order..." min="1" name="order" id="order" value={this.state.auxOrder} data-index="0" onChange={this.handleOrderChange} required />
-						</div>
-						<div>
-							<button type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
+							<button className="btn btn-primary" type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
 						</div>
 						<div className="tabelaVertices">
 							<table className="table table-hover table-dark table-striped rounded" id="vertices">
-                				<caption>Lista de vertices</caption>
 								<thead>
                        				 <tr style={{
                         			textAlign:"center"
@@ -285,19 +278,23 @@ import usersApi from "../../scripts/api/users";
 
                        				 </tr>
                     			</thead>
-                    	<tbody>
-                        	{listaVertices}
-                    	</tbody>
-                </table>
-	
+                    			<tbody>
+                        			{listaVertices}
+                    			</tbody>
+                			</table>
 						</div>
-					</div>
+						<hr class="mb-3"></hr>
 					<div className="form-group row">
 						<label for="routes"><b>Routes</b></label>
 					</div>
+					<div className="form-group row">
+						<select class="custom-select" onChange={this.handleRouteChange}>
+							{options}
+						</select>
+						<button className="btn btn-primary" type="submit" value="submit" onClick={this.addRoute}>Add route</button>
+					</div>
 					<div className="tabelaRotas">
 						<table className="table table-hover table-dark table-striped rounded" id="rotas">
-							<caption>Lista de Rotas</caption>
 							<thead>
 								<tr style={{
 									textAlign: "center"
@@ -310,16 +307,9 @@ import usersApi from "../../scripts/api/users";
 							</tbody>
 						</table>
 					</div>
-					<div>
-						<button type="submit" value="submit" onClick={this.addRoute}>Add route</button>
-						<select onChange={this.handleRouteChange}>
-							{options}
-						</select>
-
-					</div>
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
-					<button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
+					<button className="btn btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
 						Submit
                 </button>
 					<ErrorAlert errors={this.state.errors} />
