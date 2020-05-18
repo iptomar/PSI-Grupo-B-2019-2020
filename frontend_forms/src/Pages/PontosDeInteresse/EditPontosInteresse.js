@@ -252,7 +252,7 @@ import usersApi from "../../scripts/api/users";
 						<label for="vertices"><b>Vertices</b></label>
 					</div>
 					<div className="form-group row">
-						<div className="form group col-md-6">
+						<div className="form-group col-md-6">
 							<label for="coordenada1"><b>Coordinate 1</b></label>
 							<input className="form-control" type="number" placeholder="Insert coordinate 1..." name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0" onChange={this.handleVerticeCoordenada1Change} required />
 						</div>
@@ -261,7 +261,7 @@ import usersApi from "../../scripts/api/users";
 							<input className="form-control" type="number" placeholder="Insert coordinate 2..." name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" onChange={this.handleVerticeCoordenada2Change} required />
 						</div>
 					</div>
-						<div className="form group row">
+						<div className="form-group row">
 							<label for="order"><b>Order</b></label>
 							<input className="form-control" type="number" placeholder="Insert order..." min="1" name="order" id="order" value={this.state.auxOrder} data-index="0" onChange={this.handleOrderChange} required />
 							<button className="btn btn-primary" type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
