@@ -165,6 +165,40 @@ form.append('authors['+i+']', authors[i]);
         return Promise.reject(response.json());
       }
     });
+  },
+  aprovedBuildings(id, aproved){
+    let furl = apiUrl + "/buildings/" + id + "/approve";
+    let token = "Bearer " + localStorage.getItem("auth.token");
+
+   let body ={
+        "aproved": aproved
+    }
+
+   // let form = new FormData();
+   // form.append('name', name);
+    //if(aproved !=0)
+    //form.append('aproved', aproved);
+
+   /* for(let i in buildings){
+      form.append('buildings['+i+'][buildingName]', buildings[i]["buildingName"]);
+    }*/
+
+    return fetch(furl, {method:'POST',
+                headers: { 'Content-Type':
+                'application/json',
+                'Accept':'application/json', 
+                'Authorization':token}, 
+                body: JSON.stringify(body)
+            }).then( (response) => {
+                return response.json().then( (json) => {
+                    if(response.ok){
+                        return Promise.resolve(json);
+                    } else {
+                        return Promise.reject(json);
+                    }
+                });
+            });
+
   }
 
 
@@ -231,3 +265,9 @@ export default pontosDeInteresseApi;
 
     **********************  edit()  ***********************************
 */
+
+pontosDeInteresseApi.aprovedBuildings(4, 1).then( (response) =>{
+  console.log(""+JSON.stringify(response))
+  }).catch( (error) => {
+  console.log("deu problemas: "+JSON.stringify(error))
+  });
