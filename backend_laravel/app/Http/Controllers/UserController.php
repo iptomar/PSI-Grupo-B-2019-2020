@@ -140,4 +140,33 @@ class UserController extends Controller
         $response = $user->delete();
         return response()->json($response, 200);
     }
+
+    public function show($user, Request $request){
+
+        if ($request->user()->cannot('superadmin')) {
+            abort(403);
+        }
+        $user = User::findOrFail($user);
+        return response()->json($user, 200);
+
+
+
+
+
+    }
+
+    public function register(Request $request){
+
+        $request->validate([
+            'name'=>'required|string',
+            'email'=>'required|email',
+            'password'=>'required|confirmed|string'
+        ]);
+
+        $user = new User(['email' => $request->email ,'name' => $request->name, 'role'=>'user']);
+        $user->password = app('hash')->make($request->password);
+        $user->save();
+
+        return response()->json(['user'=>$user],200);
+    }
 }

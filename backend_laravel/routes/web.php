@@ -22,12 +22,13 @@ $router->group(['prefix'=>'api'], function()use($router){
     $router->group([ 'middleware'=>'auth' ], function() use ($router) {
         $router->get('/me','UserController@me');
         $router->get('/users','UserController@index');
+        $router->get('/users/{user}','UserController@show');
         $router->patch('/users/{user}','UserController@update');
         $router->post('/users','UserController@store');
         $router->delete('/users/{user}','UserController@delete');
 
         $router->post('/buildings', 'BuildingController@store');
-        $router->patch('/buildings/{id}', 'BuildingController@update');
+        $router->post('/buildings/{id}', 'BuildingController@update');
         $router->delete('/buildings/{id}', 'BuildingController@delete');
         $router->delete('/buildings/{id}/approve', 'BuildingController@approve');
 
@@ -52,4 +53,6 @@ $router->group(['prefix'=>'api'], function()use($router){
 
     $router->get('/routes', 'RouteController@index');
     $router->get('/routes/{id}', 'RouteController@show');
+
+    $router->post('/user/register', 'UserController@register');
 });

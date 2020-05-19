@@ -146,6 +146,31 @@ Returns 401 if auth fails or 403 if not superadmin or 200 with body:
 }
 ```
 
+###### **POST** /api/users/register
+
+Create new user.
+
+Body request:
+- email (string) *
+- name (string) *
+- password (string) *
+- password_confirmation (string) *
+
+No auth
+
+Returns 200 with body:
+```json
+{
+    "user": {
+        "email": "manel@manel.com",
+        "name": "manel",
+        "role": "user",
+        "updated_at": "2020-03-18 16:00:24",
+        "created_at": "2020-03-18 16:00:24",
+        "id": 3
+    }
+}
+```
 ###### **DELETE** /api/users
 
 Delete user.
@@ -618,6 +643,8 @@ false
 ###### **GET** /api/authors
 
 Get all authors in different pages.
+
+Accepts ``name`` as query string parameter for search
 
 Returns 200 with body:
 ```json
