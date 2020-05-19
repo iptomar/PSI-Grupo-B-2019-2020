@@ -200,7 +200,7 @@ import AsyncSelect from 'react-select/async';
 							</div>
 
 
-                            <div className="col-md-4">
+                            <div className="form-group col-md-4">
                                 <label htmlFor="source_author"><b>Source Author</b></label>
                                 <input className="form-control" id="source_author" name="source_author" rows="3"
                                        placeholder="Add a source author about the point of interest."
@@ -208,7 +208,7 @@ import AsyncSelect from 'react-select/async';
                                        required></input>
                             </div>
 
-                            <div className="col-md-4">
+                            <div className="form-group col-md-4">
                                 <label htmlFor="description_images"><b>Description</b></label>
                                 <input className="form-control" id="description_images" name="description_images"
                                        rows="3" placeholder="Add a description about the point of interest."
@@ -252,7 +252,7 @@ import AsyncSelect from 'react-select/async';
                             onChange={this.handleAuthorsChange}
                         />
 					</div>
-
+							<br/>
 					<div className="tabelaAutores">
 							<table className="table table-hover table-dark table-striped rounded" id="autores">
 								<thead>

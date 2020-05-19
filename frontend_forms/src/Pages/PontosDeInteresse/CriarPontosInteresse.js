@@ -171,24 +171,35 @@ class CriarPontosInteresse extends Component {
 						</div>
 					</div>
 					<hr class="mb-3"></hr>
-					<div className="form-group row">
-						<label for="images_label"><b>Images</b></label>
+
+					<div className="row">
+						<div className="col-md-4">
+							<div className="custom-file" style={{marginTop:'35px'}}>
+							<label for="image" className="custom-file-label">Upload file...</label>
+							<input type="file" className="custom-file-input" label='Upload' 
+								   ref={(ref)=>this.fileUpload = ref} value={this.state.image} 
+								   onChange={this.handleImagesChange} />
+							</div>
+						</div>
+					
+
+						<div className="form-group col-md-4">
+							<label for="source_author"><b>Source Author</b></label>
+							<input className="form-control" id="source_author" name="source_author" rows="3" 
+							placeholder="Add a source author about the point of interest." 
+							value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} 
+							required></input>
+						</div>
+						<div className="form-group col-md-4">
+							<label for="description_images"><b>Description</b></label>
+							<input className="form-control" id="description_images" name="description_images" rows="3" 
+							placeholder="Add a description about the point of interest." 
+							value={this.state.auxDesc} onChange={this.handleImgDescChange} 
+							required></input>
+						</div>
 					</div>
-					{/* tabela com as imagens a enviar */}
-					<div className="custom-file">
-						<label for="image" className="custom-file-label">Upload file...</label>
-						<input type="file" className="custom-file-input" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
-					</div>
-					<br/><br/>
-					<div className="form-group row">
-						<label for="source_author"><b>Source Author</b></label>
-						<input className="form-control" id="source_author" name="source_author" rows="3" placeholder="Add a source author about the point of interest." value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} required></input>
-					</div>
-					<div className="form-group row">
-						<label for="description_images"><b>Description</b></label>
-						<input className="form-control" id="description_images" name="description_images" rows="3" placeholder="Add a description about the point of interest." value={this.state.auxDesc} onChange={this.handleImgDescChange} required></input>
-						<button className="btn btn-primary" onClick={this.addImage}>Add image</button>
-					</div>
+					<button className="btn btn-primary" onClick={this.addImage}>Add image</button>
+					<br/>
 					<div className="tabelaImagens">
 						<table className="table table-sm table-dark table-striped rounded" id="users">
 							<thead>
@@ -222,23 +233,28 @@ class CriarPontosInteresse extends Component {
 					<hr class="mb-3"></hr>
 					<br/>
 					<div className="form-group row">
-						<label for="vertices"><b>Vertices</b></label>
+							<div className="form group col-md-4">
+								<label for="coordenada1"><b>Coordinate 1</b></label>
+								<input className="form-control" type="number" placeholder="Insert coordinate 1..." 
+								name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0" 
+								onChange={this.handleVerticeCoordenada1Change} required />
+							</div>
+							<div class="form-group col-md-4">
+								<label for="coordenada2"><b>Coordinate 2</b></label>
+								<input className="form-control" type="number" placeholder="Insert coordinate 2..." 
+								name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" 
+								onChange={this.handleVerticeCoordenada2Change} required />
+							</div>
+							
+							<div className="form-group col-md-4">
+								<label for="order"><b>Order</b></label>
+								<input className="form-control" type="number" placeholder="Insert order..." min="1" 
+								name="order" id="order" value={this.state.auxOrder} data-index="0" 
+								onChange={this.handleOrderChange} required />
+								<button className="btn btn-primary" type="submit" value="submit" 
+								onClick={this.addVertice}>Add vertice</button>
+							</div>
 					</div>
-					<div className="form-group row">
-						<div className="form group col-md-6">
-							<label for="coordenada1"><b>Coordinate 1</b></label>
-							<input className="form-control" type="number" placeholder="Insert coordinate 1..." name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0" onChange={this.handleVerticeCoordenada1Change} required />
-						</div>
-						<div class="form-group col-md-6">
-							<label for="coordenada2"><b>Coordinate 2</b></label>
-							<input className="form-control" type="number" placeholder="Insert coordinate 2..." name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" onChange={this.handleVerticeCoordenada2Change} required />
-						</div>
-						</div>
-						<div className="form-group row ">
-							<label for="order"><b>Order</b></label>
-							<input className="form-control" type="number" placeholder="Insert order..." min="1" name="order" id="order" value={this.state.auxOrder} data-index="0" onChange={this.handleOrderChange} required />
-							<button className="btn btn-primary" type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
-						</div>
 						<div className="tabelaVertices">
 							<table className="table table-hover table-dark table-striped rounded" id="vertices">
 								<thead>
@@ -256,16 +272,6 @@ class CriarPontosInteresse extends Component {
                     			</tbody>
                 			</table>
 						</div>
-						<hr class="mb-3"></hr>
-					<div className="form-group row">
-						<label for="Routes"><b>Routes</b></label>
-					</div>
-					<div className="form-group row">
-						<select class="custom-select" onChange={this.handleRouteChange}>
-							{options}
-						</select>
-						<button className="btn btn-primary" type="submit" value="submit" onClick={this.addRoute}>Add route</button>
-					</div>
 
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
