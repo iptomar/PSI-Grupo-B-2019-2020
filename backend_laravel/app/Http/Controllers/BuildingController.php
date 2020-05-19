@@ -122,10 +122,11 @@ class BuildingController extends Controller
         $this->validate($request,$rules);
 
         $building=Building::create($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
+        $building->approved = false;
 
         $this->saveRelated($building,$request);
 
-        return response()->json(['building'=>$building->load(['authors','images','routes','vertices'])],200);
+        return response()->json(['building'=>$building->load(['authors','images','routes','vertices', 'approved'])],200);
 
     }
 
