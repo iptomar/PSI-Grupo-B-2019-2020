@@ -122,7 +122,7 @@ class BuildingController extends Controller
         $this->validate($request,$rules);
 
         $building=Building::create($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
-        $building->approved = false;
+        $building->approved = 0;
 
         $this->saveRelated($building,$request);
 
@@ -171,7 +171,7 @@ class BuildingController extends Controller
         $this->validate($request,$rules);
 
         $building->update($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
-        $building->approved = false;
+        $building->approved = 0;
         
         $this->saveRelated($building,$request);
 
@@ -189,6 +189,27 @@ class BuildingController extends Controller
         $building->delete();
 
         return response()->json(['success'=>true],200);
+
+    }
+
+    /**
+     * Method/endpoint to approve a building
+     * @param $id
+     * @param Request $request
+     */
+    public function approve($id, Request $request){
+
+        $building = \App\Building::findOrFail($id);
+
+        if ($request->user()->cannot('superadmin')) {
+            abort(403);
+        }
+
+        $building->approved=1;
+        $building->save();
+
+
+        return response()->json(true,200);
 
     }
 }
