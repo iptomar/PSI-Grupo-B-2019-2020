@@ -638,6 +638,18 @@ or
 false
 ```
 
+###### **POST** /api/routes/{id}/approve
+
+Approves route
+
+Requires auth and user must be admin:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if route does not exist or 200 with body:
+```json
+true
+```
+
 ## Authors Endpoints
 
 ###### **GET** /api/authors

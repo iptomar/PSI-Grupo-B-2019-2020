@@ -30,7 +30,7 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->post('/buildings', 'BuildingController@store');
         $router->post('/buildings/{id}', 'BuildingController@update');
         $router->delete('/buildings/{id}', 'BuildingController@delete');
-        $router->delete('/buildings/{id}/approve', 'BuildingController@approve');
+        $router->post('/buildings/{id}/approve', 'BuildingController@approve');
 
         $router->post('/routes', 'RouteController@store');
         $router->patch('/routes/{id}', 'RouteController@update');
