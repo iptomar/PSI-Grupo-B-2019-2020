@@ -1,7 +1,10 @@
- //criar o mapa atraves da biblioteca da leaflet com a posiçao definida e zoom
-//O maxZoom quando inicializa a aplicaão é 14 e vai localizar o longitude e latitude na posicão atual 
-//do utilizador
-var mymap = L.map('map', {doubleClickZoom: false}).locate({setView: true, maxZoom: 14});
+
+const mapa = document.querySelector('#map');
+mapa.style.height = '543px';
+mapa.style.marginTop = '-18px';
+mapa.style.zIndex = '1px';
+
+let mymap = L.map('map', {doubleClickZoom: false}).locate({setView: true, maxZoom: 14});
 
 //criação dos eventos e suas funcoes para distinguir o estado online e offline
 //######################Estado OffLine##################################
@@ -44,15 +47,23 @@ const markerCurrent = L.icon({
     iconAnchor: [25, 16]
 });
 
+//Path tracer icon
+const pathTrace = L.icon({
+    iconUrl: 'images/gold.png',
+    iconSize: [50, 50],
+    iconAnchor: [25, 16]
+});
+
  //vai indicar a posição inicial quando inicia a app
+ let latlng;
  navigator.geolocation.getCurrentPosition(function (location) {
-    var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+    latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
     //Criar o marcador do mapa na localizacão atual
-    var marker = L.marker(latlng, { icon: markerCurrent}).addTo(mymap);
+    let marker = L.marker(latlng, { icon: markerCurrent}).addTo(mymap);
     
-    var popupContext = document.createElement('h4');
-    popupContext.style.color = "#00cc44";
-    popupContext.innerHTML = "You are here now!";
+    let popupContext = document.createElement('h4');
+    popupContext.style.color = "#FF8B00";
+    popupContext.innerHTML = "Your current location";
 
     buildings();
 
@@ -61,77 +72,194 @@ const markerCurrent = L.icon({
 
 
 //Funcão para fazer fetch das informacões 
-var coord;
+let coord;
 async function buildings() 
 {
     try {
         //let Access-Control-Allow-Origin across the CORS url
-        //let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        //const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         //Target url to fetch
-        let targetUrl = 'json/info.json';
-        let response = await fetch(targetUrl);
-        let data = await response.json();
-        let dados = data.buildings; 
+        const targetUrl = 'json/info.json';
+        //const targetUrl = 'http://psi2020.tugamars.com/api/buildings';
+        const response = await fetch(targetUrl);
+        const data = await response.json();
+        const dados = data.data; 
         
         $.each(dados, function(i, info){
-            coord = [info.coordinate1, info.coordinate2];
-            circle = L.circle(coord, {
-            color: 'green',
-            fillColor: '#aa3',
-            fillOpacity: 0.5,
-            radius: 100
-        }).addTo(mymap);
+                //console.log(info);
+                coord = [info.coordinate1, info.coordinate2];
+                circle = L.circle(coord, {
+                color: '#ff9900',
+                fillColor: '#aa3',
+                fillOpacity: 0.5,
+                radius: 100
+            }).addTo(mymap);
 
-       
-        var marcador = L.marker(coord);
-        marcador.bindTooltip(`<b>`+info.buildingName+`</b>`).openTooltip();
-        marcador.bindPopup(`
-                <div id="detalhe1" data-toggle="modal" data-target="#test1">
-                    <div class="modal-header">
-                        <h3 class="modal-title">`+info.buildingName+`</h3>
-                    </div>
-                    <div class="modal-body">
-                        <h5 class="modal-title" id="exampleModalLabel"> Localizacão: `+info.location+`</h5>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-warning"><span class="glyphicon glyphicon-pushpin"> Traçar o caminho</button><br><br>
-                        <a class="btn btn-info linkDetal" type="button" href="#detalhe"><span class="glyphicon glyphicon-eye-open"> Ver os detalhes</a>
-                    </div><br>
-                </div>
-                <div id="detalhe" tabindex="-1" data-toggle="modal" data-target="#test2">
-                    <div class="modal-header" >
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span id="btnClose" aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">`+info.buildingName+`</h4>
-                    </div>
-                    <div class="modal-body" id="col2">
-                        <h5>Tipo edificio: `+info.buildingType+`</h5>
-                        <h7>Ano: `+info.dates+`</h7><hr>
-                        <p>`+info.description+`</p>
-                        <hr />
-                        <h4>`+info.authors[0].name+`</h4>
-                        <h4>`+info.authors[1].name+`</h4>
-                        <figure>
-                            <div class="row">
-                                <img style="width: 200px; height: 200px" src="`+info.images[0].base64+`" alt="`+info.images[0].description+`">
-                                <figcaption> Autor da imagem: `+info.images[0].sourceAuthor+`</figcaption><br>
-                                <img style="width: 200px; height: 200px" src="`+info.images[1].base64+`" alt="`+info.images[1].description+`">
-                                <figcaption> Autor da imagem: `+info.images[1].sourceAuthor+`</figcaption>
-                            </div>
-                            </figure>
-                       
-                    </div>
-                </div>
-                `).addTo(mymap);
+            let divPopup = document.createElement('div');
+            divPopup.setAttribute('id', 'iDdivPopup');
+
+            let buildName = document.createElement('h3');
+            buildName.setAttribute('id', 'idBuildName');
+            buildName.classList.add('item1');
+            
+            let buildLocation = document.createElement('h4');
+            buildLocation.setAttribute('id', 'idBuildLoc');
+            buildLocation.classList.add('item2');
+
+            let hr = document.createElement('hr');
+            hr.classList.add('hrAll');
+
+            let but = document.createElement('button');
+            let butContext = document.createTextNode(' Detalhes');
+            but.appendChild(butContext);
+            but.setAttribute('id', 'botDetalhe');
+            but.className = "glyphicon glyphicon-info-sign";
+
+            let but2 = document.createElement('button');
+            let but2Context = document.createTextNode(' Escolher a rota');
+            but2.appendChild(but2Context);
+            but2.setAttribute('id', 'botTracar');
+            but2.className = "glyphicon glyphicon-map-marker";
+
+            buildName.textContent = info.buildingName;
+            buildLocation.textContent = info.location;
+            divPopup.appendChild(buildName);
+            divPopup.appendChild(buildLocation);
+            divPopup.appendChild(hr);
+            divPopup.appendChild(but);
+            divPopup.appendChild(but2);
+            
+            L.marker(coord).addTo(mymap).bindPopup(divPopup);
+            
+            const cont = document.querySelector('.cont');
+            
+            const txtDetails = document.querySelector('.divDetails');
+            
+            const titBuild = document.createElement('h2');
+            titBuild.style.textAlign = "center";
+            titBuild.classList.add('titBuild');
+            txtDetails.appendChild(titBuild);
+
+            const locBuild = document.createElement('h4');
+            locBuild.classList.add('localBuild');
+
+            const autBuild = document.createElement('p');
+            autBuild.classList.add('autBuild');
+
+            const descBuild = document.createElement('p');
+            descBuild.classList.add('descripBuild');
+
+            const dateBuild = document.createElement('h5');
+            dateBuild.classList.add('dateBuild');
+
+            const imagem = document.createElement('img');
+            imagem.classList.add('imagem');
+
+            const divImage = document.createElement('div');
+            divImage.setAttribute('id', 'divImage');
+
+            const descImage = document.createElement('p');
+            descImage.setAttribute('class', 'descImage');
+            descImage.innerHTML = "Autor da imagem: ";
+            
+            let autor = info.authors;
+            let image = info.images;
+
+            but.addEventListener('click', function(){
+                cont.style.display = "none";
+                document.body.style.backgroundColor = "#fff5e6";
+                txtDetails.style.visibility = 'visible';
+                titBuild.innerHTML = info.buildingName;
+                locBuild.innerHTML = `<b>Localizacão: ${info.location}</b>`;
+                descBuild.innerHTML = info.description;
+                dateBuild.innerHTML = `<b>Ano de construcao: ${info.dates}</b>`;
+
+                autor.forEach(function(el){
+                    autBuild.innerHTML = `<b>Autores: ${el.name}</b>`;
+                });
+                txtDetails.appendChild(locBuild);
+                txtDetails.appendChild(dateBuild);
+                txtDetails.appendChild(autBuild);
+                txtDetails.appendChild(descBuild);
+
+                txtDetails.appendChild(hr);
+                divImage.appendChild(imagem);
+                divImage.appendChild(descImage);
+                txtDetails.appendChild(divImage);
+
+                image.forEach(function(im){
+                    imagem.src = `data:image/png;base64, ${im.base64}`;
+                });
+            });
+
+            const cl = document.querySelector('.close');
+            cl.addEventListener('click', function(){
+                txtDetails.style.display = "none";
+                window.location.reload();
+
+            });
+
+            //Info
+            const info1 = document.querySelector('#info');
+            const about = document.querySelector('#about');
+            info1.addEventListener('click', function(){
+                cont.style.display = "none";
+                about.style.visibility = "visible";
+            });
+
+            //close info
+            const clInfo = document.querySelector('.closeInfo');
+            clInfo.addEventListener('click', function(){
+                about.style.display = "none";
+                window.location.reload();
+
+            });
+
+            let routs = info.routes;
+            const divRoute = document.createElement('div');
+            const hRoute = document.createElement('p');
+            hRoute.setAttribute('class', 'hRoute');
+            const txtP = document.createTextNode('Escolher um dos roteiros: ');
+            hRoute.appendChild(txtP);
+            divRoute.appendChild(hRoute);
+            divRoute.classList.add('divRoute');
+            const ul = document.createElement('ul');
+            const li = document.createElement('li');
+            ul.appendChild(li); 
+            divRoute.appendChild(ul);
+           
+            //Path tracer
+            but2.addEventListener('click', function(){
+                routs.forEach(function(r){
+                    //console.log(r.name);
+                    li.textContent = r.name;
+                    divPopup.appendChild(divRoute);
+                });
+                //L.marker(coord, {icon: pathTrace}).addTo(mymap);
+            });
+
+            // but2.addEventListener('click', function(){
+            //     console.log(coord);
+            //     L.Routing.control({
+            //         waypoints: [
+            //             L.latLng(latlng),
+            //             L.latLng(coord)
+            //         ]
+            //     }, L.marker((coord, {icon: pathTrace}).addTo(mymap)));
+            // });
+
         });
 
     } catch (ex) {
-        alert("O site que esta a buscar não existe. Tente de novo!");
+        alert("O site que esta a buscar não existe. por favor tente de novo!");
     }
 }
 
 
+
+
+
+        
 
 
 

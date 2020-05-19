@@ -1,6 +1,10 @@
+body {
+  overflow: hidden; 
+}
+
 .navbar {
   overflow: hidden;
-  background-color: #333;
+  background-color:#FF8B00;
   position: absolute;
   top: 0;
   margin-bottom: 2%;
@@ -9,7 +13,7 @@
 }
 
 #title{
- color: white;
+ color: #000000;
  font-family: 'Times New Roman';
  float: left;
 }
@@ -22,31 +26,25 @@ margin-top: 1%;
 margin-right: 2%;
 }
 
-
-#map{
-  height: 520px;
-  margin-top: 0%;
-  z-index: 1;
-}
-
-
 #detalhe{
   position: absolute;
   top: -1000px;
-  left: -10px;
+  margin-left: -10px;
   background:linear-gradient(to bottom right, #ffd162,#f8ffce, #ffffff);
-  color: #000000;
+  color: #000000;overflow-y: scroll;
   padding: 8px;
-  height: 605px;
+  height: 600px;
   width:900px;
   float: left;
   z-index: 3;
   overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 #detalhe:focus{
   top: 0px;
   left: 0px;
+  
 }
 
 #detalhe1{
@@ -58,15 +56,15 @@ margin-right: 2%;
 }
 
 #about{
-position: absolute;
-top: -5000px;
-left: 0px;
-background:linear-gradient(to bottom right, #ffd162,#f8ffce, #ffffff);
-color: #000000;
-padding: 8px;
-height: 605px;
-width: 1280px;
-z-index: 3;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background:linear-gradient(to bottom right, #ffd162,#f8ffce, #ffffff);
+  color: #000000;
+  padding: 8px;
+  height: 680px;
+  width: 1280px;
+  z-index: 3;
 }
 
 #about:focus{
@@ -77,4 +75,104 @@ top: 0px;
 
 .imgEdif{width: 200px; height: 200px;}
 
+.bToolTip{
+  color: #FF8B00;
+}
 
+#botDetalhe{
+  background-color: #ff9900; 
+  border: none;
+  color: white;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  margin: 4px 2px;
+}
+
+#botTracar{
+  background-color: rgb(131, 150, 132);
+  border: none;
+  color: white;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  margin: 4px 2px;
+  
+}
+
+.localBuild{
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.infoFoot{
+  margin-bottom: 0px;
+  text-align: center;
+  padding: 3px;
+  background-color: rgb(131, 150, 132);
+  color: white;
+}
+
+.contact{
+  color: #ffffff;
+}
+
+.equipImg{
+  border: 2px solid #ff9900;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.localBuild, .descripBuild, .autBuild{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.modHeader{
+  text-align: center;
+}
+
+.titBuild{
+  text-align: center;
+  height: 100%;
+  border-radius: 5%;
+  background-color: #ff9900;
+}
+
+.hrAll{
+  border: 2px dotted #ff9900;
+}
+
+.imagem{
+  width: 300px; 
+  height: 200px;
+}
+
+#divImage{
+  width: 306px; 
+  height: 226px;
+  margin-left: 10px;
+  border: 3px solid #ff9900;
+}
+
+.descImage{
+  background-color: #ff9900;
+}
+
+.dateBuild{
+  margin-left: 10px;
+}
+
+.divRoute{
+  background-color: gray;
+  width: 240px;
+  height: 150px;
+}
+
+.hRoute{
+  font-size: 16px;
+}
