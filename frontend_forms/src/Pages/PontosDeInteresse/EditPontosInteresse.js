@@ -388,14 +388,12 @@ import AsyncSelect from 'react-select/async';
    
     handleSubmit(e){
         e.preventDefault();
-		console.log("teste");
-		//edit(id, buildName, location, dates, type, description, cc1, cc2, vertices, routes, imagens, authors)
 
         pontosDeInteresseApi.edit(this.state.pontosInteresseID, this.state.buildingName, this.state.location, this.state.dates, this.state.buildingType, 
             this.state.description, this.state.coordinate1, this.state.coordinate2, this.state.vertices, this.state.routes
             , this.state.images, this.state.authors).then( (response)=>{
                 console.log("tou aqui");
-            //this.props.history.push('/PointsOfInterest');
+						this.props.history.push('/PointsOfInterest');
             console.log("oi");
         }).catch( (error) => {
 						console.log(error);

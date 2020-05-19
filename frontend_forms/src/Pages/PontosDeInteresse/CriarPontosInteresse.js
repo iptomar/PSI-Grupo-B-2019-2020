@@ -290,16 +290,13 @@ class CriarPontosInteresse extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		const file = this.fileUpload.files[0];
-		console.log(file);
-		console.log(this.state.vertices);
-		console.log(this.state.authors);
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
 																this.state.vertices,
 																this.state.images,this.state.authors,this.state.routes
 			).then((response)=>{
 
-				if(response.ok){
+				if(response){
 					this.props.history.push('/PointsOfInterest');
 				}
 
