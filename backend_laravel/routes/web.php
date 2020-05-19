@@ -29,15 +29,12 @@ $router->group(['prefix'=>'api'], function()use($router){
         $router->post('/buildings', 'BuildingController@store');
         $router->patch('/buildings/{id}', 'BuildingController@update');
         $router->delete('/buildings/{id}', 'BuildingController@delete');
+        $router->delete('/buildings/{id}/approve', 'BuildingController@approve');
 
         $router->post('/routes', 'RouteController@store');
         $router->patch('/routes/{id}', 'RouteController@update');
         $router->delete('/routes/{id}', 'RouteController@delete');
         $router->post('/routes/{id}/approve', 'RouteController@approve');
-
-        $router->post('/routes', 'RouteController@store');
-        $router->patch('/routes/{id}', 'RouteController@update');
-        $router->delete('/routes/{id}', 'RouteController@delete');
 
         $router->post('/authors', 'AuthorController@store');
         $router->patch('/authors/{id}', 'AuthorController@update');
