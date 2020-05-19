@@ -31,10 +31,7 @@ class CriarPontosInteresse extends Component {
 		this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
 		this.handleCoordinate1Change = this.handleCoordinate1Change.bind(this);
 		this.handleCoordinate2Change = this.handleCoordinate2Change.bind(this);
-		//this.handleVerticesChange = this.handleVerticesChange.bind(this);
 		this.handleImagesChange = this.handleImagesChange.bind(this);
-		//this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
-		//this.handleRoutesChange = this.handleRoutesChange.bind(this);
 		this.handleVerticeCoordenada1Change = this.handleVerticeCoordenada1Change.bind(this);
 		this.handleVerticeCoordenada2Change = this.handleVerticeCoordenada2Change.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,10 +41,7 @@ class CriarPontosInteresse extends Component {
 		this.handleImgDescChange = this.handleImgDescChange.bind(this);
 		this.handleImgAuthorChange = this.handleImgAuthorChange.bind(this);
 		this.addVertice = this.addVertice.bind(this);
-		//this.listVertices = this.listVertices.bind(this);
-		//this.getListVertice = this.getListVertice.bind(this);
 		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
-		//this.deleteAuthor = this.deleteAuthor.bind(this);
 		this.addRoute = this.addRoute.bind(this);
 		this.handleRouteChange = this.handleRouteChange.bind(this);
 
@@ -301,7 +295,6 @@ class CriarPontosInteresse extends Component {
 				}
 
 			}).catch( (error) => {
-				console.log("error ");
 				console.log(error);
             	this.setState({errors:error});
 			});
@@ -319,10 +312,6 @@ class CriarPontosInteresse extends Component {
 		let aux1 = this.state.vertices;
 		aux1.splice(index,1);
 		this.setState({vertices:aux1});
-
-		/*let aux1 = this.state.vertices;
-		aux1.splice(index, 1);
-		this.setState({images:aux1});*/
 
 	}
 
@@ -345,8 +334,6 @@ class CriarPontosInteresse extends Component {
 		object.coordinate1 = this.state.auxCoordenada1;
 		object.coordinate2 = this.state.auxCoordenada2;
 		object.order = this.state.auxOrder;
-		console.log(object);
-		//console.log(this.state.vertices);
 		this.setState({vertices: this.state.vertices.concat(object)});
 		this.setState({auxCoordenada1:''});
 		this.setState({auxCoordenada2:''});
@@ -442,9 +429,6 @@ class CriarPontosInteresse extends Component {
 		this.setState({ auxAuthor: e.target.value });
 	}
 
-	/*  	handleRoutesChange(e) {
-		this.setState( { nameRoute: e.target.value });
-	} */
 
 	addImage(e){
 		e.preventDefault();
@@ -473,17 +457,6 @@ class CriarPontosInteresse extends Component {
 		this.setState({images:aux});
 	}
 
-
-	/*handleAuthorsChange (e, index){
-			console.log("authors");
-			const authors = this.state.authors;
-			authors[index].name_author = e.target.value;
-			this.setState({
-					authors
-			});
-	};*/
-
-
 	getRoutes(page){
 		roteirosApi.list(page).then((response) => {
 
@@ -503,7 +476,5 @@ class CriarPontosInteresse extends Component {
 	}
 
 }
-
-/* ReactDOM.render (<fileInput />, document.getElementById('root')); */
 
 export default CriarPontosInteresse;
