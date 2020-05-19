@@ -154,4 +154,19 @@ class UserController extends Controller
 
 
     }
+
+    public function register(Request $request){
+
+        $request->validate([
+            'name'=>'required|string',
+            'email'=>'required|email',
+            'password'=>'required|confirmed|string'
+        ]);
+
+        $user = new User(['email' => $request->email ,'name' => $request->name, 'role'=>'user']);
+        $user->password = app('hash')->make($request->password);
+        $user->save();
+
+        return response()->json(['user'=>$user],200);
+    }
 }

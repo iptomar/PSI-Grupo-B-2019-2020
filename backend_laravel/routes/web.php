@@ -56,4 +56,6 @@ $router->group(['prefix'=>'api'], function()use($router){
 
     $router->get('/routes', 'RouteController@index');
     $router->get('/routes/{id}', 'RouteController@show');
+
+    $router->post('/user/register', 'UserController@register');
 });
