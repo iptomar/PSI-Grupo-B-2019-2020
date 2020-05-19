@@ -1,8 +1,11 @@
+package Admin;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.After;
@@ -19,10 +22,10 @@ import org.openqa.selenium.WebDriver;
  *
  * @author Luís Badalo
  */
-public class LoginSuccess {
+public class LoginUnsuccesfull {
     WebDriver driver;
     
-    public LoginSuccess(WebDriver driver) {
+    public LoginUnsuccesfull(WebDriver driver) {
         this.driver = driver;
     }
     
@@ -37,12 +40,13 @@ public class LoginSuccess {
              String url = driver.getCurrentUrl();
              Assert.assertEquals(true,url.contains("login"));
              driver.findElement(By.name("email")).click();
-             driver.findElement(By.name("email")).sendKeys("aaa@gmail.com");
+             driver.findElement(By.name("email")).sendKeys("admin@admin.com");
              Thread.sleep(500);
              driver.findElement(By.name("password")).click();
-             driver.findElement(By.name("password")).sendKeys("aaa");
+             driver.findElement(By.name("password")).sendKeys("password");
              Thread.sleep(500);
-              driver.findElement(By.xpath("//button[.='Login']")).click();
+             //Influência o type
+             driver.findElement(By.xpath("//button[.='Login']")).click();
              Thread.sleep(1000);
              String title = driver.getCurrentUrl();
              Assert.assertEquals(true,title.contains("home"));

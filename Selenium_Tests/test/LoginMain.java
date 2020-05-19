@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Admin.LoginSuccess;
 import Admin.RegisterSuccess;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.After;

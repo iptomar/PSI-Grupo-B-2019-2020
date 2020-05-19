@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Admin;
+package Admin.Authors;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,17 +18,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Tomás Barros
  */
 public class DeleteAuthors {
-    public static void main(String[] args) {
-        try {
-            System.setProperty("webdriver.chrome.driver","D:\\GithubNAOMEXER\\jars\\chromedriver.exe");
-            WebDriver driver = new ChromeDriver();
-            driver.get("http://front.psi2020.tugamars.com/login2");
-            WebElement email = driver.findElement(By.id("email"));
-            email.sendKeys("admin@admin.com");
-            WebElement password = driver.findElement(By.id("password"));
-            password.sendKeys("password");
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//button[.='Login']")).click();
+    WebDriver driver;
+    
+    public DeleteAuthors(WebDriver driver) {
+        this.driver = driver;
+    }
+    
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+     public void DeletedAuthors() {
+         try {
             //Ir para Authors
             Thread.sleep(500);
             driver.findElement(By.xpath("//a[.='Authors']")).click();
@@ -35,9 +36,12 @@ public class DeleteAuthors {
             driver.findElement(By.xpath("//button[.='Delete']")).click();
             //aceitar alerta
             driver.switchTo().alert().accept();
+             //ARRANJAR
+            String title = driver.getCurrentUrl();
+             Assert.assertEquals(true,title.contains("home"));
             
-        } catch (InterruptedException ex) {
-            Logger.getLogger(DeleteAuthors.class.getName()).log(Level.SEVERE, null, ex);
+        }  catch (Exception e) {
+             System.out.println(e.getMessage());
         }
     }
 }

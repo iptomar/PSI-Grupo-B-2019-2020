@@ -1,4 +1,4 @@
-package Admin;
+package Admin.Points;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,7 +8,6 @@ package Admin;
 
 
 import Testes.Login.Capabilities.Capabilities;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -18,27 +17,28 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  *
  * @author Luís Badalo
  */
-public class DeleteAccount {
+public class CreatePoint {
     WebDriver driver;
     
-    public DeleteAccount(WebDriver driver) {
+    public CreatePoint(WebDriver driver) {
         this.driver = driver;
     }
     
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void DeletedAccount() {
+     public void PointInterest() {
          try {
             Thread.sleep(5000);
-            driver.findElement(By.linkText("Users")).click();
+            //driver.findElement(By.linkText("Login")).click();
             Thread.sleep(2000);
+            // String url = driver.getCurrentUrl();
+            // Assert.assertEquals(true,url.contains("login"));
              //driver.findElement(By.name("email")).click();
              //driver.findElement(By.name("email")).sendKeys("admin@admin.com");
              Thread.sleep(500);
@@ -50,6 +50,7 @@ public class DeleteAccount {
              Thread.sleep(1000);
              //String title = driver.getCurrentUrl();
              //Assert.assertEquals(true,title.contains("home"));
+             
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Admin;
+package Admin.Users;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,17 +18,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Tomás Barros
  */
 public class EditUsers {
-    public static void main(String[] args) {
-        try {
-            System.setProperty("webdriver.chrome.driver","D:\\GithubNAOMEXER\\jars\\chromedriver.exe");
-            WebDriver driver = new ChromeDriver();
-            driver.get("http://front.psi2020.tugamars.com/login2");
-            WebElement email = driver.findElement(By.id("email"));
-            email.sendKeys("admin@admin.com");
-            WebElement password = driver.findElement(By.id("password"));
-            password.sendKeys("password");
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//button[.='Login']")).click();
+    WebDriver driver;
+    
+    public EditUsers(WebDriver driver) {
+        this.driver = driver;
+    }
+    
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+     public void EditedUsers() {
+         try {
             //Ir para Authors
             Thread.sleep(500);
             driver.findElement(By.xpath("//a[.='Users']")).click();
@@ -57,8 +58,11 @@ public class EditUsers {
             //driver.findElement(By.xpath("//button[.='Update']")).click();
             //aceitar alerta
             //driver.switchTo().alert().accept();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(EditUsers.class.getName()).log(Level.SEVERE, null, ex);
+             //ARRANJAR
+            String title = driver.getCurrentUrl();
+             Assert.assertEquals(true,title.contains("home"));
+        } catch (Exception e) {
+             System.out.println(e.getMessage());
         }
     }
 }
