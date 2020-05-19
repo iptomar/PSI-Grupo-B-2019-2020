@@ -775,3 +775,8 @@ true
 
 ##### [2020-05-06]
 - Changed the way routes are returned **- Francisco Vital**
+
+##### [2020-05-19]
+- Added approved column to buildings table **- Francisco Vital**
+- Changed create and update functions to handle approval depending on user **- Francisco Vital**
+- Added approve route for buildings **- Francisco Vital**
