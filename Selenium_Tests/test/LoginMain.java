@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Admin.RegisterSuccess;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -32,7 +33,7 @@ public class LoginMain {
      
     public void hello() {
     new LoginSuccess(driver).loginSucessfully();
-    //new RegisterSuccess(driver).registerSuccessfully();
+    new RegisterSuccess(driver).registerSuccessfully();
     //new RegisterUnsuccessfull(driver).registerUnsuccessfully();
     }
     @AfterEach
