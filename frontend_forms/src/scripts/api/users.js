@@ -138,13 +138,23 @@ let usersApi = {
 
     },
 
-    update(uid,body){
+    update(uid,email, name, password, password_confirmation, role){
 
         let furl=apiUrl+"/users/"+uid;
         let token="Bearer " + localStorage.getItem("auth.token");
+        let body = {
+            "email": email,
+            "name": name,
+            "password": password,
+            "password_confirmation": password_confirmation,
+            "role": role
+        };
 
         return fetch(furl, {method:'PATCH', headers:{
-                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, 
+                'Content-Type':'application/json',
+                'Accept':'application/json', 
+                'Authorization':token}, 
+
                 body: JSON.stringify(body)
         }).then( (response) => {
             return response.json().then( (json) => {
@@ -189,10 +199,17 @@ let usersApi = {
 
 };
 
-usersApi.createUser("da@da.com","da","da","da","register").then( (response) =>{
+usersApi.update(37,"daniela@daniela.com","daniela","daniela","daniela", "superadmin").then( (response) =>{
+    console.log(""+JSON.stringify(response))
+    }).catch( (error) => {
+    console.log("deu problemas: " +JSON.stringify(error))
+    });
+
+
+/*usersApi.createUser("da@da.com","da","da","da","register").then( (response) =>{
 console.log(""+JSON.stringify(response))
 }).catch( (error) => {
 console.log("deu problemas: " +JSON.stringify(error))
-})
+});*/
 
 export default usersApi;
