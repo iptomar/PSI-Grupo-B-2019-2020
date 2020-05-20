@@ -19,11 +19,17 @@ body {
 }
 
 #info{
-color: white;
-font-family: 'Times New Roman';
-float: right;
-margin-top: 1%;
-margin-right: 2%;
+  color: white;
+  font-family: 'Times New Roman';
+  float: right;
+  margin-top: 1%;
+  margin-right: 2%;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#info:hover{
+  color: green;
 }
 
 #detalhe{
@@ -82,7 +88,7 @@ top: 0px;
 #botDetalhe{
   background-color: #ff9900; 
   border: none;
-  color: white;
+  color: #000000;
   text-align: left;
   text-decoration: none;
   display: inline-block;
@@ -92,7 +98,7 @@ top: 0px;
 }
 
 #botTracar{
-  background-color: rgb(131, 150, 132);
+  background-color: #000000;
   border: none;
   color: white;
   text-align: left;
@@ -107,6 +113,9 @@ top: 0px;
 .localBuild{
   margin-top: 2%;
   margin-bottom: 2%;
+  text-align: center;
+  font-family: Trattatello, fantasy;
+  font-size: 26px;
 }
 
 .infoFoot{
@@ -132,6 +141,12 @@ top: 0px;
   margin-right: 10px;
 }
 
+.autBuild{
+  text-align: center; 
+  font-family: Marker Felt, fantasy;
+  font-size: 32px;
+}
+
 .modHeader{
   text-align: center;
 }
@@ -139,24 +154,25 @@ top: 0px;
 .titBuild{
   text-align: center;
   height: 100%;
-  border-radius: 5%;
   background-color: #ff9900;
+  font-family: 'Times New Roman';
 }
 
 .hrAll{
-  border: 2px dotted #ff9900;
+  border: 1px solid #000000;
 }
 
 .imagem{
-  width: 300px; 
-  height: 200px;
+  width: 800px; 
+  height: 500px;
 }
 
 #divImage{
-  width: 306px; 
-  height: 226px;
-  margin-left: 10px;
+  width: 806px; 
+  height: 526px;
+  margin-left: 20%;
   border: 3px solid #ff9900;
+  text-align: center;
 }
 
 .descImage{
@@ -165,14 +181,49 @@ top: 0px;
 
 .dateBuild{
   margin-left: 10px;
+  text-align: center;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-size: 20px;
 }
 
 .divRoute{
-  background-color: gray;
+  background-color: rgb(247, 230, 230);
   width: 240px;
   height: 150px;
 }
 
 .hRoute{
   font-size: 16px;
+  background-color: #ff9900;
+}
+
+.closeSpan{
+  float: right;
+  margin-right: 2%;
+  color: rgb(146, 25, 25);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.closeSpan:hover{
+  color: red;
+}
+
+.liRoute{
+  font-size: 14px;
+}
+
+#vistRout{
+  float: right;
+  color: green;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+#vistRout:hover{
+  color: #FF8B00;
+}
+
+#idBuildName, #idBuildLoc{
+  text-align: center;
 }

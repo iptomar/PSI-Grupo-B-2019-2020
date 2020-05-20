@@ -1,57 +1,229 @@
+body {
+  overflow: hidden; 
+}
+
 .navbar {
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    float: right;
-  }
+  overflow: hidden;
+  background-color:#FF8B00;
+  position: absolute;
+  top: 0;
+  margin-bottom: 2%;
+  width: 100%;
+  left: 0px;
+}
 
- #title{
-   color: white;
-   font-family: 'Times New Roman';
-   float: left;
- }
+#title{
+ color: #000000;
+ font-family: 'Times New Roman';
+ float: left;
+}
 
- #info{
+#info{
   color: white;
   font-family: 'Times New Roman';
   float: right;
-  margin-right: 5%;
- }
-  
+  margin-top: 1%;
+  margin-right: 2%;
+  font-size: 24px;
+  cursor: pointer;
+}
 
-  #map{
-    height: 530px;
-  }
+#info:hover{
+  color: green;
+}
 
 #detalhe{
   position: absolute;
-  top: -500px;
-  left: 0;
-  background: #66aabb;
-  color: white;
+  top: -1000px;
+  margin-left: -10px;
+  background:linear-gradient(to bottom right, #ffd162,#f8ffce, #ffffff);
+  color: #000000;overflow-y: scroll;
   padding: 8px;
-  z-index: 100;
+  height: 600px;
+  width:900px;
+  float: left;
+  z-index: 3;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 #detalhe:focus{
   top: 0px;
+  left: 0px;
+  
+}
+
+#detalhe1{
+  z-index: 1;
+}
+
+#detalhe1:focus{
+  display: none;
 }
 
 #about{
   position: absolute;
-  top: -5000px;
-  color: white;
+  top: 0px;
+  left: 0px;
+  background:linear-gradient(to bottom right, #ffd162,#f8ffce, #ffffff);
+  color: #000000;
   padding: 8px;
-  z-index: 100;
+  height: 680px;
+  width: 1280px;
+  z-index: 3;
 }
 
 #about:focus{
-  top: 0px;
-  left: 20px;
-  width: 70%;
-  height: 70%;
-  background-color: #66aabb;
+top: 0px;
 }
 
+.linkDetal{color: #ffffff;}
+
+.imgEdif{width: 200px; height: 200px;}
+
+.bToolTip{
+  color: #FF8B00;
+}
+
+#botDetalhe{
+  background-color: #ff9900; 
+  border: none;
+  color: #000000;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  margin: 4px 2px;
+}
+
+#botTracar{
+  background-color: #000000;
+  border: none;
+  color: white;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  margin: 4px 2px;
+  
+}
+
+.localBuild{
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+  font-family: Trattatello, fantasy;
+  font-size: 26px;
+}
+
+.infoFoot{
+  margin-bottom: 0px;
+  text-align: center;
+  padding: 3px;
+  background-color: rgb(131, 150, 132);
+  color: white;
+}
+
+.contact{
+  color: #ffffff;
+}
+
+.equipImg{
+  border: 2px solid #ff9900;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.localBuild, .descripBuild, .autBuild{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.autBuild{
+  text-align: center; 
+  font-family: Marker Felt, fantasy;
+  font-size: 32px;
+}
+
+.modHeader{
+  text-align: center;
+}
+
+.titBuild{
+  text-align: center;
+  height: 100%;
+  background-color: #ff9900;
+  font-family: 'Times New Roman';
+}
+
+.hrAll{
+  border: 1px solid #000000;
+}
+
+.imagem{
+  width: 800px; 
+  height: 500px;
+}
+
+#divImage{
+  width: 806px; 
+  height: 526px;
+  margin-left: 20%;
+  border: 3px solid #ff9900;
+  text-align: center;
+}
+
+.descImage{
+  background-color: #ff9900;
+}
+
+.dateBuild{
+  margin-left: 10px;
+  text-align: center;
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-size: 20px;
+}
+
+.divRoute{
+  background-color: rgb(247, 230, 230);
+  width: 240px;
+  height: 150px;
+}
+
+.hRoute{
+  font-size: 16px;
+  background-color: #ff9900;
+}
+
+.closeSpan{
+  float: right;
+  margin-right: 2%;
+  color: rgb(146, 25, 25);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.closeSpan:hover{
+  color: red;
+}
+
+.liRoute{
+  font-size: 14px;
+}
+
+#vistRout{
+  float: right;
+  color: green;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+#vistRout:hover{
+  color: #FF8B00;
+}
+
+#idBuildName, #idBuildLoc{
+  text-align: center;
+}

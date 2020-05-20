@@ -63,11 +63,16 @@ var coord;
 async function buildings() 
 {
     try {
-        let response = await fetch('http://psi2020.tugamars.com/api/buildings');
+        //let Access-Control-Allow-Origin across the CORS url
+        let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        //Target url to fetch
+        let targetUrl = 'http://psi2020.tugamars.com/api/buildings/';
+        let response = await fetch(proxyUrl + targetUrl);
         let data = await response.json();
         let dados = data.data; 
         
         $.each(dados, function(i, info){
+            console.log(info)
             coord = [info.coordinate1, info.coordinate2];
             circle = L.circle(coord, {
             color: 'green',
@@ -77,25 +82,37 @@ async function buildings()
         }).addTo(mymap);
 
         L.marker(coord).bindPopup(`
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="height:300px; width:300px;overflow:scroll;">
-                        <div class="modal-header">
-                            <h1 class="modal-title" id="exampleModalLabel">`+info.buildingName+`</h1><hr>
-                            <h2 class="modal-title" id="exampleModalLabel">`+info.buildingType+`</h2>
-                            <h4>Localizacão: `+info.location+`</h4>
-                            <h5>Ano: `+info.dates+`</h5>
-                        </div><hr>
-                        <div class="modal-footer">
-                            <a class+"btn btn-primary" type="button" href="#detalhe">Ver detalhes</a>
-                        </div><br>
+                <div>
+                    <div class="modal-header">
+                        <h6 class="modal-title">`+info.buildingName+`</h6>
                     </div>
-                </div>
+                    <div class="modal-body">
+                        <h7 class="modal-title" id="exampleModalLabel">`+info.buildingType+`</h7>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-warning"><span class="glyphicon glyphicon-pushpin"> Traçar o caminho</button><br><br>
+                        <a class="btn btn-info linkDetal" type="button" href="#detalhe"><span class="glyphicon glyphicon-eye-open"> Ver os detalhes</a>
+                    </div><br>
                 </div>`).addTo(mymap);
                 
                 $('#detalhe').html(
-                    `<div class="modal-body">
-                        <p>`+info.description+`</p>
+                    `<div>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h3 class="modal-title">`+info.buildingName+`</h3>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Localizacão: `+info.location+`</h4>
+                            <h5>Ano: `+info.dates+`</h5><hr>
+                            <p>`+info.description+`</p>
+                            `+$.each(info.authors, function(i, autor){
+                                `<p>`+autor.name+`</p>`
+                                console.log(autor.name);
+                            })+`
+                            <img class="" src="data:image/png;base64, `+info.images+`" />
+                        </div>
                     </div>`
                 );
         });
@@ -104,6 +121,11 @@ async function buildings()
         alert("O site que esta a buscar não existe. Tente de novo!");
     }
 }
+
+// //<img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA
+// AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+// 9TXL0Y4OHwAAAABJRU5ErkJggg=="
+// />
 
 
         
