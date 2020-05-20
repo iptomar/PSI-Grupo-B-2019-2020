@@ -47,10 +47,12 @@ export default class pontosDeInteresseList extends Component {
         <td >{pontosDeInteresse[ponto].buildingName}</td>
         <td >{pontosDeInteresse[ponto].location}</td>
         <td >{pontosDeInteresse[ponto].dates}</td>
+        <td> {pontosDeInteresse[ponto].approved} </td> 
         <td >
           <button type="button" class="btn btn-danger" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deletePontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}}>Apagar</button>
           <button type="button" class="btn btn-info" onClick={() => this.editPontoDeInteresse(pontosDeInteresse[ponto].id)}>Editar</button>
           <button type="button" class="btn btn-success" onClick={() => this.detalhesPontoDeInteresse(pontosDeInteresse[ponto].id)}>Detalhes</button>
+          <button type="button" class="btn btn-warning"  onClick = {() => {if (window.confirm('Are you sure you want to approve this route?'))this.aprovedBuildings(pontosDeInteresse[ponto].id, ponto)}}>Approve</button>
         </td>
       </tr>;
 
@@ -91,7 +93,8 @@ export default class pontosDeInteresseList extends Component {
               <th scope="col">Nome</th>
               <th scope="col">Localização</th>
               <th scope="col">Data</th>
-              <th scope="col">Apagar/Editar/Detalhes</th>
+              <th scope="col">Aproved</th>
+              <th scope="col">Apagar/Editar/Detalhes/Approve</th>
             </tr>
 
           </thead>
@@ -124,8 +127,24 @@ export default class pontosDeInteresseList extends Component {
     
   }
 
+  aprovedBuildings (id, aproved) {
+    if(id !=0)
+    aproved =1;
+    pontosDeInteresseApi.aprovedBuildings(id).then ((response) => {
+        this.setState({aproved: ''
+                     });
+        this.refreshPage();         
+    })
+  }
+
+  refreshPage(){
+    window.location.reload();
+}
+
   detalhesPontoDeInteresse (id){
       this.props.history.push('/PointsOfInterest/' + id + '/detalhes');
+    /*  this.setState({aproved: ''
+                });*/
     
   }
 
