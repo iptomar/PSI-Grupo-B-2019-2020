@@ -66,6 +66,10 @@ class PontosDeInteresseDetalhes extends Component {
                                         <th scope="col">Description</th>
                                         <td>{b.description}</td>                     
                                     </tr>
+                                    <tr>
+                                        <th scope="col">Approved</th>
+                                        <td>{b.approved}</td>                     
+                                    </tr>
                                 </tbody>
                                 
                                 

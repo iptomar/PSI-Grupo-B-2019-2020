@@ -45,6 +45,7 @@ class DetalhesRoutes extends Component {
                         <td >{pontosDeInteresse[ponto].buildingName}</td>
                         <td >{pontosDeInteresse[ponto].location}</td>
                         <td >{pontosDeInteresse[ponto].dates}</td>
+                        <td >{pontosDeInteresse[ponto].approved}</td>
                     </tr>;
 
                     items.push(i);
@@ -77,6 +78,7 @@ class DetalhesRoutes extends Component {
                                     <th scope="col">Nome</th>
                                     <th scope="col">Localização</th>
                                     <th scope="col">Data</th>
+                                    <th scope="col">Approved</th>
                                 </tr>
 
                                 </thead>
