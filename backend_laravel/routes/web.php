@@ -18,6 +18,7 @@ $router->get('/', function () use ($router) {
 //All api routes go under this group
 $router->group(['prefix'=>'api'], function()use($router){
 
+    $router->post('/users/register', 'UserController@register');
     //All routes that need authentication go under this group
     $router->group([ 'middleware'=>'auth' ], function() use ($router) {
         $router->get('/me','UserController@me');
@@ -54,5 +55,5 @@ $router->group(['prefix'=>'api'], function()use($router){
     $router->get('/routes', 'RouteController@index');
     $router->get('/routes/{id}', 'RouteController@show');
 
-    $router->post('/user/register', 'UserController@register');
+
 });
