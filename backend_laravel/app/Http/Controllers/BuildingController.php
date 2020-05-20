@@ -121,7 +121,7 @@ class BuildingController extends Controller
 
         $this->validate($request,$rules);
 
-        $building=Building::create($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
+        $building=new Building($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
         
         if ($request->user()->cannot('superadmin')) {
             $building->approved = 0;
@@ -130,9 +130,11 @@ class BuildingController extends Controller
             $building->approved = 1;
         }
 
+        $building->save();
+
         $this->saveRelated($building, $request);
 
-        return response()->json(['building'=>$building->load(['authors','images','routes','vertices', 'approved'])],200);
+        return response()->json(['building'=>$building->load(['authors','images','routes','vertices'])],200);
 
     }
 
@@ -184,7 +186,7 @@ class BuildingController extends Controller
         else{
             $building->approved = 1;
         }
-        
+        $building->save();
         
         $this->saveRelated($building,$request);
 
