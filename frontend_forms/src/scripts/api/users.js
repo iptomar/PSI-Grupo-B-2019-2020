@@ -158,8 +158,41 @@ let usersApi = {
 
     },
 
+    createUser (email,name,password,password_confirmation, register) {
+
+        let furl=apiUrl+"/users/" + register;
+
+        let body = {
+            "email": email,
+            "name": name,
+            "password": password,
+            "password_confirmation": password_confirmation
+        };
+        console.log("body user",body);
+
+        return fetch(furl, {method:'POST',
+                headers: { 
+                'Content-Type':'application/json',
+                'Accept':'application/json'},
+                body: JSON.stringify(body)
+            }).then( (response) => {
+                return response.json().then( (json) => {
+                    if(response.ok){
+                        return Promise.resolve(json);
+                    } else {
+                        return Promise.reject(json);
+                    }
+                });
+            });
+
+    }
+
 };
 
-
+usersApi.createUser("da@da.com","da","da","da","register").then( (response) =>{
+console.log(""+JSON.stringify(response))
+}).catch( (error) => {
+console.log("deu problemas: " +JSON.stringify(error))
+})
 
 export default usersApi;
