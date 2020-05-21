@@ -16,6 +16,7 @@ body {
  color: #000000;
  font-family: 'Times New Roman';
  float: left;
+ margin-left: 1%;
 }
 
 #info{
@@ -119,11 +120,13 @@ top: 0px;
 }
 
 .infoFoot{
-  margin-bottom: 0px;
   text-align: center;
   padding: 3px;
   background-color: rgb(131, 150, 132);
   color: white;
+  position: absolute;
+  left: 0;
+  width: 100%;
 }
 
 .contact{
@@ -226,4 +229,23 @@ top: 0px;
 
 #idBuildName, #idBuildLoc{
   text-align: center;
+}
+
+.fotCopyRight{
+  background-color: rgb(61, 55, 55);
+  color: rgb(107, 173, 41);
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.sobRAM{
+  font-family: 'Times New Roman';
+  font-weight: bold;
+}
+
+.imgIPT{
+  width: 150px; 
+  height: 50px;
+  margin-top: 10%; 
 }

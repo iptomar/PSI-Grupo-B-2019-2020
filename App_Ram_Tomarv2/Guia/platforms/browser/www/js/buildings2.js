@@ -1,6 +1,6 @@
 
 const mapa = document.querySelector('#map');
-mapa.style.height = '543px';
+mapa.style.height = '547px';
 mapa.style.marginTop = '-18px';
 mapa.style.zIndex = '1px';
 
@@ -43,7 +43,7 @@ function onOnline() {
 //Custom icon for current position
 const markerCurrent = L.icon({
     iconUrl: 'images/marker.png',
-    iconSize: [75, 75],
+    iconSize: [50, 50],
     iconAnchor: [25, 16]
 });
 
@@ -175,7 +175,7 @@ async function buildings()
                 titBuild.innerHTML = info.buildingName;
                 locBuild.innerHTML = `<b>Localizacão: ${info.location}</b>`;
                 descBuild.innerHTML = info.description;
-                dateBuild.innerHTML = `<b>Ano de construcao: ${info.dates}</b>`;
+                dateBuild.innerHTML = `<b>Ano de construcão: ${info.dates}</b>`;
 
                 autor.forEach(function(el){
                     autBuild.innerHTML = `<b>Autores: ${el.name}</b>`;
