@@ -25,7 +25,7 @@ public class EditPoint {
         this.driver = driver;
     }
     
-    public EditPoint(String[] args) {
+    public void EditPoints() {
         try {
             Thread.sleep(500);
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
