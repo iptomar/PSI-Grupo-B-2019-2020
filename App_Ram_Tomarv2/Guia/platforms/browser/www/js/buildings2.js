@@ -47,7 +47,7 @@ const markerCurrent = L.icon({
     iconAnchor: [25, 16]
 });
 
-//Path tracer icon
+//Path tracer icon customize
 const pathTrace = L.icon({
     iconUrl: 'images/gold.png',
     iconSize: [50, 50],
@@ -258,18 +258,11 @@ async function buildings()
             
             //Path Tracer
             vistRout.addEventListener('click', function(){
-                //console.log(coord);
-                // L.Routing.control({
-                //     waypoints: [
-                //         L.latLng(latlng),
-                //         L.latLng(coord)
-                //     ]
-                // }, L.marker((coord, {icon: pathTrace}).addTo(mymap)));
-
+                removeRoutingControl();
                 control = L.Routing.control({
                     waypoints: [
-                        L.latLng(latlng),
-                        L.latLng(coord)
+                        L.latLng(latlng),               //latLang current position of the user
+                        L.latLng(coord)                 //route coordinate 
                     ],
                     createMarker: function (i, wp, nWps) {
                         if (i === nWps - 1) {
@@ -288,6 +281,14 @@ async function buildings()
             });
 
         });
+
+        //Remove the routing control if it's already marked
+        function removeRoutingControl() {
+            if (control != null) {
+                mymap.removeControl(control);
+                control = null;
+            }
+        };
 
     } catch (ex) {
         alert("O site que esta a buscar não existe. por favor tente de novo!");
