@@ -13,8 +13,10 @@ class Create extends Component {
             role:'',
             password: '',
             password_confirmation: '',
+            logged: '',
             errors:[]
         };
+
         // This binding is necessary to make `this` work in the callback
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -22,8 +24,9 @@ class Create extends Component {
         this.handlePasswordConfirmationChange = this.handlePasswordConfirmationChange.bind(this);
         this.handleRoleChange = this.handleRoleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        //Validação de que o utilizador está logado
-        usersApi.validateAuth(this.props,"superadmin");
+
+        let teste = usersApi.softValidateAuth(this.props,"superadmin");
+        console.log("temos logged? ",teste)
 
     }
 
@@ -60,8 +63,18 @@ class Create extends Component {
     
 
     render() {
-        return (
 
+        /*Caso o utilizador esteja logado, é feita a construção do campo de role */
+        let roleField="";
+        if(this.state.logged){
+            roleField=`<div className="FormField">
+                    <label className="FormField__Label" htmlFor="role">Role</label>
+                    <input type="text" id="role" className="FormField__Input" placeholder="Enter the desired role" name="role" value={this.state.role} onChange={this.handleRoleChange} />
+                    </div>`
+        }
+
+        return (
+            
             <div className="App">
 
 
@@ -84,10 +97,9 @@ class Create extends Component {
                                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
                                 <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleEmailChange} />
                             </div>
-                            <div className="FormField">
-                                <label className="FormField__Label" htmlFor="role">Role</label>
-                                <input type="text" id="role" className="FormField__Input" placeholder="Enter the desired role" name="role" value={this.state.role} onChange={this.handleRoleChange} />
-                            </div>
+                            {/* apenas vai apresentar o campo para o role se ele tiver sido criado*/}
+                            {roleField}
+
                             <div className="FormField">
                                 <label className="FormField__Label" htmlFor="password">Password</label>
                                 <input type="password" id="password" className="FormField__Input" placeholder="Enter your password" name="password" value={this.state.password} onChange={this.handlePasswordChange} />
@@ -140,6 +152,8 @@ class Create extends Component {
         else
             throw resposta;
     }
+
+
 }
 
 export default Create;

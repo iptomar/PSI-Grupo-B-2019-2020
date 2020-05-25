@@ -3,6 +3,7 @@ let apiUrl=process.env.REACT_APP_API_URL_BASE;
 
 let usersApi = {
 
+    
     validateAuth(props,role=null){
         console.log("Validating auth...");
 
@@ -25,19 +26,59 @@ let usersApi = {
                     if(role!==null && role!==data.user.role){
                         console.log("Auth fail");
                         props.history.push('/login2');
-                    }
-
+                        
+                    }  
                 });
 
             } else {
                 console.log("Auth fail");
-                props.history.push('/login2');
+                props.history.push('/login2');                
             }
-        });
-
-
-
+        });       
     },
+
+    //É um validate auth novo para usar na página de registo:
+    //caso nao esteja logado, em vez de enviar para o login 2 retornar que nao esta logado para guardar no state.
+    softValidateAuth(props,role=null){
+        console.log("Validating auth...");
+
+        let aux="";
+        let furl=apiUrl+"/me";
+        let token="Bearer " + localStorage.getItem('auth.token');
+
+        fetch(furl, {method:'GET', headers:{
+                'Content-Type':'application/json',
+                'Accept':'application/json',
+                'Authorization':token
+        }}).then( (response) => {
+
+            if(response.ok){
+                return response.json().then(data => {
+                    console.log(data);
+                    console.log("Role: " + role + " - Needed: " + data.user.role);
+
+                    if(role!==null && role!==data.user.role){
+                        console.log("Auth fail 1");
+                        //props.history.push('/login2');
+                        aux = "false";
+                        return aux;
+                    }else{
+                        //se chegamos aqui, está logado
+                        console.log("auth complete");
+                        aux = "true";
+                        return aux;
+                    }  
+                });
+
+            } else {
+                console.log("Auth fail 2");
+                //props.history.push('/login2');
+                aux = "false";     
+                return aux;     
+            }
+        });       
+        
+    },    
 
     login(email,password){
         let furl=apiUrl+"/login";
@@ -168,9 +209,10 @@ let usersApi = {
 
     },
 
-    createUser (email,name,password,password_confirmation, register) {
+    //quando o utilizador nao estiver 
+    createUser (email,name,password,password_confirmation) {
 
-        let furl=apiUrl+"/users/" + register;
+        let furl=apiUrl+"/users/register";
 
         let body = {
             "email": email,
