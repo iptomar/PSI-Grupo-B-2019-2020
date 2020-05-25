@@ -82,15 +82,20 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $user){
+        if ($request->user()->cannot('superadmin')) {
+            abort(403);
+        }
+
         $user = User::findOrFail($user);
 
         $this->validate($request, [
             'email'=>'nullable|string|email',
             'name'=>'nullable|string',
-            'password'=>'nullable|confirmed|string'
+            'password'=>'nullable|confirmed|string',
+            'role'=>'required|in:'.implode(",",User::$roles)
         ]);
 
-        $user->update($request->only(['email', 'name']));
+        $user->update($request->only(['email', 'name','role']));
         $user->password = app('hash')->make('password');
         $user->save();
         return response()->json(['user' => $user], 200);
@@ -101,13 +106,18 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request){
+        if ($request->user()->cannot('superadmin')) {
+            abort(403);
+        }
+
         $this->validate($request, [
             'email'=>'required|string|email',
             'name'=>'required|string',
-            'password'=>'required|confirmed|string'
+            'password'=>'required|confirmed|string',
+            'role'=>'required|in:'.implode(",",User::$roles)
         ]);
 
-        $user = new User(['email' => $request->email ,'name' => $request->name]);
+        $user = new User(['email' => $request->email ,'name' => $request->name, 'role'=>$request->role]);
         $user->password = app('hash')->make($request->password);
         $user->save();
 
@@ -116,11 +126,47 @@ class UserController extends Controller
 
     /**
      * Method/endpoint to delete user
+     * @param $user
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($user){
+    public function delete($user, Request $request){
+
+        if ($request->user()->cannot('superadmin')) {
+            abort(403);
+        }
+
         $user = User::findOrFail($user);
         $response = $user->delete();
         return response()->json($response, 200);
+    }
+
+    public function show($user, Request $request){
+
+        if ($request->user()->cannot('superadmin')) {
+            abort(403);
+        }
+        $user = User::findOrFail($user);
+        return response()->json($user, 200);
+
+
+
+
+
+    }
+
+    public function register(Request $request){
+
+        $this->validate($request,[
+            'name'=>'required|string',
+            'email'=>'required|email',
+            'password'=>'required|confirmed|string'
+        ]);
+
+        $user = new User(['email' => $request->email ,'name' => $request->name, 'role'=>'user']);
+        $user->password = app('hash')->make($request->password);
+        $user->save();
+
+        return response()->json(['user'=>$user],200);
     }
 }

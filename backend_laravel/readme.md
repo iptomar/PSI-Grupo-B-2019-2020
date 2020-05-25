@@ -99,11 +99,13 @@ Body request:
 - email (string) 
 - name (string)
 - password (string)
+- role (string)
 
 Requires auth:
 `Authorization: Bearer *token*`
+Requires superadmin privileges
 
-Returns 401 if auth fails or 404 if user with "id" does not exist or 200 with body:
+Returns 401 if auth fails or 404 if user with "id" does not exist or 403 if not superadmin or 200 with body:
 ```json
 {
     "user": {
@@ -125,11 +127,13 @@ Body request:
 - name (string) *
 - password (string) *
 - password_confirmation (string) *
+- role (string)
 
 Requires auth:
 `Authorization: Bearer *token*`
+Requires superadmin privileges
 
-Returns 401 if auth fails or 200 with body:
+Returns 401 if auth fails or 403 if not superadmin or 200 with body:
 ```json
 {
     "user": {
@@ -142,14 +146,40 @@ Returns 401 if auth fails or 200 with body:
 }
 ```
 
+###### **POST** /api/users/register
+
+Create new user.
+
+Body request:
+- email (string) *
+- name (string) *
+- password (string) *
+- password_confirmation (string) *
+
+No auth
+
+Returns 200 with body:
+```json
+{
+    "user": {
+        "email": "manel@manel.com",
+        "name": "manel",
+        "role": "user",
+        "updated_at": "2020-03-18 16:00:24",
+        "created_at": "2020-03-18 16:00:24",
+        "id": 3
+    }
+}
+```
 ###### **DELETE** /api/users
 
 Delete user.
 
 Requires auth:
 `Authorization: Bearer *token*`
+Requires superadmin privileges
 
-Returns 401 if auth fails or 404 if user with "id" does not exist or 200 with body:
+Returns 401 if auth fails or 404 if user with "id" does not exist or 403 if not superadmin or 200 with body:
 ```json
 true
 ```
@@ -159,6 +189,7 @@ true
 ###### **GET** /api/routes
 
 Get all routes in different pages.
+If user is authenticated he can get all routes. If not, just the approved ones.
 
 Returns 200 with body:
 ```json
@@ -273,7 +304,7 @@ Returns 401 if not authenticated or 404 if route does not exist or 200 with body
 
 ###### **DELETE** /api/routes/{id}
 
-Update route.
+Delete route.
 
 Requires auth:
 `Authorization: Bearer *token*`
@@ -282,6 +313,20 @@ Returns 401 if not authenticated or 404 if route does not exist or 200 with body
 ```json
 true
 ```
+
+###### **POST** /api/routes/{id}/approve
+
+Approves route
+
+Requires auth and user must be admin:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if route does not exist or 200 with body:
+```json
+true
+```
+
+## Buildings Endpoints
 
 ###### **GET** /api/buildings/
 
@@ -382,9 +427,7 @@ If not empty, each object must have:
     - sourceAuthor (string) *
     - description (string) *
     
-- authors (array of objects)<br>
-If not empty, each object must have:
-    - name (string) *
+- authors (array of integers, needs to have valid id for authors) *<br>
     
 - routes (array of integers, needs to have at least one valid route) *
 
@@ -440,7 +483,7 @@ Or 200 with created building:
 ```
 
 
-###### **PATCH** /api/buildings/{id}
+###### **POST** /api/buildings/{id}
 
 Endpoint to edit building with related data.
 
@@ -469,9 +512,7 @@ If not empty, each object must have:
     - sourceAuthor (string) *
     - description (string) *
     
-- authors (array of objects) [if empty, removes all authors previously associated]<br>
-If not empty, each object must have:
-    - name (string) *
+- authors (array of integers, needs to have valid id for authors) [if empty, removes all authors previously associated]<br>
     
 - routes (array of integers, needs to have at least one valid route) [if empty nothing changes, else replaces previous data with new]
 
@@ -596,6 +637,113 @@ or
 ```json
 false
 ```
+
+###### **POST** /api/routes/{id}/approve
+
+Approves route
+
+Requires auth and user must be admin:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if route does not exist or 200 with body:
+```json
+true
+```
+
+## Authors Endpoints
+
+###### **GET** /api/authors
+
+Get all authors in different pages.
+
+Accepts ``name`` as query string parameter for search
+
+Returns 200 with body:
+```json
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 5,
+            "name": "Manuel"
+        }
+    ],
+    "first_page_url": "http://localhost:8000/api/authors?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://localhost:8000/api/authors?page=1",
+    "next_page_url": null,
+    "path": "http://localhost:8000/api/authors",
+    "per_page": 15,
+    "prev_page_url": null,
+    "to": 1,
+    "total": 1
+}
+```
+
+###### **GET** /api/authors/{id}
+
+Get data about one author.
+
+Returns 404 if author does not exist or 200 with body:
+```json
+{
+    "author": {
+        "id": 5,
+        "name": "Manuel"
+    }
+}
+```
+
+###### **POST** /api/authors
+
+Create new author.
+
+Body request:
+- name (string) *
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 200 with body:
+```json
+{
+    "author": {
+        "name": "Manuel",
+        "id": 5
+    }
+}
+```
+
+###### **PATCH** /api/authors/{id}
+
+Update author.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if author does not exist or 200 with body:
+```json
+{
+    "author": {
+        "id": 5,
+        "name": "Manuela"
+    }
+}
+```
+
+###### **DELETE** /api/authors/{id}
+
+Delete author.
+
+Requires auth:
+`Authorization: Bearer *token*`
+
+Returns 401 if not authenticated or 404 if author does not exist or 200 with body:
+```json
+true
+```
+
 ## Changelog
 
 ##### [2020-03-17]
@@ -623,3 +771,24 @@ false
 - Created CRUD endpoint and controller for Building **- Marcelo Silva**
 - Building index (list) contains search and is ordered by Building Name **- Marcelo Silva**
 - Update doc with latest API endpoints (Building) **- Marcelo Silva**
+
+##### [2020-04-20]
+- Added roles **- Marcelo Silva**
+- Changed author model data and relationships **- Francisco Vital**
+- Chnaged building model relationships **- Francisco Vital**
+- Added more routes **- Francisco Vital**
+- Created CRUD for authors **- Francisco Vital**
+
+##### [2020-05-05]
+- Added route for Route approval **- Marcelo Silva**
+- Added function to set route approval status as false on creation/update **- Marcelo Silva**
+- Building controller now expects array of ids for authors assoc **- Marcelo Silva**
+- Added option to associate buildings to routes on the routes endpoint **- Marcelo Silva**
+
+##### [2020-05-06]
+- Changed the way routes are returned **- Francisco Vital**
+
+##### [2020-05-19]
+- Added approved column to buildings table **- Francisco Vital**
+- Changed create and update functions to handle approval depending on user **- Francisco Vital**
+- Added approve route for buildings **- Francisco Vital**

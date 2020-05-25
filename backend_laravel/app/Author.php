@@ -15,13 +15,13 @@ class Author extends Model
 {
 
     protected $fillable=[
-        'name','building_id'
+        'name'
     ];
 
     protected $hidden=['created_at','updated_at'];
 
-    public function building(){
-        return $this->belongsTo('\App\Building');
+    public function buildings(){
+        return $this->belongsToMany('\App\Building', 'authors_buildings');
     }
 
 }

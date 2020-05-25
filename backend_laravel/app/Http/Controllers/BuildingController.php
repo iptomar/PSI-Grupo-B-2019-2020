@@ -22,16 +22,8 @@ class BuildingController extends Controller
 
     protected function saveRelated(Building $building, Request $request){
 
-        if($request->has('authors')){
-            $authors=[];
-
-            foreach($request->authors as $a){
-                $authors[]=new Author(['name'=>$a['name']]);
-            }
-
-            $building->authors()->delete();
-            $building->authors()->saveMany($authors);
-
+        if($request->has('authors') && $request->authors != null){
+            $building->authors()->sync($request->authors);
         }
 
         if($request->has('vertices') && $request->vertices != null){
@@ -62,6 +54,8 @@ class BuildingController extends Controller
 
             $building->images()->delete();
             $building->images()->saveMany($images);
+        } else {
+            $building->images()->delete();
         }
 
         if($request->has('routes') && $request->routes != null){
@@ -115,21 +109,30 @@ class BuildingController extends Controller
             'images.*.description'=>'required|string|min:1',
 
             //Authors
-            'authors'=>'nullable|array|min:1',
-            'authors.*.name'=>'required|string|min:1',
+            'authors'=>'nullable|array',
+            'authors.*'=>'required|numeric|exists:authors,id',
 
             //Routes
 
-            'routes'=>'required|array|min:1',
+            'routes'=>'nullable|array|min:1',
             'routes.*'=>'required|numeric|exists:routes,id'
 
         ];
 
         $this->validate($request,$rules);
 
-        $building=Building::create($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
+        $building=new Building($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
+        
+        if ($request->user()->cannot('superadmin')) {
+            $building->approved = 0;
+        }
+        else{
+            $building->approved = 1;
+        }
 
-        $this->saveRelated($building,$request);
+        $building->save();
+
+        $this->saveRelated($building, $request);
 
         return response()->json(['building'=>$building->load(['authors','images','routes','vertices'])],200);
 
@@ -164,7 +167,7 @@ class BuildingController extends Controller
 
             //Authors
             'authors'=>'nullable|array',
-            'authors.*.name'=>'required|string|min:1',
+            'authors.*'=>'required|numeric|exists:authors,id',
 
             //Routes
 
@@ -177,6 +180,14 @@ class BuildingController extends Controller
 
         $building->update($request->only('buildingName','location','dates','buildingType','description','coordinate1','coordinate2'));
 
+        if ($request->user()->cannot('superadmin')) {
+            $building->approved = 0;
+        }
+        else{
+            $building->approved = 1;
+        }
+        $building->save();
+        
         $this->saveRelated($building,$request);
 
         return response()->json(['building'=>$building->load(['authors','images','routes','vertices'])],200);
@@ -193,6 +204,27 @@ class BuildingController extends Controller
         $building->delete();
 
         return response()->json(['success'=>true],200);
+
+    }
+
+    /**
+     * Method/endpoint to approve a building
+     * @param $id
+     * @param Request $request
+     */
+    public function approve($id, Request $request){
+
+        $building = \App\Building::findOrFail($id);
+
+        if ($request->user()->cannot('superadmin')) {
+            abort(403);
+        }
+
+        $building->approved=1;
+        $building->save();
+
+
+        return response()->json(true,200);
 
     }
 }

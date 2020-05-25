@@ -19,7 +19,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'name', 'email','role'
     ];
 
     /**
@@ -30,6 +30,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public static $roles = [
+        "superadmin",
+        "user"
+    ];
+
+    public function hasRole($role){
+        return $role===$this->role;
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
