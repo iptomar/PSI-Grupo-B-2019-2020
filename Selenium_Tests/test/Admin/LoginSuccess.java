@@ -49,8 +49,8 @@ public class LoginSuccess {
              //Influência o type
              driver.findElement(By.xpath("//button[.='Login']")).click();
              Thread.sleep(1000);
-              WebElement classe = driver.findElement(By.className("alert alert-warning"));
-             Assert.assertEquals(true,classe.isDisplayed());    
+             String title = driver.getCurrentUrl();
+             Assert.assertEquals(true,title.contains("home"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }

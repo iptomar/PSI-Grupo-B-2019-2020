@@ -155,3 +155,5 @@ Selenium_Tests/.idea/workspace.xml
 /Selenium_Tests/dist/
 =======
 >>>>>>> parent of 67367d7... Update .gitignore
+Selenium_Tests/nbproject/private/private.properties
+Selenium_Tests/nbproject/private/private.xml
