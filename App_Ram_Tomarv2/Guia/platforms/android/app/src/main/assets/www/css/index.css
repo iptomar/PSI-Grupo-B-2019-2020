@@ -16,6 +16,7 @@ body {
  color: #000000;
  font-family: 'Times New Roman';
  float: left;
+ margin-left: 1%;
 }
 
 #info{
@@ -232,6 +233,7 @@ top: 0px;
 
 .fotCopyRight{
   background-color: rgb(61, 55, 55);
+  color: rgb(107, 173, 41);
   position: absolute;
   left: 0;
   width: 100%;
@@ -240,4 +242,10 @@ top: 0px;
 .sobRAM{
   font-family: 'Times New Roman';
   font-weight: bold;
+}
+
+.imgIPT{
+  width: 150px; 
+  height: 50px;
+  margin-top: 10%; 
 }

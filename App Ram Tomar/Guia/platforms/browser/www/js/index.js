@@ -39,7 +39,7 @@ var app = {
                     minZoom: 15,
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(mymap);
-                alert('Entrou no modo Offline, vai encontrar algumas funcionabilidades limitadas.');
+                alert('Entrou no modo Offline, vai encontrar algumas funcionabilidades limitadas.',  "Alert Title");
 
             }
 
@@ -116,8 +116,8 @@ var app = {
 
 
                     var greenIcon = new L.Icon({
-                        iconUrl: 'www/img/green.png',
-                        shadowUrl: 'www/img/shadow.png',
+                        iconUrl: './img/green.png',
+                        shadowUrl: '../img/shadow.png',
                         iconSize: [25, 41],
                         iconAnchor: [12, 41],
                         popupAnchor: [1, -34],

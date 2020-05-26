@@ -235,7 +235,9 @@ async function buildings()
             const ul = document.createElement('ul');
             const li = document.createElement('li');
             const vistRout = document.createElement('span');
+            const removRout = document.createElement('span');
             vistRout.setAttribute('id', 'vistRout');
+            removRout.setAttribute('id', 'removRout');
            
             li.setAttribute('class', 'liRoute');
             ul.appendChild(li); 
@@ -245,8 +247,10 @@ async function buildings()
                 routs.forEach(function(r){
                     //console.log(r.name);
                     li.textContent = r.name;
-                    vistRout.className = "glyphicon glyphicon-ok";
+                    vistRout.className = "glyphicon glyphicon-ok ";
+                    removRout.className = "glyphicon glyphicon-remove";
                     li.appendChild(vistRout);
+                    li.appendChild(removRout);
                     divPopup.appendChild(divRoute);
                     divRoute.style.visibility = 'visible';
                 });
@@ -261,8 +265,8 @@ async function buildings()
                 removeRoutingControl();
                 control = L.Routing.control({
                     waypoints: [
-                        L.latLng(latlng),               //latLang current position of the user
-                        L.latLng(coord)                 //route coordinate 
+                        L.latLng(latlng),                                               //latLang current position of the user
+                        L.latLng([info.coordinate1, info.coordinate2])                 //route coordinate 
                     ],
                     createMarker: function (i, wp, nWps) {
                         if (i === nWps - 1) {

@@ -227,6 +227,18 @@ top: 0px;
   color: #FF8B00;
 }
 
+#removRout{
+  float: right;
+  color: red;
+  margin-right:10%;
+  cursor: pointer;
+}
+
+#removRout:hover{
+  color: black;
+}
+
+
 #idBuildName, #idBuildLoc{
   text-align: center;
 }
@@ -248,4 +260,8 @@ top: 0px;
   width: 150px; 
   height: 50px;
   margin-top: 10%; 
+}
+
+.markPath{
+  visibility: hidden;
 }
