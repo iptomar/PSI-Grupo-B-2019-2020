@@ -219,7 +219,7 @@ top: 0px;
 #vistRout{
   float: right;
   color: green;
-  margin-right: 5%;
+  margin-right: 3%;
   cursor: pointer;
 }
 
@@ -230,7 +230,7 @@ top: 0px;
 #removRout{
   float: right;
   color: red;
-  margin-right:10%;
+  margin-right:6%;
   cursor: pointer;
 }
 
@@ -265,3 +265,31 @@ top: 0px;
 .markPath{
   visibility: hidden;
 }
+
+.rotas{
+  color: #3a4402;
+  font-family: 'Times New Roman';
+  float: right;
+  margin-top: 1%;
+  margin-right: 8%;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.rotas:hover{
+  text-decoration: none;
+}
+
+.closeS, .closeD{
+  float: right;
+  margin-right: 2%;
+  font-size: 26px;
+  color: red;
+  cursor: pointer;
+}
+
+.numRoute{
+  float: left;
+}
+
+

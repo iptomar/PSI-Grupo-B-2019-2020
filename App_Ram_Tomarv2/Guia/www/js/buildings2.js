@@ -71,10 +71,6 @@ const pathTrace = L.icon({
 });
 
 
-
-
-
-
 //Funcão para fazer fetch das informacões 
 let coord;
 let control;
@@ -121,7 +117,7 @@ async function buildings()
             but.className = "glyphicon glyphicon-info-sign";
 
             let but2 = document.createElement('button');
-            let but2Context = document.createTextNode(' Escolher a rota');
+            let but2Context = document.createTextNode(' Tracar o caminho');
             but2.appendChild(but2Context);
             but2.setAttribute('id', 'botTracar');
             but2.className = "glyphicon glyphicon-map-marker";
@@ -199,7 +195,7 @@ async function buildings()
                 });
             });
 
-            const cl = document.querySelector('.close');
+            const cl = document.querySelector('.closeD');
             cl.addEventListener('click', function(){
                 txtDetails.style.display = "none";
                 window.location.reload();
@@ -221,51 +217,9 @@ async function buildings()
                 window.location.reload();
 
             });
-
-            //Path tracer
-            let routs = info.routes;
-            const divRoute = document.createElement('div');
-            const hRoute = document.createElement('p');
-            hRoute.setAttribute('class', 'hRoute');
-            const closeSpan = document.createElement('span');
-            closeSpan.setAttribute('class', 'closeSpan');
-            const txtClSpan = document.createTextNode('x');
-            closeSpan.appendChild(txtClSpan);
-            divRoute.appendChild(closeSpan);
-            const txtP = document.createTextNode('Escolher um dos roteiros: ');
-            hRoute.appendChild(txtP);
-            divRoute.appendChild(hRoute);
-            divRoute.classList.add('divRoute');
-            const ul = document.createElement('ul');
-            const li = document.createElement('li');
-            const vistRout = document.createElement('span');
-            const removRout = document.createElement('span');
-            vistRout.setAttribute('id', 'vistRout');
-            removRout.setAttribute('id', 'removRout');
-           
-            li.setAttribute('class', 'liRoute');
-            ul.appendChild(li); 
-            divRoute.appendChild(ul);
-           
-            but2.addEventListener('click', function(){
-                routs.forEach(function(r){
-                    //console.log(r.name);
-                    li.textContent = r.name;
-                    vistRout.className = "glyphicon glyphicon-ok ";
-                    removRout.className = "glyphicon glyphicon-remove";
-                    li.appendChild(vistRout);
-                    li.appendChild(removRout);
-                    divPopup.appendChild(divRoute);
-                    divRoute.style.visibility = 'visible';
-                });
-            });
-
-            closeSpan.addEventListener('click', function(){
-                divRoute.style.visibility = "hidden";
-            });
-            
+        
             //Path Tracer
-            vistRout.addEventListener('click', function(){
+            but2.addEventListener('click', function(){
                 removeRoutingControl();
                 control = L.Routing.control({
                     waypoints: [
@@ -288,11 +242,6 @@ async function buildings()
                 }).addTo(mymap);
             });
 
-            //Remove the route if clicked on the remove button
-            removRout.addEventListener('click', function(){
-                removeRoutingControl();
-            });
-
         });
 
         //Remove the routing control if it's already marked
@@ -307,6 +256,73 @@ async function buildings()
         alert("O site que esta a buscar não existe. por favor tente de novo!");
     }
 }
+
+
+//Let info for routes
+ //let Access-Control-Allow-Origin across the CORS url
+ const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
+(async ()=>{
+    try {
+        //Target url to fetch
+        const targetUrl = 'http://psi2020.tugamars.com/api/routes';
+        const response = await fetch(proxyUrl+targetUrl);
+        const data = await response.json();
+        const dados = data.data;
+        
+        $.each(dados, function(i, info){
+            let divRoute = document.querySelector('.divRout');
+            let divInfoRoute = document.querySelector('.routeDiv');
+            let infomap = document.querySelector('#map');
+            let txtRoute = document.createElement('button');
+            txtRoute.className = 'btn btn-success btn-lg btn-block';
+
+            divRoute.addEventListener('click', (e)=>{
+                document.body.style.overflow = 'auto'
+                document.body.style.backgroundColor = "#fff5e6";
+                infomap.style.display = "none";
+                divInfoRoute.style.visibility = "visible";
+                divRoute.style.visibility = "hidden";
+
+                txtRoute.innerHTML = `<h3 class="numRoute">`+info.id+`</h3>`+info.name;
+                divInfoRoute.appendChild(txtRoute);
+                e.preventDefault();
+            });
+
+            //Close
+            const closeSpan = document.querySelector('.closeS');
+            closeSpan.addEventListener('click', ()=>{
+                infomap.style.visibility = "visible";
+                window.location.reload();
+            });
+
+            txtRoute.addEventListener('click', ()=>{
+                alert(info.id);
+            });
+
+        });
+
+    }catch(ex){
+        alert('Não consegue fazer o fetch deste api');
+    }
+
+//    //Target url to fetch
+//    const targetUrl = 'http://psi2020.tugamars.com/api/buildings';
+//    const response = await fetch(proxyUrl+targetUrl);
+//    const data = await response.json();
+//    const dados = data.data;
+   
+//    $.each(dados, function(i, infor){
+//        const rt = infor.routes;
+//        rt.forEach(function(r){
+//         const rf = r.pivot.building_id;
+
+//         txtRoute.addEventListener('click', function(){
+//             alert(rf);
+//         });
+//        });
+//    });
+})();
 
 
 
