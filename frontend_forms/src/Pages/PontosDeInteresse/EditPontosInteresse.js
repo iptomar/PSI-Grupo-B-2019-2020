@@ -31,8 +31,7 @@ import AsyncSelect from 'react-select/async';
              auxCoordenada2: null,
               auxOrder: null,
                auxNameAuthor: null, 
-			   nameRoute:null,
-			   approved: null,
+               nameRoute:null,
 			vertices: [], images: [], 
 			authors: [], routes: [],
         };
@@ -388,22 +387,19 @@ import AsyncSelect from 'react-select/async';
     }
    
     handleSubmit(e){
-		e.preventDefault();
-		this.setState({approved: 0});
-		pontosDeInteresseApi.edit(this.state.pontosInteresseID, this.state.buildingName, this.state.location, this.state.dates, 
-			this.state.buildingType, 
-			this.state.description, this.state.coordinate1, this.state.coordinate2, this.state.vertices, this.state.routes,
-			this.state.images, this.state.authors, this.state.approved).then( (response)=>{
-				this.props.history.push('/PointsOfInterest');
-				console.log(response);
-        }).catch( (error) => {
-			console.log(error);
-            this.setState({errors:error});
-		});
-		
-		
-	}
+        e.preventDefault();
 
+        pontosDeInteresseApi.edit(this.state.pontosInteresseID, this.state.buildingName, this.state.location, this.state.dates, this.state.buildingType, 
+            this.state.description, this.state.coordinate1, this.state.coordinate2, this.state.vertices, this.state.routes
+            , this.state.images, this.state.authors).then( (response)=>{
+                console.log("tou aqui");
+						this.props.history.push('/PointsOfInterest');
+            console.log("oi");
+        }).catch( (error) => {
+						console.log(error);
+            this.setState({errors:error});
+        });
+    }
 
      deleteAuthor(id,index){
 

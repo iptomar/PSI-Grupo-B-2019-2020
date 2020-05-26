@@ -25,8 +25,7 @@ export default class pontosDeInteresseList extends Component {
       "last_page":null,
     };
 
-    props.history.push('/Home');
-    //usersApi.validateAuth(this.props);
+    usersApi.validateAuth(this.props);
 
     this.getPontosDeInteresseList(1);   
   }

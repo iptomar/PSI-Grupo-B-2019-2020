@@ -15,8 +15,7 @@ export default class RoutesList extends Component {
             "redirect": false
         };
 
-        props.history.push('/Home');
-       // usersApi.validateAuth(this.props);
+        usersApi.validateAuth(this.props);
         this.detalhesRoute();
         //this.detalhesRoute = this.detalhesRoute.bind(this);
         this.editRoute= this.editRoute.bind(this);
@@ -28,6 +27,7 @@ export default class RoutesList extends Component {
         if(this.state.redirect == true){
             return (<Redirect to="/Routes/edit"/>);
           }
+      
         
             let items = [];
             const rotas = this.state.rotas;

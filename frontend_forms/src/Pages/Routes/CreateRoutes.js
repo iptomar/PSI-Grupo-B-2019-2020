@@ -13,8 +13,7 @@ class CreateRoutes extends Component {
             errors: []
         };
 
-        props.history.push('/Home');
-       // usersApi.validateAuth(this.props);
+        usersApi.validateAuth(this.props);
 
         this.handleNameRoute = this.handleNameRoute.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

@@ -11,8 +11,7 @@ class CreateAuthors extends Component {
             errors: []
         }
 
-        props.history.push('/Home');
-       // usersApi.validateAuth(this.props);
+        usersApi.validateAuth(this.props);
         this.handleNameAuthor = this.handleNameAuthor.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }

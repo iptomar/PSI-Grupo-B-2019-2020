@@ -22,8 +22,7 @@ class CriarPontosInteresse extends Component {
 			errors: []
 		};
 
-		props.history.push('/Home');
-       // usersApi.validateAuth(this.props);
+        usersApi.validateAuth(this.props);
 
 		this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
 		this.handleLocationChange = this.handleLocationChange.bind(this);

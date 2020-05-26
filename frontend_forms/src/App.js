@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import CriarPontosInteresse from "./Pages/PontosDeInteresse/CriarPontosInteresse";
+import Mapa from "./Pages/Mapa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login2 from "./Pages/Login2";
 import Home from "./Pages/Home";
@@ -37,7 +38,7 @@ class App extends Component {
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light " style={{backgroundColor: "#4C5D72"}}>
-          <Link to="/Home" className="nav-link" style={{color:"#5ED0C0"}} href="#">Home</Link>
+          <a className="navbar-brand" href="#">IPT RAM</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -70,6 +71,9 @@ class App extends Component {
               <li className="nav-item">
                 <Link to="/users" style={{color:"#5ED0C0"}} className="nav-link">Users</Link>
               </li>
+              <li className="nav-item">
+                <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
+              </li>
              {/*  <li className="nav-item">
                   <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
                 </li> */} 
@@ -86,6 +90,7 @@ class App extends Component {
         <Route exact path="/users/:userId/edit" component={UserEdit}></Route>
         <Route exact path="/CreatePointsOfInterest" component={CriarPontosInteresse}></Route>
         <Route exact path="/PointsOfInterest" component={pontosDeInteresseList}></Route>
+        <Route exact path="/Mapa" component={Mapa}></Route> 
         <Route exact path="/PointsOfInterest/:pontoInteresseID/edit" component={EditPontosInteresse}></Route>
         <Route exact path="/PointsOfInterest/:pontoInteresseID/detalhes" component={DetalhesPontoInteresse}></Route>
         <Route exact path="/Routes" component={RoutesList}></Route>
