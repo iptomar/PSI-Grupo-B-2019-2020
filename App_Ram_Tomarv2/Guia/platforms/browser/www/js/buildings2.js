@@ -284,6 +284,11 @@ async function buildings()
                 }).addTo(mymap);
             });
 
+            //Remove the route if clicked on the remove button
+            removRout.addEventListener('click', function(){
+                removeRoutingControl();
+            });
+
         });
 
         //Remove the routing control if it's already marked

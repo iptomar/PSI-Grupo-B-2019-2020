@@ -71,6 +71,10 @@ const pathTrace = L.icon({
 });
 
 
+
+
+
+
 //Funcão para fazer fetch das informacões 
 let coord;
 let control;
@@ -282,6 +286,11 @@ async function buildings()
                     draggableWaypoints: false,
 
                 }).addTo(mymap);
+            });
+
+            //Remove the route if clicked on the remove button
+            removRout.addEventListener('click', function(){
+                removeRoutingControl();
             });
 
         });
