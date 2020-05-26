@@ -28,7 +28,7 @@ public class Capabilities {
         
     }
     public WebDriver getDriver(){
-        String baseUrl = "http://localhost:3000";
+        String baseUrl = "http://front.psi2020.tugamars.com";
         String expectedTitle = "React App";
         String actualTitle = "";
 

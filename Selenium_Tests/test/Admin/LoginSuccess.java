@@ -17,6 +17,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 /**
  *
@@ -48,8 +49,8 @@ public class LoginSuccess {
              //Influência o type
              driver.findElement(By.xpath("//button[.='Login']")).click();
              Thread.sleep(1000);
-             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+              WebElement classe = driver.findElement(By.className("alert alert-warning"));
+             Assert.assertEquals(true,classe.isDisplayed());    
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }
