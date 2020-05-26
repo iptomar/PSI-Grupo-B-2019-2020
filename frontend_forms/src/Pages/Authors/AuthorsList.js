@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import usersApi from '../../scripts/api/users';
 import authorsApi from '../../scripts/api/authors';
 import './Authors.css';
+import { Redirect } from 'react-router-dom';
 
 export default class AuthorsList extends Component {
     constructor(props) {
@@ -12,8 +13,9 @@ export default class AuthorsList extends Component {
             "current_page":1,
             "last_page":null
         };
-
-        usersApi.validateAuth(this.props);
+  
+        props.history.push('/Home');
+       // usersApi.validateAuth(<Redirect to="/Home"/>);
         //this.deleteAuthor(61);
         this.getAuthorsList(1);
     }
@@ -61,6 +63,7 @@ export default class AuthorsList extends Component {
         console.log(items);
 
         return (
+            
             <div>
                 <div className="stuff">
                     <table className = "table table-hover table-dark table-striped rounded" id="authors">

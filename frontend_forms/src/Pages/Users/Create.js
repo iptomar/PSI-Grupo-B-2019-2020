@@ -15,6 +15,7 @@ class Create extends Component {
             password_confirmation: '',
             errors:[]
         };
+
         // This binding is necessary to make `this` work in the callback
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);

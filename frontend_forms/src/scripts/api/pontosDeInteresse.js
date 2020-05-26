@@ -123,7 +123,7 @@ let pontosDeInteresseApi = {
   },
 
   edit(id, buildName, location, dates, type, description, cc1, cc2, vertices, 
-    routes, imagens, authors) {
+    routes, imagens, authors, approved) {
     let furl = apiUrl + "/buildings/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
 
@@ -135,6 +135,9 @@ if(type!==null)form.append('buildingType', type);
 if(description!==null)form.append('description', description);
 if(cc1!==null)form.append('coordinate1', cc1);
 if(cc2!==null)form.append('coordinate2', cc2);
+if(approved!==null){
+  form.append('approved',approved );
+}
 
 
 for(let i in imagens){
@@ -166,6 +169,7 @@ form.append('authors['+i+']', authors[i]);
       }
     });
   },
+  
   aprovedBuildings(id, aproved){
     let furl = apiUrl + "/buildings/" + id + "/approve";
     let token = "Bearer " + localStorage.getItem("auth.token");
