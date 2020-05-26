@@ -52,7 +52,7 @@ export default class RoutesList extends Component {
             //PAGINACAO
             const pagination = [];
             if (this.state.last_page !== 1) {
-                if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1) {
+                if( this.state.current_page !== "undefined" && this.state.current_page !== 1) {
                     pagination.push(<li className="page-item"><a className="page-link2" href="#" onClick={() => this.getRoutesList(this.state.current_page-1)}>&lt;</a></li>)
                 };
 
