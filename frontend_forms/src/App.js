@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 import CriarPontosInteresse from "./Pages/PontosDeInteresse/CriarPontosInteresse";
-import Mapa from "./Pages/Mapa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login2 from "./Pages/Login2";
 import Home from "./Pages/Home";
@@ -71,9 +70,6 @@ class App extends Component {
               <li className="nav-item">
                 <Link to="/users" style={{color:"#5ED0C0"}} className="nav-link">Users</Link>
               </li>
-              <li className="nav-item">
-                <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
-              </li>
              {/*  <li className="nav-item">
                   <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
                 </li> */} 
@@ -90,7 +86,6 @@ class App extends Component {
         <Route exact path="/users/:userId/edit" component={UserEdit}></Route>
         <Route exact path="/CreatePointsOfInterest" component={CriarPontosInteresse}></Route>
         <Route exact path="/PointsOfInterest" component={pontosDeInteresseList}></Route>
-        <Route exact path="/Mapa" component={Mapa}></Route> 
         <Route exact path="/PointsOfInterest/:pontoInteresseID/edit" component={EditPontosInteresse}></Route>
         <Route exact path="/PointsOfInterest/:pontoInteresseID/detalhes" component={DetalhesPontoInteresse}></Route>
         <Route exact path="/Routes" component={RoutesList}></Route>

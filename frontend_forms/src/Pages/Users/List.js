@@ -20,7 +20,6 @@ export default class List extends Component {
 
     render() {
 
-
        //PAGINACAO
        const pagination = [];
        if (this.state.last_page !== 1) {
@@ -89,7 +88,7 @@ export default class List extends Component {
                     </tbody>
                 </table>
 
-                <nav aria-label="Page navigation example">
+                <nav aria-label="Page navigation example" className="pageNavigation">
                         <ul class="pagination">
                             {pagination}
                         </ul>
