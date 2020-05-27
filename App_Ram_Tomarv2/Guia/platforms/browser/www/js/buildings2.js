@@ -74,11 +74,12 @@ const pathTrace = L.icon({
 //Funcão para fazer fetch das informacões 
 let coord;
 let control;
+//let Access-Control-Allow-Origin across the CORS url
+const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
 async function buildings() 
 {
     try {
-        //let Access-Control-Allow-Origin across the CORS url
-        //const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
         //Target url to fetch
         const targetUrl = 'json/info.json';
         //const targetUrl = 'http://psi2020.tugamars.com/api/buildings';
@@ -259,34 +260,38 @@ async function buildings()
 
 
 //Let info for routes
- //let Access-Control-Allow-Origin across the CORS url
- const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-
 (async ()=>{
-    try {
-        //Target url to fetch
-        const targetUrl = 'http://psi2020.tugamars.com/api/routes';
-        const response = await fetch(proxyUrl+targetUrl);
-        const data = await response.json();
-        const dados = data.data;
-        
-        $.each(dados, function(i, info){
-            let divRoute = document.querySelector('.divRout');
-            let divInfoRoute = document.querySelector('.routeDiv');
-            let infomap = document.querySelector('#map');
-            let txtRoute = document.createElement('button');
-            txtRoute.className = 'btn btn-success btn-lg btn-block';
+    //Target url to fetch
+    const targetUrl = 'http://psi2020.tugamars.com/api/buildings';
+    const response = await fetch(proxyUrl+targetUrl);
+    const data = await response.json();
+    const dados = data.data;
+    
+    $.each(dados, (i, infor)=>{
+        const rt = infor.routes;
+        $.each(rt, (i, id)=>{
 
-            divRoute.addEventListener('click', (e)=>{
+            const divRoute = document.querySelector('.divRout');
+            
+            const divInfoRoute = document.querySelector('.routeDiv');
+        
+            const infomap = document.querySelector('#map');
+            const txtRoute = document.createElement('button');
+            txtRoute.setAttribute('id', 'txtRoute');
+            txtRoute.className = 'btn btn-success btn-lg btn-block';
+        
+            const info1 = document.querySelector('#info');
+        
+            divRoute.addEventListener('click', ()=>{
                 document.body.style.overflow = 'auto'
                 document.body.style.backgroundColor = "#fff5e6";
                 infomap.style.display = "none";
                 divInfoRoute.style.visibility = "visible";
                 divRoute.style.visibility = "hidden";
-
-                txtRoute.textContent = `<h3 class="numRoute">`+info.id+`</h3>`+info.name;
+                info1.style.display = "none";
+        
+                txtRoute.innerHTML = id.name;
                 divInfoRoute.appendChild(txtRoute);
-                e.preventDefault();
             });
 
             //Close
@@ -296,32 +301,60 @@ async function buildings()
                 window.location.reload();
             });
 
+
+            const pointInter = document.querySelector('.pointInter');
+            const mdlPointInter = document.createElement('div');
+            const paraf = document.createElement('h2');
+            paraf.classList.add('paraf');
+            const paraf2 = document.createElement('h4');
+            const paraf3 = document.createElement('p');
+            const mp = document.querySelector('#map');
+
+            const closeSpnInfo = document.createElement('span');
+            // const txtCloseSpnInfo = document.createTextNode('x');
+            // closeSpnInfo.appendChild(txtCloseSpnInfo);
+
             txtRoute.addEventListener('click', ()=>{
-                alert(info.id);
+                pointInter.classList.add('pointInteres');
+                mdlPointInter.classList.add('mdlPointInter');
+                paraf.classList.add('paraf');
+
+                closeSpnInfo.classList.add('closeSpnInfo');
+
+                mp.style.display = "none";
+                closeSpnInfo.innerHTML = 'x';
+                paraf.innerHTML = infor.buildingName;
+                paraf2.innerHTML = infor.location;
+
+                const img = infor.images;
+
+                $.each(img, (i, aut)=>{
+                    paraf3.innerHTML = aut.sourceAuthor;
+                });
+
+                mdlPointInter.appendChild(closeSpnInfo);
+                mdlPointInter.appendChild(paraf);
+                mdlPointInter.appendChild(paraf2);
+                mdlPointInter.appendChild(paraf3);
+                pointInter.appendChild(mdlPointInter);
             });
 
+            //Close info span
+            closeSpnInfo.addEventListener('click', ()=>{
+                closeSpnInfo.classList.remove('closeSpnInfo');
+                pointInter.classList.remove('pointInteres');
+                mdlPointInter.classList.remove('mdlPointInter');
+                paraf.classList.remove('paraf');
+                paraf.innerHTML = ' ';
+                paraf2.innerHTML = ' ';
+                paraf3.innerHTML = ' ';
+                closeSpnInfo.innerHTML = ' ';
+                
+            });
         });
 
-    }catch(ex){
-        alert('Não consegue fazer o fetch deste api');
-    }
-
-//    //Target url to fetch
-//    const targetUrl = 'http://psi2020.tugamars.com/api/buildings';
-//    const response = await fetch(proxyUrl+targetUrl);
-//    const data = await response.json();
-//    const dados = data.data;
+    });
    
-//    $.each(dados, function(i, infor){
-//        const rt = infor.routes;
-//        rt.forEach(function(r){
-//         const rf = r.pivot.building_id;
-
-//         txtRoute.addEventListener('click', function(){
-//             alert(rf);
-//         });
-//        });
-//    });
 })();
 
 
