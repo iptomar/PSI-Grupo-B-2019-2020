@@ -16,7 +16,7 @@ class CriarPontosInteresse extends Component {
 		super(props);
 		this.state = {
 			buildingName: '', location: '', dates: '', buildingType: '', description: '', coordinate1: '', coordinate2: '',
-			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '', nameRoute:'',
+			auxImg:'', auxAuthor:'', auxDesc:'', auxNameAuthor: '', nameRoute:'',
 			vertices: [], images: [], 
 			authors: [], routes: [], routesPage: 1, routesPageMax: 99, routesList:{}, selectedRoute:null,
 			errors: []
@@ -230,7 +230,7 @@ class CriarPontosInteresse extends Component {
 							<div className="form group col-md-4">
 								<label for="coordenada1"><b>Coordinate 1</b></label>
 								<input className="form-control" type="number" placeholder="Insert coordinate 1..." 
-								name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0" 
+								name="coordenada1" id="coordenada1" value={this.state.auxCoordenada1} data-index="0" 
 								onChange={this.handleVerticeCoordenada1Change} required />
 							</div>
 							<div class="form-group col-md-4">
@@ -330,15 +330,21 @@ class CriarPontosInteresse extends Component {
 
 	addVertice (e){
 		e.preventDefault();
-		let object = {coordinate1: '', coordinate2:'', order:''};
-		object.coordinate1 = this.state.auxCoordenada1;
-		object.coordinate2 = this.state.auxCoordenada2;
-		object.order = this.state.auxOrder;
-		this.setState({vertices: this.state.vertices.concat(object)});
-		this.setState({auxCoordenada1:''});
-		this.setState({auxCoordenada2:''});
-		this.setState({auxOrder:''});
-		
+		if(this.state.auxCoordenada1 != null && this.state.auxCoordenada2 !=null  && this.state.auxOrder != null &&
+			this.state.auxCoordenada1 != "" && this.state.auxCoordenada2 != "" && this.state.auxOrder != "")
+			{
+			let val1 = document.getElementById("coordenada1").value;
+			let val2 = document.getElementById("coordenada2").value;
+			let order = document.getElementById("order").value;
+			let object = {coordinate1: '', coordinate2:'', order:''};
+			object.coordinate1 = val1;
+			object.coordinate2 = val2;
+			object.order = order;
+			this.setState({vertices: this.state.vertices.concat(object)});
+				}
+				else {
+			console.log(this.state.errors);
+		}
 	}
 
 	addRoute(e) {
