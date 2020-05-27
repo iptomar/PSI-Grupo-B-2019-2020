@@ -307,34 +307,53 @@ async function buildings()
             const paraf = document.createElement('h2');
             paraf.classList.add('paraf');
             const paraf2 = document.createElement('h4');
-            const paraf3 = document.createElement('p');
+            const paraf3 = document.createElement('img');
+            const paraf4 = document.createElement('h5');
+            const paraf5 = document.createElement('p');
             const mp = document.querySelector('#map');
 
+            const hr = document.createElement('hr');
+
             const closeSpnInfo = document.createElement('span');
-            // const txtCloseSpnInfo = document.createTextNode('x');
-            // closeSpnInfo.appendChild(txtCloseSpnInfo);
+            
+            //const imgs = document.createElement('img');
 
             txtRoute.addEventListener('click', ()=>{
                 pointInter.classList.add('pointInteres');
                 mdlPointInter.classList.add('mdlPointInter');
                 paraf.classList.add('paraf');
+                paraf2.classList.add('paraf2');
+                paraf3.classList.add('paraf3');
+                paraf4.classList.add('dateBuild');
+                paraf5.classList.add('descripBuild');
+
+                hr.classList.add('hrAll');
 
                 closeSpnInfo.classList.add('closeSpnInfo');
 
                 mp.style.display = "none";
                 closeSpnInfo.innerHTML = 'x';
                 paraf.innerHTML = infor.buildingName;
-                paraf2.innerHTML = infor.location;
+                paraf2.innerHTML = `<b>Localizacão: ${infor.location}</b>`;
+                paraf4.innerHTML = `<b>Ano de construcão: ${infor.dates}</b>`;
+                paraf5.innerHTML = infor.description;
 
                 const img = infor.images;
 
-                $.each(img, (i, aut)=>{
-                    paraf3.innerHTML = aut.sourceAuthor;
-                });
+                if(img == 0){
+                    paraf3.src = "images/noimage.png";
+                }else{                
+                    $.each(img, (i, im)=>{
+                        paraf3.src = `data:image/png;base64, ${im.base64}`;
+                    });
+                }
 
                 mdlPointInter.appendChild(closeSpnInfo);
                 mdlPointInter.appendChild(paraf);
                 mdlPointInter.appendChild(paraf2);
+                mdlPointInter.appendChild(paraf4);
+                mdlPointInter.appendChild(paraf5);
+                mdlPointInter.appendChild(hr);
                 mdlPointInter.appendChild(paraf3);
                 pointInter.appendChild(mdlPointInter);
             });
@@ -345,10 +364,22 @@ async function buildings()
                 pointInter.classList.remove('pointInteres');
                 mdlPointInter.classList.remove('mdlPointInter');
                 paraf.classList.remove('paraf');
+                paraf2.classList.remove('paraf2');
+                paraf3.classList.remove('paraf3');
+                paraf4.classList.remove('dateBuild');
+                paraf5.classList.remove('descripBuild');
+
+                hr.classList.remove('hrAll');
+
                 paraf.innerHTML = ' ';
                 paraf2.innerHTML = ' ';
-                paraf3.innerHTML = ' ';
+                paraf3.src = "";
+                paraf4.innerHTML = ' ';
+                paraf5.innerHTML = ' ';
                 closeSpnInfo.innerHTML = ' ';
+                paraf3.remove();
+
+                hr.remove();
                 
             });
         });

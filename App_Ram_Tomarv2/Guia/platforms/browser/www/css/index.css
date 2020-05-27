@@ -137,7 +137,7 @@ top: 0px;
   cursor: pointer;
 }
 
-.localBuild, .descripBuild, .autBuild{
+.localBuild, .descripBuild, .autBuild, .paraf2{
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -317,14 +317,14 @@ top: 0px;
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(12, 1, 1, 0.9);
   justify-content: center;
   align-items: center;
   visibility: visible;
 }
 
 .mdlPointInter{
-  background-color: white;
+  background-color: #fff5e6;
   width: 85%;
   height: 80%;
   justify-content: space-around;
@@ -332,8 +332,9 @@ top: 0px;
   margin-left: 10%;
   margin-top: 5%;
   visibility: visible;
+  overflow: auto;
+  border: 1px solid green;
 }
-
 
 .closeSpnInfo{
   float: right;
@@ -347,6 +348,7 @@ top: 0px;
   text-align: center;
   background-color: #ff9900;
   display: contents;
+  margin-top: 1px;
 }
 
 #txtRoute{
@@ -354,5 +356,22 @@ top: 0px;
   font-size: 24px;
   font-weight: bold;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.paraf3{
+  width: 806px; 
+  height: 400px;
+  margin-left: 10%;
+  border: 2px solid #ff9900;
+  text-align: center;
+  margin-bottom: 10%;
+}
+
+.paraf2{
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+  font-family: Trattatello, fantasy;
+  font-size: 26px;
 }
 
