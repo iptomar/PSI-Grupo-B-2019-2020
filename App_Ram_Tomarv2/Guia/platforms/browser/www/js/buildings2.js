@@ -310,6 +310,7 @@ async function buildings()
             const paraf3 = document.createElement('img');
             const paraf4 = document.createElement('h5');
             const paraf5 = document.createElement('p');
+            const paraf6 = document.createElement('p');
             const mp = document.querySelector('#map');
 
             const hr = document.createElement('hr');
@@ -319,6 +320,7 @@ async function buildings()
             //const imgs = document.createElement('img');
 
             txtRoute.addEventListener('click', ()=>{
+                document.body.style.overflow = "hidden";
                 pointInter.classList.add('pointInteres');
                 mdlPointInter.classList.add('mdlPointInter');
                 paraf.classList.add('paraf');
@@ -326,6 +328,7 @@ async function buildings()
                 paraf3.classList.add('paraf3');
                 paraf4.classList.add('dateBuild');
                 paraf5.classList.add('descripBuild');
+                paraf6.classList.add('autBuild');
 
                 hr.classList.add('hrAll');
 
@@ -339,7 +342,9 @@ async function buildings()
                 paraf5.innerHTML = infor.description;
 
                 const img = infor.images;
+                const aut = infor.authors;
 
+                //If no image, set to default image
                 if(img == 0){
                     paraf3.src = "images/noimage.png";
                 }else{                
@@ -348,10 +353,20 @@ async function buildings()
                     });
                 }
 
+                //If no building authors, will set to "no authors"
+                if(aut == 0){
+                    paraf6.innerHTML = `<b><i>Autor desconhecido</i></b>`;
+                }else{
+                    $.each(aut, (i, au)=>{
+                        paraf6.innerHTML = `<b>Autores: ${au.name}</b>`;
+                    });
+                }
+
                 mdlPointInter.appendChild(closeSpnInfo);
                 mdlPointInter.appendChild(paraf);
                 mdlPointInter.appendChild(paraf2);
                 mdlPointInter.appendChild(paraf4);
+                mdlPointInter.appendChild(paraf6);
                 mdlPointInter.appendChild(paraf5);
                 mdlPointInter.appendChild(hr);
                 mdlPointInter.appendChild(paraf3);
@@ -360,6 +375,8 @@ async function buildings()
 
             //Close info span
             closeSpnInfo.addEventListener('click', ()=>{
+                document.body.style.overflow = "auto";
+
                 closeSpnInfo.classList.remove('closeSpnInfo');
                 pointInter.classList.remove('pointInteres');
                 mdlPointInter.classList.remove('mdlPointInter');
@@ -368,19 +385,18 @@ async function buildings()
                 paraf3.classList.remove('paraf3');
                 paraf4.classList.remove('dateBuild');
                 paraf5.classList.remove('descripBuild');
+                paraf6.classList.remove('autBuild');
 
                 hr.classList.remove('hrAll');
 
-                paraf.innerHTML = ' ';
-                paraf2.innerHTML = ' ';
-                paraf3.src = "";
-                paraf4.innerHTML = ' ';
-                paraf5.innerHTML = ' ';
-                closeSpnInfo.innerHTML = ' ';
+                paraf.remove();
+                paraf2.remove();
+                paraf4.remove();
+                paraf5.remove();
+                closeSpnInfo.remove();
                 paraf3.remove();
-
+                paraf6.remove();
                 hr.remove();
-                
             });
         });
 
