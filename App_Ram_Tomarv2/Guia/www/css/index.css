@@ -17,6 +17,11 @@ body {
  font-family: 'Times New Roman';
  float: left;
  margin-left: 1%;
+ cursor: pointer;
+}
+
+#title:hover{
+  color: green;
 }
 
 #info{
@@ -107,6 +112,18 @@ top: 0px;
   height: 40px;
   margin: 4px 2px;
   
+}
+
+#botRemove{
+  background-color: #000000;
+  border: none;
+  color: white;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  margin: 4px 2px;
 }
 
 .localBuild{
@@ -283,9 +300,29 @@ top: 0px;
   background-color: transparent;
 }
 
+.tomar{
+  color: #3a4402;
+  font-family: 'Times New Roman';
+  float: right;
+  margin-top: 0.7%;
+  margin-right: 9%;
+  font-size: 18px;
+  text-decoration: none;
+  border: none;
+  outline:none;
+  background-color: transparent;
+}
+
+
 .rotas:hover{
   text-decoration: none;
   color: green;
+  background-color: #FF9F00;
+}
+
+.tomar:hover{
+  text-decoration: none;
+  background-color: #FF9F00;
 }
 
 .btConsulRot{
@@ -391,4 +428,20 @@ top: 0px;
 .divInfoRoute{
   overflow: auto;
 }
+ 
+
+.routMPopup .leaflet-popup-tip,
+.routMPopup .leaflet-popup-content-wrapper {
+    background-color: mistyrose;
+    max-width: 3;
+    max-height: 2;
+    color: red;
+    margin-left: 30%;
+    margin-right: 28%;
+    font-size: 18px;
+    text-align: left;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
 

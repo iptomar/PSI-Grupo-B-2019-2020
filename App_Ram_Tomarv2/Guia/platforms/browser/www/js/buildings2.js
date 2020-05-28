@@ -1,6 +1,6 @@
 
 const mapa = document.querySelector('#map');
-mapa.style.height = '547px';
+mapa.style.height = '553px';
 mapa.style.marginTop = '-18px';
 mapa.style.zIndex = '1px';
 
@@ -56,10 +56,11 @@ const pathTrace = L.icon({
 
  //vai indicar a posição inicial quando inicia a app
  let latlng;
+ let posCurrent;
  navigator.geolocation.getCurrentPosition(function (location) {
     latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
     //Criar o marcador do mapa na localizacão atual
-    let marker = L.marker(latlng, { icon: markerCurrent}).addTo(mymap);
+    posCurrent = L.marker(latlng, { icon: markerCurrent}).addTo(mymap);
     
     let popupContext = document.createElement('h4');
     popupContext.style.color = "#FF8B00";
@@ -67,7 +68,7 @@ const pathTrace = L.icon({
 
     buildings();
 
-    marker.bindPopup(popupContext).openPopup();
+    posCurrent.bindPopup(popupContext).openPopup();
 });
 
 
@@ -221,6 +222,11 @@ async function buildings()
         
             //Path Tracer
             but2.addEventListener('click', function(){
+                const routingMsg = document.createElement('span');
+                routingMsg.classList.add('routingMsg');
+                routingMsg.innerHTML = "x";
+                routingMsg.title = "Remover o caminho";
+
                 removeRoutingControl();
                 control = L.Routing.control({
                     waypoints: [
@@ -232,7 +238,8 @@ async function buildings()
                             // here change the starting and ending icons
                             return L.marker(wp.latLng, {
                                 icon: pathTrace // here pass the custom marker icon instance
-                            });
+                            }).bindPopup(routingMsg, {closeButton: false, className: "routMPopup"});
+                            
                         }
                     },
                     lineOptions: {
@@ -241,6 +248,10 @@ async function buildings()
                     draggableWaypoints: false,
 
                 }).addTo(mymap);
+
+                routingMsg.addEventListener('click', function(){
+                    removeRoutingControl();
+                });
             });
 
         });
@@ -257,6 +268,24 @@ async function buildings()
         alert("O site que esta a buscar não existe. por favor tente de novo!");
     }
 }
+
+
+
+//Set map position to Tomar
+const divTomar = document.querySelector('.divTomar');
+divTomar.addEventListener('click', function(){
+    navigator.geolocation.getCurrentPosition(function () {
+        const latlng1 = ([39.60199, -8.40924]);
+        let marker = L.marker(latlng1, { icon: markerCurrent}).addTo(mymap);
+        
+        let popupContext = document.createElement('h5');
+        popupContext.style.color = "#FF8B00";
+        popupContext.innerHTML = "Welcome to Tomar!";
+    
+        marker.bindPopup(popupContext).openPopup();
+        posCurrent.remove();
+    });
+});
 
 
 //Let info for routes
@@ -289,6 +318,7 @@ async function buildings()
                 divInfoRoute.style.visibility = "visible";
                 divRoute.style.visibility = "hidden";
                 info1.style.display = "none";
+                divTomar.style.display = "none";
         
                 txtRoute.innerHTML = id.name;
                 divInfoRoute.appendChild(txtRoute);
@@ -404,89 +434,7 @@ async function buildings()
    
 })();
 
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Home page reload
+title.addEventListener('click', function(){
+    window.location.reload();
+});
