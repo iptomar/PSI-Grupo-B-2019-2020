@@ -37,9 +37,9 @@ public class DeleteUsers {
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             //aceitar alerta
             driver.switchTo().alert().accept();
-             //ARRANJAR
+             //URL Confirm
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("users"));
         }  catch (Exception e) {
              System.out.println(e.getMessage());
         }
