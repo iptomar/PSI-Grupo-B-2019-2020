@@ -33,8 +33,9 @@ public class AproveRoteiros {
             driver.findElement(By.xpath("//button[.='Approve']")).click();
             Thread.sleep(1000);
             driver.switchTo().alert().accept();
+            //Confirmacao ULR
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true,title.contains("users"));
+             Assert.assertEquals(true,title.contains("Routes"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

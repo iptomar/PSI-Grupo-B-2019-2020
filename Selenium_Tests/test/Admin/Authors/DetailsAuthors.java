@@ -36,7 +36,7 @@ public class DetailsAuthors {
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
              //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("detalhes"));
         }  catch (Exception e) {
              System.out.println(e.getMessage());
         }

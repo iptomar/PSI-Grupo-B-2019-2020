@@ -39,7 +39,7 @@ public class EditAuthors {
             driver.findElement(By.xpath("//button[.='Submit']")).click();
              //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("edit"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }

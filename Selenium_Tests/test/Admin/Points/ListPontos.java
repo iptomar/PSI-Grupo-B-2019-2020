@@ -34,7 +34,7 @@ public class ListPontos {
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
              //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("PointsOfInterest"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }

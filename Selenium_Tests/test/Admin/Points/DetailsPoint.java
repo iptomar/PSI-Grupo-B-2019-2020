@@ -7,6 +7,7 @@ package Admin.Points;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +29,9 @@ public class DetailsPoint {
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
+              //Confirmacao ULR
+            String title = driver.getCurrentUrl();
+             Assert.assertEquals(true,title.contains("detalhes"));
         } catch (InterruptedException ex) {
             Logger.getLogger(DetailsPoint.class.getName()).log(Level.SEVERE, null, ex);
         }

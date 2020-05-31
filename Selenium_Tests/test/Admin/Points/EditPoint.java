@@ -7,6 +7,7 @@ package Admin.Points;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -126,7 +127,9 @@ public class EditPoint {
             driver.findElement(By.xpath("//button[.='Delete']")).click();
             
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-            
+              //Confirmacao ULR
+            String title = driver.getCurrentUrl();
+             Assert.assertEquals(true,title.contains("PointsOfInterest"));
         } catch (InterruptedException ex) {
             Logger.getLogger(EditPoint.class.getName()).log(Level.SEVERE, null, ex);
         }
