@@ -42,6 +42,7 @@ class CreateAuthors extends Component {
         console.log(this.state.nameAuthor);
         authorsApi.create(this.state.nameAuthor).then((response) => {
             console.log(response);
+            this.props.history.push('/Authors');
         })
 
     }
