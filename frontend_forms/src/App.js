@@ -7,7 +7,6 @@ import CriarPontosInteresse from "./Pages/PontosDeInteresse/CriarPontosInteresse
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login2 from "./Pages/Login2";
 import Home from "./Pages/Home";
-
 //Users
 import UserCreate from "./Pages/Users/Create";
 import UserList from "./Pages/Users/List";
@@ -37,17 +36,17 @@ class App extends Component {
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light " style={{backgroundColor: "#4C5D72"}}>
-          <a className="navbar-brand" href="#">IPT RAM</a>
+          <a className="navbar-brand" href="/index">IPT RAM</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
             <li className="nav-item">
-                <Link to="/Authors" className="nav-link" style={{color:"#5ED0C0"}} href="#">Authors</Link>
+                <Link to="/Authors" className="nav-link" style={{color:"#5ED0C0"}} href="#">Autores</Link>
               </li>
               <li className="nav-item">
-                <Link to="/CreateAuthors" style={{color:"#5ED0C0"}} className="nav-link">Create Authors</Link>
+                <Link to="/CreateAuthors" style={{color:"#5ED0C0"}} className="nav-link">Criar Autores</Link>
               </li>
               <li className="nav-item">
                 <Link to="/Routes" className="nav-link" style={{color:"#5ED0C0"}} href="#">Roteiros</Link>
@@ -59,14 +58,15 @@ class App extends Component {
                 <Link to="/PointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Pontos De Interesse</Link>
               </li>
               <li className="nav-item">
+                <Link to="/CreatePointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Criar Pontos de Interesse</Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/login2" style={{color:"#5ED0C0"}} className="nav-link">Login</Link>
               </li>
               <li className="nav-item">
                 <Link to="/users/create" style={{color:"#5ED0C0"}} className="nav-link">Registo</Link>
               </li>
-              <li className="nav-item">
-                <Link to="/CreatePointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Criar Pontos de Interesse</Link>
-              </li>
+              
               <li className="nav-item">
                 <Link to="/users" style={{color:"#5ED0C0"}} className="nav-link">Users</Link>
               </li>
