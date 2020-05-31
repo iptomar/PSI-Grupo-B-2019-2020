@@ -169,8 +169,8 @@ class CriarPontosInteresse extends Component {
 					<div className="row">
 						<div className="col-md-4">
 							<div className="custom-file" style={{marginTop:'35px'}}>
-							<label for="image" className="custom-file-label">Upload file...</label>
-							<input type="file" className="custom-file-input" label='Upload' 
+							<label for="image" className="custom-file-label">{!this.state.haImagem?"Upload file":this.state.auxImg.split("\\")[this.state.auxImg.split("\\").length -1]}</label>
+							<input type="file" id="image" className="custom-file-input" label='Upload' 
 								   ref={(ref)=>this.fileUpload = ref} value={this.state.image} 
 								   onChange={this.handleImagesChange} />
 							</div>
@@ -424,7 +424,7 @@ class CriarPontosInteresse extends Component {
 
 	handleImagesChange(e) {
 		e.preventDefault();
-		this.setState( {auxImg: e.target.value} );
+		this.setState( {auxImg: e.target.value, haImagem:true} );
 	}
 
 	handleImgDescChange(e){
@@ -453,6 +453,7 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxImg:''}); //falta mudar no input qualquer coisa também
 		this.setState({auxAuthor:''});
 		this.setState({auxDesc:''});
+		this.setState({haImagem:false});
 	}
 	
 	deleteImage(index){

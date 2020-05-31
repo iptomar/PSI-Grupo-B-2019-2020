@@ -17,6 +17,8 @@ import pontosDeInteresseList from "./Pages/PontosDeInteresse/PontosDeInteresseLi
 import EditPontosInteresse from "./Pages/PontosDeInteresse/EditPontosInteresse";
 import DetalhesPontoInteresse from "./Pages/PontosDeInteresse/PontosDeInteresseDetalhes";
 
+//apagar se der asneira
+import bsCustomFileInput from 'bs-custom-file-input';
 //Routs
 import RoutesList from './Pages/Routes/RoutesList';
 import CreateRoutes from './Pages/Routes/CreateRoutes';
@@ -33,6 +35,8 @@ import DetalhesAuthors from './Pages/Authors/DetalhesAuthors';
 class App extends Component {
 
   render() {
+    console.log(window.location.pathname);
+
     return (
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light " style={{backgroundColor: "#4C5D72"}}>
@@ -76,6 +80,7 @@ class App extends Component {
             </ul>
           </div>
         </nav>
+        <Route exact path="/" component={Login2}></Route>
         <Route exact path="/Authors" component={AuthorsList}></Route>
         <Route exact path="/CreateAuthors" component={CreateAuthors}></Route>
         <Route exact path="/Authors/:AuthorsId/edit" component={AuthorsEdit}></Route>
