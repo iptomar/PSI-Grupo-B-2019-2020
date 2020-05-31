@@ -7,6 +7,7 @@ package Admin.Points;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,9 @@ public class DeletePoint {
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             Thread.sleep(2000);
             driver.switchTo().alert().accept();
+              //Confirmacao ULR
+            String title = driver.getCurrentUrl();
+             Assert.assertEquals(true,title.contains("PointsOfInterest"));
         } catch (InterruptedException ex) {
             Logger.getLogger(DeletePoint.class.getName()).log(Level.SEVERE, null, ex);
         }

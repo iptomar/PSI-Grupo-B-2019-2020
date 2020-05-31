@@ -95,6 +95,9 @@ public class CreatePoint {
             driver.findElement(By.xpath("//button[.='Add vertice']")).click();
             
             driver.findElement(By.xpath("//button[.='Submit']")).click();
+              //Confirmacao ULR
+            String title = driver.getCurrentUrl();
+             Assert.assertEquals(true,title.contains("PointsOfInterest"));
         } catch (InterruptedException ex) {
             Logger.getLogger(CreatePoint.class.getName()).log(Level.SEVERE, null, ex);
         }

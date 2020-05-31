@@ -8,6 +8,7 @@ package Admin.Roteiros;
 import Admin.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,6 +33,9 @@ public class ListRoteiros {
             //Ir para Authors
             Thread.sleep(500);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
+             //Confirmacao ULR
+            String title = driver.getCurrentUrl();
+            Assert.assertEquals(true,title.contains("Routes"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }

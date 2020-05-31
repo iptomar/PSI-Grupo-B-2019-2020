@@ -38,7 +38,7 @@ public class DeleteAuthors {
             driver.switchTo().alert().accept();
              //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("Authors"));
             
         }  catch (Exception e) {
              System.out.println(e.getMessage());

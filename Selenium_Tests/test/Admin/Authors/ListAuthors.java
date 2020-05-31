@@ -32,9 +32,9 @@ public class ListAuthors {
             //Ir para Authors
             Thread.sleep(500);
             driver.findElement(By.xpath("//a[.='Authors']")).click();
-             //ARRANJAR
+               //Confirmacao ULR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("Authors"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }
