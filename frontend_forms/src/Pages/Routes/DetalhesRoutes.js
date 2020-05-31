@@ -68,7 +68,7 @@ class DetalhesRoutes extends Component {
                             </tbody>
                         </table>
 
-                    <h1>Pontos de interesse</h1>
+                        <h3>Points of interest related to this route</h3>
                             <table className="table table-bordered table-light table-hover table-striped">
                                 <thead class="thead-dark">
                                 <tr style={{
@@ -83,7 +83,7 @@ class DetalhesRoutes extends Component {
 
                                 </thead>
                                 <tbody>
-                                {items}
+                                    {items}
                                 </tbody>
                             </table>
                         
