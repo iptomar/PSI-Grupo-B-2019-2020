@@ -1,3 +1,10 @@
+# git ignores relativos ao FrontEnd
+frontend_forms/node_modules
+.DS_Store
+frontend_forms/package-lock.json
+frontend_forms/.idea/
+
+# git ignores relativos ao BackEnd
 backend_laravel/composer.lock
 backend_laravel/.editorconfig
 *.php___jb_tmp___
