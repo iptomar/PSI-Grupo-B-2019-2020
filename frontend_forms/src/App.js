@@ -17,8 +17,7 @@ import pontosDeInteresseList from "./Pages/PontosDeInteresse/PontosDeInteresseLi
 import EditPontosInteresse from "./Pages/PontosDeInteresse/EditPontosInteresse";
 import DetalhesPontoInteresse from "./Pages/PontosDeInteresse/PontosDeInteresseDetalhes";
 
-//apagar se der asneira
-import bsCustomFileInput from 'bs-custom-file-input';
+
 //Routs
 import RoutesList from './Pages/Routes/RoutesList';
 import CreateRoutes from './Pages/Routes/CreateRoutes';

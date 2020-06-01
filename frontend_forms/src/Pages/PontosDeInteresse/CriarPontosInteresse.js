@@ -283,6 +283,7 @@ class CriarPontosInteresse extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		alert("Are you sure you wish to create this point?");
 		const file = this.fileUpload.files[0];
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
