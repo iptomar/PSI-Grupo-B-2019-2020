@@ -50,7 +50,7 @@ public class LoginSuccess {
              driver.findElement(By.xpath("//button[.='Login']")).click();
              Thread.sleep(1000);
              String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("index"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }
