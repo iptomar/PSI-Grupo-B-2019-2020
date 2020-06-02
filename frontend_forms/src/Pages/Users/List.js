@@ -66,33 +66,7 @@ export default class List extends Component {
                 items.push(i);
 
 
-
         }
-
-        //Paginator
-        const pagination=[];
-        
-        if(this.last_page!==1){
-
-            if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1){
-                pagination.push(<li class="page-item">
-                                 <a class="page-link2" href="#" onClick={()=>this.getUsersList(this.state.current_page-1)}> &lt;</a>
-                                 </li>);
-            }
-
-            for(let i=1;i<=this.state.last_page;i++){
-                pagination.push(<li class="page-item">
-                <a class="page-link2" href="#" onClick={()=>this.getUsersList(i)} >{i}</a>
-                 </li>);
-            }
-
-            if(this.state.current_page !== this.state.last_page){
-                pagination.push(<li class="page-item">
-                                <a class="page-link2" href="#" onClick={()=>this.getUsersList(this.state.current_page+1)}>&gt;</a>
-                                </li>);
-            }
-
-        };
 
 
         return (
@@ -161,3 +135,4 @@ export default class List extends Component {
         this.props.history.push('/users/'+uid+'/edit');
     }
 }
+

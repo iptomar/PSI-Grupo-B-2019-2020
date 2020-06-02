@@ -67,7 +67,7 @@ class Login2 extends Component {
    * password: ......
    * }
    */
-  handleSubmit(e, isVisible){
+  handleSubmit(e){
       e.preventDefault();
       usersApi.login(this.state.email,this.state.password).then( (response) => {
         localStorage.setItem("auth.token", response.token);
