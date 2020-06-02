@@ -34,7 +34,7 @@ public class ListUsers {
             driver.findElement(By.xpath("//a[.='Users']")).click();
             //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("users"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }

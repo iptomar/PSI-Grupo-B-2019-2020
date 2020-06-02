@@ -60,7 +60,7 @@ public class EditUsers {
             //driver.switchTo().alert().accept();
              //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+             Assert.assertEquals(true,title.contains("users"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }

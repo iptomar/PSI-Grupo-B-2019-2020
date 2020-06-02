@@ -58,7 +58,7 @@ public class CreatePoint {
             WebElement cordenada2 = driver.findElement(By.name("coordinate2"));
             cordenada2.sendKeys("2");
             WebElement foto = driver.findElement(By.className("custom-file-input"));
-            foto.sendKeys("C:\\Users\\Tomás Barros\\Pictures\\Saved Pictures\\20150224test644-1200x565.jpg");
+            foto.sendKeys("C:\\Users\\LuisBadalo\\Desktop\\Screenshot_1.png");
             WebElement source_author = driver.findElement(By.name("source_author"));
             source_author.sendKeys("seleniumTeste1");
             WebElement description_images = driver.findElement(By.name("description_images"));
@@ -68,11 +68,9 @@ public class CreatePoint {
             Thread.sleep(5000);
             WebElement teste = driver.findElement(By.id("react-select-2-input"));
             teste.sendKeys("aa");
-            
             Thread.sleep(5000);
+            
             teste.sendKeys(Keys.RETURN);
-            
-            
             WebElement c1 = driver.findElement(By.name("coordenada1"));
             c1.sendKeys("1");
             WebElement c2 = driver.findElement(By.name("coordenada2"));
