@@ -236,17 +236,7 @@ let usersApi = {
 
 };
 
-usersApi.update(37,"daniela@daniela.com","daniela","daniela","daniela", "superadmin").then( (response) =>{
-    console.log(""+JSON.stringify(response))
-    }).catch( (error) => {
-    console.log("deu problemas: " +JSON.stringify(error))
-    });
 
 
-/*usersApi.createUser("da@da.com","da","da","da","register").then( (response) =>{
-console.log(""+JSON.stringify(response))
-}).catch( (error) => {
-console.log("deu problemas: " +JSON.stringify(error))
-});*/
 
 export default usersApi;

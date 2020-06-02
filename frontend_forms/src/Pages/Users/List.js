@@ -51,28 +51,24 @@ export default class List extends Component {
         if(this.last_page!==1){
 
             if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1){
-                console.log("entrei no primeiro");
                 pagination.push(<li class="page-item">
                                  <a class="page-link2" href="#" onClick={()=>this.getUsersList(this.state.current_page-1)}> &lt;</a>
                                  </li>);
             }
 
             for(let i=1;i<=this.state.last_page;i++){
-                console.log("entrei no segundo");
                 pagination.push(<li class="page-item">
                 <a class="page-link2" href="#" onClick={()=>this.getUsersList(i)} >{i}</a>
                  </li>);
             }
 
             if(this.state.current_page !== this.state.last_page){
-                console.log("entrei no terceiro");
                 pagination.push(<li class="page-item">
                                 <a class="page-link2" href="#" onClick={()=>this.getUsersList(this.state.current_page+1)}>&gt;</a>
                                 </li>);
             }
 
         };
-        console.log("pagination", pagination);
 
         return (
 
