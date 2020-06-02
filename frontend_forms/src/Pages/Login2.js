@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ErrorAlert from '../views/Global/ErrorAlert';
-import { Link, NavLink, Redirect } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import usersApi from '../scripts/api/users';
 
 
@@ -15,13 +15,6 @@ class Login2 extends Component {
   }
 
   render() {
-
-    if(localStorage.getItem("auth.token")){
-      return(
-        <Redirect to={'/index'}/>
-      );
-    }
-
     return (
       <div className="App">
         <div className="App__Aside">
@@ -71,7 +64,6 @@ class Login2 extends Component {
       e.preventDefault();
       usersApi.login(this.state.email,this.state.password).then( (response) => {
         localStorage.setItem("auth.token", response.token);
-       // console.log('Element is now %s', isVisible ? 'visible' : 'hidden');
         this.props.history.push('/index');
       }).catch( (error) => {
         this.setState({errors:error});
@@ -88,15 +80,6 @@ class Login2 extends Component {
   handlePasswordChange(e){
       this.setState({password:e.target.value});
   }
-
- /*isVisibility () {
-   if(usersApi.validateAuth(this.props)){
-      
-      this.props.history.push('/index');
-   }
-   
-   
-  }*/
 
 
 
