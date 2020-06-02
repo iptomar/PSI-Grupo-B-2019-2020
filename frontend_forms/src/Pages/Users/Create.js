@@ -25,8 +25,11 @@ class Create extends Component {
         this.handleRoleChange = this.handleRoleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
-        let teste = usersApi.softValidateAuth(this.props,"superadmin");
-        console.log("temos logged? ",teste)
+        let teste=null;
+        usersApi.softValidateAuth("superadmin").then((response)=>{
+            console.log("response",response);
+            this.setState({logged:response});
+        });
 
     }
 
@@ -53,26 +56,40 @@ class Create extends Component {
     async handleSubmit(e){
         e.preventDefault();
 
-        usersApi.register(this.state.email,this.state.name,this.state.password,this.state.password_confirmation,this.state.role).then( (response) => {
-            this.props.history.push('/users');
-        }).catch( (error) => {
-            this.setState({errors:error});
-        });
+        //o metodo da API que vamos chamar depende se o utilizador é um super admin ou não.
+        const isSuper = this.state.logged;
+        if(isSuper){
 
+            usersApi.register(this.state.email,this.state.name,this.state.password,this.state.password_confirmation,this.state.role).then( (response) => {
+                this.props.history.push('/users');
+            }).catch( (error) => {
+                this.setState({errors:error});
+            });
+        }
+        else{
+            usersApi.createUser(this.state.email,this.state.name,this.state.password,this.state.password_confirmation).then( (response) => {
+                this.props.history.push('/Routes');
+            }).catch( (error) =>{
+               this.setState({errors:error}); 
+            });
+        }
+
+        
     };
     
 
     render() {
 
-        /*Caso o utilizador esteja logado, é feita a construção do campo de role */
-        let roleField="";
-        if(this.state.logged){
-            roleField=`<div className="FormField">
-                    <label className="FormField__Label" htmlFor="role">Role</label>
-                    <input type="text" id="role" className="FormField__Input" placeholder="Enter the desired role" name="role" value={this.state.role} onChange={this.handleRoleChange} />
-                    </div>`
+        /*Caso o utilizador esteja logado e seja super admin, é feita a construção do campo de role */
+        const isSuper = this.state.logged;
+        let roleButton;
+        if(isSuper){
+            roleButton= <div className="FormField">
+                        <label className="FormField__Label" htmlFor="role">Role</label>
+                        <input type="text" id="role" className="FormField__Input" placeholder="Enter the desired role" name="role" value={this.state.role} onChange={this.handleRoleChange} />
+                    </div>;
         }
-
+        
         return (
             
             <div className="App">
@@ -97,8 +114,9 @@ class Create extends Component {
                                 <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
                                 <input type="email" id="email" className="FormField__Input" placeholder="Enter your email" name="email" value={this.state.email} onChange={this.handleEmailChange} />
                             </div>
+                            
                             {/* apenas vai apresentar o campo para o role se ele tiver sido criado*/}
-                            {roleField}
+                            {roleButton}
 
                             <div className="FormField">
                                 <label className="FormField__Label" htmlFor="password">Password</label>

@@ -39,14 +39,13 @@ let usersApi = {
 
     //É um validate auth novo para usar na página de registo:
     //caso nao esteja logado, em vez de enviar para o login 2 retornar que nao esta logado para guardar no state.
-    softValidateAuth(props,role=null){
+    softValidateAuth(role=null){
         console.log("Validating auth...");
 
-        let aux="";
         let furl=apiUrl+"/me";
         let token="Bearer " + localStorage.getItem('auth.token');
 
-        fetch(furl, {method:'GET', headers:{
+        return fetch(furl, {method:'GET', headers:{
                 'Content-Type':'application/json',
                 'Accept':'application/json',
                 'Authorization':token
@@ -59,22 +58,18 @@ let usersApi = {
 
                     if(role!==null && role!==data.user.role){
                         console.log("Auth fail 1");
-                        //props.history.push('/login2');
-                        aux = "false";
-                        return aux;
+                        return Promise.resolve(false);
+                        
                     }else{
                         //se chegamos aqui, está logado
                         console.log("auth complete");
-                        aux = "true";
-                        return aux;
+                        return Promise.resolve(true);
                     }  
                 });
-
+                
             } else {
-                console.log("Auth fail 2");
-                //props.history.push('/login2');
-                aux = "false";     
-                return aux;     
+                console.log("Auth fail 2");                
+                return Promise.resolve(false); 
             }
         });       
         
@@ -209,7 +204,7 @@ let usersApi = {
 
     },
 
-    //quando o utilizador nao estiver 
+    //quando o utilizador nao for super admin
     createUser (email,name,password,password_confirmation) {
 
         let furl=apiUrl+"/users/register";
