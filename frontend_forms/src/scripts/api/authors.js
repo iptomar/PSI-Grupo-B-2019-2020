@@ -111,30 +111,6 @@ let authorsApi = {
     
     };
 
-/*authorsApi.delete(11).then( (response) =>{
-  console.log("" +JSON.stringify(response))
-}).catch( (error) => {
-  console.log("deu problemas")
-});*/
 
-
-authorsApi.update(6).then( (response) =>{
-  console.log(""+JSON.stringify(response))
-  }).catch( (error) => {
-  console.log("deu problemas: "+JSON.stringify(error))
-  });
-
- /*   authorsApi.get(6).then( (response) =>{
-  console.log("" + JSON.stringify(response))
-}).catch( (error) => {
-  console.log("deu problemas:" +JSON.stringify(error))
-});*/
-
-/*let name = "Salazar";
-authorsApi.create(name).then( (response) =>{
-console.log(""+JSON.stringify(response))
-}).catch( (error) => {
-console.log("deu problemas: "+JSON.stringify(error))
-});*/
 
 export default authorsApi;

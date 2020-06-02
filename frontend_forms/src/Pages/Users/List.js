@@ -44,6 +44,7 @@ export default class List extends Component {
 
         let items=[];
 
+
         const users=this.state.users;
 
         for(let user in users){
@@ -63,7 +64,36 @@ export default class List extends Component {
                 </tr>;
 
                 items.push(i);
+
+
+
         }
+
+        //Paginator
+        const pagination=[];
+        
+        if(this.last_page!==1){
+
+            if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1){
+                pagination.push(<li class="page-item">
+                                 <a class="page-link2" href="#" onClick={()=>this.getUsersList(this.state.current_page-1)}> &lt;</a>
+                                 </li>);
+            }
+
+            for(let i=1;i<=this.state.last_page;i++){
+                pagination.push(<li class="page-item">
+                <a class="page-link2" href="#" onClick={()=>this.getUsersList(i)} >{i}</a>
+                 </li>);
+            }
+
+            if(this.state.current_page !== this.state.last_page){
+                pagination.push(<li class="page-item">
+                                <a class="page-link2" href="#" onClick={()=>this.getUsersList(this.state.current_page+1)}>&gt;</a>
+                                </li>);
+            }
+
+        };
+
 
         return (
 
@@ -89,10 +119,12 @@ export default class List extends Component {
                 </table>
 
                 <nav aria-label="Page navigation example" className="pageNavigation">
-                        <ul class="pagination">
-                            {pagination}
-                        </ul>
+
+                    <ul class="pagination">
+                        {pagination}
+                    </ul>
                 </nav>
+
             </div>
 
         );
@@ -109,9 +141,8 @@ export default class List extends Component {
 
         usersApi.list(page).then( (response) => {
             this.setState({users:response.data,
-                              current_page:response.current_page,
-                                last_page:response.last_page});
-             console.log(this.state.user);
+                        current_page:response.current_page,
+                        last_page:response.last_page});
         });
 
     }

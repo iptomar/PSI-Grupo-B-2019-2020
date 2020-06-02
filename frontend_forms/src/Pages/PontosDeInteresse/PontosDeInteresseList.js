@@ -37,7 +37,7 @@ export default class pontosDeInteresseList extends Component {
 
     let items = [];
     const pontosDeInteresse = this.state.pontosDeInteresse;
-    console.log('render',this.state.pontosDeInteresse);
+
     for (let ponto in pontosDeInteresse) {
 
       let i = <tr style={{
@@ -61,10 +61,13 @@ export default class pontosDeInteresseList extends Component {
 
     //Paginator TODO: mudar a cor dos botoes?
     const pagination=[];
+    
     if(this.state.last_page!==1){
       //primeiro simbolo (<) existe?
       if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1){
-          pagination.push(<li class="page-item"> <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page-1)}> &lt;</a> </li>);
+          pagination.push(<li class="page-item">
+                           <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page-1)}> &lt;</a>
+                            </li>);
       };
       //numeros para as paginas. TODO: limitar o numero de quadrados possiveis
       console.log("lastpage",this.state.last_page);
@@ -118,11 +121,11 @@ export default class pontosDeInteresseList extends Component {
     if(page < 1){ page=1; }; //a pagina minima é 1
     //se soubermos qual a ultima pagina, e se a pagina atual é maior que a ultima -> a pagina tem de ser a ultima
     if(this.last_page !== null && page > this.last_page){ page=this.last_page; };
+
     pontosDeInteresseApi.list(page).then((response) => {
       this.setState({ pontosDeInteresse: response.data,
                       current_page:response.current_page,
                       last_page:response.last_page });
-     console.log('getlist',this.state.pontosDeInteresse);
     });
     
   }
