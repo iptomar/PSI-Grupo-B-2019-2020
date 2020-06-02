@@ -32,8 +32,11 @@ import AuthorsEdit from './Pages/Authors/AuthorsEdit';
 import DetalhesAuthors from './Pages/Authors/DetalhesAuthors';
 
 class App extends Component {
+ 
+
 
   render() {
+    
     console.log(window.location.pathname);
 
     return (
@@ -98,7 +101,9 @@ class App extends Component {
         <Route exact path="/Routes/:RoutesId/detalhes" component={DetalhesRoutes}></Route>
       </Router>
     );
+    
   }
+  
 }
 
 export default App;

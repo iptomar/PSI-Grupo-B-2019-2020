@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 
 class Register extends Component {
   render(){
+
     return(
       <Form className="registration-form"> 
       <h1 className ="text-center"><span className="font-weight-bold">Register</span></h1>
