@@ -124,20 +124,22 @@ let usersApi = {
             });
     },
 
-    list(page=1){
+    list(page) {
 
-        let furl=apiUrl+"/users?page="+page;
-        let token="Bearer " + localStorage.getItem("auth.token");
+        let furl = apiUrl + "/users?page=" + page;
+        let token = "Bearer " + localStorage.getItem("auth.token");
 
-        return fetch(furl, {method:'GET', headers:{
-                'Content-Type':'application/json','Accept':'application/json', 'Authorization':token
-            }}).then( (response) => {
-                if(response.ok){
-                    return Promise.resolve(response.json());
-                } else {
-                    return Promise.reject(response.json());
-                }
-            });
+        return fetch(furl, {
+            method: 'GET', headers: {
+                'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token
+            }
+        }).then((response) => {
+            if (response.ok) {
+                return Promise.resolve(response.json());
+            } else {
+                return Promise.reject(response.json());
+            }
+        });
 
     },
 

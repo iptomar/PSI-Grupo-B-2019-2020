@@ -16,7 +16,7 @@ class CriarPontosInteresse extends Component {
 		super(props);
 		this.state = {
 			buildingName: '', location: '', dates: '', buildingType: '', description: '', coordinate1: '', coordinate2: '',
-			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '', nameRoute:'',
+			auxImg:'', auxAuthor:'', auxDesc:'', auxNameAuthor: '', nameRoute:'',
 			vertices: [], images: [], 
 			authors: [], routes: [], routesPage: 1, routesPageMax: 99, routesList:{}, selectedRoute:null,
 			errors: []
@@ -169,8 +169,8 @@ class CriarPontosInteresse extends Component {
 					<div className="row">
 						<div className="col-md-4">
 							<div className="custom-file" style={{marginTop:'35px'}}>
-							<label for="image" className="custom-file-label">Upload file...</label>
-							<input type="file" className="custom-file-input" label='Upload' 
+							<label for="image" className="custom-file-label">{!this.state.haImagem?"Upload file":this.state.auxImg.split("\\")[this.state.auxImg.split("\\").length -1]}</label>
+							<input type="file" id="image" className="custom-file-input" label='Upload' 
 								   ref={(ref)=>this.fileUpload = ref} value={this.state.image} 
 								   onChange={this.handleImagesChange} />
 							</div>
@@ -230,7 +230,7 @@ class CriarPontosInteresse extends Component {
 							<div className="form group col-md-4">
 								<label for="coordenada1"><b>Coordinate 1</b></label>
 								<input className="form-control" type="number" placeholder="Insert coordinate 1..." 
-								name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0" 
+								name="coordenada1" id="coordenada1" value={this.state.auxCoordenada1} data-index="0" 
 								onChange={this.handleVerticeCoordenada1Change} required />
 							</div>
 							<div class="form-group col-md-4">
@@ -283,6 +283,7 @@ class CriarPontosInteresse extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		alert("Are you sure you wish to create this point?");
 		const file = this.fileUpload.files[0];
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
@@ -330,15 +331,21 @@ class CriarPontosInteresse extends Component {
 
 	addVertice (e){
 		e.preventDefault();
-		let object = {coordinate1: '', coordinate2:'', order:''};
-		object.coordinate1 = this.state.auxCoordenada1;
-		object.coordinate2 = this.state.auxCoordenada2;
-		object.order = this.state.auxOrder;
-		this.setState({vertices: this.state.vertices.concat(object)});
-		this.setState({auxCoordenada1:''});
-		this.setState({auxCoordenada2:''});
-		this.setState({auxOrder:''});
-		
+		if(this.state.auxCoordenada1 != null && this.state.auxCoordenada2 !=null  && this.state.auxOrder != null &&
+			this.state.auxCoordenada1 != "" && this.state.auxCoordenada2 != "" && this.state.auxOrder != "")
+			{
+			let val1 = document.getElementById("coordenada1").value;
+			let val2 = document.getElementById("coordenada2").value;
+			let order = document.getElementById("order").value;
+			let object = {coordinate1: '', coordinate2:'', order:''};
+			object.coordinate1 = val1;
+			object.coordinate2 = val2;
+			object.order = order;
+			this.setState({vertices: this.state.vertices.concat(object)});
+				}
+				else {
+			console.log(this.state.errors);
+		}
 	}
 
 	addRoute(e) {
@@ -418,7 +425,7 @@ class CriarPontosInteresse extends Component {
 
 	handleImagesChange(e) {
 		e.preventDefault();
-		this.setState( {auxImg: e.target.value} );
+		this.setState( {auxImg: e.target.value, haImagem:true} );
 	}
 
 	handleImgDescChange(e){
@@ -447,6 +454,7 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxImg:''}); //falta mudar no input qualquer coisa também
 		this.setState({auxAuthor:''});
 		this.setState({auxDesc:''});
+		this.setState({haImagem:false});
 	}
 	
 	deleteImage(index){

@@ -58,17 +58,14 @@ class CreateRoutes extends Component {
         return(
             <div className="fundo" >
                 <form className="needs-validation" onSubmit={this.handleSubmit}>
-                    <h1 className="text-center"><span className="font-weight-bold">Create Routes</span></h1>
+                    <h1 className="text-center"><span className="font-weight-bold">Edit route</span></h1>
                     <div className="form-group row">
                         <label for="nameRoute"><b>Name</b></label>
                         <input className="form-control" type="text" placeholder="Insert name..." name="nameRoute" value={this.state.nameRoute} onChange={this.handleNameRoute} required />
                     </div>
                     <div className="form-group row">
-                        <label for="pontos"><b>Points Of Interest</b></label>
-                    </div>
-
-                    <div>
-                        <table className="table table-hover table-dark table-striped rounded" id="pontosDeInteresse">
+                        <label for="pontos"><b>Points of interest related to this route</b></label>
+                        <table className="table table-hover table-dark table-striped rounded">
                             <thead>
                             <tr style={{
                                 textAlign: "center"
@@ -87,19 +84,18 @@ class CreateRoutes extends Component {
                         </table>
                     </div>
 
-                    <h3>Adicionar PI</h3>
+                    <label for="pontos" style={{color:'white'}}><b>Other points of interest:</b></label>
                     <div>
-                        <div>
-                            <AsyncSelect
-                                isMulti
-                                cacheOptions
-                                defaultOptions
-                                loadOptions={this.getOptions}
-                                onChange={this.handlePointsOfInterestChange}
-                            />
-                        </div>
+                        <AsyncSelect
+                            isMulti
+                            cacheOptions
+                            defaultOptions
+                            loadOptions={this.getOptions}
+                            onChange={this.handlePointsOfInterestChange}
+                        />
                     </div>
-                    <div className="form-group col"></div>
+                    
+                    
                     <hr class="mb-3"></hr>
                     <button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
                         Submit

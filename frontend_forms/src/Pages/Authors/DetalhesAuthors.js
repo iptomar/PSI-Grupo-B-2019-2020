@@ -35,8 +35,8 @@ class DetalhesAuthors extends Component {
 
                 return (
                     <div className="fundo3">
-                        <h1 class="tituloAutor">Detalhes do Autor</h1>
                         <div className="detalhesAutor">
+                            <h1>Detalhes do Autor</h1>
                             <table className="table tabelaAutor table-bordered table-light table-hover table-striped">
                                 <thead class="thead-dark">
                                     <th scope="col" colSpan="4">Name</th>

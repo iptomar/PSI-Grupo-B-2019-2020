@@ -20,7 +20,30 @@ export default class List extends Component {
 
     render() {
 
+       //PAGINACAO
+       const pagination = [];
+       if (this.state.last_page !== 1) {
+           if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1) {
+               pagination.push(<li className="page-item"><a className="page-link2" href="#" onClick={() => this.getUsersList(this.state.current_page-1)}>&lt;</a></li>)
+           };
+
+           //numeros para as paginas
+           console.log("lastpage", this.state.last_page);
+           for( let i = 1; i <= this.state.last_page; i++) {
+               pagination.push(<li className="page-item">
+                                   <a className="page-link2" href="#" onClick={() => this.getUsersList(i)}> {i} </a>
+                               </li>);
+           };
+
+           if (this.state.current_page !== this.state.last_page) {
+               pagination.push(<li className="page-item">
+                                   <a className="page-link2" href="#" onClick={() => this.getUsersList(this.state.current_page + 1)}>&gt;</a>
+               </li>);
+           };
+       };
+
         let items=[];
+
 
         const users=this.state.users;
 
@@ -41,6 +64,7 @@ export default class List extends Component {
                 </tr>;
 
                 items.push(i);
+
 
 
         }
@@ -70,6 +94,7 @@ export default class List extends Component {
 
         };
 
+
         return (
 
             <div className="stuff">
@@ -94,6 +119,7 @@ export default class List extends Component {
                 </table>
 
                 <nav aria-label="Page navigation example" className="pageNavigation">
+
                     <ul class="pagination">
                         {pagination}
                     </ul>
@@ -106,8 +132,12 @@ export default class List extends Component {
 
     getUsersList(page){
 
-        if(page < 1){ page=1; }
-        if(this.last_page !== null && page > this.last_page){ page=this.last_page; }
+        if(page < 1) {
+            page = 1;
+        };
+        if(this.last_page !== null && page > this.last_page) {
+            page = this.last_page;
+        };
 
         usersApi.list(page).then( (response) => {
             this.setState({users:response.data,

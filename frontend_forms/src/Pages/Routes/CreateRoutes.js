@@ -61,6 +61,7 @@ class CreateRoutes extends Component {
 
     handleSubmit(e){
         e.preventDefault();
+        alert("Are you sure you wish to create this route?");
         console.log(this.state.nameRoute);
         roteirosApi.create(this.state.nameRoute,this.state.pointsOfInterest).then((response) => {
             this.props.history.push('/Routes');

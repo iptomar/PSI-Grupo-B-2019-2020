@@ -39,9 +39,11 @@ class CreateAuthors extends Component {
 
     handleSubmit(e){
         e.preventDefault();
+        alert("Are you sure you wish to create this author?");
         console.log(this.state.nameAuthor);
         authorsApi.create(this.state.nameAuthor).then((response) => {
             console.log(response);
+            this.props.history.push('/Authors');
         })
 
     }
