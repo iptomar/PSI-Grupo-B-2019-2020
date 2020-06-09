@@ -47,6 +47,13 @@ const markerCurrent = L.icon({
     iconAnchor: [25, 16]
 });
 
+//Point interest marker
+const pointInterMarker = L.icon({
+    iconUrl: 'images/icon.png',
+    iconSize: [50, 50],
+    iconAnchor: [25, 16]
+});
+
 //Path tracer icon customize
 const pathTrace = L.icon({
     iconUrl: 'images/gold.png',
@@ -75,6 +82,10 @@ const pathTrace = L.icon({
 //Funcão para fazer fetch das informacões 
 let coord;
 let control;
+const divPointInteres = document.querySelector('.divPointInter');
+const div2PointInterres = document.querySelector('#div2PointInterres');
+
+
 //let Access-Control-Allow-Origin across the CORS url
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
@@ -91,12 +102,12 @@ async function buildings()
         $.each(dados, function(i, info){
                 //console.log(info);
                 coord = [info.coordinate1, info.coordinate2];
-                circle = L.circle(coord, {
-                color: '#ff9900',
-                fillColor: '#aa3',
-                fillOpacity: 0.5,
-                radius: 100
-            }).addTo(mymap);
+            //     circle = L.circle(coord, {
+            //     color: '#ff9900',
+            //     fillColor: '#aa3',
+            //     fillOpacity: 0.5,
+            //     radius: 100
+            // }).addTo(mymap);
 
             let divPopup = document.createElement('div');
             divPopup.setAttribute('id', 'iDdivPopup');
@@ -132,7 +143,7 @@ async function buildings()
             divPopup.appendChild(but);
             divPopup.appendChild(but2);
             
-            L.marker(coord).addTo(mymap).bindPopup(divPopup);
+            const mark = L.marker(coord, {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
             
             const cont = document.querySelector('.cont');
             
@@ -171,6 +182,7 @@ async function buildings()
 
             but.addEventListener('click', function(){
                 cont.style.display = "none";
+                div2PointInterres.style.display = "none";
                 document.body.style.overflow = "auto";
                 document.body.style.backgroundColor = "#fff5e6";
                 txtDetails.style.visibility = 'visible';
@@ -254,6 +266,33 @@ async function buildings()
                 });
             });
 
+            const mp = document.querySelector('#map');
+
+            //mark the point of interest dynamically by user
+            const buildingName2 = document.createElement('h4');
+            buildingName2.textContent = info.buildingName;
+            
+            divPointInteres.addEventListener('click', ()=>{
+                mark.remove();
+                div2PointInterres.classList.remove('div2PointHidden');
+                div2PointInterres.classList.add('div2PointInterresses');
+                mp.style.zIndex = "-1";
+                buildingName2.className = 'btn btn-success btn-lg btn-block';
+                div2PointInterres.appendChild(buildingName2);
+
+            });
+
+            buildingName2.addEventListener('click', ()=>{
+                L.marker([info.coordinate1, info.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+            });
+
+            //close span
+            const closeP = document.querySelector('.closeP');
+            closeP.addEventListener('click', ()=>{
+                div2PointInterres.classList.remove('div2PointInterresses');
+                mp.style.zIndex = "1";
+            });
+
         });
 
         //Remove the routing control if it's already marked
@@ -292,7 +331,7 @@ divTomar.addEventListener('click', function(){
 (async ()=>{
     //Target url to fetch
     const targetUrl = 'http://psi2020.tugamars.com/api/buildings';
-    const response = await fetch(proxyUrl+targetUrl);
+    const response = await fetch(targetUrl);
     const data = await response.json();
     const dados = data.data;
     
@@ -319,6 +358,8 @@ divTomar.addEventListener('click', function(){
                 divRoute.style.visibility = "hidden";
                 info1.style.display = "none";
                 divTomar.style.display = "none";
+                divPointInteres.style.display = "none";
+                div2PointInterres.style.display = "none";
         
                 txtRoute.innerHTML = id.name;
                 divInfoRoute.appendChild(txtRoute);
@@ -327,7 +368,7 @@ divTomar.addEventListener('click', function(){
             //Close
             const closeSpan = document.querySelector('.closeS');
             closeSpan.addEventListener('click', ()=>{
-                infomap.style.visibility = "visible";
+                infomap.style.display = "flex";
                 window.location.reload();
             });
 
@@ -366,10 +407,35 @@ divTomar.addEventListener('click', function(){
 
                 mp.style.display = "none";
                 closeSpnInfo.innerHTML = 'x';
-                paraf.innerHTML = infor.buildingName;
-                paraf2.innerHTML = `<b>Localizacão: ${infor.location}</b>`;
-                paraf4.innerHTML = `<b>Ano de construcão: ${infor.dates}</b>`;
-                paraf5.innerHTML = infor.description;
+                
+                //building name
+                if(infor.buildingName == 0){
+                    paraf.innerHTML = "<i>Não tem nome do edificio</i>";
+                }else{
+                    paraf.innerHTML = infor.buildingName;
+                }
+                
+                //location
+                if(infor.location == 0){
+                    paraf2.innerHTML = "<i>Localizacão desconhecido!</i>";
+                }else{
+                    paraf2.innerHTML = `<b>Localizacão: ${infor.location}</b>`;
+                }
+               
+                //building date
+                if(infor.dates == 0){
+                    paraf4.innerHTML = "<i>Sem data previsto!</i>";
+                }else{
+                    paraf4.innerHTML = `<b>Ano de construcão: ${infor.dates}</b>`;
+                }
+               
+                //decription
+                if(infor.description == 0){
+                    paraf5.innerHTML = "<i>Não tem a descricao para este edificio!</i>";
+                }else{
+                    paraf5.innerHTML = infor.description;
+                }
+               
 
                 const img = infor.images;
                 const aut = infor.authors;

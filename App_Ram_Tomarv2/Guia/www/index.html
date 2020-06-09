@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>RAM TOMAR</title>
 
     <link rel="stylesheet" type="text/css" href="css/index.css">
@@ -24,7 +25,7 @@
     
 </head>
 <body>
-<div class="cont">
+<nav class="cont">
   <nav class="navbar navbar-dark bg-dark">
     <div>
         <h4 id="title"><i class="glyphicon glyphicon-home"></i> RAM TOMAR</h4>
@@ -33,7 +34,10 @@
       <i class="glyphicon glyphicon-info-sign"></i>
     </div>
     <div class="divRout">
-      <button class="rotas"><span class="glyphicon glyphicon-map-marker"></span> Consultar Rotas</button>
+      <button class="rotas"><span class="glyphicon glyphicon-globe"></span> Consultar Rotas</button>
+    </div>
+    <div class="divPointInter">
+      <button class="tomar"><span class="glyphicon glyphicon-map-marker"></span> Ponto Interesse</button>
     </div>
     <div class="divTomar">
       <button class="tomar"><img src="images/tomar.png" width="90" height="30" alt="">&nbsp;
@@ -43,7 +47,7 @@
   </nav>
 
   <div id="map"></div>
-</div>
+</nav>
 
 <div style="visibility: hidden;" class="divDetails">
   <span class="closeD">x</span>
@@ -52,8 +56,10 @@
 <div class="pointInter"></div>
 
 <div style="visibility: hidden;" class="routeDiv">
-  <i class="inforRoute">Escolher um dos routeiros em baixo para visitar<span class="closeS">x</span></i><br><br>
+  <i class="inforRoute">Escolher um dos routeiros em baixo para visitar<span class="closeS">X</span></i><br><br>
 </div>
+
+<div id="div2PointInterres" class="div2PointHidden"><label class="labelPoint">Escolhe um dos pontos em baixo: <span class="closeP">x</span></label></div>
   
 <div style="visibility: hidden;" id="about" tabindex="-1">
   <div class="modal-header navbar modHeader">
