@@ -80,11 +80,11 @@ const pathTrace = L.icon({
 
 
 //Funcão para fazer fetch das informacões 
-let coord;
+//let coord;
 let control;
 const divPointInteres = document.querySelector('.divPointInter');
 const div2PointInterres = document.querySelector('#div2PointInterres');
-
+const markRoute = document.querySelector('.divMarkRoute');
 
 //let Access-Control-Allow-Origin across the CORS url
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
@@ -101,7 +101,7 @@ async function buildings()
         
         $.each(dados, function(i, info){
                 //console.log(info);
-                coord = [info.coordinate1, info.coordinate2];
+                //coord = [info.coordinate1, info.coordinate2];
             //     circle = L.circle(coord, {
             //     color: '#ff9900',
             //     fillColor: '#aa3',
@@ -143,7 +143,7 @@ async function buildings()
             divPopup.appendChild(but);
             divPopup.appendChild(but2);
             
-            const mark = L.marker(coord, {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+            //const mark = L.marker(coord, {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
             
             const cont = document.querySelector('.cont');
             
@@ -158,27 +158,17 @@ async function buildings()
             const locBuild = document.createElement('h4');
             locBuild.classList.add('localBuild');
 
-            const autBuild = document.createElement('p');
-            autBuild.classList.add('autBuild');
-
             const descBuild = document.createElement('p');
             descBuild.classList.add('descripBuild');
 
             const dateBuild = document.createElement('h5');
             dateBuild.classList.add('dateBuild');
 
-            const imagem = document.createElement('img');
-            imagem.classList.add('imagem');
-
             const divImage = document.createElement('div');
             divImage.setAttribute('id', 'divImage');
-
-            const descImage = document.createElement('p');
-            descImage.setAttribute('class', 'descImage');
-            descImage.innerHTML = "Autor da imagem: ";
             
-            let autor = info.authors;
-            let image = info.images;
+            const autor = info.authors;
+            const image = info.images;
 
             but.addEventListener('click', function(){
                 cont.style.display = "none";
@@ -191,21 +181,36 @@ async function buildings()
                 descBuild.innerHTML = info.description;
                 dateBuild.innerHTML = `<b>Ano de construcão: ${info.dates}</b>`;
 
-                autor.forEach(function(el){
-                    autBuild.innerHTML = `<b>Autores: ${el.name}</b>`;
+                $.each(autor, (i, el)=>{
+                    const autBuild = document.createElement('p');
+                    autBuild.classList.add('autBuild');
+                    txtDetails.appendChild(autBuild);
+
+                    autBuild.innerHTML = `<b>${el.name}</b>`;
                 });
                 txtDetails.appendChild(locBuild);
                 txtDetails.appendChild(dateBuild);
-                txtDetails.appendChild(autBuild);
                 txtDetails.appendChild(descBuild);
 
                 txtDetails.appendChild(hr);
-                divImage.appendChild(imagem);
-                divImage.appendChild(descImage);
+
                 txtDetails.appendChild(divImage);
 
-                image.forEach(function(im){
+                $.each(image, (i, im)=>{
+                    const imagem = document.createElement('img');
+                    const pA = document.createElement('pA');
+                    const br = document.createElement('br');
+                   
+                    imagem.classList.add('imagem');
+                    pA.classList.add('pA');
+
+                    br.innerHTML = '<br><br><br>';
+                    pA.innerHTML = `Autor da imagem: ${im.sourceAuthor}`;
                     imagem.src = `data:image/png;base64, ${im.base64}`;
+
+                    divImage.appendChild(imagem);
+                    divImage.appendChild(pA);
+                    divImage.appendChild(br);
                 });
             });
 
@@ -228,6 +233,7 @@ async function buildings()
             const clInfo = document.querySelector('.closeInfo');
             clInfo.addEventListener('click', function(){
                 about.style.display = "none";
+                div2PointInterres.style.display = "none";
                 window.location.reload();
 
             });
@@ -272,25 +278,66 @@ async function buildings()
             const buildingName2 = document.createElement('h4');
             buildingName2.textContent = info.buildingName;
             
-            divPointInteres.addEventListener('click', ()=>{
-                mark.remove();
-                div2PointInterres.classList.remove('div2PointHidden');
-                div2PointInterres.classList.add('div2PointInterresses');
-                mp.style.zIndex = "-1";
-                buildingName2.className = 'btn btn-success btn-lg btn-block';
-                div2PointInterres.appendChild(buildingName2);
+            const rt = info.routes;
+            $.each(rt, (i, rout)=>{
+                const routes2 = document.createElement('h4');
+                routes2.setAttribute('id', 'routes2');
 
-            });
+                const labelPoint = document.querySelector('.labelPoint');
+                const iPoint = document.querySelector('.iPoint');
+                labelPoint.appendChild(iPoint);
+                div2PointInterres.appendChild(labelPoint);
 
-            buildingName2.addEventListener('click', ()=>{
-                L.marker([info.coordinate1, info.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
-            });
+                //show by the point of interest
+                divPointInteres.addEventListener('click', ()=>{
+                    //mark.remove();
+                    routes2.remove();
+                    iPoint.textContent = "Escolhe um dos pontos em baixo para marcar no mapa:";
 
-            //close span
-            const closeP = document.querySelector('.closeP');
-            closeP.addEventListener('click', ()=>{
-                div2PointInterres.classList.remove('div2PointInterresses');
-                mp.style.zIndex = "1";
+                    div2PointInterres.classList.remove('div2PointHidden');
+                    div2PointInterres.classList.add('div2PointInterresses');
+                    mp.style.zIndex = "-1";
+                    buildingName2.className = 'btn btn-success btn-lg btn-block';
+                    div2PointInterres.appendChild(buildingName2);
+
+                });
+
+                buildingName2.addEventListener('click', ()=>{
+                    L.marker([info.coordinate1, info.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+                });
+
+                //close span
+                const closeP = document.querySelector('.closeP');
+                closeP.addEventListener('click', ()=>{
+                    div2PointInterres.classList.remove('div2PointInterresses');
+                    mp.style.zIndex = "1";
+                });
+                
+                //Show building by route marked on the map
+                markRoute.addEventListener('click', ()=>{
+                    buildingName2.remove();
+                    iPoint.textContent = "Escolhe uma das rotas em baixo para ver os pontos de interesses no mapa:";
+
+                    div2PointInterres.classList.remove('div2PointHidden');
+                    div2PointInterres.classList.add('div2PointInterresses');
+                    mp.style.zIndex = "-1";
+
+                    routes2.textContent = rout.name;
+                    routes2.className = 'btn btn-success btn-lg btn-block';
+                    div2PointInterres.appendChild(routes2);
+                });
+
+                routes2.addEventListener('click', ()=>{
+                    const pivot = rout.pivot;
+                    $.each(pivot, (i, p)=>{
+                        $.each(dados, (i, d)=>{
+                            if(p.building_id == d.id){
+                                L.marker([d.coordinate1, d.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+                            }
+                        });
+                    });
+                });
+               
             });
 
         });
@@ -360,6 +407,7 @@ divTomar.addEventListener('click', function(){
                 divTomar.style.display = "none";
                 divPointInteres.style.display = "none";
                 div2PointInterres.style.display = "none";
+                markRoute.style.display = "none";
         
                 txtRoute.innerHTML = id.name;
                 divInfoRoute.appendChild(txtRoute);
@@ -429,7 +477,7 @@ divTomar.addEventListener('click', function(){
                     paraf4.innerHTML = `<b>Ano de construcão: ${infor.dates}</b>`;
                 }
                
-                //decription
+                //description
                 if(infor.description == 0){
                     paraf5.innerHTML = "<i>Não tem a descricao para este edificio!</i>";
                 }else{
@@ -504,3 +552,57 @@ divTomar.addEventListener('click', function(){
 title.addEventListener('click', function(){
     window.location.reload();
 });
+
+//Vanilla javascript to drag the div
+(function() {
+    const elRoot = document.querySelector('#div2PointInterres');
+
+    // State variables
+    let isDragging = false;
+    let startX = null;
+    let startY = null;
+    let startLeft = null;
+    let startTop = null;
+
+    // Whenever mouse button is pressed
+    elRoot.addEventListener('mousedown', (e) => {
+        const rect  = elRoot.getBoundingClientRect();
+        // Set component state to dragging
+        isDragging = true;
+
+        // Save mousedown coordinates
+        startX = e.pageX;
+        startY = e.pageY;
+
+        // Save initial position values
+        startLeft = rect.left;
+        startTop = rect.top;
+    });
+
+    // Whenever mouse button is released
+    window.addEventListener('mouseup', () => {
+        // Reset all state values and turn dragging mode off
+        isDragging = false;
+        startX = null;
+        startY = null;
+        startLeft = null;
+        startTop = null;
+    });
+
+    // Whenever mouse is moved
+    window.addEventListener('mousemove', (e) => {
+        // Do nothing if it's you're not in a dragging mode
+        if (!isDragging) return;
+
+        // Get the difference between current mouse cursor position and the mousedown position
+        const deltaX = e.pageX - startX;
+        const deltaY = e.pageY - startY;
+
+        // Add the difference to initial card position
+        // Event coordinates and card positions are stored separately because you can click somewhere inside the card,
+        // but you need to know the top left coordinates of the card to move it either with top/left or with css transform.
+        elRoot.style.left = `${startLeft + deltaX}px`;
+        elRoot.style.top = `${startTop + deltaY}px`;
+    });
+})();
+
