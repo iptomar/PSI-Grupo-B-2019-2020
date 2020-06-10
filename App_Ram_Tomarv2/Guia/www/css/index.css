@@ -457,7 +457,7 @@ top: 0px;
   position: fixed;
   top: 20%;
   left: 70%;
-  width: 25%;
+  width: 30%;
   height: 60%;
   background-color:snow;
   z-index: 1;
@@ -485,10 +485,35 @@ top: 0px;
 
 #routes2{
   background-color: darkgray;
+  font-size: 16px;
+  text-align: left;
 }
 
 #routes2:hover{
   background-color: darkorange;
 }
 
+#spanR{
+ margin-right: 2%;
+ float: right;
+ color: black;
+}
 
+#spanY{
+  margin-right: 2%;
+  float: right;
+  color: black;
+}
+
+#spanY:hover{
+  color: white;
+}
+
+#spanR:hover{
+  color: red;
+}
+
+#buildingName2{
+  text-align: left;
+  font-size: 14px;
+}

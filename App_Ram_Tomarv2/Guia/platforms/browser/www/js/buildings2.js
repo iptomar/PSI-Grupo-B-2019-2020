@@ -206,8 +206,8 @@ async function buildings()
 
                     br.innerHTML = '<br><br><br>';
                     pA.innerHTML = `Autor da imagem: ${im.sourceAuthor}`;
-                    imagem.src = `data:image/png;base64, ${im.base64}`;
-
+                    //imagem.src = `data:image/png;base64, ${im.base64}`;
+                    imagem.src = im.base64;
                     divImage.appendChild(imagem);
                     divImage.appendChild(pA);
                     divImage.appendChild(br);
@@ -226,6 +226,7 @@ async function buildings()
             const about = document.querySelector('#about');
             info1.addEventListener('click', function(){
                 cont.style.display = "none";
+                div2PointInterres.style.display = "none";
                 about.style.visibility = "visible";
             });
 
@@ -276,8 +277,20 @@ async function buildings()
 
             //mark the point of interest dynamically by user
             const buildingName2 = document.createElement('h4');
+            buildingName2.setAttribute('id', 'buildingName2');
             buildingName2.textContent = info.buildingName;
             
+            const spanR = document.createElement('span');
+            spanR.className = 'glyphicon glyphicon-remove';
+            spanR.setAttribute('id', 'spanR');
+            spanR.title = 'remover ponto de interesse';
+
+            const spanY = document.createElement('span');
+            spanY.className = 'glyphicon glyphicon-ok';
+            spanY.setAttribute('id', 'spanY');
+            spanY.title = 'marcar ponto de interesse';
+            buildingName2.appendChild(spanY);
+
             const rt = info.routes;
             $.each(rt, (i, rout)=>{
                 const routes2 = document.createElement('h4');
@@ -302,8 +315,20 @@ async function buildings()
 
                 });
 
-                buildingName2.addEventListener('click', ()=>{
-                    L.marker([info.coordinate1, info.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+                let buildCoord;
+                spanY.addEventListener('click', ()=>{
+                    spanY.style.visibility = "hidden";
+                    spanR.style.visibility = "visible";
+                    buildCoord = L.marker([info.coordinate1, info.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+                    buildingName2.appendChild(spanR);
+                    mp.style.zIndex = "1";
+                });
+
+                spanR.addEventListener('click', ()=>{
+                    spanY.style.visibility = "visible";
+                    spanR.style.visibility = "hidden";
+                    buildCoord.remove();
+                    removeRoutingControl();
                 });
 
                 //close span
@@ -314,8 +339,21 @@ async function buildings()
                 });
                 
                 //Show building by route marked on the map
+                const spanRR = document.createElement('span');
+                spanRR.className = 'glyphicon glyphicon-remove';
+                spanRR.setAttribute('id', 'spanR');
+                spanRR.title = 'remover a rota';
+
+                const spanYY = document.createElement('span');
+                spanYY.className = 'glyphicon glyphicon-ok';
+                spanYY.setAttribute('id', 'spanY');
+                spanYY.title = 'marcar a rota';
+                
+                
                 markRoute.addEventListener('click', ()=>{
+                    //mark.remove();
                     buildingName2.remove();
+                    
                     iPoint.textContent = "Escolhe uma das rotas em baixo para ver os pontos de interesses no mapa:";
 
                     div2PointInterres.classList.remove('div2PointHidden');
@@ -323,21 +361,28 @@ async function buildings()
                     mp.style.zIndex = "-1";
 
                     routes2.textContent = rout.name;
+                    routes2.appendChild(spanRR);
+                    routes2.appendChild(spanYY);
                     routes2.className = 'btn btn-success btn-lg btn-block';
                     div2PointInterres.appendChild(routes2);
                 });
 
-                routes2.addEventListener('click', ()=>{
-                    const pivot = rout.pivot;
-                    $.each(pivot, (i, p)=>{
-                        $.each(dados, (i, d)=>{
+                let routeCoord;
+                const pivot = rout.pivot;
+                $.each(pivot, (i, p)=>{
+                    $.each(dados, (i, d)=>{
+                        spanYY.addEventListener('click', ()=>{
                             if(p.building_id == d.id){
-                                L.marker([d.coordinate1, d.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+                                routeCoord = L.marker([d.coordinate1, d.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+                                mp.style.zIndex = "1";
                             }
+                        });
+
+                        spanRR.addEventListener('click', ()=>{
+                            routeCoord.remove();
                         });
                     });
                 });
-               
             });
 
         });
