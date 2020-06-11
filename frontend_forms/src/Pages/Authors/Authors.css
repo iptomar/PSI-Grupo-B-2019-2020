@@ -1,0 +1,81 @@
+#authors {
+    width: 95%;
+    padding: 15px;
+    margin: auto;
+    height: 100%;
+    margin-top: 60px;
+}
+
+.detalhesAutor {
+    width: 50%;
+    padding: 15px;
+    margin: auto;
+    height: 100%;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .detalhesAutor {
+    width: 50%;
+    padding: 15px;
+    margin: auto;
+    height: 100%;
+    margin-top: 20px;
+    text-align: center;
+    padding-bottom: 458px;
+  }
+
+  .fundo3 {
+    background-color: rgb(102, 218, 199);
+    padding-top: 0px;
+    
+  }
+
+  h1 {
+    color: #ffffff;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-radius: 0.70em;
+    overflow: hidden;
+    
+  }
+
+
+  h1 {
+    color: #ffffff;
+    text-align: center;
+    padding-top: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-radius: 0.70em;
+    overflow: hidden;
+    
+  }
+  
+  .pageNavigation {
+    width: 250px;
+    margin: auto;
+  }
+  
+  .page-link2 {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #ffffff;
+    background-color: #454d55;
+    border: 1px solid grey;
+    border-radius: 2px;
+  }
+  
+  .page-link2:hover {
+    color: grey;
+    text-decoration: none;
+  }

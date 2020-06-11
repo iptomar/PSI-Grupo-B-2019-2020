@@ -64,7 +64,7 @@ class Login2 extends Component {
       e.preventDefault();
       usersApi.login(this.state.email,this.state.password).then( (response) => {
         localStorage.setItem("auth.token", response.token);
-        this.props.history.push('/home');
+        this.props.history.push('/index');
       }).catch( (error) => {
         this.setState({errors:error});
       });

@@ -10,7 +10,7 @@
     background-image: linear-gradient(to bottom, rgb(46,65,88), 
     rgb(102, 218, 199));
     padding-top:75px;
-    padding-bottom:700px; 
+  
 }
 
 caption {
@@ -22,7 +22,7 @@ caption {
 .fundo {
     background-color: linear-gradient(to bottom, rgb(46,65,88), 
     rgb(102, 218, 199));
-    padding-bottom: 315px;
+   
 }
 
 .button {

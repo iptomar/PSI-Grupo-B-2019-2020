@@ -4,10 +4,14 @@ let apiUrl = process.env.REACT_APP_API_URL_BASE;
 let pontosDeInteresseApi = {
 
 
-  list(page) {
+  list(page,search=null) {
 
     let furl = apiUrl + "/buildings?page="+page;
     let token = "Bearer " + localStorage.getItem("auth.token");
+
+    if(search!=null){
+      furl+="&search="+search;
+    }
 
     return fetch(furl, {
       method: 'GET', headers: {
@@ -47,8 +51,6 @@ let pontosDeInteresseApi = {
     form.append('description', description);
     form.append('coordinate1', cc1);
     form.append('coordinate2', cc2);
-    form.append('images', JSON.stringify(imagens));
-    form.append('authors', authors);
     for(let i in imagens){
       form.append('images['+i+'][description]', imagens[i]["description"]);
       form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
@@ -60,7 +62,7 @@ let pontosDeInteresseApi = {
       form.append('vertices['+i+'][order]', vertices[i]["order"]);
     }
     for(let i in authors){
-      form.append('authors['+i+'][name]', authors[i]["name"]);
+      form.append('authors['+i+']', authors[i]);
     }
     for(let i in routes){
       form.append('routes['+i+']', routes[i]);
@@ -133,23 +135,23 @@ if(type!==null)form.append('buildingType', type);
 if(description!==null)form.append('description', description);
 if(cc1!==null)form.append('coordinate1', cc1);
 if(cc2!==null)form.append('coordinate2', cc2);
-console.log("Imagens");
-console.log(imagens);
+
 
 for(let i in imagens){
   console.log("Imagem single");
   console.log(imagens[i]["image"]);
-form.append('images['+i+'][description]', imagens[i]["description"]);
-form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
-form.append('images['+i+'][image]', imagens[i]["image"]);
+  form.append('images['+i+'][description]', imagens[i]["description"]);
+  form.append('images['+i+'][sourceAuthor]', imagens[i]["sourceAuthor"]);
+  form.append('images['+i+'][image]', imagens[i]["image"]);
 }
+
 for(let i in vertices){
-form.append('vertices['+i+'][coordinate1]', vertices[i]["coordinate1"]);
-form.append('vertices['+i+'][coordinate2]', vertices[i]["coordinate2"]);
-form.append('vertices['+i+'][order]', vertices[i]["order"]);
+  form.append('vertices['+i+'][coordinate1]', vertices[i]["coordinate1"]);
+  form.append('vertices['+i+'][coordinate2]', vertices[i]["coordinate2"]);
+  form.append('vertices['+i+'][order]', vertices[i]["order"]);
 }
 for(let i in authors){
-form.append('authors['+i+'][name]', authors[i]["name"]);
+form.append('authors['+i+']', authors[i]);
 }
 
     return fetch(furl, {
@@ -163,6 +165,40 @@ form.append('authors['+i+'][name]', authors[i]["name"]);
         return Promise.reject(response.json());
       }
     });
+  },
+  aprovedBuildings(id, aproved){
+    let furl = apiUrl + "/buildings/" + id + "/approve";
+    let token = "Bearer " + localStorage.getItem("auth.token");
+
+   let body ={
+        "aproved": aproved
+    }
+
+   // let form = new FormData();
+   // form.append('name', name);
+    //if(aproved !=0)
+    //form.append('aproved', aproved);
+
+   /* for(let i in buildings){
+      form.append('buildings['+i+'][buildingName]', buildings[i]["buildingName"]);
+    }*/
+
+    return fetch(furl, {method:'POST',
+                headers: { 'Content-Type':
+                'application/json',
+                'Accept':'application/json', 
+                'Authorization':token}, 
+                body: JSON.stringify(body)
+            }).then( (response) => {
+                return response.json().then( (json) => {
+                    if(response.ok){
+                        return Promise.resolve(json);
+                    } else {
+                        return Promise.reject(json);
+                    }
+                });
+            });
+
   }
 
 

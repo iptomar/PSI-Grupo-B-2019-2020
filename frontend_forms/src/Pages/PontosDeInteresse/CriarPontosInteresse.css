@@ -1,30 +1,32 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 
-.needs-validation{
-    width: 40%;
-    margin:auto;
-    height: 100%;
-    margin-top:75px;
-    color: white;
-    
+  .needs-validation{
+      width: 40%;
+      margin:auto;
+      height: 100%;
+      margin-top:75px;
   }
   
-    .needs-validation .custom-file {
-      width: 103%;
-    }
+  .form-group, h3 {
+    color: #fff;
+  }
 
-    .fundo {
-      background-image: linear-gradient(to bottom, rgb(46,65,88), 
-      rgb(102, 218, 199)); 
-      padding-top: 10px;
-      padding-bottom: 33px;
-      font-family: "Roboto", sans-serif;
-    }
+  .needs-validation .custom-file {
+    width: 100%;
+  }
+
+  .fundo {
+    background-image: linear-gradient(to bottom, rgb(46,65,88), 
+     rgb(102, 218, 199)); 
+    padding-top: 10px;
+    padding-bottom: 33px;
+    font-family: "Roboto", sans-serif;
+  }
 
 /* css da página PontosDeInteresseList*/
 
-#pontosDeInteresse, #roteiros {
+#pontosDeInteresse {
   width: 95%;
   padding: 15px;
   margin: auto;
@@ -36,7 +38,7 @@
   background-image: linear-gradient(to bottom, rgb(46,65,88), 
   rgb(102, 218, 199));
   padding-top:75px;
-  padding-bottom:700px; 
+  margin: 0 auto;
 }
 
 caption {
@@ -58,3 +60,97 @@ caption {
   padding: 10px 100px;
   font-size: 15px;
 }
+
+#detalhesPontos1 {
+  width: 50%;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+  margin-top: 0px;
+  text-align: center;
+}
+
+#detalhesPontos2 {
+  width: 50%;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#detalhesPontos3 {
+  width: 50%;
+  padding: 15px;
+  margin: auto;
+  height: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.fundo2 {
+  background-color: rgb(102, 218, 199);
+  padding-top: 0px;
+}
+
+h1 {
+  color: #ffffff;
+  text-align: center;
+  padding-top: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  border-radius: 0.70em;
+  overflow: hidden;
+  
+}
+
+.pageNavigation {
+  width: 250px;
+  margin: auto;
+}
+
+.page-link2 {
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #ffffff;
+  background-color: #454d55;
+  border: 1px solid grey;
+  border-radius: 2px;
+}
+
+.page-link2:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: rgb(46,65,88) !important;
+  background-repeat: repeat-x;
+  background-image: linear-gradient(to top, rgb(28, 47, 70), 
+  rgb(73, 158, 144));
+  border-color: #3c50aa #3c50aa rgb(53, 113, 224);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.62);
+  margin: 3px auto;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+
+  background-color: rgb(46,65,88) !important;
+  background-repeat: repeat-x;
+  background-image: linear-gradient(to bottom, #fbeded,
+  rgb(102, 218, 199)); 
+  border-color: #3c50aa #3c50aa rgb(53, 113, 224);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.59);
+}
+
+.tabelaImagens {
+  margin-top: -45px;
+}
+

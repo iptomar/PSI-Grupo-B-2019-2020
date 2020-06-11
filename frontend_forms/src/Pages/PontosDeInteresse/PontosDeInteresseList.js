@@ -24,8 +24,7 @@ export default class pontosDeInteresseList extends Component {
       "current_page":1,
       "last_page":null,
     };
-    //this.fileInput = React.createRef();
-    this.detalhesPontoDeInteresse();
+
     usersApi.validateAuth(this.props);
 
     this.getPontosDeInteresseList(1);   
@@ -38,7 +37,7 @@ export default class pontosDeInteresseList extends Component {
 
     let items = [];
     const pontosDeInteresse = this.state.pontosDeInteresse;
-    console.log('render',this.state.pontosDeInteresse);
+
     for (let ponto in pontosDeInteresse) {
 
       let i = <tr style={{
@@ -48,10 +47,12 @@ export default class pontosDeInteresseList extends Component {
         <td >{pontosDeInteresse[ponto].buildingName}</td>
         <td >{pontosDeInteresse[ponto].location}</td>
         <td >{pontosDeInteresse[ponto].dates}</td>
+        <td> {pontosDeInteresse[ponto].approved} </td> 
         <td >
           <button type="button" class="btn btn-danger" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deletePontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}}>Apagar</button>
           <button type="button" class="btn btn-info" onClick={() => this.editPontoDeInteresse(pontosDeInteresse[ponto].id)}>Editar</button>
-          <button type="button" class="btn btn-success" onClick={() => this.detalhesPontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}>Detalhes</button>
+          <button type="button" class="btn btn-success" onClick={() => this.detalhesPontoDeInteresse(pontosDeInteresse[ponto].id)}>Detalhes</button>
+          <button type="button" class="btn btn-warning"  onClick = {() => {if (window.confirm('Are you sure you want to approve this route?'))this.aprovedBuildings(pontosDeInteresse[ponto].id, ponto)}}>Approve</button>
         </td>
       </tr>;
 
@@ -60,22 +61,25 @@ export default class pontosDeInteresseList extends Component {
 
     //Paginator TODO: mudar a cor dos botoes?
     const pagination=[];
+    
     if(this.state.last_page!==1){
       //primeiro simbolo (<) existe?
       if(typeof this.state.current_page !== "undefined" && this.state.current_page !== 1){
-          pagination.push(<li class="page-item"> <a class="page-link" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page-1)}> &lt;</a> </li>);
+          pagination.push(<li class="page-item">
+                           <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page-1)}> &lt;</a>
+                            </li>);
       };
       //numeros para as paginas. TODO: limitar o numero de quadrados possiveis
       console.log("lastpage",this.state.last_page);
       for(let i=1;i<=this.state.last_page;i++){
           pagination.push(<li class="page-item">
-                           <a class="page-link" href="#" onClick={()=>this.getPontosDeInteresseList(i)} >{i}</a>
+                           <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(i)} >{i}</a>
                             </li>);
       };  
       //segundo simbolo (>) existe?
       if(this.state.current_page !== this.state.last_page){
         pagination.push(<li class="page-item">
-                         <a class="page-link" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page+1)}>&gt;</a>
+                         <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(this.state.current_page+1)}>&gt;</a>
                        </li>);
       };
     };
@@ -92,7 +96,8 @@ export default class pontosDeInteresseList extends Component {
               <th scope="col">Nome</th>
               <th scope="col">Localização</th>
               <th scope="col">Data</th>
-              <th scope="col">Apagar/Editar/Detalhes</th>
+              <th scope="col">Aproved</th>
+              <th scope="col">Apagar/Editar/Detalhes/Approve</th>
             </tr>
 
           </thead>
@@ -101,7 +106,7 @@ export default class pontosDeInteresseList extends Component {
           </tbody>
         </table>
 
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" className="pageNavigation">
            <ul class="pagination">
             {pagination}
           </ul>
@@ -116,55 +121,41 @@ export default class pontosDeInteresseList extends Component {
     if(page < 1){ page=1; }; //a pagina minima é 1
     //se soubermos qual a ultima pagina, e se a pagina atual é maior que a ultima -> a pagina tem de ser a ultima
     if(this.last_page !== null && page > this.last_page){ page=this.last_page; };
+
     pontosDeInteresseApi.list(page).then((response) => {
       this.setState({ pontosDeInteresse: response.data,
                       current_page:response.current_page,
                       last_page:response.last_page });
-     console.log('getlist',this.state.pontosDeInteresse);
     });
     
   }
 
-  detalhesPontoDeInteresse (id, index){
-    pontosDeInteresseApi.get(id).then((response) =>{
-        //console.log(response[id]);
-        let imagens = {image:'',sourceAuthor:'',description:''};
-        let autores = {name:''};
-        let vertices = {coordinate1:'', coordinate2: '', order:''};
-        let routes = {nome: ''};
-        //const file = this.fileUpload.files[0];
-        //imagens.image = file;
-        autores.name = this.state.auxNameAuthor;
-        routes.nome = this.state.nameRoute;
-        vertices.coordinate1 = this.state.auxCoordenada1;
-        vertices.coordinate2 = this.state.auxCoordenada2;
-        vertices.order = this.state.auxOrder;
-        sessionStorage.setItem("test", JSON.stringify(this.state.pontosDeInteresse[index]));
-        this.setState({redirect: true,
-                       buildingName: '',
-                       location: '',
-                       dates: '',
-                       buildingType: '',
-                       description: '',
-                       coordinate1: '',
-                       coordinate2: '',
-                       images: this.state.images.concat(imagens),
-                       vertices: this.state.vertices.concat(vertices),
-                       authors: this.state.authors.concat(autores),
-                       routes: this.state.routes.concat(routes)
-                        });
-    });
+  aprovedBuildings (id, aproved) {
+    if(id !=0)
+    aproved =1;
+    pontosDeInteresseApi.aprovedBuildings(id).then ((response) => {
+        this.setState({aproved: ''
+                     });
+        this.refreshPage();         
+    })
+  }
+
+  refreshPage(){
+    window.location.reload();
+}
+
+  detalhesPontoDeInteresse (id){
+      this.props.history.push('/PointsOfInterest/' + id + '/detalhes');
+    /*  this.setState({aproved: ''
+                });*/
     
   }
 
   deletePontoDeInteresse(id, index) {
     pontosDeInteresseApi.delete(id).then( (response) => {
       let aux = this.state.pontosDeInteresse;
-      console.log('aux', aux);
       aux.splice(index,1);
-      console.log('aux',aux);
       this.setState({pontosDeInteresse:aux});
-      console.log(this.state.pontosDeInteresse);
   }).catch( (error) => {
 
   });

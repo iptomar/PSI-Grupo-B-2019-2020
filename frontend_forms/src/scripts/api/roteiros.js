@@ -22,7 +22,6 @@ let roteirosApi = {
   get(id) {
     let furl = apiUrl + "/routes/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
-
     return fetch(furl, {
       method: 'GET', headers: {
         'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token
@@ -35,6 +34,7 @@ let roteirosApi = {
       }
     })
   },
+
   delete(id){
     let furl = apiUrl + "/routes/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
@@ -52,12 +52,21 @@ let roteirosApi = {
     });
   },
 
-  update(id){
+  update(id, name,buildings){
     let furl = apiUrl + "/routes/" + id;
     let token = "Bearer " + localStorage.getItem("auth.token");
+
+    let body = {
+      "name": name,
+      "buildings":buildings
+    }
+    //let form = new FormData();
+  //if(nameRoute!==null) form.append('nameRoute', nameRoute);
+  
     return fetch(furl, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': token },
+      body: JSON.stringify(body)
     }).then((response) => {
       if (response.ok) {
         console.log("entrei e ta 200");
@@ -68,18 +77,55 @@ let roteirosApi = {
     });
   },
 
-  create(name, aproved){
+  create(name,buildings){
     let furl = apiUrl + "/routes";
     let token = "Bearer " + localStorage.getItem("auth.token");
     let body ={
         "name": name,
-        "aproved": aproved
-    }
+        "buildings": buildings
+    };
     let form = new FormData();
     form.append('name', name);
 
     return fetch(furl, {method:'POST',
-                headers: { 'Content-Type':'application/json','Accept':'application/json', 'Authorization':token}, 
+                headers: { 'Content-Type':'application/json',
+                'Accept':'application/json', 
+                'Authorization':token}, 
+                body: JSON.stringify(body)
+            }).then( (response) => {
+                return response.json().then( (json) => {
+                    if(response.ok){
+                        return Promise.resolve(json);
+                    } else {
+                        return Promise.reject(json);
+                    }
+                });
+            });
+
+  },
+
+  aprovedRoute(id, aproved){
+    let furl = apiUrl + "/routes/" + id + "/approve";
+    let token = "Bearer " + localStorage.getItem("auth.token");
+
+   let body ={
+        "aproved": aproved
+    }
+
+   // let form = new FormData();
+   // form.append('name', name);
+    //if(aproved !=0)
+    //form.append('aproved', aproved);
+
+   /* for(let i in buildings){
+      form.append('buildings['+i+'][buildingName]', buildings[i]["buildingName"]);
+    }*/
+
+    return fetch(furl, {method:'POST',
+                headers: { 'Content-Type':
+                'application/json',
+                'Accept':'application/json', 
+                'Authorization':token}, 
                 body: JSON.stringify(body)
             }).then( (response) => {
                 return response.json().then( (json) => {
@@ -116,13 +162,19 @@ let roteirosApi = {
   console.log("deu problemas: "+JSON.stringify(error))
   });*/
 
-let name = "Lojas de Tomar";
+  roteirosApi.aprovedRoute(254, 1).then( (response) =>{
+    console.log(""+JSON.stringify(response))
+    }).catch( (error) => {
+    console.log("deu problemas: "+JSON.stringify(error))
+    });
+
+/*let name = "Lojas de Tomar";
 let aproved = "0";
 roteirosApi.create(name, aproved).then( (response) =>{
 console.log(""+JSON.stringify(response))
 }).catch( (error) => {
 console.log("deu problemas: "+JSON.stringify(error))
-});
+});*/
 
 
 

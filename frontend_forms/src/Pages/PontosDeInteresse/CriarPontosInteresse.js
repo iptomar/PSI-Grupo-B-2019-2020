@@ -3,8 +3,12 @@ import './CriarPontosInteresse.css';
 import ErrorAlert from '../../views/Global/ErrorAlert';
 import pontosDeInteresseApi from '../../scripts/api/pontosDeInteresse';
 import roteirosApi from '../../scripts/api/roteiros';
-import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
+
+import usersApi from "../../scripts/api/users";
+
+import authorsApi from '../../scripts/api/authors'
+
+import AsyncSelect from 'react-select/async';
 
 class CriarPontosInteresse extends Component {
 
@@ -12,11 +16,13 @@ class CriarPontosInteresse extends Component {
 		super(props);
 		this.state = {
 			buildingName: '', location: '', dates: '', buildingType: '', description: '', coordinate1: '', coordinate2: '',
-			auxImg:'', auxAuthor:'', auxDesc:'', auxCoordenada1: '', auxCoordenada2: '', auxOrder: '', auxNameAuthor: '', nameRoute:'',
+			auxImg:'', auxAuthor:'', auxDesc:'', auxNameAuthor: '', nameRoute:'',
 			vertices: [], images: [], 
 			authors: [], routes: [], routesPage: 1, routesPageMax: 99, routesList:{}, selectedRoute:null,
 			errors: []
 		};
+
+        usersApi.validateAuth(this.props);
 
 		this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
 		this.handleLocationChange = this.handleLocationChange.bind(this);
@@ -25,10 +31,7 @@ class CriarPontosInteresse extends Component {
 		this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
 		this.handleCoordinate1Change = this.handleCoordinate1Change.bind(this);
 		this.handleCoordinate2Change = this.handleCoordinate2Change.bind(this);
-		//this.handleVerticesChange = this.handleVerticesChange.bind(this);
 		this.handleImagesChange = this.handleImagesChange.bind(this);
-		//this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
-		//this.handleRoutesChange = this.handleRoutesChange.bind(this);
 		this.handleVerticeCoordenada1Change = this.handleVerticeCoordenada1Change.bind(this);
 		this.handleVerticeCoordenada2Change = this.handleVerticeCoordenada2Change.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,11 +41,7 @@ class CriarPontosInteresse extends Component {
 		this.handleImgDescChange = this.handleImgDescChange.bind(this);
 		this.handleImgAuthorChange = this.handleImgAuthorChange.bind(this);
 		this.addVertice = this.addVertice.bind(this);
-		//this.listVertices = this.listVertices.bind(this);
-		//this.getListVertice = this.getListVertice.bind(this);
 		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
-		this.addAuthor = this.addAuthor.bind(this);
-		//this.deleteAuthor = this.deleteAuthor.bind(this);
 		this.addRoute = this.addRoute.bind(this);
 		this.handleRouteChange = this.handleRouteChange.bind(this);
 
@@ -105,7 +104,9 @@ class CriarPontosInteresse extends Component {
 		let i;
 		for(let imagem in imagens){
 			i=<tr style={{textAlign:"center"}} key={"imagem"+imagem}>
-					<td >{imagens[imagem].image.name}</td>
+					<td>
+						<img src={window.URL.createObjectURL(imagens[imagem].image)} height="100" />
+					</td>
 					<td >{imagens[imagem].sourceAuthor}</td>
 					<td >{imagens[imagem].description}</td>
 					<td >
@@ -139,7 +140,7 @@ class CriarPontosInteresse extends Component {
 					</div>
 					<div className="form-group row">
 						<label for="dates"><b>Date</b></label>
-						<input className="form-control" type="number" id="dates" name="dates"  placeholder="The year." value={this.state.dates} onChange={this.handleDatesChange} required></input>
+						<input className="form-control" type="number" id="dates" name="dates"  placeholder="Add the year." value={this.state.dates} onChange={this.handleDatesChange} required></input>
 					</div>
 					<div className="form-group row">
 						<label for="buildingType"><b>Type</b></label>
@@ -163,11 +164,36 @@ class CriarPontosInteresse extends Component {
 							<input className="form-control" type="number" step="any" placeholder="Insert coordinate 2..." id="coordinate2" name="coordinate2" value={this.state.coordinate2} onChange={this.handleCoordinate2Change} required />
 						</div>
 					</div>
+					<hr class="mb-3"></hr>
 
-					<div className="form-group row">
-						<label for="images_label"><b>Images</b></label>
+					<div className="row">
+						<div className="col-md-4">
+							<div className="custom-file" style={{marginTop:'35px'}}>
+							<label for="image" className="custom-file-label">{!this.state.haImagem?"Upload file":this.state.auxImg.split("\\")[this.state.auxImg.split("\\").length -1]}</label>
+							<input type="file" id="image" className="custom-file-input" label='Upload' 
+								   ref={(ref)=>this.fileUpload = ref} value={this.state.image} 
+								   onChange={this.handleImagesChange} />
+							</div>
+						</div>
+					
+
+						<div className="form-group col-md-4">
+							<label for="source_author"><b>Source Author</b></label>
+							<input className="form-control" id="source_author" name="source_author" rows="3" 
+							placeholder="Add a source author about the point of interest." 
+							value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} 
+							required></input>
+						</div>
+						<div className="form-group col-md-4">
+							<label for="description_images"><b>Description</b></label>
+							<input className="form-control" id="description_images" name="description_images" rows="3" 
+							placeholder="Add a description about the point of interest." 
+							value={this.state.auxDesc} onChange={this.handleImgDescChange} 
+							required></input>
+						</div>
 					</div>
-					{/* tabela com as imagens a enviar */}
+					<button className="btn btn-primary" onClick={this.addImage}>Add image</button>
+					<br/>
 					<div className="tabelaImagens">
 						<table className="table table-sm table-dark table-striped rounded" id="users">
 							<thead>
@@ -184,77 +210,47 @@ class CriarPontosInteresse extends Component {
 							</tbody>
 						</table>
 					</div>
+					<hr class="mb-3"></hr>
+                    <div className="form-group row">
+                        <label htmlFor="vertices"><b>Authors</b></label>
+                    </div>
 
 					<div>
-						<label for="image"><b>Upload file</b></label>
-						<input type="file" label='Upload' ref={(ref)=>this.fileUpload = ref} value={this.state.image} onChange={this.handleImagesChange} />
+                        <AsyncSelect
+                            isMulti
+                            cacheOptions
+                            defaultOptions
+                            loadOptions={this.getOptions}
+							onChange={this.handleAuthorsChange}
+                        />
 					</div>
-
+					<hr class="mb-3"></hr>
+					<br/>
 					<div className="form-group row">
-						<label for="source_author"><b>Source Author</b></label>
-						<input className="form-control" id="source_author" name="source_author" rows="3" placeholder="Add a source author about the point of interest." value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} required></input>
+							<div className="form group col-md-4">
+								<label for="coordenada1"><b>Coordinate 1</b></label>
+								<input className="form-control" type="number" placeholder="Insert coordinate 1..." 
+								name="coordenada1" id="coordenada1" value={this.state.auxCoordenada1} data-index="0" 
+								onChange={this.handleVerticeCoordenada1Change} required />
+							</div>
+							<div class="form-group col-md-4">
+								<label for="coordenada2"><b>Coordinate 2</b></label>
+								<input className="form-control" type="number" placeholder="Insert coordinate 2..." 
+								name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" 
+								onChange={this.handleVerticeCoordenada2Change} required />
+							</div>
+							
+							<div className="form-group col-md-4">
+								<label for="order"><b>Order</b></label>
+								<input className="form-control" type="number" placeholder="Insert order..." min="1" 
+								name="order" id="order" value={this.state.auxOrder} data-index="0" 
+								onChange={this.handleOrderChange} required />
+								<button className="btn btn-primary" type="submit" value="submit" 
+								onClick={this.addVertice}>Add vertice</button>
+							</div>
 					</div>
-					<div className="form-group row">
-						<label for="description_images"><b>Description</b></label>
-						<input className="form-control" id="description_images" name="description_images" rows="3" placeholder="Add a description about the point of interest." value={this.state.auxDesc} onChange={this.handleImgDescChange} required></input>
-						<button className="btn btn-primary" onClick={this.addImage}>adicionar imagem</button>
-					</div>
-						
-
-					<div className="form-group row">
-						<label for="author"><b>Authors</b></label>
-					</div>
-
-					<div className="form-group row">
-						<label for="name_author"><b>Name</b></label>
-						<input className="form-control" id="name_author" name="name_author" rows="3" placeholder="Add a name about the point of interest." value={this.state.auxNameAuthor} data-index="0" onChange={this.handleAuthorsChange} required></input>
-					</div>
-
-					<div>
-						<button type="submit" value="submit" onClick={this.addAuthor}>Add author</button>
-					</div>
-
-					<div className="tabelaAutores">
-							<table className="table table-hover table-dark table-striped rounded" id="autores">
-                				<caption>Lista de Autores</caption>
-								<thead>
-                       				 <tr style={{
-                        			textAlign:"center"
-                     				 }}>
-                           				 <th scope="col" >Authors name</th>
-                       				 </tr>
-                    			</thead>
-                    	<tbody>
-                        	{listaAutores}
-                    	</tbody>
-                </table>
-	
-						</div>
-				
-					<div className="form-group row">
-						<label for="vertices"><b>Vertices</b></label>
-					</div>
-					<div className="form-group row">
-					</div>
-					<div className="form-group row">
-						<div className="form group col-md-6">
-							<label for="coordenada1"><b>Coordinate 1</b></label>
-							<input className="form-control" type="number" placeholder="Insert coordinate 1..." name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0" onChange={this.handleVerticeCoordenada1Change} required />
-						</div>
-						<div class="form-group col-md-6">
-							<label for="coordenada2"><b>Coordinate 2</b></label>
-							<input className="form-control" type="number" placeholder="Insert coordinate 2..." name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" onChange={this.handleVerticeCoordenada2Change} required />
-						</div>
-						<div className="form group col-md-6">
-							<label for="order"><b>Order</b></label>
-							<input className="form-control" type="number" placeholder="Insert order..." min="1" name="order" id="order" value={this.state.auxOrder} data-index="0" onChange={this.handleOrderChange} required />
-						</div>
-						<div>
-							<button type="submit" value="submit" onClick={this.addVertice}>Add vertice</button>
-						</div>
 						<div className="tabelaVertices">
 							<table className="table table-hover table-dark table-striped rounded" id="vertices">
-                				<caption>Lista de vertices</caption>
 								<thead>
                        				 <tr style={{
                         			textAlign:"center"
@@ -265,42 +261,15 @@ class CriarPontosInteresse extends Component {
 
                        				 </tr>
                     			</thead>
-                    	<tbody>
-                        	{listaVertices}
-                    	</tbody>
-                </table>
-	
+                    			<tbody>
+                        			{listaVertices}
+                    			</tbody>
+                			</table>
 						</div>
-					</div>
-					<div className="form-group row">
-						<label for="routes"><b>Routes</b></label>
-					</div>
-					<div className="tabelaRotas">
-						<table className="table table-hover table-dark table-striped rounded" id="rotas">
-							<caption>Lista de Rotas</caption>
-							<thead>
-								<tr style={{
-									textAlign: "center"
-								}}>
-									<th scope="col" >Route</th>
-								</tr>
-							</thead>
-							<tbody>
-								{listaRotas}
-							</tbody>
-						</table>
-					</div>
-					<div>
-						<button type="submit" value="submit" onClick={this.addRoute}>Add route</button>
-						<select onChange={this.handleRouteChange}>
-							{options}
-						</select>
-
-					</div>
 
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
-					<button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
+					<button className="btn btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
 						Submit
                 </button>
 					<ErrorAlert errors={this.state.errors} />
@@ -314,32 +283,23 @@ class CriarPontosInteresse extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
+		alert("Are you sure you wish to create this point?");
 		const file = this.fileUpload.files[0];
-		console.log(file);
-		console.log(this.state.vertices);
-		console.log(this.state.authors);
 		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
 																this.state.description,this.state.coordinate1,this.state.coordinate2, 
 																this.state.vertices,
 																this.state.images,this.state.authors,this.state.routes
 			).then((response)=>{
-				console.log(response);
+
+				if(response){
+					this.props.history.push('/PointsOfInterest');
+				}
+
+			}).catch( (error) => {
+				console.log(error);
+            	this.setState({errors:error});
 			});
 		
-
-	}
-
-	deleteAuthor (index){
-		/*this.setState(prevState => {
-			const authors = prevState.authors.filter(autor => autor.name !== index);
-			
-			return { authors };
-		});*/
-		let aux1 = this.state.authors;
-		aux1.splice(index,1);
-		this.setState({authors:aux1});
-
-
 
 	}
 
@@ -350,69 +310,42 @@ class CriarPontosInteresse extends Component {
 	}
 
 	deleteVertices (index){
-
-		
-		this.setState(prevState => {
-			const vertices = prevState.vertices.filter(vertice => vertice.coordinate1 !== index);
-			
-			return { vertices };
-		});
-
-		/*let aux1 = this.state.vertices;
-		aux1.splice(index, 1);
-		this.setState({images:aux1});*/
+		let aux1 = this.state.vertices;
+		aux1.splice(index,1);
+		this.setState({vertices:aux1});
 
 	}
 
-	/*getListVertice () {
-		pontosDeInteresseApi.listVertices().then( (response) => {
-            this.setState({vertices:response.data});
-            console.log(this.state);
-        });
-	}*/
+    getOptions(input){
+        return authorsApi.list(1,input).then((response) => {
 
-	/*listVertices (){
-		
-		let listaVertices = [];
-		const vertices = this.state.vertices;
+        	let data=response.data;
+        	let res = data.map(author => ({ value: author.id, label: author.name }));
 
-		for (let vertice in vertices){
-			let i=<tr style={{
-				textAlign:"center"
-			  }}key={"vertice" + vertice}>
-				<td >{vertices[vertice].auxCoordenada1}</td>
-				<td >{vertices[vertice].auxCoordenada2}</td>
-				<td >{vertices[vertice].auxOrder}</td>
-				
-			</tr>;
-			this.state.listaVertices.push(i);
-			
-		}
-	}*/
+        	console.log(res);
+
+        	return res;
+
+		});
+    }
 
 	addVertice (e){
 		e.preventDefault();
-		let object = {coordinate1: '', coordinate2:'', order:''};
-		object.coordinate1 = this.state.auxCoordenada1;
-		object.coordinate2 = this.state.auxCoordenada2;
-		object.order = this.state.auxOrder;
-		console.log(object);
-		//console.log(this.state.vertices);
-		this.setState({vertices: this.state.vertices.concat(object)});
-		this.setState({auxCoordenada1:''});
-		this.setState({auxCoordenada2:''});
-		this.setState({auxOrder:''});
-		
-	}
-
-	addAuthor (e){
-		e.preventDefault();
-		let object = {name: ''};
-		object.name = this.state.auxNameAuthor;
-		//console.log(object);
-		console.log(this.state.authors);
-		this.setState({authors: this.state.authors.concat(object)});
-		this.setState({auxNameAuthor:''});
+		if(this.state.auxCoordenada1 != null && this.state.auxCoordenada2 !=null  && this.state.auxOrder != null &&
+			this.state.auxCoordenada1 != "" && this.state.auxCoordenada2 != "" && this.state.auxOrder != "")
+			{
+			let val1 = document.getElementById("coordenada1").value;
+			let val2 = document.getElementById("coordenada2").value;
+			let order = document.getElementById("order").value;
+			let object = {coordinate1: '', coordinate2:'', order:''};
+			object.coordinate1 = val1;
+			object.coordinate2 = val2;
+			object.order = order;
+			this.setState({vertices: this.state.vertices.concat(object)});
+				}
+				else {
+			console.log(this.state.errors);
+		}
 	}
 
 	addRoute(e) {
@@ -438,9 +371,15 @@ class CriarPontosInteresse extends Component {
 		this.setState({selectedRoute: e.target.value});
 	}
 
-	handleAuthorsChange (e){
-		this.setState({auxNameAuthor: e.target.value});
+	handleAuthorsChange (selectedOptions){
 
+		let authors=[];
+
+		for(let k in selectedOptions){
+			authors.push(selectedOptions[k].value);
+		}
+
+		this.setState({authors:authors});
 	}
 
 	handleBuildingNameChange(e) {
@@ -486,7 +425,7 @@ class CriarPontosInteresse extends Component {
 
 	handleImagesChange(e) {
 		e.preventDefault();
-		this.setState( {auxImg: e.target.value} );
+		this.setState( {auxImg: e.target.value, haImagem:true} );
 	}
 
 	handleImgDescChange(e){
@@ -497,9 +436,6 @@ class CriarPontosInteresse extends Component {
 		this.setState({ auxAuthor: e.target.value });
 	}
 
-	/*  	handleRoutesChange(e) {
-		this.setState( { nameRoute: e.target.value });
-	} */
 
 	addImage(e){
 		e.preventDefault();
@@ -518,6 +454,7 @@ class CriarPontosInteresse extends Component {
 		this.setState({auxImg:''}); //falta mudar no input qualquer coisa também
 		this.setState({auxAuthor:''});
 		this.setState({auxDesc:''});
+		this.setState({haImagem:false});
 	}
 	
 	deleteImage(index){
@@ -527,17 +464,6 @@ class CriarPontosInteresse extends Component {
 		aux.splice(index,1);
 		this.setState({images:aux});
 	}
-
-
-	/*handleAuthorsChange (e, index){
-			console.log("authors");
-			const authors = this.state.authors;
-			authors[index].name_author = e.target.value;
-			this.setState({
-					authors
-			});
-	};*/
-
 
 	getRoutes(page){
 		roteirosApi.list(page).then((response) => {
@@ -558,7 +484,5 @@ class CriarPontosInteresse extends Component {
 	}
 
 }
-
-/* ReactDOM.render (<fileInput />, document.getElementById('root')); */
 
 export default CriarPontosInteresse;
