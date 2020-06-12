@@ -41,7 +41,7 @@ public class LoginSuccess {
              String url = driver.getCurrentUrl();
              Assert.assertEquals(true,url.contains("login"));
              driver.findElement(By.name("email")).click();
-             driver.findElement(By.name("email")).sendKeys("admin@admin.com");
+             driver.findElement(By.name("email")).sendKeys("daniela@daniela.com");
              Thread.sleep(500);
              driver.findElement(By.name("password")).click();
              driver.findElement(By.name("password")).sendKeys("password");

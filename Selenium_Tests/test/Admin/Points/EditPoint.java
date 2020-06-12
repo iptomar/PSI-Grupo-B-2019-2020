@@ -28,9 +28,9 @@ public class EditPoint {
     
     public void EditPoints() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Editar']")).click();
             WebElement name = driver.findElement(By.name("buildingName"));
             name.clear();

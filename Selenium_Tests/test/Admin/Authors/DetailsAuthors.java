@@ -30,9 +30,9 @@ public class DetailsAuthors {
      public void DetailedAuthors() {
          try {
             //Ir para Authors
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Authors']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
              //ARRANJAR
             String title = driver.getCurrentUrl();

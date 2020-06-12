@@ -27,7 +27,7 @@ public class DetailsPoint {
     public void DetPoint() {
         try {
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
               //Confirmacao ULR
             String title = driver.getCurrentUrl();

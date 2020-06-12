@@ -27,9 +27,9 @@ public class CreateAuthors {
  public void AddAuthors() {
         try {
             //Ir para create authors
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Create Authors']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             WebElement autor = driver.findElement(By.className("form-control"));
             autor.sendKeys("SeleniumTest1");
             Thread.sleep(500);

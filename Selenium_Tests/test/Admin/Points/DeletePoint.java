@@ -27,7 +27,7 @@ public class DeletePoint {
     public void DelPoint() {
         try {
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             Thread.sleep(2000);
             driver.switchTo().alert().accept();

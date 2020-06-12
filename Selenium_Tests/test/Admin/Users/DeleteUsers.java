@@ -31,9 +31,9 @@ public class DeleteUsers {
          try {
 
             //Ir para os Users
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Users']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             //aceitar alerta
             driver.switchTo().alert().accept();

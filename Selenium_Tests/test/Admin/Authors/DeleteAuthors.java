@@ -30,9 +30,9 @@ public class DeleteAuthors {
      public void DeletedAuthors() {
          try {
             //Ir para Authors
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Authors']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Delete']")).click();
             //aceitar alerta
             driver.switchTo().alert().accept();

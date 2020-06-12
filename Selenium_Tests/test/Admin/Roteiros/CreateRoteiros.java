@@ -27,9 +27,9 @@ public class CreateRoteiros {
  public void AddRoteiros() {
         try {
             //Ir para create authors
-            Thread.sleep(500);
+             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Criar Roteiros']")).click();
-            Thread.sleep(500);
+             Thread.sleep(2000);
             WebElement nomerota = driver.findElement(By.className("form-control"));
             nomerota.sendKeys("SeleniumTest1");
             driver.findElement(By.xpath("//button[.='Submit']")).click();

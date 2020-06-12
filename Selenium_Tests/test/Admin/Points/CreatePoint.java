@@ -39,30 +39,29 @@ public class CreatePoint {
     //
      public void PointInterest() {
         try {
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Criar Pontos de Interesse']")).click();
-            //driver.findElement(By.linkText("Login")).click();
             Thread.sleep(2000);
             WebElement nome = driver.findElement(By.name("buildingName"));
-            nome.sendKeys("seleniumTeste1");
+            nome.sendKeys("Edificio1");
             WebElement localizacao = driver.findElement(By.name("location"));
-            localizacao.sendKeys("seleniumTeste1");
+            localizacao.sendKeys("Tomar");
             WebElement data = driver.findElement(By.name("dates"));
-            data.sendKeys("1999");
+            data.sendKeys("1974");
             WebElement tipo = driver.findElement(By.name("buildingType"));
-            tipo.sendKeys("Apartamento");
+            tipo.sendKeys("Museu");
             WebElement descricao = driver.findElement(By.id("description"));
-            descricao.sendKeys("seleniumTeste1");
+            descricao.sendKeys("descrição do edificio");
             WebElement cordenada1 = driver.findElement(By.name("coordinate1"));
-            cordenada1.sendKeys("1");
+            cordenada1.sendKeys("20");
             WebElement cordenada2 = driver.findElement(By.name("coordinate2"));
-            cordenada2.sendKeys("2");
+            cordenada2.sendKeys("30");
             WebElement foto = driver.findElement(By.className("custom-file-input"));
             foto.sendKeys("C:\\Users\\LuisBadalo\\Desktop\\Screenshot_1.png");
             WebElement source_author = driver.findElement(By.name("source_author"));
-            source_author.sendKeys("seleniumTeste1");
+            source_author.sendKeys("Autor");
             WebElement description_images = driver.findElement(By.name("description_images"));
-            description_images.sendKeys("seleniumTeste1");
+            description_images.sendKeys("descrição da imagem");
             
             driver.findElement(By.xpath("//button[.='Add image']")).click();
             Thread.sleep(5000);

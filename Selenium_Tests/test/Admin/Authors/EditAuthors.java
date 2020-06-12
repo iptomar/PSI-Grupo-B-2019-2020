@@ -30,9 +30,9 @@ public class EditAuthors {
      public void EditedAuthors() {
          try {
             //Ir para Authors
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Authors']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Edit']")).click();
             WebElement autor = driver.findElement(By.className("form-control"));
             autor.sendKeys("SeleniumTest2");

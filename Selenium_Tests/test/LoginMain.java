@@ -6,6 +6,9 @@
 
 import Admin.LoginSuccess;
 import Admin.RegisterSuccess;
+import Admin.Users.DeleteUsers;
+import Admin.Users.EditUsers;
+import Admin.Users.EditUsersError;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -34,7 +37,8 @@ public class LoginMain {
      
     public void hello() {
     new LoginSuccess(driver).loginSucessfully();
-    new RegisterSuccess(driver).registerSuccessfully();
+    new DeleteUsers(driver).DeletedUsers();
+    //new RegisterSuccess(driver).registerSuccessfully();
     //new RegisterUnsuccessfull(driver).registerUnsuccessfully();
     }
     @AfterEach

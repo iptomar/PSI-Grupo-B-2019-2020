@@ -32,9 +32,9 @@ public class DetailsRoteiros {
          try {
 
             //Ir para Roteiros
-            Thread.sleep(500);
+             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(500);
+              Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
              //Confirmacao ULR
             String title = driver.getCurrentUrl();

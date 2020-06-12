@@ -31,7 +31,7 @@ public class ListRoteiros {
      public void ListedRoteiros() {
          try {
             //Ir para Authors
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
              //Confirmacao ULR
             String title = driver.getCurrentUrl();

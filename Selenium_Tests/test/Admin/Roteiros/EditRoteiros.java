@@ -31,9 +31,9 @@ public class EditRoteiros {
      public void EditedRoteiros() {
          try {
             //Ir para Roteiros
-            Thread.sleep(500);
+             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Editar']")).click();
             WebElement autor = driver.findElement(By.className("form-control"));
             //limpa o texto

@@ -30,7 +30,7 @@ public class ListPontos {
      public void ListedPontos() {
          try {
             //Ir para Authors
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
              //ARRANJAR
             String title = driver.getCurrentUrl();

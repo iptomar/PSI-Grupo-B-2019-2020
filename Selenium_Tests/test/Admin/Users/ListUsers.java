@@ -30,7 +30,7 @@ public class ListUsers {
      public void ListedUsers() {
          try {
             //Ir para Authors
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Users']")).click();
             //ARRANJAR
             String title = driver.getCurrentUrl();

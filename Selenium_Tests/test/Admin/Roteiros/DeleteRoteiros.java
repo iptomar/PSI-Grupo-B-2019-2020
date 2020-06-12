@@ -31,9 +31,9 @@ public class DeleteRoteiros {
      public void DeletedRoteiros() {
          try {
             //Ir para Roteiros
-            Thread.sleep(500);
+             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(500);
+              Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             Thread.sleep(1000);
             driver.switchTo().alert().accept();
