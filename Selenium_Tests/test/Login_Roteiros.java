@@ -19,8 +19,9 @@ import org.openqa.selenium.WebDriver;
  * @author Luís Badalo
  */
 public class Login_Roteiros {
+
     WebDriver driver;
-    
+
     public Login_Roteiros() {
         this.driver = new Capabilities().getDriver();
     }
@@ -28,15 +29,15 @@ public class Login_Roteiros {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
-     
+    @Test
+
     public void RoteiroTest() {
-    new LoginSuccess(driver).loginSucessfully();    
-    new CreateRoteiros(driver).AddRoteiros();
-    new DetailsRoteiros(driver).DetailedRoteiros();
-    new EditRoteiros(driver).EditedRoteiros();
-    new ApproveRoteiros(driver).ApprovedRoteiros();
-    new DeleteRoteiros(driver).DeletedRoteiros();
-    driver.quit();
+        new LoginSuccess(driver).loginSucessfully();
+        new CreateRoteiros(driver).AddRoteiros();
+        new DetailsRoteiros(driver).DetailedRoteiros();
+        new EditRoteiros(driver).EditedRoteiros();
+        new ApproveRoteiros(driver).ApprovedRoteiros();
+        new DeleteRoteiros(driver).DeletedRoteiros();
+        driver.quit();
     }
 }

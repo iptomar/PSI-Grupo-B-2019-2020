@@ -15,17 +15,18 @@ import org.openqa.selenium.WebElement;
  * @author Tomás Barros
  */
 public class EditUsersError {
+
     WebDriver driver;
-    
+
     public EditUsersError(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void EditedUsersErrors() {
-         try {
+    public void EditedUsersErrors() {
+        try {
             //Ir para Authors
             Thread.sleep(500);
             driver.findElement(By.xpath("//a[.='Users']")).click();
@@ -57,9 +58,9 @@ public class EditUsersError {
             driver.findElement(By.xpath("//button[.='Update']")).click();
             //aceitar alerta
             WebElement classe = driver.findElement(By.className("alert alert-warning"));
-             Assert.assertEquals(true,classe.isDisplayed());
+            Assert.assertEquals(true, classe.isDisplayed());
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

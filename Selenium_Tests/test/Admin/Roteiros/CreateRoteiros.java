@@ -16,17 +16,19 @@ import org.openqa.selenium.WebElement;
  * @author Tomás Barros
  */
 public class CreateRoteiros {
+
     WebDriver driver;
-    
+
     public CreateRoteiros(WebDriver driver) {
         this.driver = driver;
     }
- public void AddRoteiros() {
+
+    public void AddRoteiros() {
         try {
             //Ir para create authors
-             Thread.sleep(2000);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Criar Roteiros']")).click();
-             Thread.sleep(2000);
+            Thread.sleep(2000);
             WebElement nomerota = driver.findElement(By.className("form-control"));
             nomerota.sendKeys("1Rota1");
             Thread.sleep(2000);
@@ -38,9 +40,9 @@ public class CreateRoteiros {
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(1000);
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true,title.contains("Routes"));
+            Assert.assertEquals(true, title.contains("Routes"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -15,17 +15,18 @@ import org.openqa.selenium.WebElement;
  * @author Antonio Rodrigues
  */
 public class EditRoteirosUnsuccessfull {
-     WebDriver driver;
-    
+
+    WebDriver driver;
+
     public EditRoteirosUnsuccessfull(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void EditedRoteirosUnsuccessfull() {
-         try {
+    public void EditedRoteirosUnsuccessfull() {
+        try {
             //Ir para Roteiros
             Thread.sleep(5000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
@@ -43,11 +44,11 @@ public class EditRoteirosUnsuccessfull {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(500);
-             //Confirmacao ULR
+            //Confirmacao ULR
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true,title.contains("Routes"));
+            Assert.assertEquals(true, title.contains("Routes"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

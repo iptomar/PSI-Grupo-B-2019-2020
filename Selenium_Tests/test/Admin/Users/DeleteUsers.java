@@ -14,17 +14,18 @@ import org.openqa.selenium.WebDriver;
  * @author Tomás Barros
  */
 public class DeleteUsers {
+
     WebDriver driver;
-    
+
     public DeleteUsers(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void DeletedUsers() {
-         try {
+    public void DeletedUsers() {
+        try {
 
             //Ir para os Users
             Thread.sleep(2000);
@@ -32,14 +33,14 @@ public class DeleteUsers {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             //aceitar alerta
-             Thread.sleep(2000);
+            Thread.sleep(2000);
             driver.switchTo().alert().accept();
             Thread.sleep(5000);
-             //URL Confirm
+            //URL Confirm
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("users"));
-        }  catch (Exception e) {
-             System.out.println(e.getMessage());
+            Assert.assertEquals(true, title.contains("users"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

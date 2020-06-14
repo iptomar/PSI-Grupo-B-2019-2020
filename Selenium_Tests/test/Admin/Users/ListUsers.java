@@ -14,25 +14,26 @@ import org.openqa.selenium.WebDriver;
  * @author Tomás Barros
  */
 public class ListUsers {
+
     WebDriver driver;
-    
+
     public ListUsers(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void ListedUsers() {
-         try {
+    public void ListedUsers() {
+        try {
             //Ir para Authors
             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Users']")).click();
             //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("users"));
+            Assert.assertEquals(true, title.contains("users"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

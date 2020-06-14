@@ -19,12 +19,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Tomás Barros
  */
 public class CreateAuthors {
+
     WebDriver driver;
-    
+
     public CreateAuthors(WebDriver driver) {
         this.driver = driver;
     }
- public void AddAuthors() {
+
+    public void AddAuthors() {
         try {
             //Ir para create authors
             Thread.sleep(2000);
@@ -37,10 +39,10 @@ public class CreateAuthors {
             Thread.sleep(1000);
             driver.switchTo().alert().accept();
             Thread.sleep(1000);
-             //Confirmação
+            //Confirmação
             String title = driver.getCurrentUrl();
             System.out.println(title);
-             Assert.assertEquals(true,title.contains("Authors"));
+            Assert.assertEquals(true, title.contains("Authors"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

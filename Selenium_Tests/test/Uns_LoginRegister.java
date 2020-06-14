@@ -14,8 +14,9 @@ import org.openqa.selenium.WebDriver;
  * @author Luís Badalo
  */
 public class Uns_LoginRegister {
+
     WebDriver driver;
-    
+
     public Uns_LoginRegister() {
         this.driver = new Capabilities().getDriver();
     }
@@ -23,12 +24,10 @@ public class Uns_LoginRegister {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
-     
+    @Test
+
     public void FailedLoginRegister() {
-        
-        
-        
-    driver.quit();
+
+        driver.quit();
     }
 }

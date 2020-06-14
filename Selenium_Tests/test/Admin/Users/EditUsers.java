@@ -15,17 +15,18 @@ import org.openqa.selenium.WebElement;
  * @author Tomás Barros
  */
 public class EditUsers {
+
     WebDriver driver;
-    
+
     public EditUsers(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void EditedUsers() {
-         try {
+    public void EditedUsers() {
+        try {
             //Ir para Authors
             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Users']")).click();
@@ -55,11 +56,11 @@ public class EditUsers {
             //driver.findElement(By.xpath("//button[.='Update']")).click();
             //aceitar alerta
             //driver.switchTo().alert().accept();
-             //ARRANJAR
+            //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("users"));
+            Assert.assertEquals(true, title.contains("users"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

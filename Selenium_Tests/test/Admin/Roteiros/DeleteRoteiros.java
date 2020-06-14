@@ -32,7 +32,7 @@ public class DeleteRoteiros {
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             Thread.sleep(2000);
             driver.switchTo().alert().accept();
-            Thread.sleep(500);
+             Thread.sleep(500);
              //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true,title.contains("Routes"));

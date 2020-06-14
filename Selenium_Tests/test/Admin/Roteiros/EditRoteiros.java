@@ -15,19 +15,20 @@ import org.openqa.selenium.WebElement;
  * @author Tomás Barros
  */
 public class EditRoteiros {
+
     WebDriver driver;
-    
+
     public EditRoteiros(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void EditedRoteiros() {
-         try {
+    public void EditedRoteiros() {
+        try {
             //Ir para Roteiros
-             Thread.sleep(2000);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Editar']")).click();
@@ -43,11 +44,11 @@ public class EditRoteiros {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(5000);
-             //Confirmacao ULR
+            //Confirmacao ULR
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true,title.contains("Routes"));
+            Assert.assertEquals(true, title.contains("Routes"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

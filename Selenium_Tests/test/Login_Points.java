@@ -18,8 +18,9 @@ import org.openqa.selenium.WebDriver;
  * @author Luís Badalo
  */
 public class Login_Points {
+
     WebDriver driver;
-    
+
     public Login_Points() {
         this.driver = new Capabilities().getDriver();
     }
@@ -27,15 +28,14 @@ public class Login_Points {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
-     
+    @Test
+
     public void PointsTest() {
-    new LoginSuccess(driver).loginSucessfully();
-    new CreatePoint(driver).PointInterest();
-    new DetailsPoint(driver).DetailedPoints();
-    new EditPoint(driver).EditedPoints();
-    new DeletePoint(driver).DeletedPoint();
-    driver.quit();
+        new LoginSuccess(driver).loginSucessfully();
+        new CreatePoint(driver).PointInterest();
+        new DetailsPoint(driver).DetailedPoints();
+        new EditPoint(driver).EditedPoints();
+        new DeletePoint(driver).DeletedPoint();
+        driver.quit();
     }
 }
-

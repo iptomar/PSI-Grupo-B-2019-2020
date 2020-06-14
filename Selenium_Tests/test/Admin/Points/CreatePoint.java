@@ -5,8 +5,6 @@ package Admin.Points;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import Testes.Login.Capabilities.Capabilities;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,16 +26,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Luís Badalo
  */
 public class CreatePoint {
+
     WebDriver driver;
-    
+
     public CreatePoint(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void PointInterest() {
+    public void PointInterest() {
         try {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Criar Pontos de Interesse']")).click();
@@ -78,7 +77,7 @@ public class CreatePoint {
             WebElement Autores = driver.findElement(By.id("react-select-2-input"));
             Autores.sendKeys("aa");
             Thread.sleep(5000);
-            
+
             Autores.sendKeys(Keys.RETURN);
             WebElement c1 = driver.findElement(By.name("coordenada1"));
             c1.sendKeys("1");
@@ -108,11 +107,11 @@ public class CreatePoint {
             Thread.sleep(1000);
             driver.switchTo().alert().accept();
             Thread.sleep(6000);
-              //Confirmacao ULR
+            //Confirmacao ULR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("PointsOfInterest"));
+            Assert.assertEquals(true, title.contains("PointsOfInterest"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-     }
+    }
 }

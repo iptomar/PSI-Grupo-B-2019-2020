@@ -17,8 +17,9 @@ import org.openqa.selenium.WebDriver;
  * @author Luís Badalo
  */
 public class Login_Users {
+
     WebDriver driver;
-    
+
     public Login_Users() {
         this.driver = new Capabilities().getDriver();
     }
@@ -26,15 +27,15 @@ public class Login_Users {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
+    @Test
     //Ainda têm de dar fix nesta parte para se fazer os restos dos testes 
     public void UsersTest() {
-    new RegisterSuccess(driver).registerSuccessfully();
-    new LoginSuccess(driver).loginSucessfully();
-    new ListUsers(driver).ListedUsers();
-    new EditUsers(driver).EditedUsers();
-    new EditUsersError(driver).EditedUsersErrors();
-    new DeleteUsers(driver).DeletedUsers();
-    driver.quit();
+        new RegisterSuccess(driver).registerSuccessfully();
+        new LoginSuccess(driver).loginSucessfully();
+        new ListUsers(driver).ListedUsers();
+        new EditUsers(driver).EditedUsers();
+        new EditUsersError(driver).EditedUsersErrors();
+        new DeleteUsers(driver).DeletedUsers();
+        driver.quit();
     }
 }

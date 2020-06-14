@@ -16,12 +16,14 @@ import org.openqa.selenium.WebElement;
  * @author Antonio Rodrigues
  */
 public class CreateRoteirosUnsuccessfull {
+
     WebDriver driver;
-    
+
     public CreateRoteirosUnsuccessfull(WebDriver driver) {
         this.driver = driver;
     }
- public void AddRoteirosUnsuccessfull() {
+
+    public void AddRoteirosUnsuccessfull() {
         try {
             //Ir para create authors
             Thread.sleep(500);
@@ -36,10 +38,10 @@ public class CreateRoteirosUnsuccessfull {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(2000);
-             driver.switchTo().alert().accept();
-             Thread.sleep(500);
+            driver.switchTo().alert().accept();
+            Thread.sleep(500);
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("CreateRoutes"));
+            Assert.assertEquals(true, title.contains("CreateRoutes"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

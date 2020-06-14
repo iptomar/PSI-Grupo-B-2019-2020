@@ -13,21 +13,20 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * @author Luís Badalo
  */
 public class Capabilities {
+
     private WebDriver driver;
-    
-    
-    public Capabilities(){
-          // declaration and instantiation of objects/variables
-    	System.setProperty("webdriver.gecko.driver","C:\\selenium-java-3.141.59\\geckodriver.exe");
-		this.driver = new FirefoxDriver();
-                
-		//comment the above 2 lines and uncomment below 2 lines to use Chrome
-		//System.setProperty("webdriver.chrome.driver","C:\\\\selenium-java-3.141.59\\chromedriver.exe");
-		//WebDriver driver = new ChromeDriver();
-    	
-        
+
+    public Capabilities() {
+        // declaration and instantiation of objects/variables
+        System.setProperty("webdriver.gecko.driver", "FilesForProject\\selenium-java-3.141.59\\geckodriver.exe");
+        this.driver = new FirefoxDriver();
+
+        //comment the above 2 lines and uncomment below 2 lines to use Chrome
+        //System.setProperty("webdriver.chrome.driver","FilesForProject\\selenium-java-3.141.59\\chromedriver.exe");
+        //WebDriver driver = new ChromeDriver();
     }
-    public WebDriver getDriver(){
+
+    public WebDriver getDriver() {
         String baseUrl = "http://front.psi2020.tugamars.com";
         String expectedTitle = "React App";
         String actualTitle = "";

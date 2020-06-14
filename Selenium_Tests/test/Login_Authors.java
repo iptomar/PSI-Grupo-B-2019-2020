@@ -18,8 +18,9 @@ import org.openqa.selenium.WebDriver;
  * @author Luís Badalo
  */
 public class Login_Authors {
+
     WebDriver driver;
-    
+
     public Login_Authors() {
         this.driver = new Capabilities().getDriver();
     }
@@ -27,14 +28,14 @@ public class Login_Authors {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
-     
+    @Test
+
     public void AuthorTest() {
-    new LoginSuccess(driver).loginSucessfully();
-    new CreateAuthors(driver).AddAuthors();
-    new EditAuthors(driver).EditedAuthors();
-    new DetailsAuthors(driver).DetailedAuthors();
-    new DeleteAuthors(driver).DeletedAuthors();
-    driver.quit();
+        new LoginSuccess(driver).loginSucessfully();
+        new CreateAuthors(driver).AddAuthors();
+        new EditAuthors(driver).EditedAuthors();
+        new DetailsAuthors(driver).DetailedAuthors();
+        new DeleteAuthors(driver).DeletedAuthors();
+        driver.quit();
     }
 }

@@ -18,28 +18,29 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * @author Tomás Barros
  */
 public class DetailsAuthors {
+
     WebDriver driver;
-    
+
     public DetailsAuthors(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void DetailedAuthors() {
-         try {
+    public void DetailedAuthors() {
+        try {
             //Ir para Authors
             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Autores']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
             Thread.sleep(500);
-             //Verificação para aprovação do teste
+            //Verificação para aprovação do teste
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("detalhes"));
-        }  catch (Exception e) {
-             System.out.println(e.getMessage());
+            Assert.assertEquals(true, title.contains("detalhes"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }
