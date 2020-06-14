@@ -31,10 +31,11 @@ public class DetailsAuthors {
          try {
             //Ir para Authors
             Thread.sleep(2000);
-            driver.findElement(By.xpath("//a[.='Authors']")).click();
+            driver.findElement(By.xpath("//a[.='Autores']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
-             //ARRANJAR
+            Thread.sleep(500);
+             //Verificação para aprovação do teste
             String title = driver.getCurrentUrl();
              Assert.assertEquals(true,title.contains("detalhes"));
         }  catch (Exception e) {

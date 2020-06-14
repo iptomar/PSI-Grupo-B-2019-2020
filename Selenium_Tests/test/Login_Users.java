@@ -6,16 +6,9 @@
 
 import Admin.LoginSuccess;
 import Admin.RegisterSuccess;
-import Admin.Users.DeleteUsers;
-import Admin.Users.EditUsers;
-import Admin.Users.EditUsersError;
+import Admin.Users.*;
 import Testes.Login.Capabilities.Capabilities;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.WebDriver;
 
@@ -23,10 +16,10 @@ import org.openqa.selenium.WebDriver;
  *
  * @author Luís Badalo
  */
-public class LoginMain {
+public class Login_Users {
     WebDriver driver;
     
-    public LoginMain() {
+    public Login_Users() {
         this.driver = new Capabilities().getDriver();
     }
 
@@ -34,15 +27,14 @@ public class LoginMain {
     // The methods must be annotated with annotation @Test. For example:
     //
      @Test
-     
-    public void hello() {
+    //Ainda têm de dar fix nesta parte para se fazer os restos dos testes 
+    public void UsersTest() {
+    new RegisterSuccess(driver).registerSuccessfully();
     new LoginSuccess(driver).loginSucessfully();
+    new ListUsers(driver).ListedUsers();
+    new EditUsers(driver).EditedUsers();
+    new EditUsersError(driver).EditedUsersErrors();
     new DeleteUsers(driver).DeletedUsers();
-    //new RegisterSuccess(driver).registerSuccessfully();
-    //new RegisterUnsuccessfull(driver).registerUnsuccessfully();
-    }
-    @AfterEach
-    public void quit(){
     driver.quit();
     }
 }

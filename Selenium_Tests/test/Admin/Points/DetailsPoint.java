@@ -24,16 +24,17 @@ public class DetailsPoint {
         this.driver = driver;
     }
     
-    public void DetPoint() {
+    public void DetailedPoints() {
         try {
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
+             Thread.sleep(500);
               //Confirmacao ULR
             String title = driver.getCurrentUrl();
              Assert.assertEquals(true,title.contains("detalhes"));
-        } catch (InterruptedException ex) {
-            Logger.getLogger(DetailsPoint.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -48,7 +48,8 @@ public class CreatePointUnsuccessfull {
             WebElement cordenada2 = driver.findElement(By.name("coordinate2"));
             cordenada2.sendKeys("");
             WebElement foto = driver.findElement(By.className("custom-file-input"));
-            foto.sendKeys("C:\\Users\\Tiago jugojugopt\\Pictures\\Saved Pictures\\casa.jpg");
+            //MUDAR FOTO
+            foto.sendKeys("C:\\Users\\LuisBadalo\\Desktop\\Screenshot_1.png");
             WebElement source_author = driver.findElement(By.name("source_author"));
             source_author.sendKeys("");
             WebElement description_images = driver.findElement(By.name("description_images"));
@@ -72,39 +73,30 @@ public class CreatePointUnsuccessfull {
             order.sendKeys("");
             
             driver.findElement(By.xpath("//button[.='Add vertice']")).click();
-             
+            Thread.sleep(1000); 
             c1.sendKeys("");
             c2.sendKeys("");
             
             order.sendKeys("");
             driver.findElement(By.xpath("//button[.='Add vertice']")).click();
-              
+            Thread.sleep(1000);
             c1.sendKeys("");
             c2.sendKeys("");
             
             order.sendKeys("");
             
             driver.findElement(By.xpath("//button[.='Add vertice']")).click();
-              
-           
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-         
-            Thread.sleep(500);
+            Thread.sleep(1000);
             driver.switchTo().alert().accept();
-              //Confirmacao ULR
-          
+            Thread.sleep(1000);
+            
+             //Confirmacao ULR
             String title = driver.getCurrentUrl();
-              if(title.contains("CreatePointsOfInterest")){
-                 System.out.println("Ponto não criado");
-             }else{
-                 throw new Exception("Ponto criado com sucesso");
-             }
-           //String text = classe.getText();
-         
-           
-             
-        } catch (Exception ex) {
-            Logger.getLogger(CreatePoint.class.getName()).log(Level.SEVERE, null, ex);
+             Assert.assertEquals(true,title.contains("CreatePointsOfInterest"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
      }
 }

@@ -6,12 +6,8 @@ package Admin;
  * and open the template in the editor.
  */
 
-import Testes.Login.Capabilities.Capabilities;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

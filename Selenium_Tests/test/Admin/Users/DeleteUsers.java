@@ -5,13 +5,9 @@
  */
 package Admin.Users;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
@@ -36,7 +32,9 @@ public class DeleteUsers {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             //aceitar alerta
+             Thread.sleep(2000);
             driver.switchTo().alert().accept();
+            Thread.sleep(5000);
              //URL Confirm
             String title = driver.getCurrentUrl();
              Assert.assertEquals(true,title.contains("users"));

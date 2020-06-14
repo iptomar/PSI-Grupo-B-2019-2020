@@ -28,14 +28,18 @@ public class CreateAuthors {
         try {
             //Ir para create authors
             Thread.sleep(2000);
-            driver.findElement(By.xpath("//a[.='Create Authors']")).click();
+            driver.findElement(By.xpath("//a[.='Criar Autores']")).click();
             Thread.sleep(2000);
             WebElement autor = driver.findElement(By.className("form-control"));
-            autor.sendKeys("SeleniumTest1");
+            autor.sendKeys("Ricardo Araujo");
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-             //ARRANJAR
+            Thread.sleep(1000);
+            driver.switchTo().alert().accept();
+            Thread.sleep(1000);
+             //Confirmação
             String title = driver.getCurrentUrl();
+            System.out.println(title);
              Assert.assertEquals(true,title.contains("Authors"));
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -7,12 +7,8 @@ package Admin;
  */
 
 
-import Testes.Login.Capabilities.Capabilities;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
-import org.junit.Test;
 import org.openqa.selenium.By;
 
 /**
@@ -50,7 +46,7 @@ public class RegisterSuccess {
              Thread.sleep(500);
              //Procura pela segundo caixa de texto da password
              driver.findElement(By.xpath("//button[.='Sign Up']")).click();
-             Thread.sleep(5000);
+             Thread.sleep(2000);
              String title = driver.getCurrentUrl();
              Assert.assertEquals(true,title.contains("users"));
          } catch (Exception e) {

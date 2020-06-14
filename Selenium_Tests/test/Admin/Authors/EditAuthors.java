@@ -30,16 +30,21 @@ public class EditAuthors {
      public void EditedAuthors() {
          try {
             //Ir para Authors
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//a[.='Authors']")).click();
+            Thread.sleep(3000);
+            driver.findElement(By.xpath("//a[.='Autores']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Edit']")).click();
-            WebElement autor = driver.findElement(By.className("form-control"));
-            autor.sendKeys("SeleniumTest2");
+            Thread.sleep(500);
+            WebElement autor = driver.findElement(By.className("form-control")); 
+            autor.clear();
+            Thread.sleep(500);
+            autor.sendKeys("Cristiano Vincentino");
+            Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-             //ARRANJAR
+            Thread.sleep(2000);
+             //Verificação para aprovação do teste
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("edit"));
+             Assert.assertEquals(true,title.contains("Authors"));
         } catch (Exception e) {
              System.out.println(e.getMessage());
         }

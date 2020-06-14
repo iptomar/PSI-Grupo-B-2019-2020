@@ -123,8 +123,9 @@ public class EditPointUnsuccessfull {
             driver.findElement(By.xpath("//button[.='Delete']")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Delete']")).click();
-            
+            Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
+            Thread.sleep(500);
               //Confirmacao ULR
             String title = driver.getCurrentUrl();
            if(title.contains("edit")){

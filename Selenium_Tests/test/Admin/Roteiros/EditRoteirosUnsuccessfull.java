@@ -42,14 +42,9 @@ public class EditRoteirosUnsuccessfull {
             driver.switchTo().alert().accept();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
+            Thread.sleep(500);
              //Confirmacao ULR
             String title = driver.getCurrentUrl();
-   
-            if(title.contains("edit")){
-                 System.out.println("Roteiro não editado");
-             }else{
-                 throw new Exception("Roteiro editado com sucesso");
-             }
             Assert.assertEquals(true,title.contains("Routes"));
         } catch (Exception e) {
              System.out.println(e.getMessage());

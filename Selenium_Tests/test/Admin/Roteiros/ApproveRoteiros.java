@@ -5,39 +5,35 @@
  */
 package Admin.Roteiros;
 
-import Admin.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
  * @author Tomás Barros
  */
-public class ListRoteiros {
+public class ApproveRoteiros {
     WebDriver driver;
     
-    public ListRoteiros(WebDriver driver) {
+    public ApproveRoteiros(WebDriver driver) {
         this.driver = driver;
     }
-    
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-     public void ListedRoteiros() {
-         try {
+ public void ApprovedRoteiros() {
+        try {
             //Ir para Authors
-            Thread.sleep(2000);
+             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-             //Confirmacao ULR
+             Thread.sleep(2000);
+            driver.findElement(By.xpath("//button[.='Approve']")).click();
+            Thread.sleep(1000);
+            driver.switchTo().alert().accept();
+            Thread.sleep(1000);
+            //Confirmacao ULR
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true,title.contains("Routes"));
+             Assert.assertEquals(true,title.contains("Routes"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -5,7 +5,6 @@
  */
 package Admin.Roteiros;
 
-import java.security.Key;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -34,20 +33,15 @@ public class CreateRoteirosUnsuccessfull {
             WebElement nomeponto = driver.findElement(By.id("react-select-2-input"));
             nomeponto.sendKeys("");
             nomeponto.sendKeys(Keys.RETURN);
-      Thread.sleep(2000);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-           
             Thread.sleep(2000);
              driver.switchTo().alert().accept();
+             Thread.sleep(500);
             String title = driver.getCurrentUrl();
-            Thread.sleep(5000);
-            if(title.contains("CreateRoutes")){
-                 System.out.println("Roteiro não criado");
-             }else{
-                 throw new Exception("Roteiro criado com sucesso");
-             }
+             Assert.assertEquals(true,title.contains("CreateRoutes"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

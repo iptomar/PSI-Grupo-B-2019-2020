@@ -31,12 +31,14 @@ public class DeleteAuthors {
          try {
             //Ir para Authors
             Thread.sleep(2000);
-            driver.findElement(By.xpath("//a[.='Authors']")).click();
+            driver.findElement(By.xpath("//a[.='Autores']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Delete']")).click();
+            Thread.sleep(1000);
             //aceitar alerta
             driver.switchTo().alert().accept();
-             //ARRANJAR
+            Thread.sleep(4000);
+             //Verificar se está bem feito
             String title = driver.getCurrentUrl();
              Assert.assertEquals(true,title.contains("Authors"));
             

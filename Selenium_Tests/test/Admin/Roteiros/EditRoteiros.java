@@ -5,14 +5,10 @@
  */
 package Admin.Roteiros;
 
-import Admin.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
@@ -37,15 +33,16 @@ public class EditRoteiros {
             driver.findElement(By.xpath("//button[.='Editar']")).click();
             WebElement autor = driver.findElement(By.className("form-control"));
             //limpa o texto
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.findElement(By.className("form-control")).clear();
-            autor.sendKeys("SeleniumTest2");
-            Thread.sleep(1000);
+            autor.sendKeys("2Rota2");
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.switchTo().alert().accept();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
+            Thread.sleep(5000);
              //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true,title.contains("Routes"));
