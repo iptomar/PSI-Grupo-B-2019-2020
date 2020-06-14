@@ -18,6 +18,7 @@ class CreateRoutes extends Component {
         this.handleNameRoute = this.handleNameRoute.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePointsOfInterestChange = this.handlePointsOfInterestChange.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
 
     }
 
@@ -32,7 +33,7 @@ class CreateRoutes extends Component {
 					<h1 className="text-center"><span className="font-weight-bold">Create Routes</span></h1>
 					<div className="form-group row">
 						<label for="nameRoute"><b>Name</b></label>
-						<input className="form-control" type="text" placeholder="Insert name..." name="nameRoute" value={this.state.nameRoute} onChange={this.handleNameRoute} required />
+						<input className="form-control" type="text" placeholder="Insert name..." name="nameRoute" id="nameRoute" required />
 					</div>
 					<div className="form-group row">
 						<label for="pontos"><b>Points Of Interest</b></label>
@@ -62,11 +63,17 @@ class CreateRoutes extends Component {
     handleSubmit(e){
         e.preventDefault();
         alert("Are you sure you wish to create this route?");
-        console.log(this.state.nameRoute);
-        roteirosApi.create(this.state.nameRoute,this.state.pointsOfInterest).then((response) => {
+        if(this.handleValidation()){
+        roteirosApi.create(document.getElementById("nameRoute").value,this.state.pointsOfInterest).then((response) => {
             this.props.history.push('/Routes');
         })
+        alert("Form submitted");
+    
+        }else{
 
+        alert("Form has errors.")
+
+        }
     }
 
     getOptions(input){
@@ -86,6 +93,28 @@ class CreateRoutes extends Component {
         e.preventDefault();
         this.setState({nameRoute:e.target.value});
     }
+
+    handleValidation(){
+        let nameR = document.getElementById("nameRoute").value;
+        let formIsValid = true;
+
+        console.log(nameR);
+
+        //Name
+        if(!nameR){
+           formIsValid = false;
+           console.log("Cannot be empty");
+        }
+
+        if(nameR !== "undefined"){
+           if(!nameR.match(/^[a-zA-Z]+$/)){
+              formIsValid = false;
+              console.log("Only letters");
+           }        
+        }
+       return formIsValid;
+    }
+
 
     handlePointsOfInterestChange(selectedOptions) {
 
