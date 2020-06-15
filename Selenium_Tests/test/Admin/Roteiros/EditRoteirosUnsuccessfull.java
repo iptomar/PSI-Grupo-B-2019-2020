@@ -30,20 +30,18 @@ public class EditRoteirosUnsuccessfull {
             //Ir para Roteiros
             Thread.sleep(5000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(5000);
+            Thread.sleep(3000);
             driver.findElement(By.xpath("//button[.='Editar']")).click();
-            WebElement autor = driver.findElement(By.className("form-control"));
             //limpa o texto
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             driver.findElement(By.className("form-control")).clear();
-            autor.sendKeys("");
-            Thread.sleep(5000);
-            driver.findElement(By.xpath("//button[.='Apagar']")).click();
-            Thread.sleep(1000);
-            driver.switchTo().alert().accept();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
+            //Warnings na página(FORMA CORRETA)
+            //WebElement classe = driver.findElement(By.className("alert-warning"));
+            //Assert.assertEquals(true, classe.isDisplayed());
+            
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("Routes"));

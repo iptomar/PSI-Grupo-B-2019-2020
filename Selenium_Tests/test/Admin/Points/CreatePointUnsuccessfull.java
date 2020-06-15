@@ -91,7 +91,10 @@ public class CreatePointUnsuccessfull {
             Thread.sleep(1000);
             driver.switchTo().alert().accept();
             Thread.sleep(1000);
-
+            //Warnings na página(FORMA CORRETA)
+            //WebElement classe = driver.findElement(By.className("alert-warning"));
+            //Assert.assertEquals(true, classe.isDisplayed());
+            
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("CreatePointsOfInterest"));

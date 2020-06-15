@@ -44,13 +44,13 @@ public class RegisterUnsuccessfull {
             driver.findElement(By.name("password_confirmation")).click();
             driver.findElement(By.name("password_confirmation")).sendKeys("aaa1");
             Thread.sleep(500);
-            //Procura pela segundo caixa de texto da password
+            //Carrega no botão
             driver.findElement(By.xpath("//button[.='Sign Up']")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Sign Up']")).click();
-            Thread.sleep(5000);
+            Thread.sleep(3000);
             //Warnings na página
-            WebElement classe = driver.findElement(By.className("alert alert-warning"));
+            WebElement classe = driver.findElement(By.className("alert-warning"));
             Assert.assertEquals(true, classe.isDisplayed());
 
         } catch (Exception e) {

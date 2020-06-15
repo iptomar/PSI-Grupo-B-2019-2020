@@ -57,7 +57,7 @@ public class EditUsersError {
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Update']")).click();
             //aceitar alerta
-            WebElement classe = driver.findElement(By.className("alert alert-warning"));
+            WebElement classe = driver.findElement(By.className("alert-warning"));
             Assert.assertEquals(true, classe.isDisplayed());
         } catch (Exception e) {
             System.out.println(e.getMessage());

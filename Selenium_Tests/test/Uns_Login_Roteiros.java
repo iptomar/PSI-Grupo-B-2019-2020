@@ -4,20 +4,22 @@
  * and open the template in the editor.
  */
 
+import Admin.LoginSuccess;
+import Admin.Roteiros.CreateRoteirosUnsuccessfull;
+import Admin.Roteiros.EditRoteirosUnsuccessfull;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import Admin.*;
 
 /**
  *
  * @author Luís Badalo
  */
-public class Uns_LoginRegister {
+public class Uns_Login_Roteiros {
 
     WebDriver driver;
 
-    public Uns_LoginRegister() {
+    public Uns_Login_Roteiros() {
         this.driver = new Capabilities().getDriver();
     }
 
@@ -26,9 +28,10 @@ public class Uns_LoginRegister {
     //
     @Test
 
-    public void FailedLoginRegister() {
-         new RegisterUnsuccessfull(driver).registerUnsuccessfully();
-         new LoginUnsuccesfull(driver).loginUnsucessfully();
+    public void RoteiroTest() {
+        new LoginSuccess(driver).loginSucessfully();
+        new CreateRoteirosUnsuccessfull(driver).AddRoteirosUnsuccessfull();
+        new EditRoteirosUnsuccessfull(driver).EditedRoteirosUnsuccessfull();
         driver.quit();
     }
 }

@@ -25,7 +25,7 @@ public class EditPointUnsuccessfull {
         this.driver = driver;
     }
 
-    public void EditPointsUnsuccessfull() {
+    public void EditPointUnsuccessfully() {
         try {
             Thread.sleep(1000);
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
@@ -61,7 +61,7 @@ public class EditPointUnsuccessfull {
             coor2.sendKeys("2");
             WebElement foto = driver.findElement(By.className("custom-file-input"));
             Thread.sleep(500);
-            foto.sendKeys("C:\\Users\\Tiago jugojugopt\\Pictures\\Saved Pictures\\casa.jpg");
+            foto.sendKeys("C:\\Users\\LuisBadalo\\Desktop\\Screenshot_1.png");
             WebElement autor = driver.findElement(By.name("source_author"));
             Thread.sleep(500);
             autor.sendKeys("");
@@ -122,16 +122,17 @@ public class EditPointUnsuccessfull {
             driver.findElement(By.xpath("//button[.='Delete']")).click();
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-            Thread.sleep(500);
+            Thread.sleep(6000);
+            
+            //Warnings na página(FORMA CORRETA)
+            //WebElement classe = driver.findElement(By.className("alert-warning"));
+            //Assert.assertEquals(true, classe.isDisplayed());
+            
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
-            if (title.contains("edit")) {
-                System.out.println("Ponto não editado");
-            } else {
-                throw new Exception("Ponto editado com sucesso");
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(EditPoint.class.getName()).log(Level.SEVERE, null, ex);
+            Assert.assertEquals(true, title.contains("edit"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

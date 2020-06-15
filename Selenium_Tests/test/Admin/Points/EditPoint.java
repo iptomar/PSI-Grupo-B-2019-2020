@@ -141,8 +141,8 @@ public class EditPoint {
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("PointsOfInterest"));
-        } catch (InterruptedException ex) {
-            Logger.getLogger(EditPoint.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -4,20 +4,25 @@
  * and open the template in the editor.
  */
 
+import Admin.Authors.CreateAuthors;
+import Admin.Authors.CreateAuthorsUnsuccessfull;
+import Admin.Authors.DeleteAuthors;
+import Admin.Authors.DetailsAuthors;
+import Admin.Authors.EditAuthors;
+import Admin.LoginSuccess;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import Admin.*;
 
 /**
  *
  * @author Luís Badalo
  */
-public class Uns_LoginRegister {
+public class Uns_Login_Authors {
 
     WebDriver driver;
 
-    public Uns_LoginRegister() {
+    public Uns_Login_Authors() {
         this.driver = new Capabilities().getDriver();
     }
 
@@ -26,9 +31,9 @@ public class Uns_LoginRegister {
     //
     @Test
 
-    public void FailedLoginRegister() {
-         new RegisterUnsuccessfull(driver).registerUnsuccessfully();
-         new LoginUnsuccesfull(driver).loginUnsucessfully();
+    public void AuthorTest() {
+        new LoginSuccess(driver).loginSucessfully();
+        new CreateAuthorsUnsuccessfull(driver).AddAuthorsUnsuccessfull();
         driver.quit();
     }
 }

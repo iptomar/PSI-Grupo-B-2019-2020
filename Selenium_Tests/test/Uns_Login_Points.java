@@ -4,20 +4,22 @@
  * and open the template in the editor.
  */
 
+import Admin.LoginSuccess;
+import Admin.Points.CreatePointUnsuccessfull;
+import Admin.Points.EditPointUnsuccessfull;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import Admin.*;
 
 /**
  *
  * @author Luís Badalo
  */
-public class Uns_LoginRegister {
+public class Uns_Login_Points {
 
     WebDriver driver;
 
-    public Uns_LoginRegister() {
+    public Uns_Login_Points() {
         this.driver = new Capabilities().getDriver();
     }
 
@@ -26,9 +28,10 @@ public class Uns_LoginRegister {
     //
     @Test
 
-    public void FailedLoginRegister() {
-         new RegisterUnsuccessfull(driver).registerUnsuccessfully();
-         new LoginUnsuccesfull(driver).loginUnsucessfully();
+    public void PointsTest() {
+        new LoginSuccess(driver).loginSucessfully();
+        new CreatePointUnsuccessfull(driver).PointInterestUnsuccessfull();
+        new EditPointUnsuccessfull(driver).EditPointUnsuccessfully();
         driver.quit();
     }
 }

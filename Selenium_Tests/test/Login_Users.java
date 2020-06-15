@@ -9,7 +9,6 @@ import Admin.RegisterSuccess;
 import Admin.Users.*;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
 import org.openqa.selenium.WebDriver;
 
 /**

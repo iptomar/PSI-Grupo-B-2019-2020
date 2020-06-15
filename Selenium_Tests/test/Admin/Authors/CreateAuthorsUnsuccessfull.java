@@ -3,42 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Admin.Roteiros;
+package Admin.Authors;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+//comment the above line and uncomment below line to use Chrome
 
 /**
  *
- * @author Antonio Rodrigues
+ * @author Luís Badalo
  */
-public class CreateRoteirosUnsuccessfull {
+public class CreateAuthorsUnsuccessfull {
 
     WebDriver driver;
 
-    public CreateRoteirosUnsuccessfull(WebDriver driver) {
+    public CreateAuthorsUnsuccessfull(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void AddRoteirosUnsuccessfull() {
+    public void AddAuthorsUnsuccessfull() {
         try {
             //Ir para create authors
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//a[.='Criar Roteiros']")).click();
-            Thread.sleep(5000);
-            driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(2000);
+            driver.findElement(By.xpath("//a[.='Criar Autores']")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//button[.='Submit']")).click();
+            Thread.sleep(1000);
             driver.switchTo().alert().accept();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             //Warnings na página(FORMA CORRETA)
             //WebElement classe = driver.findElement(By.className("alert-warning"));
             //Assert.assertEquals(true, classe.isDisplayed());
-            
+            //Confirmação
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true, title.contains("CreateRoutes"));
+            System.out.println(title);
+            Assert.assertEquals(true, title.contains("CreateAuthors"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
