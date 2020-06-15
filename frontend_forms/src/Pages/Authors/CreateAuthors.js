@@ -49,7 +49,7 @@ class CreateAuthors extends Component {
             })
             alert("Form submitted");
         }else{
-            alert("Form has errors.")
+            alert("Form has errors.");
         }
 
 
