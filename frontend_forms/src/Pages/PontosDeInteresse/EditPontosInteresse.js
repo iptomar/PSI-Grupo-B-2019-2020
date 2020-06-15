@@ -66,7 +66,7 @@ import AsyncSelect from 'react-select/async';
 		this.deleteAuthor = this.deleteAuthor.bind(this);
 		this.addRoute = this.addRoute.bind(this);
 		this.handleRouteChange = this.handleRouteChange.bind(this);
-
+		this.handleValidation = this.handleValidation.bind(this);
 
         
     }
@@ -154,15 +154,15 @@ import AsyncSelect from 'react-select/async';
 					<h1 className="text-center"><span className="font-weight-bold">Editar Pontos de Interesse</span></h1>
 					<div className="form-group row">
 						<label for="buildingName"><b>Building Name</b></label>
-						<input className="form-control" type="text" placeholder="Insert building name..." name="buildingName" value={this.state.buildingName} onChange={this.handleBuildingNameChange} required />
+						<input className="form-control" type="text" placeholder="Insert building name..." name="buildingName" id="buildingName" value={this.state.buildingName} onChange={this.handleBuildingNameChange} required />
 					</div>
 					<div className="form-group row">
 						<label for="location"><b>Location</b></label>
-						<input className="form-control" id="location" name="location" rows="3" placeholder="Add a location about the point of interest." value={this.state.location} onChange={this.handleLocationChange} required ></input>
+						<input className="form-control" type="text" id="location" name="location" rows="3" placeholder="Add a location about the point of interest." value={this.state.location} onChange={this.handleLocationChange} required ></input>
 					</div>
 					<div className="form-group row">
 						<label for="dates"><b>Date</b></label>
-						<input className="form-control" type="number" id="dates" name="dates"  placeholder="The year." value={this.state.dates} onChange={this.handleDatesChange} required></input>
+						<input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" id="dates" name="dates"  placeholder="The year." value={this.state.dates} onChange={this.handleDatesChange} required></input>
 					</div>
 					<div className="form-group row">
 						<label for="buildingType"><b>Building Type</b></label>
@@ -179,11 +179,11 @@ import AsyncSelect from 'react-select/async';
 					<div className="form-group row">
 						<div className="form group col-md-6">
 							<label for="coordinate1"><b>Coordinate 1</b></label>
-							<input className="form-control" type="number" step="any" placeholder="Insert coordinate 1..." id="coordinate1" name="coordinate1" value={this.state.coordinate1} onChange={this.handleCoordinate1Change} required />
+							<input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" step="any" placeholder="Insert coordinate 1..." id="coordinate1" name="coordinate1" value={this.state.coordinate1} onChange={this.handleCoordinate1Change} required />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="coordinate2"><b>Coordinate 2</b></label>
-							<input className="form-control" type="number" step="any" placeholder="Insert coordinate 2..." id="coordinate2" name="coordinate2" value={this.state.coordinate2} onChange={this.handleCoordinate2Change} required />
+							<input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" step="any" placeholder="Insert coordinate 2..." id="coordinate2" name="coordinate2" value={this.state.coordinate2} onChange={this.handleCoordinate2Change} required />
 						</div>
 					</div>
 					<hr class="mb-3"></hr>
@@ -272,20 +272,20 @@ import AsyncSelect from 'react-select/async';
 
                         <div className="form-group col-md-4">
                             <label htmlFor="coordenada1"><b>Coordinate 1</b></label>
-                            <input className="form-control" type="number" placeholder="Insert coordinate 1..."
+                            <input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Insert coordinate 1..."
                                    name="coordenada1" id="coordenada2" value={this.state.auxCoordenada1} data-index="0"
                                    onChange={this.handleVerticeCoordenada1Change} required/>
                         </div>
                         <div className="form-group col-md-4">
                             <label htmlFor="coordenada2"><b>Coordinate 2</b></label>
-                            <input className="form-control" type="number" placeholder="Insert coordinate 2..."
+                            <input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Insert coordinate 2..."
                                    name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0"
                                    onChange={this.handleVerticeCoordenada2Change} required/>
                         </div>
 
                         <div className="form-group col-md-4">
                             <label htmlFor="order"><b>Order</b></label>
-                            <input className="form-control" type="number" placeholder="Insert order..." min="1"
+                            <input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Insert order..." min="1"
                                    name="order" id="order" value={this.state.auxOrder} data-index="0"
                                    onChange={this.handleOrderChange} required/>
                             <button className="btn btn-primary" type="submit" value="submit"
@@ -388,7 +388,7 @@ import AsyncSelect from 'react-select/async';
    
     handleSubmit(e){
         e.preventDefault();
-
+		if(this.handleValidation()){
         pontosDeInteresseApi.edit(this.state.pontosInteresseID, this.state.buildingName, this.state.location, this.state.dates, this.state.buildingType, 
             this.state.description, this.state.coordinate1, this.state.coordinate2, this.state.vertices, this.state.routes
             , this.state.images, this.state.authors).then( (response)=>{
@@ -398,8 +398,45 @@ import AsyncSelect from 'react-select/async';
         }).catch( (error) => {
 						console.log(error);
             this.setState({errors:error});
-        });
-    }
+		});
+			alert("Form submitted");
+		}else{
+			alert("Form has errors.");
+		}
+	}
+	
+	handleValidation(){
+		let nameP = document.getElementById("buildingName").value;
+		let locat = document.getElementById("location").value;
+		let buildtype = document.getElementById("buildingType").value;
+		let descrip = document.getElementById("description").value;
+		//let sourAuth = document.getElementById("auxAuthor").value;
+		//let descAuth = document.getElementById("auxDesc").value;
+        let formIsValid = true;
+
+		console.log(nameP);
+		console.log(locat);
+		console.log(buildtype);
+		console.log(descrip);
+		//console.log(sourAuth);
+		//console.log(descAuth);
+
+
+        //Name
+        if(!nameP || !locat || !buildtype || !descrip){
+           formIsValid = false;
+           console.log("Cannot be empty");
+        }
+
+		if(nameP !== "undefined" || locat !== "undefined" || buildtype !== "undefined" || descrip !== "undefined" ){
+           if(!nameP.match(/^[a-zA-Z]+$/) || !locat.match(/^[a-zA-Z]+$/) || !buildtype.match(/^[a-zA-Z]+$/) || !descrip.match(/^[a-zA-Z]+$/)){
+              formIsValid = false;
+              console.log("Only letters");
+           }        
+        }
+       return formIsValid;
+	}
+	
 
      deleteAuthor(id,index){
 
