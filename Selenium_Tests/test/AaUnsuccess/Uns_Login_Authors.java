@@ -1,15 +1,17 @@
+package AaUnsuccess;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import Admin.Authors.CreateAuthors;
+import Admin.Authors.CreateAuthorsUnsuccessfull;
+import Admin.Authors.DeleteAuthors;
+import Admin.Authors.DetailsAuthors;
+import Admin.Authors.EditAuthors;
 import Admin.LoginSuccess;
-import Admin.Roteiros.ApproveRoteiros;
-import Admin.Roteiros.CreateRoteiros;
-import Admin.Roteiros.DeleteRoteiros;
-import Admin.Roteiros.DetailsRoteiros;
-import Admin.Roteiros.EditRoteiros;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -18,11 +20,11 @@ import org.openqa.selenium.WebDriver;
  *
  * @author Luís Badalo
  */
-public class Login_Roteiros {
+public class Uns_Login_Authors {
 
     WebDriver driver;
 
-    public Login_Roteiros() {
+    public Uns_Login_Authors() {
         this.driver = new Capabilities().getDriver();
     }
 
@@ -31,13 +33,9 @@ public class Login_Roteiros {
     //
     @Test
 
-    public void RoteiroTest() {
+    public void AuthorTest() {
         new LoginSuccess(driver).loginSucessfully();
-        new CreateRoteiros(driver).AddRoteiros();
-        new DetailsRoteiros(driver).DetailedRoteiros();
-        new EditRoteiros(driver).EditedRoteiros();
-        new ApproveRoteiros(driver).ApprovedRoteiros();
-        new DeleteRoteiros(driver).DeletedRoteiros();
+        new CreateAuthorsUnsuccessfull(driver).AddAuthorsUnsuccessfull();
         driver.quit();
     }
 }

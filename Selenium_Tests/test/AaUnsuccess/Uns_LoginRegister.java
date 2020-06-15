@@ -1,25 +1,25 @@
+package AaUnsuccess;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import Admin.LoginSuccess;
-import Admin.RegisterSuccess;
-import Admin.Users.*;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import Admin.*;
 
 /**
  *
  * @author Luís Badalo
  */
-public class Login_Users {
+public class Uns_LoginRegister {
 
     WebDriver driver;
 
-    public Login_Users() {
+    public Uns_LoginRegister() {
         this.driver = new Capabilities().getDriver();
     }
 
@@ -27,14 +27,10 @@ public class Login_Users {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    //Ainda têm de dar fix nesta parte para se fazer os restos dos testes 
-    public void UsersTest() {
-        new RegisterSuccess(driver).registerSuccessfully();
-        new LoginSuccess(driver).loginSucessfully();
-        new ListUsers(driver).ListedUsers();
-        new EditUsers(driver).EditedUsers();
-        new EditUsersError(driver).EditedUsersErrors();
-        new DeleteUsers(driver).DeletedUsers();
+
+    public void FailedLoginRegister() {
+         new RegisterUnsuccessfull(driver).registerUnsuccessfully();
+         new LoginUnsuccesfull(driver).loginUnsucessfully();
         driver.quit();
     }
 }

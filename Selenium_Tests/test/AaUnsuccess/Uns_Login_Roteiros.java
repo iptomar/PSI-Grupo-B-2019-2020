@@ -1,3 +1,5 @@
+package AaUnsuccess;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,10 +7,8 @@
  */
 
 import Admin.LoginSuccess;
-import Admin.Points.CreatePoint;
-import Admin.Points.DeletePoint;
-import Admin.Points.DetailsPoint;
-import Admin.Points.EditPoint;
+import Admin.Roteiros.CreateRoteirosUnsuccessfull;
+import Admin.Roteiros.EditRoteirosUnsuccessfull;
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -17,11 +17,11 @@ import org.openqa.selenium.WebDriver;
  *
  * @author Luís Badalo
  */
-public class Login_Points {
+public class Uns_Login_Roteiros {
 
     WebDriver driver;
 
-    public Login_Points() {
+    public Uns_Login_Roteiros() {
         this.driver = new Capabilities().getDriver();
     }
 
@@ -30,12 +30,10 @@ public class Login_Points {
     //
     @Test
 
-    public void PointsTest() {
+    public void RoteiroTest() {
         new LoginSuccess(driver).loginSucessfully();
-        new CreatePoint(driver).PointInterest();
-        new DetailsPoint(driver).DetailedPoints();
-        new EditPoint(driver).EditedPoints();
-        new DeletePoint(driver).DeletedPoint();
+        new CreateRoteirosUnsuccessfull(driver).AddRoteirosUnsuccessfull();
+        new EditRoteirosUnsuccessfull(driver).EditedRoteirosUnsuccessfull();
         driver.quit();
     }
 }
