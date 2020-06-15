@@ -27,11 +27,11 @@ class CreateRoutes extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePointsOfInterestChange = this.handlePointsOfInterestChange.bind(this);
         this.deletePontoDeInteresse=this.deletePontoDeInteresse.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
 
     }
 
     render(){
-
 
         let items = [];
         const pontosDeInteresse = this.state.pi;
@@ -61,7 +61,7 @@ class CreateRoutes extends Component {
                     <h1 className="text-center"><span className="font-weight-bold">Edit route</span></h1>
                     <div className="form-group row">
                         <label for="nameRoute"><b>Name</b></label>
-                        <input className="form-control" type="text" placeholder="Insert name..." name="nameRoute" value={this.state.nameRoute} onChange={this.handleNameRoute} required />
+                        <input className="form-control" type="text" placeholder="Insert name..." name="nameRoute" id="nameRoute" value={this.state.nameRoute} onChange={this.handleNameRoute} required />
                     </div>
                     <div className="form-group row">
                         <label for="pontos"><b>Points of interest related to this route</b></label>
@@ -109,10 +109,14 @@ class CreateRoutes extends Component {
     handleSubmit(e){
         e.preventDefault();
         console.log(this.state.nameRoute);
+        if(this.handleValidation()){
         roteirosApi.update(this.state.routeId,this.state.nameRoute,this.state.pointsOfInterest).then((response) => {
             this.props.history.push('/Routes');
         })
-
+            alert("Form submitted");
+        }else{
+            alert("Form has errors.");
+        }
     }
 
     getOptions(input){
@@ -193,6 +197,27 @@ class CreateRoutes extends Component {
         auxpi.splice(index,1);
         this.setState({pi:auxpi});
 
+    }
+
+    handleValidation(){
+        let nameR = document.getElementById("nameRoute").value;
+        let formIsValid = true;
+
+        console.log(nameR);
+
+        //Name
+        if(!nameR){
+           formIsValid = false;
+           console.log("Cannot be empty");
+        }
+
+        if(nameR !== "undefined"){
+           if(!nameR.match(/^[a-zA-Z]+$/)){
+              formIsValid = false;
+              console.log("Only letters");
+           }        
+        }
+       return formIsValid;
     }
 
 }
