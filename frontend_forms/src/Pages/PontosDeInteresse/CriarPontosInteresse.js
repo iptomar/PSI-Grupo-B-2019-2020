@@ -44,6 +44,7 @@ class CriarPontosInteresse extends Component {
 		this.handleAuthorsChange = this.handleAuthorsChange.bind(this);
 		this.addRoute = this.addRoute.bind(this);
 		this.handleRouteChange = this.handleRouteChange.bind(this);
+		this.handleValidation = this.handleValidation.bind(this);
 
 		this.getRoutes(1);
 	}
@@ -132,15 +133,15 @@ class CriarPontosInteresse extends Component {
 					<h1 className="text-center"><span className="font-weight-bold">Create Points of Interest</span></h1>
 					<div className="form-group row">
 						<label for="buildingName"><b>Building Name</b></label>
-						<input className="form-control" type="text" placeholder="Insert building name..." name="buildingName" value={this.state.buildingName} onChange={this.handleBuildingNameChange} required />
+						<input className="form-control" type="text" placeholder="Insert building name..." name="buildingName" id="buildingName" value={this.state.buildingName} onChange={this.handleBuildingNameChange} required />
 					</div>
 					<div className="form-group row">
 						<label for="location"><b>Location</b></label>
-						<input className="form-control" id="location" name="location" rows="3" placeholder="Add a location about the point of interest." value={this.state.location} onChange={this.handleLocationChange} required ></input>
+						<input className="form-control" type="text" id="location" name="location" rows="3" placeholder="Add a location about the point of interest." value={this.state.location} onChange={this.handleLocationChange} required ></input>
 					</div>
 					<div className="form-group row">
 						<label for="dates"><b>Date</b></label>
-						<input className="form-control" type="number" id="dates" name="dates"  placeholder="Add the year." value={this.state.dates} onChange={this.handleDatesChange} required></input>
+						<input className="form-control" type="number" id="dates" name="dates"  pattern="[0-9]*" inputmode="numeric" placeholder="Add the year." value={this.state.dates} onChange={this.handleDatesChange} required></input>
 					</div>
 					<div className="form-group row">
 						<label for="buildingType"><b>Type</b></label>
@@ -157,11 +158,11 @@ class CriarPontosInteresse extends Component {
 					<div className="form-group row">
 						<div className="form group col-md-6">
 							<label for="coordinate1"><b>Coordinate 1</b></label>
-							<input className="form-control" type="number" step="any" placeholder="Insert coordinate 1..." id="coordinate1" name="coordinate1" value={this.state.coordinate1} onChange={this.handleCoordinate1Change} required />
+							<input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" step="any" placeholder="Insert coordinate 1..." id="coordinate1" name="coordinate1" value={this.state.coordinate1} onChange={this.handleCoordinate1Change} required />
 						</div>
 						<div class="form-group col-md-6">
 							<label for="coordinate2"><b>Coordinate 2</b></label>
-							<input className="form-control" type="number" step="any" placeholder="Insert coordinate 2..." id="coordinate2" name="coordinate2" value={this.state.coordinate2} onChange={this.handleCoordinate2Change} required />
+							<input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" step="any" placeholder="Insert coordinate 2..." id="coordinate2" name="coordinate2" value={this.state.coordinate2} onChange={this.handleCoordinate2Change} required />
 						</div>
 					</div>
 					<hr class="mb-3"></hr>
@@ -179,14 +180,14 @@ class CriarPontosInteresse extends Component {
 
 						<div className="form-group col-md-4">
 							<label for="source_author"><b>Source Author</b></label>
-							<input className="form-control" id="source_author" name="source_author" rows="3" 
+							<input className="form-control" type="text" id="source_author" name="source_author" rows="3" 
 							placeholder="Add a source author about the point of interest." 
 							value={this.state.auxAuthor} onChange={this.handleImgAuthorChange} 
 							required></input>
 						</div>
 						<div className="form-group col-md-4">
 							<label for="description_images"><b>Description</b></label>
-							<input className="form-control" id="description_images" name="description_images" rows="3" 
+							<input className="form-control" type= "text"id="description_images" name="description_images" rows="3" 
 							placeholder="Add a description about the point of interest." 
 							value={this.state.auxDesc} onChange={this.handleImgDescChange} 
 							required></input>
@@ -229,20 +230,20 @@ class CriarPontosInteresse extends Component {
 					<div className="form-group row">
 							<div className="form group col-md-4">
 								<label for="coordenada1"><b>Coordinate 1</b></label>
-								<input className="form-control" type="number" placeholder="Insert coordinate 1..." 
+								<input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Insert coordinate 1..." 
 								name="coordenada1" id="coordenada1" value={this.state.auxCoordenada1} data-index="0" 
 								onChange={this.handleVerticeCoordenada1Change} required />
 							</div>
 							<div class="form-group col-md-4">
 								<label for="coordenada2"><b>Coordinate 2</b></label>
-								<input className="form-control" type="number" placeholder="Insert coordinate 2..." 
+								<input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Insert coordinate 2..." 
 								name="coordenada2" id="coordenada2" value={this.state.auxCoordenada2} data-index="0" 
 								onChange={this.handleVerticeCoordenada2Change} required />
 							</div>
 							
 							<div className="form-group col-md-4">
 								<label for="order"><b>Order</b></label>
-								<input className="form-control" type="number" placeholder="Insert order..." min="1" 
+								<input className="form-control" type="number" pattern="[0-9]*" inputmode="numeric" placeholder="Insert order..." min="1" 
 								name="order" id="order" value={this.state.auxOrder} data-index="0" 
 								onChange={this.handleOrderChange} required />
 								<button className="btn btn-primary" type="submit" value="submit" 
@@ -284,9 +285,11 @@ class CriarPontosInteresse extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		alert("Are you sure you wish to create this point?");
+		if(this.handleValidation()){
 		const file = this.fileUpload.files[0];
-		pontosDeInteresseApi.create(this.state.buildingName,this.state.location, this.state.dates,this.state.buildingType,
-																this.state.description,this.state.coordinate1,this.state.coordinate2, 
+		
+		pontosDeInteresseApi.create(document.getElementById("buildingName").value,document.getElementById("location").value, this.state.dates,document.getElementById("buildingType").value,
+		document.getElementById("description").value,this.state.coordinate1,this.state.coordinate2,
 																this.state.vertices,
 																this.state.images,this.state.authors,this.state.routes
 			).then((response)=>{
@@ -299,9 +302,46 @@ class CriarPontosInteresse extends Component {
 				console.log(error);
             	this.setState({errors:error});
 			});
-		
+			alert("Form submitted");
+		}else{
+			alert("Form has errors.");
+		}
 
 	}
+
+	handleValidation(){
+		let nameP = document.getElementById("buildingName").value;
+		let locat = document.getElementById("location").value;
+		let buildtype = document.getElementById("buildingType").value;
+		let descrip = document.getElementById("description").value;
+		//let sourAuth = document.getElementById("auxAuthor").value;
+		//let descAuth = document.getElementById("auxDesc").value;
+        let formIsValid = true;
+
+		console.log(nameP);
+		console.log(locat);
+		console.log(buildtype);
+		console.log(descrip);
+		//console.log(sourAuth);
+		//console.log(descAuth);
+
+
+        //Name
+        if(!nameP || !locat || !buildtype || !descrip){
+           formIsValid = false;
+           console.log("Cannot be empty");
+        }
+
+		if(nameP !== "undefined" || locat !== "undefined" || buildtype !== "undefined" || descrip !== "undefined" ){
+           if(!nameP.match(/^[a-zA-Z]+$/) || !locat.match(/^[a-zA-Z]+$/) || !buildtype.match(/^[a-zA-Z]+$/) || !descrip.match(/^[a-zA-Z]+$/)){
+              formIsValid = false;
+              console.log("Only letters");
+           }        
+        }
+       return formIsValid;
+    }
+
+
 
 	deleteRoute(index) {
 		let aux1 = this.state.routes;
