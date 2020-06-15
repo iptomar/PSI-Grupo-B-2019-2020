@@ -8,13 +8,12 @@ class CreateAuthors extends Component {
         super(props);
         this.state = {
             nameAuthor: '',
-            errors: [],
+            errors: []
         }
 
         usersApi.validateAuth(this.props);
         this.handleNameAuthor = this.handleNameAuthor.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleValidation = this.handleValidation.bind(this);
     }
 
     render(){
@@ -24,8 +23,9 @@ class CreateAuthors extends Component {
 					<h1 className="text-center"><span className="font-weight-bold">Create Authors</span></h1>
 					<div className="form-group row">
 						<label for="nameAuthor"><b>Name</b></label>
-						<input className="form-control" type="text" placeholder="Insert name..." name="nameAuthor" id="nameAuthor"  required />
+						<input className="form-control" type="text" placeholder="Insert name..." name="nameAuthor" value={this.state.nameAuthor} onChange={this.handleNameAuthor} required />
 					</div>
+
 					<div className="form-group col"></div>
 					<hr class="mb-3"></hr>
 					<button className="btn-lg btn-dark btn-block" type="submit" value="submit" onClick={this.handleSubmit} name="create">
@@ -39,47 +39,18 @@ class CreateAuthors extends Component {
 
     handleSubmit(e){
         e.preventDefault();
-        if(this.handleValidation()){
-            authorsApi.create(document.getElementById("nameAuthor").value).then((response) => {
-                console.log(response);
-                
-                this.props.history.push('/Authors');
-                
-                
-            })
-            alert("Form submitted");
-        }else{
-            alert("Form has errors.")
-        }
-
-
+        alert("Are you sure you wish to create this author?");
+        console.log(this.state.nameAuthor);
+        authorsApi.create(this.state.nameAuthor).then((response) => {
+            console.log(response);
+            this.props.history.push('/Authors');
+        })
 
     }
 
     handleNameAuthor(e){
         e.preventDefault();
         this.setState({nameAuthor:e.target.value});
-    }
-
-    handleValidation(){
-        let nameAuth = document.getElementById("nameAuthor").value;
-        let formIsValid = true;
-
-        console.log(nameAuth);
-
-        //Name
-        if(!nameAuth){
-           formIsValid = false;
-           console.log("Cannot be empty");
-        }
-
-        if(nameAuth !== "undefined"){
-           if(!nameAuth.match(/^[a-zA-Z]+$/)){
-              formIsValid = false;
-              console.log("Only letters");
-           }        
-        }
-       return formIsValid;
     }
 
 }

@@ -129,7 +129,7 @@ table {
 }
 
 .btn-primary {
-  background-color: rgb(53, 113, 224) !important;
+  background-color: rgb(46,65,88) !important;
   background-repeat: repeat-x;
   background-image: linear-gradient(to top, rgb(28, 47, 70), 
   rgb(73, 158, 144));
@@ -141,12 +141,12 @@ table {
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
 
-  background-color: rgb(53, 113, 224) !important;
+  background-color: rgb(46,65,88) !important;
   background-repeat: repeat-x;
   background-image: linear-gradient(to bottom, #fbeded,
   rgb(102, 218, 199)); 
   border-color: #3c50aa #3c50aa rgb(53, 113, 224);
-  color: rgb(53, 113, 224) !important;
+  color: #333 !important;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.59);
 }
 

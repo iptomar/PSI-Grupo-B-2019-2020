@@ -73,7 +73,7 @@ export default class pontosDeInteresseList extends Component {
       console.log("lastpage",this.state.last_page);
       for(let i=1;i<=this.state.last_page;i++){
           pagination.push(<li class="page-item">
-                           <a class="page-link2" href="#"  onClick={()=>this.getPontosDeInteresseList(i)} >{i}</a>
+                           <a class="page-link2" href="#" onClick={()=>this.getPontosDeInteresseList(i)} >{i}</a>
                             </li>);
       };  
       //segundo simbolo (>) existe?
@@ -165,6 +165,8 @@ export default class pontosDeInteresseList extends Component {
   editPontoDeInteresse(id) {
     
       this.props.history.push('/PointsOfInterest/' + id + '/edit');
+
+   
   }
 
 }
