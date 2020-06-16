@@ -73,7 +73,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(){
-        $users = User::paginate(15);
+        $users = User::orderBy('name','asc')->paginate(15);
         return response()->json($users, 200);
     }
 

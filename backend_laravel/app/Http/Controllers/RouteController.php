@@ -14,11 +14,11 @@ class RouteController extends Controller
     public function index(Request $request)
     {
         if($request->user() == null){
-            $routes = \App\Route::where('aproved', '=', 1)->paginate(15);
+            $routes = \App\Route::where('aproved', '=', 1)->orderBy('name','asc')->paginate(15);
             return response()->json($routes, 200);
         }
         else{
-            $routes = \App\Route::paginate(15);
+            $routes = \App\Route::orderBy('name','asc')->paginate(15);
             return response()->json($routes, 200);
         }     
     }
