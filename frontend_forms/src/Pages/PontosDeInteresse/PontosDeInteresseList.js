@@ -102,11 +102,11 @@ export default class pontosDeInteresseList extends Component {
               textAlign: "center"
             }}>
               <th scope="col">ID</th>
-              <th scope="col">Nome</th>
-              <th scope="col">Localização</th>
-              <th scope="col">Data</th>
-              <th scope="col">Aproved</th>
-              <th scope="col">Apagar/Editar/Detalhes/Approve</th>
+              <th scope="col">Name</th>
+              <th scope="col">Location</th>
+              <th scope="col">Date</th>
+              <th scope="col">Approved</th>
+              <th scope="col">Delete/Edit/Details/Approve</th>
             </tr>
 
           </thead>
