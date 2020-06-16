@@ -23,14 +23,18 @@ export default class pontosDeInteresseList extends Component {
       "pontosDeInteresse": {},
       "current_page":1,
       "last_page":null,
+      logged: '',
     };
 
-    usersApi.validateAuth(this.props);
+    usersApi.softValidateAuth("superadmin").then((response)=>{
+      this.setState({logged:response});
+  });
 
     this.getPontosDeInteresseList(1);   
   }
 
   render() {
+    const isSuper = this.state.logged;
     if(this.state.redirect == true){
       return (<Redirect to="/PointsOfInterest/PontosDeInteresseDetalhes"/>);
     }
@@ -50,7 +54,12 @@ export default class pontosDeInteresseList extends Component {
         <td> {pontosDeInteresse[ponto].approved} </td> 
         <td >
           <button type="button" class="btn btn-danger" onClick={() => {if (window.confirm('Are you sure you wish to delete this item?'))this.deletePontoDeInteresse(pontosDeInteresse[ponto].id, ponto)}}>Apagar</button>
-          <button type="button" class="btn btn-info" onClick={() => this.editPontoDeInteresse(pontosDeInteresse[ponto].id)}>Editar</button>
+          {/* Caso o utilizador esteja logado e seja super admin, é feita a construção do botão de edit */ }
+          {
+            isSuper == true &&
+              <button type="button" class="btn btn-info" onClick={() => this.editPontoDeInteresse(pontosDeInteresse[ponto].id)}>Editar</button>
+            }
+          
           <button type="button" class="btn btn-success" onClick={() => this.detalhesPontoDeInteresse(pontosDeInteresse[ponto].id)}>Detalhes</button>
           <button type="button" class="btn btn-warning"  onClick = {() => {if (window.confirm('Are you sure you want to approve this route?'))this.aprovedBuildings(pontosDeInteresse[ponto].id, ponto)}}>Approve</button>
         </td>

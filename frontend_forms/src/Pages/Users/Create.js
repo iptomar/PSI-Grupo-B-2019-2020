@@ -25,9 +25,7 @@ class Create extends Component {
         this.handleRoleChange = this.handleRoleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
-        let teste=null;
         usersApi.softValidateAuth("superadmin").then((response)=>{
-            console.log("response",response);
             this.setState({logged:response});
         });
 
