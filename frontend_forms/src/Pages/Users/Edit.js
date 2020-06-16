@@ -102,7 +102,7 @@ export default class Edit extends Component {
         let body={
             email:this.state.email,
             name:this.state.name,
-            role:this.role
+            role:this.state.role
         };
 
         if(this.state.password!==null){
@@ -110,7 +110,7 @@ export default class Edit extends Component {
             body.password_confirmation=this.state.password_confirmation;
         }
 
-        usersApi.update(this.state.userid,body).then( (response)=>{
+        usersApi.update(this.state.userid,body.email,body.name,body.password,body.password_confirmation,body.role).then( (response)=>{
             this.props.history.push('/users');
         }).catch( (error) => {
             console.log(error);

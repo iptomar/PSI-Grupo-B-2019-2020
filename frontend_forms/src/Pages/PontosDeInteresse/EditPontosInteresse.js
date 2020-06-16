@@ -16,7 +16,7 @@ import AsyncSelect from 'react-select/async';
         this.state = {
             errors:[],
             pontosInteresseID: pontosDeInteresse,
-			authorsList:null,
+						authorsList:null,
             buildingName: null,
             buildingType: null,
             location: null,
@@ -28,15 +28,15 @@ import AsyncSelect from 'react-select/async';
             auxAuthor:null, 
             auxDesc:null, 
             auxCoordenada1: null,
-             auxCoordenada2: null,
-              auxOrder: null,
-               auxNameAuthor: null, 
-               nameRoute:null,
-			vertices: [], images: [], 
-			authors: [], routes: [],
+            auxCoordenada2: null,
+            auxOrder: null,
+            auxNameAuthor: null, 
+            nameRoute:null,
+						vertices: [], images: [], 
+						authors: [], routes: [],
         };
 
-        usersApi.validateAuth(this.props);
+				usersApi.validateAuth(this.props,"superadmin");
 				this.getPontosDeInteresse(pontosDeInteresse);
 
         this.handleBuildingNameChange = this.handleBuildingNameChange.bind(this);
@@ -412,15 +412,7 @@ import AsyncSelect from 'react-select/async';
 		let descrip = document.getElementById("description").value;
 		//let sourAuth = document.getElementById("auxAuthor").value;
 		//let descAuth = document.getElementById("auxDesc").value;
-        let formIsValid = true;
-
-		console.log(nameP);
-		console.log(locat);
-		console.log(buildtype);
-		console.log(descrip);
-		//console.log(sourAuth);
-		//console.log(descAuth);
-
+    let formIsValid = true;
 
         //Name
         if(!nameP || !locat || !buildtype || !descrip){

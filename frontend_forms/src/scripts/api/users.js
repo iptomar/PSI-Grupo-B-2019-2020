@@ -180,12 +180,16 @@ let usersApi = {
 
         let furl=apiUrl+"/users/"+uid;
         let token="Bearer " + localStorage.getItem("auth.token");
+        
+        console.log("UPDATE THINGS", email);
+        console.log("UPDATE THINGS", role);
+
         let body = {
-            "email": email,
+            "email": email+"",
             "name": name,
             "password": password,
             "password_confirmation": password_confirmation,
-            "role": role
+            "role": role+""
         };
 
         return fetch(furl, {method:'PATCH', headers:{
