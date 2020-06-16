@@ -72,7 +72,7 @@ class CreateAuthors extends Component {
         }
 
         if(nameAuth){
-           if(!nameAuth.match(/^[a-zA-Z]+$/)){
+           if(!nameAuth.match(/^[a-zA-Z ]+$/)){
               formIsValid = false;
               window.alert("Only letters");
            }        
