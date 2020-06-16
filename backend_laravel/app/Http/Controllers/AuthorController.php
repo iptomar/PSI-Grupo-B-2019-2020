@@ -16,9 +16,9 @@ class AuthorController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $authors = Author::where('name','like','%'.$request->get('search').'%')->paginate(15);
+            $authors = Author::where('name','like','%'.$request->get('search').'%')->orderBy('name','asc')->paginate(15);
         } else {
-            $authors = Author::paginate(15);
+            $authors = Author::orderBy('name','asc')->paginate(15);
         }
 
 
