@@ -421,7 +421,7 @@ import AsyncSelect from 'react-select/async';
         }
 
 		if(nameP !== "undefined" || locat !== "undefined" || buildtype !== "undefined" || descrip !== "undefined" ){
-           if(!nameP.match(/^[a-zA-Z]+$/) || !locat.match(/^[a-zA-Z]+$/) || !buildtype.match(/^[a-zA-Z]+$/) || !descrip.match(/^[a-zA-Z]+$/)){
+           if(!nameP.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !locat.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !buildtype.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !descrip.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
               formIsValid = false;
               console.log("Only letters");
            }        

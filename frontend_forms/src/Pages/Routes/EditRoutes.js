@@ -212,7 +212,7 @@ class CreateRoutes extends Component {
         }
 
         if(nameR !== "undefined"){
-           if(!nameR.match(/^[a-zA-Z]+$/)){
+           if(!nameR.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
               formIsValid = false;
               console.log("Only letters");
            }        
