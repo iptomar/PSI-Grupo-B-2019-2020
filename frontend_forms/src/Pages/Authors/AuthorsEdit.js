@@ -23,6 +23,7 @@ class AuthorsEdit extends Component {
 
         this.handleNameAuthor = this.handleNameAuthor.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
        
     }
     render(){
@@ -32,7 +33,7 @@ class AuthorsEdit extends Component {
                 <h1 className="text-center"><span className="font-weight-bold">Edit Author</span></h1>
                 <div className="form-group row">
                     <label for="nameAuthor"><b>Name</b></label>
-                    <input className="form-control" type="text" placeholder="Insert name..." name="nameAuthor" value={this.state.nameAuthor} onChange={this.handleNameAuthor} required />
+                    <input className="form-control" type="text" placeholder="Insert name..." name="nameAuthor" id="nameAuthor" value={this.state.nameAuthor} onChange={this.handleNameAuthor} required />
                 </div>
 
                 <div className="form-group col"></div>
@@ -61,7 +62,7 @@ class AuthorsEdit extends Component {
     handleSubmit(e){
         e.preventDefault();
         console.log("teste ole");
-
+        if(this.handleValidation()){
         authorsApi.update(this.state.authorid, this.state.nameAuthor).then((response) => {
            this.props.history.push('/Authors');
            console.log("ola puto");
@@ -69,6 +70,10 @@ class AuthorsEdit extends Component {
             console.log(error);
             this.setState({errors:error});
         });
+            alert("Form submitted");
+        }else{
+            alert("Form has errors.");
+        }
 
     }
 
@@ -77,6 +82,26 @@ class AuthorsEdit extends Component {
         this.setState({nameAuthor:e.target.value});
     }
 
+    handleValidation(){
+        let nameAuth = document.getElementById("nameAuthor").value;
+        let formIsValid = true;
+
+        console.log(nameAuth);
+
+        //Name
+        if(!nameAuth){
+           formIsValid = false;
+           console.log("Cannot be empty");
+        }
+
+        if(nameAuth !== "undefined"){
+           if(!nameAuth.match(/^[a-zA-Z]+$/)){
+              formIsValid = false;
+              console.log("Only letters");
+           }        
+        }
+       return formIsValid;
+    }
 
 }
 
