@@ -47,9 +47,7 @@ class CreateAuthors extends Component {
                 
                 
             })
-            alert("Form submitted");
         }else{
-            alert("Form has errors.");
         }
 
 
@@ -70,13 +68,13 @@ class CreateAuthors extends Component {
         //Name
         if(!nameAuth){
            formIsValid = false;
-           console.log("Cannot be empty");
+           window.alert("Cannot be empty");
         }
 
-        if(nameAuth !== "undefined"){
+        if(nameAuth){
            if(!nameAuth.match(/^[a-zA-Z]+$/)){
               formIsValid = false;
-              console.log("Only letters");
+              window.alert("Only letters");
            }        
         }
        return formIsValid;
