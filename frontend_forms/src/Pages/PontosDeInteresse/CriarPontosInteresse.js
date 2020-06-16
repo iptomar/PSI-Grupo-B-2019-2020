@@ -486,7 +486,7 @@ class CriarPontosInteresse extends Component {
 		//ir buscar o autor da imagem
 		obj.sourceAuthor = this.state.auxAuthor;
 		//ir buscar a descrição da imagem
-		obj.description= this.state.auxAuthor;
+		obj.description= this.state.auxDesc;
 		//verificar se não há nada com string vazia
 		//fazer push de obj para o images[] do state
 		this.setState( {images: [...this.state.images,obj]} );
