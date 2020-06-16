@@ -31,12 +31,32 @@ import CreateAuthors from './Pages/Authors/CreateAuthors';
 import AuthorsEdit from './Pages/Authors/AuthorsEdit';
 import DetalhesAuthors from './Pages/Authors/DetalhesAuthors';
 
+//api dos users para ver se está autenticado
+import usersApi from './scripts/api/users';
+
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state ={
+      logged: '',
+    }
+
+  };
+
 
   render() {
     console.log(window.location.pathname);
 
+    //verificação se está logado
+    usersApi.softValidateAuth().then((response)=>{
+      this.setState({logged:response});
+    });
+
+    const islogged = this.state.logged;
     return (
+      
       <Router>
         <nav className="navbar navbar-expand-lg navbar-light " style={{backgroundColor: "#4C5D72"}}>
           <a className="navbar-brand" href="/index">IPT RAM</a>
@@ -45,40 +65,59 @@ class App extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
+              {/* Caso o utilizador esteja logado e seja super admin, é feita a construção do botão de edit 
+                  tive de meter 1 a 1 porque isto tinha de tar tudo no mesmo elemento e eu quero que o login apareça sempre*/ }
+      
+{islogged == true &&
             <li className="nav-item">
-                <Link to="/Authors" className="nav-link" style={{color:"#5ED0C0"}} href="#">Autores</Link>
-              </li>
+              <Link to="/Authors" className="nav-link" style={{ color: "#5ED0C0" }} href="#">Autores</Link>
+            </li>
+}
+{islogged == true &&              
               <li className="nav-item">
-                <Link to="/CreateAuthors" style={{color:"#5ED0C0"}} className="nav-link">Criar Autores</Link>
+                <Link to="/CreateAuthors" style={{ color: "#5ED0C0" }} className="nav-link">Criar Autores</Link>
               </li>
+}
+
+{islogged == true &&
               <li className="nav-item">
-                <Link to="/Routes" className="nav-link" style={{color:"#5ED0C0"}} href="#">Roteiros</Link>
+                <Link to="/Routes" className="nav-link" style={{ color: "#5ED0C0" }} href="#">Roteiros</Link>
               </li>
+}
+{islogged == true &&
               <li className="nav-item">
-                <Link to="/CreateRoutes" style={{color:"#5ED0C0"}} className="nav-link">Criar Roteiros</Link>
+                <Link to="/CreateRoutes" style={{ color: "#5ED0C0" }} className="nav-link">Criar Roteiros</Link>
               </li>
+}
+{islogged == true &&
               <li className="nav-item">
-                <Link to="/PointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Pontos De Interesse</Link>
+                <Link to="/PointsOfInterest" style={{ color: "#5ED0C0" }} className="nav-link">Pontos De Interesse</Link>
               </li>
+}
+{islogged == true &&              
               <li className="nav-item">
-                <Link to="/CreatePointsOfInterest" style={{color:"#5ED0C0"}} className="nav-link">Criar Pontos de Interesse</Link>
+                <Link to="/CreatePointsOfInterest" style={{ color: "#5ED0C0" }} className="nav-link">Criar Pontos de Interesse</Link>
               </li>
+}
+
               <li className="nav-item">
-                <Link to="/login2" style={{color:"#5ED0C0"}} className="nav-link">Login</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/users/create" style={{color:"#5ED0C0"}} className="nav-link">Registo</Link>
+                <Link to="/login2" style={{ color: "#5ED0C0" }} className="nav-link">Login</Link>
               </li>
               
+{islogged == true &&
               <li className="nav-item">
-                <Link to="/users" style={{color:"#5ED0C0"}} className="nav-link">Users</Link>
+                <Link to="/users/create" style={{ color: "#5ED0C0" }} className="nav-link">Registo</Link>
               </li>
-             {/*  <li className="nav-item">
-                  <Link to="/Mapa" style={{color:"#5ED0C0"}} className="nav-link">Mapa</Link>
-                </li> */} 
+}
+{islogged == true &&
+              <li className="nav-item">
+                <Link to="/users" style={{ color: "#5ED0C0" }} className="nav-link">Users</Link>
+              </li>
+}              
             </ul>
           </div>
         </nav>
+       
         <Route exact path="/" component={Login2}></Route>
         <Route exact path="/Authors" component={AuthorsList}></Route>
         <Route exact path="/CreateAuthors" component={CreateAuthors}></Route>

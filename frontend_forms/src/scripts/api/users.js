@@ -53,22 +53,18 @@ let usersApi = {
 
             if(response.ok){
                 return response.json().then(data => {
-                    console.log(data);
                     console.log("Role: " + role + " - Needed: " + data.user.role);
 
                     if(role!==null && role!==data.user.role){
-                        console.log("Auth fail 1");
                         return Promise.resolve(false);
                         
                     }else{
                         //se chegamos aqui, está logado
-                        console.log("auth complete");
                         return Promise.resolve(true);
                     }  
                 });
                 
-            } else {
-                console.log("Auth fail 2");                
+            } else {          
                 return Promise.resolve(false); 
             }
         });       
