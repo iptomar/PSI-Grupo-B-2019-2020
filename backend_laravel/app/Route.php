@@ -8,7 +8,7 @@ class Route extends Model
 {
 
     protected $fillable = [
-        'name'
+        'name', 'aproved'
     ];
 
     protected $hidden=['created_at','updated_at'];

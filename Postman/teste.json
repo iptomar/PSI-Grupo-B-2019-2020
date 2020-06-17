@@ -1,0 +1,958 @@
+{
+	"id": "797e6f11-8071-4572-a8ee-e13b39232f9c",
+	"name": "Teste",
+	"timestamp": "2020-05-19T18:45:00.375Z",
+	"collection_id": "a54435cd-a52d-466a-8233-5a9dd0c2a230",
+	"folder_id": 0,
+	"environment_id": "6534288e-28cb-44ce-baee-c406f3743d71",
+	"totalPass": 14,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "e83b7eca-a101-48e8-bc3a-b24ceb44988a",
+			"name": "Login422",
+			"url": "http://psi2020.tugamars.com/api/login",
+			"time": 34,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Dados em falta/tipo incorreto - http status 422": true
+			},
+			"testPassFailCounts": {
+				"Dados em falta/tipo incorreto - http status 422": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				34
+			],
+			"allTests": [
+				{
+					"Dados em falta/tipo incorreto - http status 422": true
+				}
+			]
+		},
+		{
+			"id": "aeec776f-a29f-4234-bcce-b125a9f8241f",
+			"name": "Login200",
+			"url": "http://psi2020.tugamars.com/api/login",
+			"time": 96,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"All good - http status 200": true
+			},
+			"testPassFailCounts": {
+				"All good - http status 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				96
+			],
+			"allTests": [
+				{
+					"All good - http status 200": true
+				}
+			]
+		},
+		{
+			"id": "52031704-140c-42d8-b4df-6d367f440a1a",
+			"name": "Me401",
+			"url": "http://psi2020.tugamars.com/api/me",
+			"time": 15,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Credenciais falharam - http status 401": true
+			},
+			"testPassFailCounts": {
+				"Credenciais falharam - http status 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Credenciais falharam - http status 401": true
+				}
+			]
+		},
+		{
+			"id": "d74b067f-b2b0-42d1-9e20-98f836d1783a",
+			"name": "Me200",
+			"url": "http://psi2020.tugamars.com/api/me",
+			"time": 35,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"All good - http status 200": true
+			},
+			"testPassFailCounts": {
+				"All good - http status 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"All good - http status 200": true
+				}
+			]
+		},
+		{
+			"id": "8e266b7d-36d7-46da-a61e-341f1c8808d6",
+			"name": "users401",
+			"url": "http://psi2020.tugamars.com/api/users",
+			"time": 15,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Credenciais falharam - http status 401": true
+			},
+			"testPassFailCounts": {
+				"Credenciais falharam - http status 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				15
+			],
+			"allTests": [
+				{
+					"Credenciais falharam - http status 401": true
+				}
+			]
+		},
+		{
+			"id": "4f8d1fe8-32a1-4bf2-a013-26e7eaafab61",
+			"name": "users200",
+			"url": "http://psi2020.tugamars.com/api/users",
+			"time": 43,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"All good - http status 200": true
+			},
+			"testPassFailCounts": {
+				"All good - http status 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"All good - http status 200": true
+				}
+			]
+		},
+		{
+			"id": "ec5cded6-4672-4a4f-8e47-f33ff96ddce3",
+			"name": "users/{id}401",
+			"url": "http://psi2020.tugamars.com/api/users/{id}",
+			"time": 26,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Credenciais falharam - http status 401": true
+			},
+			"testPassFailCounts": {
+				"Credenciais falharam - http status 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Credenciais falharam - http status 401": true
+				}
+			]
+		},
+		{
+			"id": "56815c02-fbc4-41cd-a361-9258899a92af",
+			"name": "users/{id}404",
+			"url": "http://psi2020.tugamars.com/api/users/{id}",
+			"time": 68,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Not Found - http status 404": true
+			},
+			"testPassFailCounts": {
+				"Not Found - http status 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				68
+			],
+			"allTests": [
+				{
+					"Not Found - http status 404": true
+				}
+			]
+		},
+		{
+			"id": "bc2a4e08-066c-4f76-ba78-48b16c849915",
+			"name": "users/{id}200",
+			"url": "http://psi2020.tugamars.com/api/users/14",
+			"time": 94,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"All good - http status 200": true
+			},
+			"testPassFailCounts": {
+				"All good - http status 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				94
+			],
+			"allTests": [
+				{
+					"All good - http status 200": true
+				}
+			]
+		},
+		{
+			"id": "2a9999fa-d96e-491d-a991-e4090c918b62",
+			"name": "users401_P",
+			"url": "http://psi2020.tugamars.com/api/users",
+			"time": 20,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Credenciais falharam - http status 401": true
+			},
+			"testPassFailCounts": {
+				"Credenciais falharam - http status 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				20
+			],
+			"allTests": [
+				{
+					"Credenciais falharam - http status 401": true
+				}
+			]
+		},
+		{
+			"id": "a4291c71-bd50-4b6f-aa44-a4ef61ed92c1",
+			"name": "users200_P",
+			"url": "http://psi2020.tugamars.com/api/users",
+			"time": 98,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Created - http status 201": true
+			},
+			"testPassFailCounts": {
+				"Created - http status 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				98
+			],
+			"allTests": [
+				{
+					"Created - http status 201": true
+				}
+			]
+		},
+		{
+			"id": "98080cec-417f-499d-9bab-eed638b8e643",
+			"name": "users401_D",
+			"url": "http://psi2020.tugamars.com/api/users/5",
+			"time": 17,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Credenciais falharam - http status 401": true
+			},
+			"testPassFailCounts": {
+				"Credenciais falharam - http status 401": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Credenciais falharam - http status 401": true
+				}
+			]
+		},
+		{
+			"id": "9e71341f-eaea-4da7-b7ff-ac3be7dea201",
+			"name": "users404_D",
+			"url": "http://psi2020.tugamars.com/api/users/1",
+			"time": 56,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Not Found - http status 404": true
+			},
+			"testPassFailCounts": {
+				"Not Found - http status 404": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				56
+			],
+			"allTests": [
+				{
+					"Not Found - http status 404": true
+				}
+			]
+		},
+		{
+			"id": "157bc632-f862-473c-bcd3-20a850438264",
+			"name": "users200_D",
+			"url": "http://psi2020.tugamars.com/api/users/33",
+			"time": 40,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"All good - http status 200": true
+			},
+			"testPassFailCounts": {
+				"All good - http status 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				40
+			],
+			"allTests": [
+				{
+					"All good - http status 200": true
+				}
+			]
+		},
+		{
+			"id": "4fe86ed1-c808-431b-8a99-6bbb4fc95fe6",
+			"name": "routes200",
+			"url": "http://psi2020.tugamars.com/api/routes",
+			"time": 34,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				34
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "ae664acf-f3f0-4a99-8e7e-c110d96cb09f",
+			"name": "routes/{id}404",
+			"url": "http://psi2020.tugamars.com/api/routes/1000",
+			"time": 59,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				59
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "7e0e9f62-d70a-4fd8-9d5e-d7221da1da01",
+			"name": "routes/{id}200",
+			"url": "http://psi2020.tugamars.com/api/routes/3",
+			"time": 1462,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				1462
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d4fbb1e4-2c58-4129-b52f-dcb6ffdca7c8",
+			"name": "routes200",
+			"url": "http://psi2020.tugamars.com/api/routes",
+			"time": 32,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				32
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "7b2b3e53-e07d-4677-8050-d367f1d05eaf",
+			"name": "routes401",
+			"url": "http://psi2020.tugamars.com/api/routes",
+			"time": 13,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				13
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "219d7ef2-a3aa-4bbf-ac8a-4c5c16ca2371",
+			"name": "routes/{id}404",
+			"url": "http://psi2020.tugamars.com/api/routes/4",
+			"time": 169,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				169
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4a1dc4cb-4101-4fcb-84db-3c7707974877",
+			"name": "routes/{id}401",
+			"url": "http://psi2020.tugamars.com/api/routes/100",
+			"time": 14,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				14
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "884cd99a-b3f5-4c3d-b6db-8bf2d2a1f908",
+			"name": "routes/{id}200",
+			"url": "http://psi2020.tugamars.com/api/routes/100",
+			"time": 53,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				53
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "0e9f2ece-977e-4320-84f2-e444eb6872b5",
+			"name": "routes/{id}401",
+			"url": "http://psi2020.tugamars.com/api/routes/100",
+			"time": 20,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				20
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1e98e109-a6f3-41bb-90c2-474488e2e704",
+			"name": "routes/{id}200",
+			"url": "http://psi2020.tugamars.com/api/routes/100",
+			"time": 45,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				45
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "fdd122f0-e77f-4d79-b776-af5455f2b8b3",
+			"name": "routes/{id}404",
+			"url": "http://psi2020.tugamars.com/api/routes/4",
+			"time": 69,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				69
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "26652a26-0333-42b5-ba86-fb9ef6de6b3f",
+			"name": "buildings200",
+			"url": "http://psi2020.tugamars.com/api/buildings",
+			"time": 2567,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				2567
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "3b179287-ea63-432f-864d-3d3e51f3e18d",
+			"name": "buildings401",
+			"url": "http://psi2020.tugamars.com/api/buildings",
+			"time": 15,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				15
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d58208bc-13fa-4e14-bbee-d20949794e61",
+			"name": "buildings422",
+			"url": "http://psi2020.tugamars.com/api/buildings",
+			"time": 38,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				38
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "d20fb0cf-fbf8-4524-8eb2-4aa2e1b93173",
+			"name": "buildings200",
+			"url": "http://psi2020.tugamars.com/api/buildings",
+			"time": 85,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				85
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "cbbab2aa-895c-42cb-8519-4cc008eb60bf",
+			"name": "buildings/{id}401",
+			"url": "http://psi2020.tugamars.com/api/buildings/2",
+			"time": 25,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				25
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b3f0ab5a-308b-4773-af66-e2cc9f664407",
+			"name": "buildings/{id}422",
+			"url": "http://psi2020.tugamars.com/api/buildings/2",
+			"time": 57,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				57
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "1ec68809-8240-40a6-8ca9-d430b19f5f6c",
+			"name": "buildings/{id}200",
+			"url": "http://psi2020.tugamars.com/api/buildings/2",
+			"time": 362,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				362
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "b0130bf2-fe88-430c-aef5-3dcb47dbabaa",
+			"name": "buildings/{id}200",
+			"url": "http://psi2020.tugamars.com/api/buildings/2",
+			"time": 62,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				62
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "03c12247-2c15-4e22-a0c7-a7c22ae1669b",
+			"name": "buildings/{id}404",
+			"url": "http://psi2020.tugamars.com/api/buildings/1000",
+			"time": 44,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				44
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "dc53bcaf-5e22-403a-8c0d-10aea00beebd",
+			"name": "buildings/{id}401",
+			"url": "http://psi2020.tugamars.com/api/buildings/100",
+			"time": 17,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				17
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "9411ba68-fc1a-41a4-ad3b-113a67b349c7",
+			"name": "buildings/{id}404",
+			"url": "http://psi2020.tugamars.com/api/buildings/100",
+			"time": 61,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				61
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "2de9f063-5097-4230-b772-f38458aacf15",
+			"name": "buildings/{id}200",
+			"url": "http://psi2020.tugamars.com/api/buildings/1",
+			"time": 105,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				105
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 6065,
+	"collection": {
+		"requests": [
+			{
+				"id": "e83b7eca-a101-48e8-bc3a-b24ceb44988a",
+				"method": "POST"
+			},
+			{
+				"id": "aeec776f-a29f-4234-bcce-b125a9f8241f",
+				"method": "POST"
+			},
+			{
+				"id": "52031704-140c-42d8-b4df-6d367f440a1a",
+				"method": "GET"
+			},
+			{
+				"id": "d74b067f-b2b0-42d1-9e20-98f836d1783a",
+				"method": "GET"
+			},
+			{
+				"id": "8e266b7d-36d7-46da-a61e-341f1c8808d6",
+				"method": "GET"
+			},
+			{
+				"id": "4f8d1fe8-32a1-4bf2-a013-26e7eaafab61",
+				"method": "GET"
+			},
+			{
+				"id": "ec5cded6-4672-4a4f-8e47-f33ff96ddce3",
+				"method": "PATCH"
+			},
+			{
+				"id": "56815c02-fbc4-41cd-a361-9258899a92af",
+				"method": "PATCH"
+			},
+			{
+				"id": "bc2a4e08-066c-4f76-ba78-48b16c849915",
+				"method": "PATCH"
+			},
+			{
+				"id": "2a9999fa-d96e-491d-a991-e4090c918b62",
+				"method": "POST"
+			},
+			{
+				"id": "a4291c71-bd50-4b6f-aa44-a4ef61ed92c1",
+				"method": "POST"
+			},
+			{
+				"id": "98080cec-417f-499d-9bab-eed638b8e643",
+				"method": "DELETE"
+			},
+			{
+				"id": "9e71341f-eaea-4da7-b7ff-ac3be7dea201",
+				"method": "DELETE"
+			},
+			{
+				"id": "157bc632-f862-473c-bcd3-20a850438264",
+				"method": "DELETE"
+			},
+			{
+				"id": "4fe86ed1-c808-431b-8a99-6bbb4fc95fe6",
+				"method": "GET"
+			},
+			{
+				"id": "ae664acf-f3f0-4a99-8e7e-c110d96cb09f",
+				"method": "GET"
+			},
+			{
+				"id": "7e0e9f62-d70a-4fd8-9d5e-d7221da1da01",
+				"method": "GET"
+			},
+			{
+				"id": "d4fbb1e4-2c58-4129-b52f-dcb6ffdca7c8",
+				"method": "POST"
+			},
+			{
+				"id": "7b2b3e53-e07d-4677-8050-d367f1d05eaf",
+				"method": "POST"
+			},
+			{
+				"id": "219d7ef2-a3aa-4bbf-ac8a-4c5c16ca2371",
+				"method": "PATCH"
+			},
+			{
+				"id": "4a1dc4cb-4101-4fcb-84db-3c7707974877",
+				"method": "PATCH"
+			},
+			{
+				"id": "884cd99a-b3f5-4c3d-b6db-8bf2d2a1f908",
+				"method": "PATCH"
+			},
+			{
+				"id": "0e9f2ece-977e-4320-84f2-e444eb6872b5",
+				"method": "DELETE"
+			},
+			{
+				"id": "1e98e109-a6f3-41bb-90c2-474488e2e704",
+				"method": "DELETE"
+			},
+			{
+				"id": "fdd122f0-e77f-4d79-b776-af5455f2b8b3",
+				"method": "DELETE"
+			},
+			{
+				"id": "26652a26-0333-42b5-ba86-fb9ef6de6b3f",
+				"method": "GET"
+			},
+			{
+				"id": "3b179287-ea63-432f-864d-3d3e51f3e18d",
+				"method": "POST"
+			},
+			{
+				"id": "d58208bc-13fa-4e14-bbee-d20949794e61",
+				"method": "POST"
+			},
+			{
+				"id": "d20fb0cf-fbf8-4524-8eb2-4aa2e1b93173",
+				"method": "POST"
+			},
+			{
+				"id": "cbbab2aa-895c-42cb-8519-4cc008eb60bf",
+				"method": "POST"
+			},
+			{
+				"id": "b3f0ab5a-308b-4773-af66-e2cc9f664407",
+				"method": "POST"
+			},
+			{
+				"id": "1ec68809-8240-40a6-8ca9-d430b19f5f6c",
+				"method": "POST"
+			},
+			{
+				"id": "b0130bf2-fe88-430c-aef5-3dcb47dbabaa",
+				"method": "GET"
+			},
+			{
+				"id": "03c12247-2c15-4e22-a0c7-a7c22ae1669b",
+				"method": "GET"
+			},
+			{
+				"id": "dc53bcaf-5e22-403a-8c0d-10aea00beebd",
+				"method": "DELETE"
+			},
+			{
+				"id": "9411ba68-fc1a-41a4-ad3b-113a67b349c7",
+				"method": "DELETE"
+			},
+			{
+				"id": "2de9f063-5097-4230-b772-f38458aacf15",
+				"method": "DELETE"
+			}
+		]
+	}
+}

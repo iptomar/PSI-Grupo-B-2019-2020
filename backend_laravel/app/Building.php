@@ -14,14 +14,14 @@ class Building extends Model
 {
 
     protected $fillable=[
-        'buildingName','location','dates','buildingType','description','coordinate1','coordinate2'
+        'buildingName','location','dates','buildingType','description','coordinate1','coordinate2','approved'
     ];
 
     protected $hidden=['created_at','updated_at'];
 
     //Relacoes
     public function authors(){
-        return $this->hasMany('\App\Author');
+        return $this->belongsToMany('\App\Author', 'authors_buildings');
     }
 
     public function routes(){

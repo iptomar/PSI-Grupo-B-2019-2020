@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //Create first user (superadmin)
-        $user=new \App\User(['email'=>'admin@admin.com','name'=>'Admin']);
+        $user=new \App\User(['email'=>'admin@admin.com','name'=>'Admin','role'=>'superadmin']);
         $user->password=app('hash')->make('password');
         $user->save();
 

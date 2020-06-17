@@ -93,7 +93,9 @@ class AuthorsEdit extends Component {
         }
 
         if(nameAuth !== "undefined"){
+
            if(!nameAuth.match(/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
+
               formIsValid = false;
               console.log("Only letters");
            }        
