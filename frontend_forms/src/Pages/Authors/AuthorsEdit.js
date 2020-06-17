@@ -62,7 +62,7 @@ class AuthorsEdit extends Component {
     handleSubmit(e){
         e.preventDefault();
         console.log("teste ole");
-        if(this.handleValidation()){
+        //if(this.handleValidation()){
         authorsApi.update(this.state.authorid, this.state.nameAuthor).then((response) => {
            this.props.history.push('/Authors');
            console.log("ola puto");
@@ -71,7 +71,7 @@ class AuthorsEdit extends Component {
             this.setState({errors:error});
         });
             
-        }
+        //}
 
     }
 

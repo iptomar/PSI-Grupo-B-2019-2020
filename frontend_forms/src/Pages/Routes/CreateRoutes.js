@@ -63,13 +63,13 @@ class CreateRoutes extends Component {
     handleSubmit(e){
         e.preventDefault();
         alert("Are you sure you wish to create this route?");
-        if(this.handleValidation()){
+        //if(this.handleValidation()){
         roteirosApi.create(document.getElementById("nameRoute").value,this.state.pointsOfInterest).then((response) => {
             this.props.history.push('/Routes');
         })
        
     
-        }
+        //}
     }
 
     getOptions(input){

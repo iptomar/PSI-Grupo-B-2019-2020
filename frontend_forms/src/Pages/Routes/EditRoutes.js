@@ -109,12 +109,12 @@ class CreateRoutes extends Component {
     handleSubmit(e){
         e.preventDefault();
         console.log(this.state.nameRoute);
-        if(this.handleValidation()){
+        //if(this.handleValidation()){
         roteirosApi.update(this.state.routeId,this.state.nameRoute,this.state.pointsOfInterest).then((response) => {
             this.props.history.push('/Routes');
         })
            
-        }
+        //}
     }
 
     getOptions(input){

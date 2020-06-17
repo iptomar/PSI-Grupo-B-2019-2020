@@ -39,7 +39,7 @@ class CreateAuthors extends Component {
 
     handleSubmit(e){
         e.preventDefault();
-        if(this.handleValidation()){
+        //if(this.handleValidation()){
             authorsApi.create(document.getElementById("nameAuthor").value).then((response) => {
                 console.log(response);
                 
@@ -47,8 +47,8 @@ class CreateAuthors extends Component {
                 
                 
             })
-        }else{
-        }
+        //}else{
+        //}
 
 
 
