@@ -62,7 +62,6 @@ public class CreatePointUnsuccessfull {
 
             //Thread.sleep(5000);
             //teste.sendKeys(Keys.RETURN);
-
             WebElement c1 = driver.findElement(By.name("coordenada1"));
             c1.sendKeys("");
             WebElement c2 = driver.findElement(By.name("coordenada2"));
@@ -93,7 +92,7 @@ public class CreatePointUnsuccessfull {
             //Warnings na página(FORMA CORRETA)
             //WebElement classe = driver.findElement(By.className("alert-warning"));
             //Assert.assertEquals(true, classe.isDisplayed());
-            
+
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("CreatePointsOfInterest"));

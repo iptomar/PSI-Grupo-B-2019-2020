@@ -27,7 +27,7 @@ public class Capabilities {
     }
 
     public WebDriver getDriver() {
-        String baseUrl = "http://localhost:3000/";
+        String baseUrl = "http://front.psi2020.tugamars.com/";
 
         // launch Fire fox and direct it to the Base URL
         driver.get(baseUrl);

@@ -3,37 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Admin.Points;
+package Users;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  *
- * @author Tomás Barros
+ * @author Luis Badalo
  */
-public class DetailsPoint {
-
+public class UserPoints {
     WebDriver driver;
-
-    public DetailsPoint(WebDriver driver) {
+    
+    public UserPoints(WebDriver driver) {
         this.driver = driver;
     }
-
-    public void DetailedPoints() {
+    
+    public void UserListPoints() {
         try {
             driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
-            Thread.sleep(500);
-            //Confirmacao ULR
+             Thread.sleep(500);
+              //Confirmacao ULR
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true, title.contains("detalhes"));
+             Assert.assertEquals(true,title.contains("detalhes"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

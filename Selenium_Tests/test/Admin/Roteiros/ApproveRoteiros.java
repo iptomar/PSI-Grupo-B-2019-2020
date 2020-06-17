@@ -14,24 +14,26 @@ import org.openqa.selenium.WebDriver;
  * @author Tomás Barros
  */
 public class ApproveRoteiros {
+
     WebDriver driver;
-    
+
     public ApproveRoteiros(WebDriver driver) {
         this.driver = driver;
     }
- public void ApprovedRoteiros() {
+
+    public void ApprovedRoteiros() {
         try {
             //Ir para Authors
-             Thread.sleep(2000);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-             Thread.sleep(2000);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Approve']")).click();
             Thread.sleep(1000);
             driver.switchTo().alert().accept();
             Thread.sleep(1000);
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("Routes"));
+            Assert.assertEquals(true, title.contains("Routes"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

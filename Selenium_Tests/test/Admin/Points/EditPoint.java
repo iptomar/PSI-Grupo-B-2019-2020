@@ -31,21 +31,20 @@ public class EditPoint {
             driver.findElement(By.xpath("//button[.='Editar']")).click();
             Thread.sleep(1000);
             //
-           // WebElement name = driver.findElement(By.className("form-control"));
-           // name.clear();
-           // Thread.sleep(2000);
-           // name.sendKeys("AaEdificio2");
+            // WebElement name = driver.findElement(By.className("form-control"));
+            // name.clear();
+            // Thread.sleep(2000);
+            // name.sendKeys("AaEdificio2");
             //
-           // WebElement location = driver.findElement(By.name("location"));
-           // location.clear();
-           // Thread.sleep(500);
-           // location.sendKeys("Tomar");
+            // WebElement location = driver.findElement(By.name("location"));
+            // location.clear();
+            // Thread.sleep(500);
+            // location.sendKeys("Tomar");
 
-           // WebElement dates = driver.findElement(By.name("dates"));
-           // dates.clear();
-           // Thread.sleep(500);
-           // dates.sendKeys("1111");
-
+            // WebElement dates = driver.findElement(By.name("dates"));
+            // dates.clear();
+            // Thread.sleep(500);
+            // dates.sendKeys("1111");
             WebElement type = driver.findElement(By.name("buildingType"));
             type.clear();
             Thread.sleep(500);
@@ -82,7 +81,7 @@ public class EditPoint {
 
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
-             Thread.sleep(5000);
+            Thread.sleep(5000);
             //WebElement Autores = driver.findElement(By.id("react-select-2-input"));
             //Autores.sendKeys("aa");
             //Thread.sleep(5000);
@@ -91,19 +90,16 @@ public class EditPoint {
             //Thread.sleep(500);
             //driver.findElement(By.xpath("//button[.='Delete']")).click();
             //Thread.sleep(1000);
-
             //driver.switchTo().alert().accept();
-
             //Apagar coordenadas            
             driver.findElement(By.xpath("/html/body/div[1]/div/form/div[14]/table/tbody/tr[1]/td[4]/button")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("/html/body/div[1]/div/form/div[14]/table/tbody/tr[1]/td[4]/button")).click();
             Thread.sleep(1000);
             driver.findElement(By.xpath("/html/body/div[1]/div/form/div[14]/table/tbody/tr[1]/td[4]/button")).click();
-            
-            //driver.findElement(By.xpath("//button[.='Delete']")).click();
-            //driver.findElement(By.xpath("//button[.='Delete']")).click();
 
+            //driver.findElement(By.xpath("//button[.='Delete']")).click();
+            //driver.findElement(By.xpath("//button[.='Delete']")).click();
             WebElement c1 = driver.findElement(By.name("coordenada1"));
             Thread.sleep(500);
             c1.sendKeys("1");

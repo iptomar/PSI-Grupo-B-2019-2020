@@ -55,7 +55,7 @@ public class EditUsers {
             repass.sendKeys("aaa");
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Update']")).click();
-             Thread.sleep(4000);
+            Thread.sleep(4000);
             //Confirmação
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("users"));

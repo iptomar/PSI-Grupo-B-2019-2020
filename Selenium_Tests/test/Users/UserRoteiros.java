@@ -3,47 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Admin.Roteiros;
+package Users;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  *
- * @author Antonio Rodrigues
+ * @author Luís Badalo
  */
-public class EditRoteirosUnsuccessfull {
+public class UserRoteiros {
 
     WebDriver driver;
 
-    public EditRoteirosUnsuccessfull(WebDriver driver) {
+    public UserRoteiros(WebDriver driver) {
         this.driver = driver;
     }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    public void EditedRoteirosUnsuccessfull() {
+    public void UserListRoteiros() {
         try {
-            //Ir para Roteiros
-            Thread.sleep(5000);
-            driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(3000);
-            driver.findElement(By.xpath("//button[.='Editar']")).click();
-            //limpa o texto
-            Thread.sleep(2000);
-            driver.findElement(By.className("form-control")).clear();
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//button[.='Submit']")).click();
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(2000);
-            //Warnings na página(FORMA CORRETA)
-            //WebElement classe = driver.findElement(By.className("alert-warning"));
-            //Assert.assertEquals(true, classe.isDisplayed());
 
+            //Ir para Roteiros
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//a[.='Roteiros']")).click();
+            Thread.sleep(2000);
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("Routes"));

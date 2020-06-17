@@ -3,42 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Admin.Authors;
+package Users;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+//comment the above line and uncomment below line to use Chrome
 
 /**
  *
- * @author Tomás Barros
+ * @author Luís Badalo
  */
-public class DeleteAuthors {
+public class UserAuthors {
 
     WebDriver driver;
 
-    public DeleteAuthors(WebDriver driver) {
+    public UserAuthors(WebDriver driver) {
         this.driver = driver;
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    public void DeletedAuthors() {
+    public void UserListAuthors() {
         try {
-            //Ir para Authors
+            //Ir para create authors
             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Autores']")).click();
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//button[.='Delete']")).click();
-            Thread.sleep(1000);
-            //aceitar alerta
-            driver.switchTo().alert().accept();
-            Thread.sleep(4000);
-            //Verificar se está bem feito
+            Thread.sleep(3000);
+            //Confirmação
             String title = driver.getCurrentUrl();
+            System.out.println(title);
             Assert.assertEquals(true, title.contains("Authors"));
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
