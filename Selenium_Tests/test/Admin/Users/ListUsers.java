@@ -5,38 +5,35 @@
  */
 package Admin.Users;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
  * @author Tomás Barros
  */
 public class ListUsers {
+
     WebDriver driver;
-    
+
     public ListUsers(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void ListedUsers() {
-         try {
+    public void ListedUsers() {
+        try {
             //Ir para Authors
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Users']")).click();
             //ARRANJAR
             String title = driver.getCurrentUrl();
-             Assert.assertEquals(true,title.contains("home"));
+            Assert.assertEquals(true, title.contains("users"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

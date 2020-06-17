@@ -12,38 +12,38 @@ import org.openqa.selenium.WebElement;
 
 /**
  *
- * @author Tomás Barros
+ * @author Antonio Rodrigues
  */
-public class EditRoteiros {
+public class EditRoteirosUnsuccessfull {
 
     WebDriver driver;
 
-    public EditRoteiros(WebDriver driver) {
+    public EditRoteirosUnsuccessfull(WebDriver driver) {
         this.driver = driver;
     }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    public void EditedRoteiros() {
+    public void EditedRoteirosUnsuccessfull() {
         try {
             //Ir para Roteiros
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             driver.findElement(By.xpath("//button[.='Editar']")).click();
-            WebElement autor = driver.findElement(By.className("form-control"));
             //limpa o texto
             Thread.sleep(2000);
             driver.findElement(By.className("form-control")).clear();
-            autor.sendKeys("AaRotass");
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//button[.='Apagar']")).click();
-            Thread.sleep(2000);
-            driver.switchTo().alert().accept();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-            Thread.sleep(5000);
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//a[.='Roteiros']")).click();
+            Thread.sleep(2000);
+            //Warnings na página(FORMA CORRETA)
+            //WebElement classe = driver.findElement(By.className("alert-warning"));
+            //Assert.assertEquals(true, classe.isDisplayed());
+            
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("Routes"));

@@ -14,51 +14,52 @@ import org.openqa.selenium.WebElement;
  *
  * @author Tomás Barros
  */
-public class EditUsers {
+public class EditUsersError {
 
     WebDriver driver;
 
-    public EditUsers(WebDriver driver) {
+    public EditUsersError(WebDriver driver) {
         this.driver = driver;
     }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    public void EditedUsers() {
+    public void EditedUsersErrors() {
         try {
             //Ir para Authors
-            Thread.sleep(2000);
+            Thread.sleep(500);
             driver.findElement(By.xpath("//a[.='Users']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Editar']")).click();
             WebElement username = driver.findElement(By.id("name"));
             Thread.sleep(1000);
             driver.findElement(By.id("name")).clear();
-            Thread.sleep(1000);
-            username.sendKeys("aaName");
+            Thread.sleep(2000);
+            username.sendKeys("SeleniumTest2");
             WebElement mail = driver.findElement(By.id("email"));
             driver.findElement(By.id("email")).clear();
-            Thread.sleep(1000);
-            mail.sendKeys("SeleniumTest23@selenium.com");
+            Thread.sleep(500);
+            mail.sendKeys("SeleniumTest2@selenium.com");
             WebElement role = driver.findElement(By.id("role"));
             driver.findElement(By.id("role")).clear();
             Thread.sleep(500);
-            role.sendKeys("superadmin");
+            role.sendKeys("");
             WebElement pass = driver.findElement(By.id("password"));
             driver.findElement(By.id("password")).clear();
             Thread.sleep(500);
-            pass.sendKeys("aaa");
+            pass.sendKeys("password");
             WebElement repass = driver.findElement(By.id("password_confirmation"));
             driver.findElement(By.id("password_confirmation")).clear();
             Thread.sleep(500);
-            repass.sendKeys("aaa");
-            Thread.sleep(2000);
+            repass.sendKeys("password");
+            Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Update']")).click();
-             Thread.sleep(4000);
-            //Confirmação
-            String title = driver.getCurrentUrl();
-            Assert.assertEquals(true, title.contains("users"));
+            Thread.sleep(500);
+            driver.findElement(By.xpath("//button[.='Update']")).click();
+            //aceitar alerta
+            WebElement classe = driver.findElement(By.className("alert-warning"));
+            Assert.assertEquals(true, classe.isDisplayed());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

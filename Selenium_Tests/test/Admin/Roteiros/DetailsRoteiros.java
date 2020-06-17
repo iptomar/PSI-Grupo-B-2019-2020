@@ -5,42 +5,39 @@
  */
 package Admin.Roteiros;
 
-import Admin.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
  * @author Tomás Barros
  */
 public class DetailsRoteiros {
+
     WebDriver driver;
-    
+
     public DetailsRoteiros(WebDriver driver) {
         this.driver = driver;
     }
-    
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     public void DetailedRoteiros() {
-         try {
+    public void DetailedRoteiros() {
+        try {
 
             //Ir para Roteiros
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
-             //Confirmacao ULR
+            Thread.sleep(1000);
+            //Confirmacao ULR
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true,title.contains("detalhes"));
+            Assert.assertEquals(true, title.contains("detalhes"));
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

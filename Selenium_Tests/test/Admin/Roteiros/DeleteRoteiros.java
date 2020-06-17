@@ -5,14 +5,9 @@
  */
 package Admin.Roteiros;
 
-import Admin.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
@@ -31,12 +26,13 @@ public class DeleteRoteiros {
      public void DeletedRoteiros() {
          try {
             //Ir para Roteiros
-            Thread.sleep(500);
+             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
-            Thread.sleep(500);
+              Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.switchTo().alert().accept();
+             Thread.sleep(500);
              //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true,title.contains("Routes"));

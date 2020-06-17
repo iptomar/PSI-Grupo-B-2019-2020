@@ -13,29 +13,28 @@ import org.openqa.selenium.WebElement;
 
 /**
  *
- * @author Tomás Barros
+ * @author Luís Badalo
  */
-public class CreateAuthors {
+public class CreateAuthorsUnsuccessfull {
 
     WebDriver driver;
 
-    public CreateAuthors(WebDriver driver) {
+    public CreateAuthorsUnsuccessfull(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void AddAuthors() {
+    public void AddAuthorsUnsuccessfull() {
         try {
             //Ir para create authors
             Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Criar Autores']")).click();
             Thread.sleep(2000);
-            WebElement autor = driver.findElement(By.className("form-control"));
-            autor.sendKeys("AaRicardo Araujo");
-            Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-            Thread.sleep(1000);
-            driver.switchTo().alert().accept();
-            Thread.sleep(1000);
+            Thread.sleep(3000);
+             driver.findElement(By.xpath("//a[.='Autores']")).click();
+            //Warnings na página(FORMA CORRETA)
+            //WebElement classe = driver.findElement(By.className("alert-warning"));
+            //Assert.assertEquals(true, classe.isDisplayed());
             //Confirmação
             String title = driver.getCurrentUrl();
             System.out.println(title);

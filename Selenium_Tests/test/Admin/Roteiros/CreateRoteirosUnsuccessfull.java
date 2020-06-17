@@ -13,37 +13,32 @@ import org.openqa.selenium.WebElement;
 
 /**
  *
- * @author Tomás Barros
+ * @author Antonio Rodrigues
  */
-public class CreateRoteiros {
+public class CreateRoteirosUnsuccessfull {
 
     WebDriver driver;
 
-    public CreateRoteiros(WebDriver driver) {
+    public CreateRoteirosUnsuccessfull(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void AddRoteiros() {
+    public void AddRoteirosUnsuccessfull() {
         try {
             //Ir para create authors
-            Thread.sleep(2000);
+            Thread.sleep(500);
             driver.findElement(By.xpath("//a[.='Criar Roteiros']")).click();
-            Thread.sleep(2000);
-            WebElement nomerota = driver.findElement(By.className("form-control"));
-            nomerota.sendKeys("AaRota");
-            Thread.sleep(2000);
-            //Erro às vezes
-            WebElement teste = driver.findElement(By.id("react-select-2-input"));
-            teste.sendKeys("aa");
-            Thread.sleep(6000);
-            teste.sendKeys(Keys.RETURN);
-            
+            Thread.sleep(5000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.switchTo().alert().accept();
-            Thread.sleep(1000);
+            Thread.sleep(500);
+            //Warnings na página(FORMA CORRETA)
+            //WebElement classe = driver.findElement(By.className("alert-warning"));
+            //Assert.assertEquals(true, classe.isDisplayed());
+            
             String title = driver.getCurrentUrl();
-            Assert.assertEquals(true, title.contains("Routes"));
+            Assert.assertEquals(true, title.contains("CreateRoutes"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
