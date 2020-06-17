@@ -42,17 +42,24 @@ class App extends Component {
     this.state ={
       logged: '',
     }
-
+    
     usersApi.softValidateAuth().then((response)=>{
       this.setState({logged:response});
     });
   };
 
 
+
   render() {
     console.log(window.location.pathname);
 
-    //verificação se está logado
+    //verificação se está logado 
+    //isto foi feito a pressa e nao é a maneira correta de fazer isto
+    if(this.state.logged == false){
+      usersApi.softValidateAuth().then((response)=>{
+        this.setState({logged:response});
+      });
+    };
     
 
     const islogged = this.state.logged;
