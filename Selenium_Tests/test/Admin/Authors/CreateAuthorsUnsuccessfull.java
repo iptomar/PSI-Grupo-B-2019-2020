@@ -30,16 +30,15 @@ public class CreateAuthorsUnsuccessfull {
             driver.findElement(By.xpath("//a[.='Criar Autores']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-            Thread.sleep(1000);
-            driver.switchTo().alert().accept();
-            Thread.sleep(1000);
+            Thread.sleep(3000);
+             driver.findElement(By.xpath("//a[.='Autores']")).click();
             //Warnings na página(FORMA CORRETA)
             //WebElement classe = driver.findElement(By.className("alert-warning"));
             //Assert.assertEquals(true, classe.isDisplayed());
             //Confirmação
             String title = driver.getCurrentUrl();
             System.out.println(title);
-            Assert.assertEquals(true, title.contains("CreateAuthors"));
+            Assert.assertEquals(true, title.contains("Authors"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

@@ -33,6 +33,7 @@ public class EditUsersError {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Editar']")).click();
             WebElement username = driver.findElement(By.id("name"));
+            Thread.sleep(1000);
             driver.findElement(By.id("name")).clear();
             Thread.sleep(2000);
             username.sendKeys("SeleniumTest2");

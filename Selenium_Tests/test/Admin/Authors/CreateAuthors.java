@@ -30,7 +30,7 @@ public class CreateAuthors {
             driver.findElement(By.xpath("//a[.='Criar Autores']")).click();
             Thread.sleep(2000);
             WebElement autor = driver.findElement(By.className("form-control"));
-            autor.sendKeys("Ricardo Araujo");
+            autor.sendKeys("AaRicardo Araujo");
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(1000);

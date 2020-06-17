@@ -27,9 +27,7 @@ public class Capabilities {
     }
 
     public WebDriver getDriver() {
-        String baseUrl = "http://front.psi2020.tugamars.com";
-        String expectedTitle = "React App";
-        String actualTitle = "";
+        String baseUrl = "http://localhost:3000/";
 
         // launch Fire fox and direct it to the Base URL
         driver.get(baseUrl);

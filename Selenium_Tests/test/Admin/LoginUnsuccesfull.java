@@ -33,7 +33,7 @@ public class LoginUnsuccesfull {
             String url = driver.getCurrentUrl();
             Assert.assertEquals(true, url.contains("login"));
             driver.findElement(By.name("email")).click();
-            driver.findElement(By.name("email")).sendKeys("admin@admin.com");
+            driver.findElement(By.name("email")).sendKeys("admin@admasdin.com");
             Thread.sleep(500);
             driver.findElement(By.name("password")).click();
             driver.findElement(By.name("password")).sendKeys("password");
@@ -44,6 +44,10 @@ public class LoginUnsuccesfull {
             driver.findElement(By.xpath("//button[.='Login']")).click();
             Thread.sleep(4000);
             WebElement classe = driver.findElement(By.className("alert-warning"));
+            Thread.sleep(500);
+            driver.findElement(By.name("email")).clear();
+            Thread.sleep(500);
+             driver.findElement(By.name("password")).clear();
             Assert.assertEquals(true, classe.isDisplayed());
         } catch (Exception e) {
             System.out.println(e.getMessage());

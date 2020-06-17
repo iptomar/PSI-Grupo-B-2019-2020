@@ -38,6 +38,8 @@ public class EditRoteirosUnsuccessfull {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(2000);
+            driver.findElement(By.xpath("//a[.='Roteiros']")).click();
+            Thread.sleep(2000);
             //Warnings na página(FORMA CORRETA)
             //WebElement classe = driver.findElement(By.className("alert-warning"));
             //Assert.assertEquals(true, classe.isDisplayed());

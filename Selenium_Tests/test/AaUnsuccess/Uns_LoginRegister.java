@@ -29,8 +29,9 @@ public class Uns_LoginRegister {
     @Test
 
     public void FailedLoginRegister() {
-         new RegisterUnsuccessfull(driver).registerUnsuccessfully();
          new LoginUnsuccesfull(driver).loginUnsucessfully();
+         new LoginSuccess(driver).loginSucessfully();
+         new RegisterUnsuccessfull(driver).registerUnsuccessfully();
         driver.quit();
     }
 }

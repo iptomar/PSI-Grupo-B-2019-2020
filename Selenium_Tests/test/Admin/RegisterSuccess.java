@@ -28,14 +28,16 @@ public class RegisterSuccess {
         try {
             //Anónimo
             Thread.sleep(5000);
-            driver.findElement(By.linkText("Create")).click();
+            driver.findElement(By.linkText("Registo")).click();
             Thread.sleep(2000);
             driver.findElement(By.name("name")).click();
-            driver.findElement(By.name("name")).sendKeys("Luis");
+            driver.findElement(By.name("name")).sendKeys("aaLuis");
             Thread.sleep(500);
             driver.findElement(By.name("email")).click();
             driver.findElement(By.name("email")).sendKeys("aaa@gmail.com");
             Thread.sleep(500);
+            driver.findElement(By.name("role")).click();
+            driver.findElement(By.name("role")).sendKeys("user");
             driver.findElement(By.name("password")).click();
             driver.findElement(By.name("password")).sendKeys("aaa");
             Thread.sleep(500);

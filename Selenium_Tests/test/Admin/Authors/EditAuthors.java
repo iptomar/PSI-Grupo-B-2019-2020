@@ -39,7 +39,7 @@ public class EditAuthors {
             WebElement autor = driver.findElement(By.className("form-control"));
             autor.clear();
             Thread.sleep(500);
-            autor.sendKeys("Cristiano Vincentino");
+            autor.sendKeys("AaCristiano Vincentino");
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(2000);

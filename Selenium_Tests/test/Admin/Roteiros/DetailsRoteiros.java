@@ -32,7 +32,7 @@ public class DetailsRoteiros {
             driver.findElement(By.xpath("//a[.='Roteiros']")).click();
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Detalhes']")).click();
-            Thread.sleep(500);
+            Thread.sleep(1000);
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("detalhes"));

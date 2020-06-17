@@ -7,6 +7,7 @@ package AaUnsuccess;
  */
 
 import Admin.LoginSuccess;
+import Admin.Points.CreatePoint;
 import Admin.Points.CreatePointUnsuccessfull;
 import Admin.Points.EditPointUnsuccessfull;
 import Testes.Login.Capabilities.Capabilities;
@@ -33,6 +34,7 @@ public class Uns_Login_Points {
     public void PointsTest() {
         new LoginSuccess(driver).loginSucessfully();
         new CreatePointUnsuccessfull(driver).PointInterestUnsuccessfull();
+        new CreatePoint(driver).PointInterest();
         new EditPointUnsuccessfull(driver).EditPointUnsuccessfully();
         driver.quit();
     }

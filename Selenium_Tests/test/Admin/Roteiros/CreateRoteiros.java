@@ -30,14 +30,17 @@ public class CreateRoteiros {
             driver.findElement(By.xpath("//a[.='Criar Roteiros']")).click();
             Thread.sleep(2000);
             WebElement nomerota = driver.findElement(By.className("form-control"));
-            nomerota.sendKeys("1Rota1");
+            nomerota.sendKeys("AaRota");
             Thread.sleep(2000);
             //Erro às vezes
             WebElement teste = driver.findElement(By.id("react-select-2-input"));
             teste.sendKeys("aa");
             Thread.sleep(6000);
             teste.sendKeys(Keys.RETURN);
+            
             driver.findElement(By.xpath("//button[.='Submit']")).click();
+            Thread.sleep(1000);
+            driver.switchTo().alert().accept();
             Thread.sleep(1000);
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("Routes"));

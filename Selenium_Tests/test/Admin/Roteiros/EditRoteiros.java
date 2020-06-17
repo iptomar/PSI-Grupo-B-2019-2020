@@ -36,7 +36,7 @@ public class EditRoteiros {
             //limpa o texto
             Thread.sleep(2000);
             driver.findElement(By.className("form-control")).clear();
-            autor.sendKeys("2Rota2");
+            autor.sendKeys("AaRotass");
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
             Thread.sleep(2000);

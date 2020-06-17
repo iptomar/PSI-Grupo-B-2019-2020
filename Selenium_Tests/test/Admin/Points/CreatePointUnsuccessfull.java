@@ -32,7 +32,6 @@ public class CreatePointUnsuccessfull {
         try {
             Thread.sleep(1000);
             driver.findElement(By.xpath("//a[.='Criar Pontos de Interesse']")).click();
-            //driver.findElement(By.linkText("Login")).click();
             Thread.sleep(2000);
             WebElement nome = driver.findElement(By.name("buildingName"));
             nome.sendKeys("");
@@ -58,11 +57,11 @@ public class CreatePointUnsuccessfull {
 
             driver.findElement(By.xpath("//button[.='Add image']")).click();
             Thread.sleep(5000);
-            WebElement teste = driver.findElement(By.id("react-select-2-input"));
-            teste.sendKeys("");
+            //WebElement teste = driver.findElement(By.id("react-select-2-input"));
+            //teste.sendKeys("");
 
-            Thread.sleep(5000);
-            teste.sendKeys(Keys.RETURN);
+            //Thread.sleep(5000);
+            //teste.sendKeys(Keys.RETURN);
 
             WebElement c1 = driver.findElement(By.name("coordenada1"));
             c1.sendKeys("");

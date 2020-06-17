@@ -5,21 +5,11 @@ package Admin.Points;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import Testes.Login.Capabilities.Capabilities;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  *
@@ -39,10 +29,12 @@ public class CreatePoint {
     public void PointInterest() {
         try {
             Thread.sleep(2000);
+            driver.findElement(By.xpath("//a[.='Pontos De Interesse']")).click();
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//a[.='Criar Pontos de Interesse']")).click();
             Thread.sleep(2000);
             WebElement nome = driver.findElement(By.name("buildingName"));
-            nome.sendKeys("1AEdificio1");
+            nome.sendKeys("AaEdificio");
             Thread.sleep(1000);
             WebElement localizacao = driver.findElement(By.name("location"));
             localizacao.sendKeys("Tomar");

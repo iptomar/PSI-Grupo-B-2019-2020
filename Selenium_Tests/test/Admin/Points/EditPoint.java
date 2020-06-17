@@ -5,14 +5,11 @@
  */
 package Admin.Points;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  *
@@ -34,20 +31,20 @@ public class EditPoint {
             driver.findElement(By.xpath("//button[.='Editar']")).click();
             Thread.sleep(1000);
             //
-            WebElement name = driver.findElement(By.className("form-control"));
-            name.clear();
-            Thread.sleep(2000);
-            name.sendKeys("1ASeleniumTest2");
+           // WebElement name = driver.findElement(By.className("form-control"));
+           // name.clear();
+           // Thread.sleep(2000);
+           // name.sendKeys("AaEdificio2");
             //
-            WebElement location = driver.findElement(By.name("location"));
-            location.clear();
-            Thread.sleep(500);
-            location.sendKeys("SeleniumTest2");
+           // WebElement location = driver.findElement(By.name("location"));
+           // location.clear();
+           // Thread.sleep(500);
+           // location.sendKeys("Tomar");
 
-            WebElement dates = driver.findElement(By.name("dates"));
-            dates.clear();
-            Thread.sleep(500);
-            dates.sendKeys("1111");
+           // WebElement dates = driver.findElement(By.name("dates"));
+           // dates.clear();
+           // Thread.sleep(500);
+           // dates.sendKeys("1111");
 
             WebElement type = driver.findElement(By.name("buildingType"));
             type.clear();
@@ -75,34 +72,37 @@ public class EditPoint {
             foto.sendKeys("C:\\Users\\LuisBadalo\\Desktop\\Screenshot_1.png");
             WebElement autor = driver.findElement(By.name("source_author"));
             Thread.sleep(500);
-            autor.sendKeys("seleniumtest1");
+            autor.sendKeys("Aasas");
             WebElement desc = driver.findElement(By.name("description_images"));
             Thread.sleep(500);
-            desc.sendKeys("seleniumtest1");
+            desc.sendKeys("Aasda");
 
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Add image']")).click();
 
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Apagar']")).click();
-            Thread.sleep(3000);
-            //Erro às vezes
-            WebElement teste = driver.findElement(By.id("react-select-2-input"));
-            teste.sendKeys("aa");
+             Thread.sleep(5000);
+            //WebElement Autores = driver.findElement(By.id("react-select-2-input"));
+            //Autores.sendKeys("aa");
+            //Thread.sleep(5000);
+            //Autores.sendKeys(Keys.RETURN);
 
-            Thread.sleep(3000);
-            teste.sendKeys(Keys.RETURN);
+            //Thread.sleep(500);
+            //driver.findElement(By.xpath("//button[.='Delete']")).click();
+            //Thread.sleep(1000);
 
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//button[.='Delete']")).click();
+            //driver.switchTo().alert().accept();
+
+            //Apagar coordenadas            
+            driver.findElement(By.xpath("/html/body/div[1]/div/form/div[14]/table/tbody/tr[1]/td[4]/button")).click();
             Thread.sleep(1000);
-
-            driver.switchTo().alert().accept();
-
-            //Apagar coordenadas 
-            driver.findElement(By.xpath("//button[.='Delete']")).click();
-            driver.findElement(By.xpath("//button[.='Delete']")).click();
-            driver.findElement(By.xpath("//button[.='Delete']")).click();
+            driver.findElement(By.xpath("/html/body/div[1]/div/form/div[14]/table/tbody/tr[1]/td[4]/button")).click();
+            Thread.sleep(1000);
+            driver.findElement(By.xpath("/html/body/div[1]/div/form/div[14]/table/tbody/tr[1]/td[4]/button")).click();
+            
+            //driver.findElement(By.xpath("//button[.='Delete']")).click();
+            //driver.findElement(By.xpath("//button[.='Delete']")).click();
 
             WebElement c1 = driver.findElement(By.name("coordenada1"));
             Thread.sleep(500);
@@ -135,9 +135,8 @@ public class EditPoint {
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Add vertice']")).click();
             Thread.sleep(500);
-
             driver.findElement(By.xpath("//button[.='Submit']")).click();
-            Thread.sleep(7000);
+            Thread.sleep(5000);
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("PointsOfInterest"));
