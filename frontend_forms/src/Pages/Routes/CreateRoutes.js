@@ -67,12 +67,8 @@ class CreateRoutes extends Component {
         roteirosApi.create(document.getElementById("nameRoute").value,this.state.pointsOfInterest).then((response) => {
             this.props.history.push('/Routes');
         })
-        alert("Form submitted");
+       
     
-        }else{
-
-        alert("Form has errors.")
-
         }
     }
 
@@ -107,7 +103,7 @@ class CreateRoutes extends Component {
         }
 
         if(nameR !== "undefined"){
-           if(!nameR.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
+           if(!nameR.match(/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
               formIsValid = false;
               console.log("Only letters");
            }        

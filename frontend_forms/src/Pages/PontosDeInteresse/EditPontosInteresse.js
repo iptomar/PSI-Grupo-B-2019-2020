@@ -399,9 +399,6 @@ import AsyncSelect from 'react-select/async';
 						console.log(error);
             this.setState({errors:error});
 		});
-			alert("Form submitted");
-		}else{
-			alert("Form has errors.");
 		}
 	}
 	
@@ -421,7 +418,7 @@ import AsyncSelect from 'react-select/async';
         }
 
 		if(nameP !== "undefined" || locat !== "undefined" || buildtype !== "undefined" || descrip !== "undefined" ){
-           if(!nameP.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !locat.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !buildtype.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !descrip.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
+           if(!nameP.match(/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !locat.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !buildtype.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/) || !descrip.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
               formIsValid = false;
               console.log("Only letters");
            }        

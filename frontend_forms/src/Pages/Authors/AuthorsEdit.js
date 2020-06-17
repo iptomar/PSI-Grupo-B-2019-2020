@@ -70,9 +70,7 @@ class AuthorsEdit extends Component {
             console.log(error);
             this.setState({errors:error});
         });
-            alert("Form submitted");
-        }else{
-            alert("Form has errors.");
+            
         }
 
     }
@@ -95,7 +93,7 @@ class AuthorsEdit extends Component {
         }
 
         if(nameAuth !== "undefined"){
-           if(!nameAuth.match(/^[a-zA-Z0-9_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
+           if(!nameAuth.match(/^[a-zA-Z_.,áãàâÃÀÁÂÔÒÓÕòóôõÉÈÊéèêíìîÌÍÎúùûçÇ!-.? ]+$/)){
               formIsValid = false;
               console.log("Only letters");
            }        
