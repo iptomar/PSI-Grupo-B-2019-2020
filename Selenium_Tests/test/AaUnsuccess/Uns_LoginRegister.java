@@ -5,7 +5,6 @@ package AaUnsuccess;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import Testes.Login.Capabilities.Capabilities;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -29,9 +28,9 @@ public class Uns_LoginRegister {
     @Test
 
     public void FailedLoginRegister() {
-         new LoginUnsuccesfull(driver).loginUnsucessfully();
-         new LoginSuccess(driver).loginSucessfully();
-         new RegisterUnsuccessfull(driver).registerUnsuccessfully();
+        new LoginUnsuccesfull(driver).loginUnsucessfully();
+        new LoginSuccess(driver).loginSucessfully();
+        new RegisterUnsuccessfull(driver).registerUnsuccessfully();
         driver.quit();
     }
 }

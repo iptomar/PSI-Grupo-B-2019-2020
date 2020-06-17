@@ -71,48 +71,34 @@ public class EditPointUnsuccessfull {
 
             //Thread.sleep(500);
             //driver.findElement(By.xpath("//button[.='Add image']")).click();
-
             //Thread.sleep(500);
             //driver.findElement(By.xpath("//button[.='Apagar']")).click();
-
             //Thread.sleep(5000);
             //WebElement teste = driver.findElement(By.id("react-select-2-input"));
             //teste.sendKeys("aa");
-
             //Thread.sleep(5000);
             //teste.sendKeys(Keys.RETURN);
-
             //Thread.sleep(500);
             //driver.findElement(By.xpath("//button[.='Delete']")).click();
-
             //driver.switchTo().alert().accept();
-
             //WebElement c1 = driver.findElement(By.name("coordenada1"));
             //Thread.sleep(500);
             //c1.sendKeys("1");
-
             //WebElement c2 = driver.findElement(By.name("coordenada2"));
             //Thread.sleep(500);
             //c2.sendKeys("2");
-
             //WebElement or = driver.findElement(By.name("order"));
             //Thread.sleep(500);
             //or.sendKeys("1");
-
             //driver.findElement(By.xpath("//button[.='Add vertice']")).click();
-
-           // c1.sendKeys("1");
-           // c2.sendKeys("2");
-
+            // c1.sendKeys("1");
+            // c2.sendKeys("2");
             //or.sendKeys("2");
             //driver.findElement(By.xpath("//button[.='Add vertice']")).click();
-           // c1.sendKeys("1");
-
+            // c1.sendKeys("1");
             //c2.sendKeys("2");
-
             //or.sendKeys("3");
             //driver.findElement(By.xpath("//button[.='Add vertice']")).click();
-
             //Thread.sleep(500);
             //driver.findElement(By.xpath("//button[.='Delete']")).click();
             //Thread.sleep(500);
@@ -122,13 +108,12 @@ public class EditPointUnsuccessfull {
             Thread.sleep(500);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(500);
-             driver.findElement(By.xpath("//button[.='Submit']")).click();
+            driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(6000);
-            
+
             //Warnings na página(FORMA CORRETA)
             //WebElement classe = driver.findElement(By.className("alert-warning"));
             //Assert.assertEquals(true, classe.isDisplayed());
-            
             //Confirmacao ULR
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("edit"));

@@ -31,7 +31,7 @@ public class CreateAuthorsUnsuccessfull {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//button[.='Submit']")).click();
             Thread.sleep(3000);
-             driver.findElement(By.xpath("//a[.='Autores']")).click();
+            driver.findElement(By.xpath("//a[.='Autores']")).click();
             //Warnings na página(FORMA CORRETA)
             //WebElement classe = driver.findElement(By.className("alert-warning"));
             //Assert.assertEquals(true, classe.isDisplayed());

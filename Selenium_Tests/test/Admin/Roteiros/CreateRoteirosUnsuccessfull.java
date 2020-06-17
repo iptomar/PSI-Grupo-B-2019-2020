@@ -36,7 +36,7 @@ public class CreateRoteirosUnsuccessfull {
             //Warnings na página(FORMA CORRETA)
             //WebElement classe = driver.findElement(By.className("alert-warning"));
             //Assert.assertEquals(true, classe.isDisplayed());
-            
+
             String title = driver.getCurrentUrl();
             Assert.assertEquals(true, title.contains("CreateRoutes"));
         } catch (Exception e) {

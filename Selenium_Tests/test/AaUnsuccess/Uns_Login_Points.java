@@ -5,7 +5,6 @@ package AaUnsuccess;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import Admin.LoginSuccess;
 import Admin.Points.CreatePoint;
 import Admin.Points.CreatePointUnsuccessfull;

@@ -1,4 +1,4 @@
-package Admin;
+package Users;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,24 +8,23 @@ package Admin;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  *
  * @author Luís Badalo
  */
-public class LoginUnsuccesfull {
+public class LoginSuccessUser {
 
     WebDriver driver;
 
-    public LoginUnsuccesfull(WebDriver driver) {
+    public LoginSuccessUser(WebDriver driver) {
         this.driver = driver;
     }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    public void loginUnsucessfully() {
+    public void loginUserSucessfully() {
         try {
             Thread.sleep(5000);
             driver.findElement(By.linkText("Login")).click();
@@ -33,22 +32,16 @@ public class LoginUnsuccesfull {
             String url = driver.getCurrentUrl();
             Assert.assertEquals(true, url.contains("login"));
             driver.findElement(By.name("email")).click();
-            driver.findElement(By.name("email")).sendKeys("admin@admasdin.com");
+            driver.findElement(By.name("email")).sendKeys("aaa@gmail.com");
             Thread.sleep(500);
             driver.findElement(By.name("password")).click();
-            driver.findElement(By.name("password")).sendKeys("password");
+            driver.findElement(By.name("password")).sendKeys("aaa");
             Thread.sleep(500);
-            //Carregar botão Login
+            //Influência o type
             driver.findElement(By.xpath("//button[.='Login']")).click();
-            Thread.sleep(500);
-            driver.findElement(By.xpath("//button[.='Login']")).click();
-            Thread.sleep(4000);
-            WebElement classe = driver.findElement(By.className("alert-warning"));
-            Thread.sleep(500);
-            driver.findElement(By.name("email")).clear();
-            Thread.sleep(500);
-            driver.findElement(By.name("password")).clear();
-            Assert.assertEquals(true, classe.isDisplayed());
+            Thread.sleep(1000);
+            String title = driver.getCurrentUrl();
+            Assert.assertEquals(true, title.contains("index"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
