@@ -388,18 +388,16 @@ import AsyncSelect from 'react-select/async';
    
     handleSubmit(e){
         e.preventDefault();
-		if(this.handleValidation()){
+		//if(this.handleValidation()){
         pontosDeInteresseApi.edit(this.state.pontosInteresseID, this.state.buildingName, this.state.location, this.state.dates, this.state.buildingType, 
             this.state.description, this.state.coordinate1, this.state.coordinate2, this.state.vertices, this.state.routes
             , this.state.images, this.state.authors).then( (response)=>{
-                console.log("tou aqui");
 						this.props.history.push('/PointsOfInterest');
-            console.log("oi");
         }).catch( (error) => {
 						console.log(error);
             this.setState({errors:error});
 		});
-		}
+		//}
 	}
 	
 	handleValidation(){

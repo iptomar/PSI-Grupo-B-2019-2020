@@ -285,7 +285,7 @@ class CriarPontosInteresse extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 		alert("Are you sure you wish to create this point?");
-		if(this.handleValidation()){
+		//if(this.handleValidation()){
 		const file = this.fileUpload.files[0];
 		
 		pontosDeInteresseApi.create(document.getElementById("buildingName").value,document.getElementById("location").value, this.state.dates,document.getElementById("buildingType").value,
@@ -303,7 +303,7 @@ class CriarPontosInteresse extends Component {
             	this.setState({errors:error});
 			});
 			
-		}
+		//}
 
 	}
 
