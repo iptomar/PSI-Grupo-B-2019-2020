@@ -4,12 +4,10 @@
     "\\App_Ram_Tomarv2",
     "\\App_Ram_Tomarv2\\Guia",
     "\\App_Ram_Tomarv2\\Guia\\platforms",
-    "\\App_Ram_Tomarv2\\Guia\\platforms\\android",
-    "\\App_Ram_Tomarv2\\Guia\\platforms\\android\\app",
-    "\\App_Ram_Tomarv2\\Guia\\platforms\\android\\app\\src",
-    "\\App_Ram_Tomarv2\\Guia\\platforms\\android\\app\\src\\main",
-    "\\App_Ram_Tomarv2\\Guia\\platforms\\android\\CordovaLib"
+    "\\App_Ram_Tomarv2\\Guia\\platforms\\browser",
+    "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www",
+    "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www\\css"
   ],
-  "SelectedNode": "\\App_Ram_Tomarv2\\Guia\\platforms\\android\\app\\src\\main\\AndroidManifest.xml",
+  "SelectedNode": "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www\\css\\index.css",
   "PreviewInSolutionExplorer": false
 }
