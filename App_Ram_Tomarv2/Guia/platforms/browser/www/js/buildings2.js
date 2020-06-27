@@ -108,7 +108,8 @@ async function buildings()
             //     fillOpacity: 0.5,
             //     radius: 100
             // }).addTo(mymap);
-
+						
+						//popup com informação do edificio
             let divPopup = document.createElement('div');
             divPopup.setAttribute('id', 'iDdivPopup');
 
@@ -145,6 +146,7 @@ async function buildings()
             
             //const mark = L.marker(coord, {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
             
+						//página de detalhes do edificio
             const cont = document.querySelector('.cont');
             
             const txtDetails = document.querySelector('.divDetails');
@@ -249,8 +251,8 @@ async function buildings()
                 removeRoutingControl();
                 control = L.Routing.control({
                     waypoints: [
-                        L.latLng(latlng),                                               //latLang current position of the user
-                        L.latLng([info.coordinate1, info.coordinate2])                 //route coordinate 
+                        L.latLng(latlng), //latLang current position of the user
+                        L.latLng([info.coordinate1, info.coordinate2]) //route coordinate 
                     ],
                     createMarker: function (i, wp, nWps) {
                         if (i === nWps - 1) {
@@ -369,9 +371,11 @@ async function buildings()
 
                 let routeCoord;
                 const pivot = rout.pivot;
+                const ramTitle = document.querySelector('#title');
                 $.each(pivot, (i, p)=>{
                     $.each(dados, (i, d)=>{
                         spanYY.addEventListener('click', ()=>{
+														ramTitle.innerHTML = `<i class="glyphicon glyphicon-home"></i> ${rout.name}`;
                             if(p.building_id == d.id){
                                 routeCoord = L.marker([d.coordinate1, d.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
                                 mp.style.zIndex = "1";
@@ -379,6 +383,7 @@ async function buildings()
                         });
 
                         spanRR.addEventListener('click', ()=>{
+														ramTitle.innerHTML = `<i class="glyphicon glyphicon-home"></i> RAM TOMAR`;
                             routeCoord.remove();
                         });
                     });
