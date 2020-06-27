@@ -6,8 +6,9 @@
     "\\App_Ram_Tomarv2\\Guia\\platforms",
     "\\App_Ram_Tomarv2\\Guia\\platforms\\browser",
     "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www",
-    "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www\\css"
+    "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www\\css",
+    "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www\\js"
   ],
-  "SelectedNode": "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www\\css\\index.css",
+  "SelectedNode": "\\App_Ram_Tomarv2\\Guia\\platforms\\browser\\www\\js\\buildings2.js",
   "PreviewInSolutionExplorer": false
 }

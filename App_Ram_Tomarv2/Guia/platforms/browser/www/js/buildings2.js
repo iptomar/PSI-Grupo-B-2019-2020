@@ -372,19 +372,23 @@ async function buildings()
                 let routeCoord;
                 const pivot = rout.pivot;
                 const ramTitle = document.querySelector('#title');
+								var cities = L.layerGroup();
                 $.each(pivot, (i, p)=>{
                     $.each(dados, (i, d)=>{
                         spanYY.addEventListener('click', ()=>{
 														ramTitle.innerHTML = `<i class="glyphicon glyphicon-home"></i> ${rout.name}`;
                             if(p.building_id == d.id){
-                                routeCoord = L.marker([d.coordinate1, d.coordinate2], {icon: pointInterMarker}).addTo(mymap).bindPopup(divPopup);
+                                routeCoord = L.marker([d.coordinate1, d.coordinate2], {icon: pointInterMarker}).addTo(cities).bindPopup(divPopup);
+																cities.addTo(mymap);
                                 mp.style.zIndex = "1";
                             }
                         });
 
                         spanRR.addEventListener('click', ()=>{
-														ramTitle.innerHTML = `<i class="glyphicon glyphicon-home"></i> RAM TOMAR`;
-                            routeCoord.remove();
+														if(cities.getLayers().length != 0){
+															ramTitle.innerHTML = `<i class="glyphicon glyphicon-home"></i> RAM TOMAR`;
+															cities.clearLayers();
+														}
                         });
                     });
                 });
