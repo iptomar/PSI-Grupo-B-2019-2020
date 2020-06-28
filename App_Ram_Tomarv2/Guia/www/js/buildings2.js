@@ -5,6 +5,7 @@ mapa.style.marginTop = '-18px';
 mapa.style.zIndex = '1px';
 
 let mymap = L.map('map', {doubleClickZoom: false}).locate({setView: true, maxZoom: 14});
+var city = L.layerGroup();
 
 //criação dos eventos e suas funcoes para distinguir o estado online e offline
 //######################Estado OffLine##################################
@@ -366,26 +367,29 @@ async function buildings()
                     routes2.className = 'btn btn-success btn-lg btn-block';
                     div2PointInterres.appendChild(routes2);
                 });
-
+								
+								spanYY.addEventListener('click', ()=>{
+									city.clearLayers();
+								});
+								
                 let routeCoord;
                 const pivot = rout.pivot;
 								const ramTitle = document.querySelector('#title');
-								var cities = L.layerGroup();
                 $.each(pivot, (i, p)=>{
                     $.each(dados, (i, d)=>{
                         spanYY.addEventListener('click', ()=>{
 														ramTitle.innerHTML = `<i class="glyphicon glyphicon-home"></i> ${rout.name}`;
                             if(p.building_id == d.id){
-                                routeCoord = L.marker([d.coordinate1, d.coordinate2], {icon: pointInterMarker}).addTo(cities).bindPopup(divPopup);
-																cities.addTo(mymap);
+                                routeCoord = L.marker([d.coordinate1, d.coordinate2], {icon: pointInterMarker}).addTo(city).bindPopup(divPopup);
+																city.addTo(mymap);
                                 mp.style.zIndex = "1";
                             }
                         });
 
                         spanRR.addEventListener('click', ()=>{
-														if(cities.getLayers().length != 0){
+														if(city.getLayers().length != 0){
 															ramTitle.innerHTML = `<i class="glyphicon glyphicon-home"></i> RAM TOMAR`;
-															cities.clearLayers();
+															city.clearLayers();
 														}
                         });
                     });
