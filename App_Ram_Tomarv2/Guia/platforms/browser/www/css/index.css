@@ -289,7 +289,7 @@ top: 0px;
   visibility: hidden;
 }
 
-.rotas{
+/* .rotas{
   color: #3a4402;
   font-family: 'Times New Roman';
   float: right;
@@ -300,7 +300,7 @@ top: 0px;
   border: none;
   outline:none;
   background-color: transparent;
-}
+} */
 
 .tomar{
   color: #3a4402;
@@ -316,11 +316,11 @@ top: 0px;
 }
 
 
-.rotas:hover{
+/* .rotas:hover{
   text-decoration: none;
   color: green;
   background-color: #FF9F00;
-}
+} */
 
 .tomar:hover{
   text-decoration: none;
@@ -338,7 +338,7 @@ top: 0px;
   text-decoration: none;
 }
 
-.closeS, .closeD, .closeP{
+/* .closeS,  */.closeD, .closeP{
   float: right;
   margin-right: 2%;
   font-size: 20px;
@@ -356,12 +356,12 @@ top: 0px;
   float: left;
 }
 
-.inforRoute{
+/* .inforRoute{
   font-size: 24px;
   text-align: center;
   margin-left: 35%;
 
-}
+} */
 
 .pointInteres{
   position: fixed;
@@ -406,16 +406,16 @@ top: 0px;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-#txtRoute{
+/* #txtRoute{
   color: #ffffff;
   font-size: 24px;
   font-weight: bold;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
+} */
 
-#txtRoute:hover{
+/* #txtRoute:hover{
   background-color: goldenrod;
-}
+} */
 
 .paraf3{
   width: 806px; 
@@ -513,7 +513,7 @@ top: 0px;
   color: red;
 }
 
-#buildingName2{
+/* #buildingName2{
   text-align: left;
   font-size: 14px;
-}
+} */

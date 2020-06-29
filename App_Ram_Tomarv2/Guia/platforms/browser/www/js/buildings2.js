@@ -83,7 +83,7 @@ const pathTrace = L.icon({
 //Funcão para fazer fetch das informacões 
 //let coord;
 let control;
-const divPointInteres = document.querySelector('.divPointInter');
+//const divPointInteres = document.querySelector('.divPointInter');
 const div2PointInterres = document.querySelector('#div2PointInterres');
 const markRoute = document.querySelector('.divMarkRoute');
 
@@ -210,7 +210,7 @@ async function buildings()
                     br.innerHTML = '<br><br><br>';
                     pA.innerHTML = `Autor da imagem: ${im.sourceAuthor}`;
                     //imagem.src = `data:image/png;base64, ${im.base64}`;
-                    imagem.src = im.base64;
+                    imagem.src = im.base64.replace("www/", "");
                     divImage.appendChild(imagem);
                     divImage.appendChild(pA);
                     divImage.appendChild(br);
@@ -279,7 +279,7 @@ async function buildings()
             const mp = document.querySelector('#map');
 
             //mark the point of interest dynamically by user
-            const buildingName2 = document.createElement('h4');
+            /* const buildingName2 = document.createElement('h4');
             buildingName2.setAttribute('id', 'buildingName2');
             buildingName2.textContent = info.buildingName;
             
@@ -292,7 +292,7 @@ async function buildings()
             spanY.className = 'glyphicon glyphicon-ok';
             spanY.setAttribute('id', 'spanY');
             spanY.title = 'marcar ponto de interesse';
-            buildingName2.appendChild(spanY);
+            buildingName2.appendChild(spanY); */
 
             const rt = info.routes;
             $.each(rt, (i, rout)=>{
@@ -305,7 +305,7 @@ async function buildings()
                 div2PointInterres.appendChild(labelPoint);
 
                 //show by the point of interest
-                divPointInteres.addEventListener('click', ()=>{
+                /* divPointInteres.addEventListener('click', ()=>{
                     //mark.remove();
                     routes2.remove();
                     iPoint.textContent = "Escolhe um dos pontos em baixo para marcar no mapa:";
@@ -332,7 +332,7 @@ async function buildings()
                     spanR.style.visibility = "hidden";
                     buildCoord.remove();
                     removeRoutingControl();
-                });
+                }); */
 
                 //close span
                 const closeP = document.querySelector('.closeP');
@@ -355,7 +355,7 @@ async function buildings()
                 
                 markRoute.addEventListener('click', ()=>{
                     //mark.remove();
-                    buildingName2.remove();
+                    //buildingName2.remove();
                     
                     iPoint.textContent = "Escolhe uma das rotas em baixo para ver os pontos de interesses no mapa:";
 
@@ -372,6 +372,8 @@ async function buildings()
 								
 								spanYY.addEventListener('click', ()=>{
 									city.clearLayers();
+									div2PointInterres.classList.remove('div2PointInterresses');
+                  mp.style.zIndex = "1";
 								});
 								
                 let routeCoord;
@@ -433,7 +435,7 @@ divTomar.addEventListener('click', function(){
 
 
 //Let info for routes
-(async ()=>{
+/* (async ()=>{
     //Target url to fetch
     const targetUrl = 'http://psi2020.tugamars.com/api/buildings';
     const response = await fetch(targetUrl);
@@ -604,7 +606,7 @@ divTomar.addEventListener('click', function(){
 
     });
    
-})();
+})(); */
 
 //Home page reload
 title.addEventListener('click', function(){
